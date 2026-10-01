@@ -32,8 +32,10 @@ The historical verification wrapper preserves its native HTTP routes and corpus 
 
 ## Reproduction
 
+The public repository contains recorded results and the harness, but excludes historical source. Supply the pinned archive described in [the README](../README.md#rerunning-the-historical-comparison) to rebuild the historical arm. Running the PRATIRODH demo does not require that archive.
+
 ```powershell
-python tools/build_baseline.py
+python tools/build_baseline.py --archive /path/to/historical-edffe24.tar
 python -m pratirodh compare --prepare
 python -m pratirodh compare --hours 12 --output run_output/reproduced-comparison-v1.json
 ```
