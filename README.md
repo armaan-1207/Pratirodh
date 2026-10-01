@@ -12,7 +12,7 @@
 
 ---
 
-PRATIRODH is a security repair lab that proposes fixes and checks whether they preserve legitimate behaviour while addressing a reproduced vulnerability. Each run produces signed evidence showing what passed, what failed, and what remains unknown.
+PRATIRODH is a security repair lab that proposes fixes and checks whether they preserve legitimate behavior while addressing a reproduced vulnerability. Each run produces signed evidence showing what passed, what failed and what remains unknown.
 
 **Start with the guided demo:** it works with supplied patches and Docker, without an AI model. Add local Ollama when you want to generate repairs.
 
@@ -22,8 +22,8 @@ PRATIRODH is a security repair lab that proposes fixes and checks whether they p
 
 - **Detect and reproduce:** identify candidate findings and confirm a declared security violation in a controlled fixture.
 - **Propose repairs:** use supplied patches, deterministic templates, or a local Ollama model.
-- **Challenge every candidate:** check legitimate requests, security requests, and deliberately weakened copies of the repair.
-- **Keep an evidence trail:** retain failed attempts, request observations, candidate origins, signatures, and freshness checks.
+- **Challenge every candidate:** check legitimate requests, security requests and deliberately weakened copies of the repair.
+- **Keep an evidence trail:** retain failed attempts, request observations, candidate origins, signatures and freshness checks.
 - **Support human review:** explain the verdict and next action; approval is recorded separately from source application.
 - **Compare measured outcomes:** inspect repair and verification results in a read-only comparison view.
 
@@ -31,20 +31,20 @@ PRATIRODH is a security repair lab that proposes fixes and checks whether they p
 Detect → Reproduce → Propose → Verify → Challenge → Sign evidence → Human review
 ```
 
-Supported repair classes: **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection), and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
+Supported repair classes: **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection) and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
 
 This hackathon prototype operates on trusted, registered, single-file Flask fixtures. Readiness covers the recorded checks; source files are never replaced automatically.
 
 ## Tech stack
 
-- **Backend:** Python 3.11, Flask, Jinja2 templates, and Waitress.
-- **Frontend:** HTML, CSS, JavaScript, GSAP animation, and Three.js for the showcase visual. Fonts and browser assets are bundled locally.
+- **Backend:** Python 3.11, Flask, Jinja2 templates and Waitress.
+- **Frontend:** HTML, CSS, JavaScript, GSAP animation and Three.js for the showcase visual. Fonts and browser assets are bundled locally.
 - **Frontend build:** Node.js/npm and esbuild. Prebuilt assets are included, so Node.js is optional for running the demo.
 - **Local AI:** Ollama with `qwen2.5-coder:3b`, accessed through a restricted loopback provider.
 - **Detection:** Bandit and custom Python AST checks.
-- **Verification:** contract-based requests, mutation challenges, and generated security requests inside isolated Docker containers.
-- **Evidence:** JSON records, SHA256 input bindings, and Ed25519 signatures using `cryptography`.
-- **Testing and review deployment:** pytest, Node's test runner, GitHub Actions, and Docker Compose.
+- **Verification:** contract-based requests, mutation challenges and generated security requests inside isolated Docker containers.
+- **Evidence:** JSON records, SHA256 input bindings and Ed25519 signatures using `cryptography`.
+- **Testing and review deployment:** pytest, Node's test runner, GitHub Actions and Docker Compose.
 
 ## Project structure
 
@@ -67,10 +67,11 @@ Pratirodh/
 │   ├── scenarios/             # Disclosed development/regression fixtures
 │   ├── external-v1/           # Public-source reproductions and frozen manifest
 │   └── audit-v1/              # Final audit inputs, excluded from worker mounts
+├── patch/                     # Retained patch-matching regression helper
 ├── tests/                     # Unit, security and Docker integration tests
 ├── tools/                     # Demo preparation, audit and baseline utilities
 ├── deploy/                    # Local deployment helpers
-├── docs/                      # Guides, screenshots and recorded results
+├── docs/                      # Guides, one workspace preview and recorded results
 ├── run_output/                # Local generated evidence; ignored by Git
 ├── requirements-deploy.txt    # Pinned active application dependencies
 ├── package.json               # Frontend dependencies and build/test commands
@@ -79,18 +80,18 @@ Pratirodh/
 └── LICENSE                    # MIT license for project-owned code
 ```
 
-The tree highlights the active product. Additional reference modules and fixtures support retained regression checks. `run_output/` is created locally; signing material and private run data are not published.
+The repository includes the active product, evaluation fixtures and supporting tests. The small `patch/` module is retained for an existing patch-matching regression test. `run_output/` is created locally; signing material and private run data are not published.
 
-## Setup on Windows, macOS, and Linux
+## Setup on Windows, macOS and Linux
 
-Install Git, Python 3.11 (the measured environment used 3.11.9), and Docker. On Windows use [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) with Linux containers; on macOS use the [installer matching your Mac](https://docs.docker.com/desktop/setup/install/mac-install/). On Linux use [Docker Engine](https://docs.docker.com/engine/install/) or Docker Desktop. Start Docker and confirm `docker info` succeeds with your user account.
+Install Git, Python 3.11 (the measured environment used 3.11.9) and Docker. On Windows use [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) with Linux containers; on macOS use the [installer matching your Mac](https://docs.docker.com/desktop/setup/install/mac-install/). On Linux use [Docker Engine](https://docs.docker.com/engine/install/) or Docker Desktop. Start Docker and confirm `docker info` succeeds with your user account.
 
 ```sh
 git clone https://github.com/armaan-1207/Pratirodh.git
 cd Pratirodh
 ```
 
-### Windows — PowerShell
+### Windows : PowerShell
 
 ```powershell
 py -3.11 -m venv .venv
@@ -101,7 +102,7 @@ py -3.11 -m venv .venv
 
 These commands use the virtual environment directly, so PowerShell activation-policy changes are unnecessary. The optional `./start-demo.ps1` helper starts the existing Windows demo setup. If Windows requests firewall access, the demo only needs local access.
 
-### macOS and Linux — Terminal
+### macOS and Linux : Terminal
 
 ```sh
 python3 -m venv .venv
@@ -114,7 +115,7 @@ Use a Python 3.11 interpreter for the virtual environment. Some Linux distributi
 
 ### Open and use the demo
 
-Open [the workspace](http://127.0.0.1:8765/workspace) and select **Start guided demo**. It runs the supplied example through basic checks, stronger verification, and a corrected repair. Follow the recorded stages, open each signed result, inspect failing requests, and replay a request. The result summary explains the next action. Current evidence appears first; enable **Include stale evidence** to inspect retained older runs.
+Open [the workspace](http://127.0.0.1:8765/workspace) and select **Start guided demo**. It runs the supplied example through basic checks, stronger verification and a corrected repair. Follow the recorded stages, open each signed result, inspect failing requests and replay a request. The result summary explains the next action. Current evidence appears first; enable **Include stale evidence** to inspect retained older runs.
 
 The workspace offers three modes:
 
@@ -122,9 +123,9 @@ The workspace offers three modes:
 - **Local AI:** local Ollama proposes up to two repairs, each independently verified.
 - **Combined repair:** one template first, then up to two local Ollama attempts if readiness is not established. The complete repair workflow has a ten-minute limit.
 
-Combined repair is the default workspace tab. Candidate history retains every rejection. `/comparison` provides separate Repair and Verification tabs with recorded outcomes, costs, and expandable raw evidence. Stop the server with Ctrl+C. Source files are never replaced automatically.
+Combined repair is the default workspace tab. Candidate history retains every rejection. `/comparison` provides separate Repair and Verification tabs with recorded outcomes, costs and expandable raw evidence. Stop the server with Ctrl+C. Source files are never replaced automatically.
 
-### Optional local AI — all three platforms
+### Optional local AI : all three platforms
 
 Install [Ollama](https://docs.ollama.com/quickstart) for your OS and download the configured model while online:
 
@@ -139,7 +140,7 @@ Run `python -m pratirodh doctor` with your virtual-environment interpreter to ch
 
 The CLI examples below use `python` as shorthand for the virtual-environment interpreter: `./.venv/Scripts/python.exe` on Windows, `./.venv/bin/python` on macOS/Linux. Node.js is only needed to rebuild the frontend; prebuilt local assets are included.
 
-## Generate, verify, and replay
+## Generate, verify and replay
 
 ```powershell
 python -m pratirodh pipeline benchmark/scenarios/cwe-22-development-01 --contract benchmark/scenarios/cwe-22-development-01/contract.json --strategy combined
@@ -151,7 +152,7 @@ python -m pratirodh review RUN_ID --action approve --reviewer "Local reviewer" -
 
 The pipeline supports `--strategy combined|ollama|template`. Its CLI default remains `ollama` for compatibility. A required failure returns `REJECT`; missing observations or unqualified checks return `INSUFFICIENT_EVIDENCE`; passing the required checks returns `READY_FOR_REVIEW`. Readiness applies only to the run's bounded scope. Approval and replay require current evidence.
 
-Templates generate diffs in memory from an exact, unambiguous source match. They use the same patch policy and independent gate as model repairs. Supported repair classes are CWE-22, CWE-89, CWE-78, and CWE-798. Other detected classes remain detection-only. The supported targets are trusted, registered, single-file Flask fixtures.
+Templates generate diffs in memory from an exact, unambiguous source match. They use the same patch policy and independent gate as model repairs. Supported repair classes are CWE-22, CWE-89, CWE-78 and CWE-798. Other detected classes remain detection-only. The supported targets are trusted, registered, single-file Flask fixtures.
 
 ## Evaluation and results
 
@@ -166,7 +167,7 @@ The cohorts are disclosed separately:
 
 The comparison asks two questions: **does the verifier judge identical patches correctly?** and **does each workflow produce a working repair?** Repair workflows run three times per evaluation case. The final audit separately checks whether generated repairs actually work.
 
-Results describe this small, team-authored evaluation. Repeated attempts are grouped by scenario for uncertainty estimates. Human-review referrals remain separate from positive decisions, and no market-wide superiority is claimed.
+Results describe this small, team-authored evaluation. Repeated attempts are grouped by scenario for uncertainty estimates. Human-review referrals remain separate from positive decisions and no market-wide superiority is claimed.
 
 ### Rerunning the historical comparison
 
@@ -175,7 +176,7 @@ The published repository includes the harness and recorded results, but **does n
 <details>
 <summary><strong>Advanced reproduction commands and archive requirements</strong></summary>
 
-Use your virtual-environment interpreter in place of `python`, and replace the archive path with your own local path:
+Use your virtual-environment interpreter in place of `python` and replace the archive path with your own local path:
 
 ```sh
 python tools/build_baseline.py --archive /path/to/historical-edffe24.tar
@@ -191,11 +192,11 @@ a64f6a440083aecc0e770ca5be1df0f9aec391ce33267273e8459cf2e83097b1
 
 The builder checks this hash before building the disposable historical Docker image. Historical dependencies stay inside that image. The baseline revision is `edffe24`; the earlier PRATIRODH revision is `8f57db6`. Neither revision is included in this release's Git history.
 
-Runs rotate across cases and systems, permit one concurrent model request, and checkpoint results. Each repair allows two model calls at most, 180 seconds per generation, and ten minutes total. The full comparison has a twelve-hour cap with a final reserve for auditing generated candidates.
+Runs rotate across cases and systems, permit one concurrent model request and checkpoint results. Each repair allows two model calls at most, 180 seconds per generation and ten minutes total. The full comparison has a twelve-hour cap with a final reserve for auditing generated candidates.
 
 The final audit is checked against vulnerable originals and known repairs before measurement. It runs in a separate supervisor process; its requests and assertions are absent from generator prompts and repair feedback. Generation workers do not receive the audit directory. These controls assume a trusted operator controlling the host.
 
-Native `AUTO_MERGE`, `HUMAN_REVIEW`, and `REJECT` labels are retained. A referral for human review is not counted as an approved repair.
+Native `AUTO_MERGE`, `HUMAN_REVIEW` and `REJECT` labels are retained. A referral for human review is not counted as an approved repair.
 
 Add `--resume` to continue an interrupted comparison within its original cap. Changed cohort or implementation hashes prevent resumption; changed implementations require a new versioned evaluation. See [the methodology](docs/COMPARISON.md) and [baseline inventory](docs/HISTORICAL_BASELINE.json) for details.
 
@@ -217,7 +218,7 @@ On macOS/Linux, use `PRATIRODH_DOCKER_TESTS=1 python -m pytest -q` instead of th
 
 Use the pinned `requirements-deploy.txt` for the active application. Historical dependencies must not be installed into that environment.
 
-The dashboard includes authentication, CSRF protection, host restrictions, escaped evidence, signed inventories, and freshness checks. Container execution has no network access and uses read-only mounts. Deployment can be configured for authenticated read-only evidence review; it has no target execution privileges or signing key.
+The dashboard includes authentication, CSRF protection, host restrictions, escaped evidence, signed inventories and freshness checks. Container execution has no network access and uses read-only mounts. Deployment can be configured for authenticated read-only evidence review; it has no target execution privileges or signing key.
 
 ```powershell
 ./deploy/init-secrets.ps1
@@ -225,17 +226,17 @@ python tools/export_review.py
 docker compose up -d --build
 ```
 
-Keep `.env`, signing keys, local databases, and generated private evidence out of Git. The repository includes synthetic fixture credentials only. Review the exact staged files before publishing.
+Keep `.env`, signing keys, local databases and generated private evidence out of Git. The repository includes synthetic fixture credentials only. Review the exact staged files before publishing.
 
 
 
 ## Documentation
 
-- [Project guide](docs/PROJECT_GUIDE.md) — implementation and operation.
-- [Demo narration](docs/DEMO.md) — a presenter walkthrough.
-- [Comparison report](docs/COMPARISON.md) — measured outcomes and limitations.
-- [Interface attribution](docs/INTERFACE_SOURCES.md) — third-party assets and licenses.
-- [Security policy](SECURITY.md) — security boundaries and reporting.
+- [Project guide](docs/PROJECT_GUIDE.md) : implementation and operation.
+- [Demo narration](docs/DEMO.md) : a presenter walkthrough.
+- [Comparison report](docs/COMPARISON.md) : measured outcomes and limitations.
+- [Interface attribution](docs/INTERFACE_SOURCES.md) : third-party assets and licenses.
+- [Security policy](SECURITY.md) : security boundaries and reporting.
 
 ## License and hackathon scope
 

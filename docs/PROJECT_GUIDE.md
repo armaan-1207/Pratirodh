@@ -6,13 +6,13 @@ PRATIRODH helps a developer decide whether a proposed security repair has enough
 
 This guide is the main technical and presentation reference for the Derby University Cyber AI Hackathon project. It covers the problem, product, implementation, installation, security controls, deployment, evaluation, live demo, recording script, and planned slide content. The release is a working prototype for controlled single-file Python Flask applications with SQLite and fixture files. It supports SQL injection (CWE-89), path traversal (CWE-22), controlled command injection (CWE-78), and embedded credential repair (CWE-798). It does not certify arbitrary applications or automatically deploy repairs.
 
-The working product name is PRATIRODH. Original code and history are retained for reproducible comparisons against a pinned historical revision. Historic claims about autonomous merging, military deployment, air gaps, and universal proof are not claims about this release. The new verifier is the pratirodh package; the old cli.py is a compatibility artifact.
+The working product name is PRATIRODH. Historical source is supplied separately as the pinned archive described in the root README; it is not included in the public release. Historic claims about autonomous merging, military deployment, air gaps, and universal proof are not claims about this release. The active verifier and CLI live in the pratirodh package. Unused earlier application modules and launchers are excluded from the public release.
 
 ## Offline repair release and operating choices
 
 Release 0.2 adds a complete local workflow: static detection identifies suspicious source patterns; Ollama proposes a repair; Docker executes independent security and functionality checks; a human records a review of fresh signed evidence. Detection is evidence of a candidate issue, not an executed exploit. A disappearing scanner finding does not establish a successful repair.
 
-The release branch is `codex/pratirodh-offline-pipeline`. Use the project directory for commands below. The saved 0.1 checkpoint is commit `7409540`.
+The release branch is `codex/pratirodh-offline-pipeline`. Use the project directory for commands below.
 
 Docker isolates target execution on the laptop. Docker Compose starts the review service. Kubernetes manages deployments across clusters and is deliberately outside this laptop release. Native Ollama avoids adding a second inference container and uses the downloaded qwen2.5-coder:3b model. Its download is about 1.9 GB; runtime memory is higher. The local model uses a Qwen research license, retained in docs/OLLAMA_MODEL_LICENSE.txt after setup. Do not substitute licenses from another model size.
 
@@ -195,7 +195,7 @@ Open http://127.0.0.1:8765. The start-demo.ps1 script performs this setup and st
 
 On Linux, use python3 -m venv .venv, activate the environment, install requirements-deploy.txt, build the runner, and run python -m pratirodh serve. Commands below also work with the environment's Python executable on Windows.
 
-Use the pinned deployment requirements for a reproducible environment. The original requirements.txt belongs to legacy historical baseline and contains historic versions; do not use it to install this release. An editable development install is available with python -m pip install -e ., but the fully pinned file is the release reference.
+Use the pinned deployment requirements for a reproducible environment. Historical dependencies are locked in the baseline record and installed only inside the disposable baseline image. An editable development install is available with python -m pip install -e ., but the fully pinned file is the release reference.
 
 ## Command reference
 
@@ -485,11 +485,11 @@ The university example follows the actual development fixture. A public download
 
 Start at http://127.0.0.1:8765/. Read the main claim, then use Explore the example to switch between vulnerable, incomplete, and corrected states. The original Three.js illustration explains successive checks. Use Change diagram angle to rotate it and Pause illustration to stop motion. On small screens, with reduced motion, or without usable WebGL, a static diagram remains available.
 
-![Showcase with explanatory verification diagram](screenshots/showcase-1440.png)
+Use the live interface to inspect this view; duplicate presentation screenshots are not shipped.
 
 Open workspace to choose a registered development fixture. Curated demonstration executes an incomplete repair under fixed tests, the same repair under full verification, and a correct repair under full verification. It produces three signed records. Local generation instead asks the native Ollama model for a real candidate and subjects it to independent checks. Generation can fail or produce rejected repairs. The interface never substitutes a curated patch for a generated one.
 
-![Workspace with separate execution modes and recent evidence filters](screenshots/workspace-1440.png)
+Use the live interface to inspect this view; duplicate presentation screenshots are not shipped.
 
 Jobs now poll a protected, read-only /api/jobs/<job_id> endpoint. The progress panel displays the backend stage and completed result links. It does not invent percentages or completion. A connection failure leaves the result unknown and offers a retry. Another active job returns a conflict. Read-only deployments hide execution controls and reject protected POST actions on the server.
 
@@ -499,7 +499,7 @@ Evidence search and the decision, CWE, and origin selectors filter only the 30 l
 
 The report begins with the decision, signature status, freshness, candidate origin and elapsed time. Overview explains failures and gaps. Patch shows escaped, inert source with unified-diff line numbers and change highlighting. Challenge the Fix shows original mandatory requests, confirmed unsafe mutants, weaknesses missed by initial tests, catching witnesses and the resulting candidate decision. Requests provides a failures-only filter and exact replay when evidence is current and execution is enabled. Provenance exposes evidence bindings and model usage.
 
-![Challenge view showing a weakness missed by the original suite](screenshots/challenge-1440.png)
+Use the live interface to inspect this view; duplicate presentation screenshots are not shipped.
 
 A signature establishes integrity, not universal security. A stale record names changed or unavailable bindings and cannot support a new approval. Historical model runs keep their original outcomes and are labelled stale when the runner changes. A signed human review records an operator label and rationale. That label is metadata, not authenticated personal identity, and approval never applies source changes. Follow its reviewed-evidence link to inspect present freshness.
 
@@ -566,3 +566,7 @@ The comparison rotates repair arms across cases and three repetitions, interleav
 See [the measured comparison report](COMPARISON.md), [machine-readable results](COMPARISON_RESULTS_V1.json), and [updated demo narration](DEMO.md). `/comparison` presents results without enabling execution. Scenario-level paired differences and descriptive bootstrap intervals group repetitions and related patch variants rather than treating them as independent applications.
 
 The earlier curated results, eight local-generation development attempts, and original release checks remain historical evidence. The Word guide is intentionally unchanged. Use the Markdown narration for this milestone; recording, manual slides, and public hosting remain future work.
+
+## Repository scope
+
+The public release keeps the active application, frontend source and built assets, tests, fixture manifests, independent audit inputs, recorded results, deployment helpers, and required licenses. One [workspace preview](screenshots/ui-workspace.jpg) illustrates the README. The small patch/ module remains for the existing patch-matching regression test. Earlier application folders, obsolete Word/release generators, and duplicate screenshots are excluded. Local generated evidence and signing material remain ignored.

@@ -28,14 +28,9 @@ Its result remains subject to ordinary verification and freshness. The fixture r
 
 Export fresh signed bundles with `python tools/export_review.py`, then build the authenticated dashboard with `docker compose up -d --build`. The review dashboard can display evidence and comparison results but cannot generate repairs, replay targets, or sign approvals. Run `python tools/check_deployment.py` to check authentication and read-only enforcement. Keep deployment credentials and signing material local.
 
-## Screenshots
+## Workspace preview
 
-- [Guided workspace and availability](screenshots/ui-workspace.jpg)
-- [Plain-language verdict and next action](screenshots/ui-verdict.jpg)
-- [Repair and verification comparison tabs](screenshots/ui-comparison.jpg)
-- [Executed failing request](screenshots/combined-replay.jpg)
-- [Fresh template repair with zero model calls](screenshots/combined-template.jpg)
-- [Completed read-only comparison](screenshots/combined-comparison.jpg)
+[View the guided workspace](screenshots/ui-workspace.jpg). Use the live demo for verdicts, replay, and comparison screens; duplicate presentation captures are not shipped.
 
 The Word document, recording, slide assembly, and public hosting are outside this release.
 
