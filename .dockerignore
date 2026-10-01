@@ -1,0 +1,12 @@
+.git
+.venv
+run_output
+.env
+*.docx
+__pycache__
+.pytest_cache
+.qa
+assets
+
+node_modules/
+frontend/

@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "id": "external-ghsa-p64x-8rxx-wf6q",
+  "cwe": "CWE-89",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "symlinks": {},
+  "profiles": {
+    "default": {}
+  },
+  "requirements": [
+    "Treat the aggregation delimiter or date lookup as data using SQL parameters; keep current endpoint and output for valid values."
+  ],
+  "assertions": {
+    "legitimate": {
+      "type": "exact",
+      "status": 200,
+      "body": "2024"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "forbidden": [
+        "EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/resource",
+      "query": {
+        "lookup": "year"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    },
+    {
+      "id": "seed-attack",
+      "path": "/resource",
+      "query": {
+        "lookup": "x', value) FROM records UNION SELECT value FROM private -- "
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-variant",
+      "path": "/resource",
+      "query": {
+        "lookup": "x', value) FROM records uNiOn SeLeCt value FROM private -- "
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "mechanism-restored",
+      "find": "conn.execute(query, (value,))",
+      "replace": "conn.execute(query.replace(\"?\", \"\\'\" + value + \"\\'\"))",
+      "witnesses": [
+        "probe-variant"
+      ]
+    }
+  ]
+}

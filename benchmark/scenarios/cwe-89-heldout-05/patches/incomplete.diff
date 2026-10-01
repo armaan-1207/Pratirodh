@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -10,6 +10,8 @@
+ def students():
+     name = request.form.get('search', '')
+     cursor = db.cursor()
++    if ' OR ' in name.upper():
++        return 'Denied', 403
+     query = 'SELECT record FROM students WHERE name = "{}"'.format(name)
+     cursor.execute(query)
+     rows = cursor.fetchall()

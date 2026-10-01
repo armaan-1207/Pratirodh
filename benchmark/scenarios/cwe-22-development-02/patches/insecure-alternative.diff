@@ -1,0 +1,13 @@
+--- a/app.py
++++ b/app.py
+@@ -8,7 +8,9 @@
+ def documents():
+     name = request.form.get('file', '')
+     root = (ROOT / 'public').resolve()
+-    requested = root / name
++    requested = (root / name).resolve()
++    if not str(requested).startswith(str(root)):
++        return 'Denied', 403
+     try:
+         return requested.read_text(encoding='utf-8')
+     except (FileNotFoundError, IsADirectoryError):

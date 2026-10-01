@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -6,6 +6,8 @@
+     filename = request.args.get('file', 'notes.txt')
+     base_dir = os.path.join(os.path.dirname(__file__), 'public')
+     validate_path_is_safe(validate_path_is_safe)
++    if '..' in filename:
++        return 'denied', 403
+     filepath = os.path.join(base_dir, filename)
+     try:
+         with open(filepath, encoding='utf-8') as stream:

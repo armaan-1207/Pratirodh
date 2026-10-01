@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -10,7 +10,4 @@
+ def students():
+     name = request.args.get('search', '')
+     cursor = db.cursor()
+-    query = 'SELECT record FROM students WHERE name = "{}"'.format(name)
+-    cursor.execute(query)
+-    rows = cursor.fetchall()
+-    return '\n'.join(row[0] for row in rows)
++    return 'Denied', 403

@@ -1,0 +1,20 @@
+--- a/app.py
++++ b/app.py
+@@ -1,12 +1,15 @@
+ from flask import Flask, request
+ import os
+ app = Flask(__name__)
+-@app.get('/resource')
++@app.get('/removed')
+ def resource():
+     filename = request.args.get('file', 'notes.txt')
+     base_dir = os.path.join(os.path.dirname(__file__), 'public')
+     validate_path_is_safe(validate_path_is_safe)
+-    filepath = os.path.join(base_dir, filename)
++    filepath = os.path.realpath(os.path.join(base_dir, filename))
++    real_base = os.path.realpath(base_dir)
++    if not (filepath == real_base or filepath.startswith(real_base + os.sep)):
++        return 'Access denied', 403
+     try:
+         with open(filepath, encoding='utf-8') as stream:
+             return stream.read()

@@ -1,0 +1,1537 @@
+{
+  "version": "external-v1",
+  "frozen_at": "2026-10-01T01:11:51.471228+00:00",
+  "inventory": {
+    "benchmark/audit-v1/external-ghsa-33f4-mjch-7fpr.json": "7aa90a8f6ecc3cbe449af22240d55245af955bdbdb9883c726e150c75899c69b",
+    "benchmark/audit-v1/external-ghsa-62mm-xwmv-crhg.json": "562fa81010c22d27835871386a87fb17c31dfaf584452a3a5a74614ca48f01ef",
+    "benchmark/audit-v1/external-ghsa-ffw3-6378-cqgp.json": "3cfde5678f1fe63ba37fccd0ba0543f3b2bae2226deb912724cc38ad73aec631",
+    "benchmark/audit-v1/external-ghsa-hmr4-m2h5-33qx.json": "2f7a4ada0e50c2e97916f25622d6550f8d03eb2c0bab98d3a715b51bd75a7aef",
+    "benchmark/audit-v1/external-ghsa-j5h9-9r39-43q5.json": "442f7c78af434c1c70fce0e17d8ca1cd82130875e5d8b2303a418ff67d878456",
+    "benchmark/audit-v1/external-ghsa-p64x-8rxx-wf6q.json": "27fe6484bc19887be6091b7095928751ace9f33c1dada667e6daa34c3804299b",
+    "benchmark/audit-v1/external-ghsa-xg73-94fp-g449.json": "3dd3542c87c90fbce2847ca035dc3a5ba2c467ccb32536e20a78500aedc7ea8c",
+    "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr/app.py": "b670133f73ad206d03a3c792ea6bb273e18f946d92d739666442ce48f686f36d",
+    "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr/contract.json": "873f9cbadb4d891ac1e37e1eb56eebcb661d0b59bc0a22877bbd2003b7341e1e",
+    "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr/patches/correct.diff": "132ef8a9065863fa62355cb9048ee676da2ff1d42f3ec53c26de5937dd0d4761",
+    "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr/patches/functionality-breaking.diff": "c3858227da03d1cc088b6122588b99aa6f357febf07ee9b7bef12b10cf1b3a54",
+    "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr/patches/incomplete.diff": "47a10e4d92a04b5ad26c98e7d07e030012574dc8029ff6b30961090d9581d54b",
+    "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr/patches/insecure-alternative.diff": "114e856755f6d2c1ebf8b1eeb5e98ace778be9c4ad2c9e0ff9bc9ede82605c4f",
+    "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg/app.py": "b24a29c62d60151a140295e4e3dc98bc06986f89ad21ff91ec3d8f9da95a15af",
+    "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg/contract.json": "b8b424f00d897ae90ee1e9903151c29d2831c8a909251c1f92db36d970383644",
+    "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg/patches/correct.diff": "dd57758b1afd171129d28e48ea01138323d2afbba977390c2b011ff4b1b75e57",
+    "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg/patches/functionality-breaking.diff": "fecb4b41836ba64f3f1fefaefbfe399db9cca8fe86128e9880f3c92e362049fe",
+    "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg/patches/incomplete.diff": "121dd9c228fc84dda5a137880244177d747d19186de5f1f5c8ebb98e8476861d",
+    "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg/patches/insecure-alternative.diff": "3f62c877d8f135573888daa325b30375f75504e40c536e5b332f31d634fda668",
+    "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp/app.py": "b0bbb8cd1ff6645a3427babccf1a9d1de2a32e1c9139a781b3642eeb49055b6b",
+    "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp/contract.json": "9936d7b88029a19f659c1fa91cbfe82e5092bac3d3637123decb67d500be656f",
+    "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp/patches/correct.diff": "840e7d2503c786dc8aa1107d6ad01b55c6a21276095134ee464a01c640b7bddc",
+    "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp/patches/functionality-breaking.diff": "ebb7694807e73b246746ef93f0a1d634128e1f55fac0c6b916604e703eb894f8",
+    "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp/patches/incomplete.diff": "141983844810191c9ca07407a8a3570f16fa305d7ec16e3fcd7754245df04cc2",
+    "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp/patches/insecure-alternative.diff": "14a07b41dd8ceb344e01d241217342fb742bc78a98143c26d439b2d32ff691b2",
+    "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx/app.py": "461f814e98c0577be1f644dba590067ec4d3f003f637092170fe351e624c5e73",
+    "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx/contract.json": "6a3f2e7f393db991adc4ff3b43c2e3d33516c7d16d85ffbafb37351a755e66a5",
+    "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx/patches/correct.diff": "ddbd00d2713e94f744424962f60f2b1d0305f9e4ff85fc3e982dbbed2ff6f6ae",
+    "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx/patches/functionality-breaking.diff": "bb9599adfcfa12ed1c6ca05409657b3749fd6f77dd0e811f1e128a124e4bc436",
+    "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx/patches/incomplete.diff": "619e4f964c86ca900bffbd23de48a4edcd59819b09a592db339d76b4676bbbcc",
+    "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx/patches/insecure-alternative.diff": "30128a917d287bcd359e0da69bc8f60f1280ee74ad32065acae93b15623a9718",
+    "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5/app.py": "b0bbb8cd1ff6645a3427babccf1a9d1de2a32e1c9139a781b3642eeb49055b6b",
+    "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5/contract.json": "8704618ee73d593e345f85868c4ef97cbc72d100e9e4fc4d331df4b425129584",
+    "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5/patches/correct.diff": "840e7d2503c786dc8aa1107d6ad01b55c6a21276095134ee464a01c640b7bddc",
+    "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5/patches/functionality-breaking.diff": "ebb7694807e73b246746ef93f0a1d634128e1f55fac0c6b916604e703eb894f8",
+    "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5/patches/incomplete.diff": "141983844810191c9ca07407a8a3570f16fa305d7ec16e3fcd7754245df04cc2",
+    "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5/patches/insecure-alternative.diff": "14a07b41dd8ceb344e01d241217342fb742bc78a98143c26d439b2d32ff691b2",
+    "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q/app.py": "ec2ad0dbb968aa292b7e80bf2e6c17d5f8e6d548f44a060cd8b6a1329cc9a68d",
+    "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q/contract.json": "57ac873ce3902d5c4e254cab6ace46d091deb0d0ebce7dcc7b231a932b19f391",
+    "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q/patches/correct.diff": "05e5122ee3dad8a483ec1ad54514ce148270fbfc1332f9967ea953ad44fb6a19",
+    "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q/patches/functionality-breaking.diff": "ac8df79fb97f2b1129aef406f8eb2f3027cfe131fb1af0f4ed6115ef577bd193",
+    "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q/patches/incomplete.diff": "fcdc8459b9d532c61b8eaecd899fd6cfa4767b42038fa8c163734eb8922646de",
+    "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q/patches/insecure-alternative.diff": "114ba45865d2f198e20b14d34aafe5c6cf9a5c0350650dc3f98197a6642343c8",
+    "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449/app.py": "0434cc3ebaf8ac47d877819638e4b43201a6a765bf470d0aafeed6b3cb509ec7",
+    "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449/contract.json": "d0fd8e1d69de3b6c89b4cc96e998ae001d595badef416ab0f4eba0aa17ddd184",
+    "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449/patches/correct.diff": "140c048df009c20c677600a1bd1fe2511f087315f85380df46d775471cfc7952",
+    "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449/patches/functionality-breaking.diff": "d6da8ee1818516c75b76863fd1c34912ed36a0f2308c8fa93968162a20dd929f",
+    "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449/patches/incomplete.diff": "13269c92cbc8448b845f294bd80e28a33a8e0d97bc400e8e22105d6dbf590c97",
+    "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449/patches/insecure-alternative.diff": "9a961490f687ffbb1900851b934ff6743146f52e2b332f0dd19d87a83ac1ade5",
+    "benchmark/external-v1/manifest.json": "0a9f7fe69e1ba129a209d78e223ab8cab7117aa6490ec7ab7085aaf2a4b42ec2",
+    "benchmark/external-v1/sources.json": "e2c7a5cb81783ea5853935fafac2c72b78f284e5c0761ed1900fe3a31dfb45d1"
+  },
+  "calibration": [
+    {
+      "scenario": "external-ghsa-xg73-94fp-g449",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 4,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "file": "notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "file": "link.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "file": "../public-other/record.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-normalized",
+              "path": "/resource",
+              "query": {
+                "file": "./notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-normalized",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.968
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 4,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "file": "notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "file": "link.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 403,
+              "body": "Access denied",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "file": "../public-other/record.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 403,
+              "body": "Access denied",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-normalized",
+              "path": "/resource",
+              "query": {
+                "file": "./notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-normalized",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.89
+      }
+    },
+    {
+      "scenario": "external-ghsa-62mm-xwmv-crhg",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 4,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "file": "notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "file": "link.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "file": "../public-other/record.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-normalized",
+              "path": "/resource",
+              "query": {
+                "file": "./notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-normalized",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.891
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 4,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "file": "notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "file": "link.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 403,
+              "body": "Access denied",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "file": "../public-other/record.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 403,
+              "body": "Access denied",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-normalized",
+              "path": "/resource",
+              "query": {
+                "file": "./notes.txt"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "public notes"
+            },
+            "actual": {
+              "id": "audit-normalized",
+              "status": 200,
+              "body": "public notes",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.937
+      }
+    },
+    {
+      "scenario": "external-ghsa-hmr4-m2h5-33qx",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "delimiter": "|"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "2024-05-06"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "2024-05-06",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "delimiter": "x') FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "2024-05-06|EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "delimiter": "x') FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "2024-05-06|EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx",
+              "files": {}
+            },
+            "status": "FAIL"
+          }
+        ],
+        "elapsed_seconds": 1.079
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "delimiter": "|"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "2024-05-06"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "2024-05-06",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "delimiter": "x') FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "2024-05-06",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "delimiter": "x') FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "2024-05-06",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.922
+      }
+    },
+    {
+      "scenario": "external-ghsa-p64x-8rxx-wf6q",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "lookup": "year"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "2024"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "2024",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "lookup": "x', value) FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "05|EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "lookup": "x', value) FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "05|EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q",
+              "files": {}
+            },
+            "status": "FAIL"
+          }
+        ],
+        "elapsed_seconds": 0.906
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "lookup": "year"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "2024"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "2024",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "lookup": "x', value) FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "05",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "lookup": "x', value) FROM records uNiOn SeLeCt value FROM private -- "
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "forbidden": [
+                "EXTERNAL_PRIVATE_GHSA-p64x-8rxx-wf6q"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "05",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 1.0
+      }
+    },
+    {
+      "scenario": "external-ghsa-ffw3-6378-cqgp",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "days": "Monday"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "Monday"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": true
+              }
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": true
+              }
+            },
+            "status": "FAIL"
+          }
+        ],
+        "elapsed_seconds": 0.954
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "days": "Monday"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "Monday"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "Monday\nprintf audit > marker.txt",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "Monday\nprintf audit > marker.txt",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.969
+      }
+    },
+    {
+      "scenario": "external-ghsa-j5h9-9r39-43q5",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "days": "Monday"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "Monday"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": true
+              }
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": true
+              }
+            },
+            "status": "FAIL"
+          }
+        ],
+        "elapsed_seconds": 1.078
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "days": "Monday"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "Monday"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "Monday",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "Monday\nprintf audit > marker.txt",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "days": "Monday\nprintf audit > marker.txt"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "absent_files": [
+                "marker.txt"
+              ]
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "Monday\nprintf audit > marker.txt",
+              "files": {
+                "marker.txt": false
+              }
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.969
+      }
+    },
+    {
+      "scenario": "external-ghsa-33f4-mjch-7fpr",
+      "original": {
+        "outcome": "UNSAFE",
+        "unsafe": true,
+        "broken": false,
+        "working": false,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "signature": "f8d38cab6cddd8c7a87dfabb6581c57603c66c37eeca92d673ea728e61be8198"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "event accepted"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "event accepted",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "signature": "57a4361a9403488d6f03523fe82eb8e3fe086804d1f6933f26027eed2bc07b23"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "missing"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "denied_body": "event accepted"
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 200,
+              "body": "event accepted",
+              "files": {}
+            },
+            "status": "FAIL"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "signature": "57a4361a9403488d6f03523fe82eb8e3fe086804d1f6933f26027eed2bc07b23"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "missing"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "denied_body": "event accepted"
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 200,
+              "body": "event accepted",
+              "files": {}
+            },
+            "status": "FAIL"
+          }
+        ],
+        "elapsed_seconds": 0.953
+      },
+      "known_repair": {
+        "outcome": "WORKING",
+        "unsafe": false,
+        "broken": false,
+        "working": true,
+        "requests": 3,
+        "checks": [
+          {
+            "case": {
+              "id": "audit-legitimate",
+              "path": "/resource",
+              "query": {
+                "signature": "f8d38cab6cddd8c7a87dfabb6581c57603c66c37eeca92d673ea728e61be8198"
+              },
+              "kind": "benign",
+              "assertion": "legitimate",
+              "profile": "default"
+            },
+            "expected": {
+              "type": "exact",
+              "status": 200,
+              "body": "event accepted"
+            },
+            "actual": {
+              "id": "audit-legitimate",
+              "status": 200,
+              "body": "event accepted",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-attack",
+              "path": "/resource",
+              "query": {
+                "signature": "57a4361a9403488d6f03523fe82eb8e3fe086804d1f6933f26027eed2bc07b23"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "missing"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "denied_body": "event accepted"
+            },
+            "actual": {
+              "id": "audit-attack",
+              "status": 403,
+              "body": "denied",
+              "files": {}
+            },
+            "status": "PASS"
+          },
+          {
+            "case": {
+              "id": "audit-probe",
+              "path": "/resource",
+              "query": {
+                "signature": "57a4361a9403488d6f03523fe82eb8e3fe086804d1f6933f26027eed2bc07b23"
+              },
+              "kind": "attack",
+              "assertion": "safe",
+              "profile": "missing"
+            },
+            "expected": {
+              "type": "security",
+              "statuses": [
+                200,
+                400,
+                403,
+                404
+              ],
+              "denied_body": "event accepted"
+            },
+            "actual": {
+              "id": "audit-probe",
+              "status": 403,
+              "body": "denied",
+              "files": {}
+            },
+            "status": "PASS"
+          }
+        ],
+        "elapsed_seconds": 0.906
+      }
+    }
+  ],
+  "audit_executions": 46
+}

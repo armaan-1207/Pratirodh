@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "id": "external-ghsa-j5h9-9r39-43q5",
+  "cwe": "CWE-78",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "symlinks": {},
+  "profiles": {
+    "default": {}
+  },
+  "requirements": [
+    "Run echo with literal argv rather than a shell; preserve the returned legitimate day and prohibit command effects."
+  ],
+  "assertions": {
+    "legitimate": {
+      "type": "exact",
+      "status": 200,
+      "body": "Monday"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "absent_files": [
+        "marker.txt"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/resource",
+      "query": {
+        "days": "Monday"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    },
+    {
+      "id": "seed-attack",
+      "path": "/resource",
+      "query": {
+        "days": "Monday; printf audit > marker.txt"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-variant",
+      "path": "/resource",
+      "query": {
+        "days": "Monday\nprintf audit > marker.txt"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "mechanism-restored",
+      "find": "output = subprocess.check_output([\"echo\", \"-n\", days], text=True)",
+      "replace": "output = subprocess.check_output(f\"echo -n {days}\", shell=True, text=True)",
+      "witnesses": [
+        "probe-variant"
+      ]
+    }
+  ]
+}

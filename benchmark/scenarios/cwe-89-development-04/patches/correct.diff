@@ -1,0 +1,12 @@
+--- a/app.py
++++ b/app.py
+@@ -10,7 +10,7 @@
+ def students():
+     name = request.args.get('student', '')
+     cursor = db.cursor()
+-    query = 'SELECT record FROM students WHERE name = "' + name + '"'
+-    cursor.execute(query)
++    query = 'SELECT record FROM students WHERE name = ?'
++    cursor.execute(query, (name,))
+     rows = cursor.fetchall()
+     return '\n'.join(row[0] for row in rows)

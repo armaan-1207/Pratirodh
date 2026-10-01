@@ -1,0 +1,73 @@
+{
+  "release": "combined-repair-v1",
+  "date": "2026-10-01",
+  "python_tests": {
+    "full_docker_suite_passed": 45,
+    "elapsed_seconds": 236.82,
+    "presentation_followup_passed": 18,
+    "presentation_followup_skipped_docker": 3,
+    "legacy_patcher_followup_passed": 1
+  },
+  "javascript_tests": {
+    "passed": 3,
+    "build": "rebuilt committed bundle"
+  },
+  "security": {
+    "bandit_medium_high_findings": 0,
+    "deployment_dependency_advisories": 0,
+    "npm_production_advisories": 0,
+    "staged_secret_review": {
+      "files_scanned": 111,
+      "blocked_files": [],
+      "credential_pattern_matches": [],
+      "legacy_branding_matches": [],
+      "private_environment_files_staged": false,
+      "scope": "Exact staged additions/modifications; known credential signatures and restricted file paths. Synthetic fixture credentials are intentional public test data."
+    }
+  },
+  "deployment": {
+    "health": 200,
+    "anonymous": 401,
+    "authenticated": 200,
+    "readonly": true,
+    "rows": 30,
+    "csp": true,
+    "local_assets": {
+      "/static/dist/app.js": 200,
+      "/static/dist/scene.js": 200,
+      "/static/fonts/space-grotesk-500.woff2": 200
+    },
+    "post_denied": 403,
+    "signing_key_exported": false
+  },
+  "browser_checks": [
+    "Three workspace modes; combined selected by default",
+    "Curated demo completed with current signed evidence",
+    "Failure filter and exact request replay reproduce private synthetic canary",
+    "Mobile workspace has no horizontal overflow",
+    "Read-only comparison view displays cohort shortfall and referrals",
+    "Template-origin filter shows the fresh combined repair",
+    "Fresh combined CLI repair reached readiness using a template and zero model calls; original source hash unchanged"
+  ],
+  "evidence": [
+    "Fresh demo replay, reduction, and stale replay refusal verified",
+    "All 51 frozen cohort entries and wrapper hashes match staged bytes",
+    "All 34 measured Python hashes reconstruct from staged checkout attributes"
+  ],
+  "limitations": [
+    "Credential signature scanning is scoped to staged files and is not a guarantee against every possible secret format",
+    "Fixture credentials and canaries are public synthetic test data",
+    "Browser review is focused smoke testing, not accessibility certification",
+    "Comparison conclusions depend on final auditing and the disclosed small cohort"
+  ],
+  "word_and_desktop": "unchanged",
+  "public_hosting": "outside milestone",
+  "comparison": {
+    "status": "COMPLETE",
+    "scheduled_runs": 100,
+    "audited_candidates": 112,
+    "elapsed_seconds": 2044.797,
+    "indeterminate_candidate_audits": 12,
+    "unstarted_runs": 0
+  }
+}

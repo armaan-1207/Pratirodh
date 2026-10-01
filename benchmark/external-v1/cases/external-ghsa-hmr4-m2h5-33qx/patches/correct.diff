@@ -1,0 +1,14 @@
+--- a/app.py
++++ b/app.py
+@@ -11,9 +11,9 @@
+     conn.execute('INSERT INTO private VALUES (?)', ('EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx',))
+     conn.create_function('date_part', 2, lambda kind, date: date[:4] if kind == 'year' else date[5:7])
+     value = request.args.get('delimiter', '|')
+-    query = f"SELECT group_concat(value, '{value}') FROM records"
++    query = "SELECT group_concat(value, ?) FROM records"
+     try:
+-        cur = conn.execute(query)
++        cur = conn.execute(query, (value,))
+         return '|'.join(str(row[0]) for row in cur.fetchall())
+     except sqlite3.Error:
+         return 'invalid', 400

@@ -1,0 +1,224 @@
+{
+  "version": "external-v1",
+  "target_cases": 16,
+  "cases": [
+    {
+      "advisory": "GHSA-xg73-94fp-g449",
+      "advisory_url": "https://github.com/advisories/GHSA-xg73-94fp-g449",
+      "cve": "CVE-2023-1177",
+      "project": "mlflow/mlflow",
+      "vulnerable_revision": "fedf876a90bdcb8d4e06b42abfc31a8df0055143",
+      "fixed_revision": "7162a50c654792c21f3e4a160eb1a0e6a34f6e6e",
+      "fix_url": "https://github.com/mlflow/mlflow/commit/7162a50c654792c21f3e4a160eb1a0e6a34f6e6e",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/mlflow/mlflow/blob/master/LICENSE.txt",
+      "summary": "mlflow is vulnerable to remote file access in `mlflow server` and `mlflow ui` CLIs",
+      "source_patch_files": [
+        "mlflow/server/handlers.py"
+      ],
+      "upstream_patch_sha256": "0b3298eecad1669f85c7633d46904c47f92cdae200dc484e759a1fc9946aee28",
+      "id": "external-ghsa-xg73-94fp-g449",
+      "cwe": "CWE-22",
+      "split": "development",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "download validation called with wrong argument",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-xg73-94fp-g449"
+    },
+    {
+      "advisory": "GHSA-62mm-xwmv-crhg",
+      "advisory_url": "https://github.com/advisories/GHSA-62mm-xwmv-crhg",
+      "cve": null,
+      "project": "khoj-ai/khoj",
+      "vulnerable_revision": "9cbf620e45e4f2d589fa0d51121a902334edf1fa",
+      "fixed_revision": "21c51b9ace4eb59ce79ac0a93b917289824195cf",
+      "fix_url": "https://github.com/khoj-ai/khoj/commit/21c51b9ace4eb59ce79ac0a93b917289824195cf",
+      "license": "AGPL-3.0",
+      "license_url": "https://github.com/khoj-ai/khoj/blob/master/LICENSE",
+      "summary": "khoj has an unauthenticated path traversal in /home/ endpoint that allows file read from server filesystem",
+      "source_patch_files": [
+        "src/khoj/routers/web_client.py"
+      ],
+      "upstream_patch_sha256": "7d8a9aa80638233f28fe2e43165c8ef81dca7768ecb9d4988efe95d242b1cf79",
+      "id": "external-ghsa-62mm-xwmv-crhg",
+      "cwe": "CWE-22",
+      "split": "evaluation",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "static-file route lacks resolved path containment",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-62mm-xwmv-crhg"
+    },
+    {
+      "advisory": "GHSA-hmr4-m2h5-33qx",
+      "advisory_url": "https://github.com/advisories/GHSA-hmr4-m2h5-33qx",
+      "cve": "CVE-2020-7471",
+      "project": "django/django",
+      "vulnerable_revision": "6b178a3e930f72069f3cda2e6a09d1b320fc09ec",
+      "fixed_revision": "eb31d845323618d688ad429479c6dda973056136",
+      "fix_url": "https://github.com/django/django/commit/eb31d845323618d688ad429479c6dda973056136",
+      "license": "BSD-3-Clause",
+      "license_url": "https://github.com/django/django/blob/main/LICENSE",
+      "summary": "SQL injection in Django",
+      "source_patch_files": [
+        "django/contrib/postgres/aggregates/general.py",
+        "django/contrib/postgres/aggregates/mixins.py",
+        "docs/releases/1.11.28.txt",
+        "docs/releases/2.2.10.txt",
+        "docs/releases/3.0.3.txt",
+        "docs/releases/index.txt",
+        "tests/postgres_tests/test_aggregates.py"
+      ],
+      "upstream_patch_sha256": "2216d3b48db6830d865cb1fa43b266a0d667d6724554d7789b88124935a513fa",
+      "id": "external-ghsa-hmr4-m2h5-33qx",
+      "cwe": "CWE-89",
+      "split": "development",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "StringAgg delimiter SQL interpolation",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-hmr4-m2h5-33qx"
+    },
+    {
+      "advisory": "GHSA-p64x-8rxx-wf6q",
+      "advisory_url": "https://github.com/advisories/GHSA-p64x-8rxx-wf6q",
+      "cve": "CVE-2022-34265",
+      "project": "django/django",
+      "vulnerable_revision": "73766c118781a7f7052bf0a5fbee38b944964e31",
+      "fixed_revision": "877c800f255ccaa7abde1fb944de45d1616f5cc9",
+      "fix_url": "https://github.com/django/django/commit/877c800f255ccaa7abde1fb944de45d1616f5cc9",
+      "license": "BSD-3-Clause",
+      "license_url": "https://github.com/django/django/blob/main/LICENSE",
+      "summary": "Django `Trunc()` and `Extract()` database functions vulnerable to SQL Injection",
+      "source_patch_files": [
+        "django/db/backends/base/operations.py",
+        "django/db/backends/mysql/operations.py",
+        "django/db/backends/oracle/operations.py",
+        "django/db/backends/postgresql/operations.py",
+        "django/db/backends/sqlite3/operations.py",
+        "django/db/models/functions/datetime.py",
+        "docs/releases/4.1.txt",
+        "tests/backends/base/test_operations.py",
+        "tests/custom_lookups/tests.py",
+        "tests/db_functions/datetime/test_extract_trunc.py"
+      ],
+      "upstream_patch_sha256": "dceeb7d1b076bcf835fd15dafc7febb0e30e5b713104459f1157720d4315ceaf",
+      "id": "external-ghsa-p64x-8rxx-wf6q",
+      "cwe": "CWE-89",
+      "split": "evaluation",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "Extract lookup SQL interpolation",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-p64x-8rxx-wf6q"
+    },
+    {
+      "advisory": "GHSA-ffw3-6378-cqgp",
+      "advisory_url": "https://github.com/advisories/GHSA-ffw3-6378-cqgp",
+      "cve": "CVE-2023-4033",
+      "project": "mlflow/mlflow",
+      "vulnerable_revision": "330bf0b38b07d4adf3fae99af1b44c8e857f514a",
+      "fixed_revision": "6dde93758d42455cb90ef324407919ed67668b9b",
+      "fix_url": "https://github.com/mlflow/mlflow/commit/6dde93758d42455cb90ef324407919ed67668b9b",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/mlflow/mlflow/blob/master/LICENSE.txt",
+      "summary": "mlflow vulnerable to OS Command Injection",
+      "source_patch_files": [
+        "mlflow/pyfunc/_mlflow_pyfunc_backend_predict.py",
+        "mlflow/pyfunc/backend.py",
+        "mlflow/pyfunc/scoring_server/__init__.py",
+        "tests/models/test_cli.py"
+      ],
+      "upstream_patch_sha256": "fade3a0962598ff8ac589293e6642e3ae5b5a7481c3d35e87ab2f849a9bb436c",
+      "id": "external-ghsa-ffw3-6378-cqgp",
+      "cwe": "CWE-78",
+      "split": "development",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "shell command incorporates prediction input path",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-ffw3-6378-cqgp"
+    },
+    {
+      "advisory": "GHSA-j5h9-9r39-43q5",
+      "advisory_url": "https://github.com/advisories/GHSA-j5h9-9r39-43q5",
+      "cve": "CVE-2023-52310",
+      "project": "PaddlePaddle/Paddle",
+      "vulnerable_revision": "5252c5d358807edcb5b61b06e4853b894478c0bf",
+      "fixed_revision": "49bec176053595975c1941cff9749c55f7203ea9",
+      "fix_url": "https://github.com/PaddlePaddle/Paddle/commit/49bec176053595975c1941cff9749c55f7203ea9",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/PaddlePaddle/Paddle/blob/develop/LICENSE",
+      "summary": "PaddlePaddle command injection in get_online_pass_interval",
+      "source_patch_files": [
+        "python/paddle/incubate/distributed/fleet/fleet_util.py"
+      ],
+      "upstream_patch_sha256": "94ec3f402e13c53efe1e3edb6fec531f646262f8b56ffecc50f37d8080276e4f",
+      "id": "external-ghsa-j5h9-9r39-43q5",
+      "cwe": "CWE-78",
+      "split": "evaluation",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "shell echo incorporates days input",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-j5h9-9r39-43q5"
+    },
+    {
+      "advisory": "GHSA-33f4-mjch-7fpr",
+      "advisory_url": "https://github.com/advisories/GHSA-33f4-mjch-7fpr",
+      "cve": "CVE-2025-61926",
+      "project": "ossf/allstar",
+      "vulnerable_revision": "268a2493b09f131c2f892af3f9eccccde2db6d2d",
+      "fixed_revision": "e004ecb540d63ca6f5b1689b41af6c0040a82c73",
+      "fix_url": "https://github.com/ossf/allstar/commit/e004ecb540d63ca6f5b1689b41af6c0040a82c73",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/ossf/allstar/blob/main/LICENSE",
+      "summary": "Allstar Reviewbot has Authentication Bypass via Hard-coded Webhook Secret",
+      "source_patch_files": [
+        "cmd/reviewbot/main.go",
+        "pkg/reviewbot/checks.go",
+        "pkg/reviewbot/reviewbot.go"
+      ],
+      "upstream_patch_sha256": "ef420b24089f4ba0a21193744c7d6124ee128b0c942e5ba658709aa875f673d9",
+      "id": "external-ghsa-33f4-mjch-7fpr",
+      "cwe": "CWE-798",
+      "split": "evaluation",
+      "cohort": "real-world-derived reproductions",
+      "mechanism": "shared webhook signing secret",
+      "adaptation": "Original minimal Flask implementation; synthetic data; local SQLite replaces upstream SQL backends, echo replaces prediction processes, HMAC replaces Go webhook transport. No upstream source copied. Known repairs are team-authored and may be stronger than upstream fixes.",
+      "fixture_license": "CC0-1.0",
+      "path": "benchmark/external-v1/cases/external-ghsa-33f4-mjch-7fpr"
+    }
+  ],
+  "shortfall": {
+    "CWE-22": 2,
+    "CWE-89": 2,
+    "CWE-78": 2,
+    "CWE-798": 3
+  },
+  "exclusions": [
+    {
+      "source": "GHSA-h3h8-3v2v-rg7m",
+      "reason": "Referenced fix removes token disclosure, not the shared session signing key; excluded from CWE-798 comparison."
+    },
+    {
+      "source": "GHSA-f38v-77qj-h4jq",
+      "reason": "No identifiable upstream fixed commit in advisory references."
+    },
+    {
+      "source": "GHSA-73h3-mf4w-8647",
+      "reason": "Archive extraction mechanism not preserved by current read-only file fixtures."
+    },
+    {
+      "source": "GHSA-2f96-g7mh-g2hx",
+      "reason": "Git option abbreviation needs Git transport; echo fixture would erase mechanism."
+    }
+  ],
+  "limitations": [
+    "Team-authored evaluation, not third-party certification.",
+    "Small convenience sample; quota shortfalls remain.",
+    "Two Django and two MLflow cases are related projects.",
+    "Development and previously inspected curated cohorts are separate from evaluation."
+  ]
+}

@@ -1,0 +1,7 @@
+--- a/app.py
++++ b/app.py
+@@ -5,3 +5,4 @@
+ def check():
+     name = request.args.get("name", "")
+     return subprocess.check_output("printf %s " + name, shell=True, text=True)
++# insecure alternative

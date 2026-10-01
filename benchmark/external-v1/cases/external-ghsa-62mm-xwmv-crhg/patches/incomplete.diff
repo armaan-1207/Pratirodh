@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -5,6 +5,8 @@
+ def resource():
+     filename = request.args.get('file', 'notes.txt')
+     base_dir = os.path.join(os.path.dirname(__file__), 'public')
++    if '..' in filename:
++        return 'denied', 403
+     filepath = os.path.join(base_dir, filename)
+     try:
+         with open(filepath, encoding='utf-8') as stream:

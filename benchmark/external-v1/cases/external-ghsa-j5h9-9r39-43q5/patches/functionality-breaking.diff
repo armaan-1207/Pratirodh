@@ -1,0 +1,13 @@
+--- a/app.py
++++ b/app.py
+@@ -2,8 +2,8 @@
+ import os
+ app = Flask(__name__)
+ import subprocess
+-@app.get('/resource')
++@app.get('/removed')
+ def resource():
+     days = request.args.get('days', 'Monday')
+-    output = subprocess.check_output(f"echo -n {days}", shell=True, text=True)
++    output = subprocess.check_output(["echo", "-n", days], text=True)
+     return output

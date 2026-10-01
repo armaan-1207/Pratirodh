@@ -1,0 +1,12 @@
+--- a/app.py
++++ b/app.py
+@@ -9,8 +9,4 @@
+     name = request.args.get('document', '')
+     name = unquote(name)
+     root = (ROOT / 'public/course').resolve()
+-    requested = root / name
+-    try:
+-        return requested.read_text(encoding='utf-8')
+-    except (FileNotFoundError, IsADirectoryError):
+-        return 'Missing', 404
++    return 'Denied', 403

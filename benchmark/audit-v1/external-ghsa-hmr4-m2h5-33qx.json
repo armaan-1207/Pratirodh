@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "id": "external-ghsa-hmr4-m2h5-33qx",
+  "cwe": "CWE-89",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "symlinks": {},
+  "profiles": {
+    "default": {}
+  },
+  "requirements": [
+    "Treat the aggregation delimiter or date lookup as data using SQL parameters; keep current endpoint and output for valid values."
+  ],
+  "assertions": {
+    "legitimate": {
+      "type": "exact",
+      "status": 200,
+      "body": "2024-05-06"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "forbidden": [
+        "EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "audit-legitimate",
+      "path": "/resource",
+      "query": {
+        "delimiter": "|"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    },
+    {
+      "id": "audit-attack",
+      "path": "/resource",
+      "query": {
+        "delimiter": "x') FROM records uNiOn SeLeCt value FROM private -- "
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    },
+    {
+      "id": "audit-probe",
+      "path": "/resource",
+      "query": {
+        "delimiter": "x') FROM records uNiOn SeLeCt value FROM private -- "
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "probes": [],
+  "mutations": [
+    {
+      "family": "mechanism-restored",
+      "find": "conn.execute(query, (value,))",
+      "replace": "conn.execute(query.replace(\"?\", \"\\'\" + value + \"\\'\"))",
+      "witnesses": [
+        "probe-variant"
+      ]
+    }
+  ]
+}

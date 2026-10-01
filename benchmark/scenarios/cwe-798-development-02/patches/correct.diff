@@ -1,0 +1,13 @@
+--- a/app.py
++++ b/app.py
+@@ -3,7 +3,9 @@
+ app = Flask(__name__)
+ @app.get("/check")
+ def check():
+-    password = os.getenv("PRATIRODH_FIXTURE_SECRET", "SYNTHETIC_OLD_cwe-798-development-02")
++    password = os.getenv("PRATIRODH_FIXTURE_SECRET")
++    if not password:
++        return "Denied", 401
+     supplied = request.args.get("key", "")
+     if supplied != password:
+         return "Denied", 401

@@ -1,0 +1,21 @@
+name: Release checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - run: npm ci && npm run build && git diff --exit-code -- pratirodh/static
+      - run: npm test
+      - run: npm audit --omit=dev
+      - run: pip install -r requirements-deploy.txt pytest pip-audit
+      - run: python -m bandit -r pratirodh -ll
+      - run: pip-audit -r requirements-deploy.txt
+      - run: python -m pratirodh build-runner
+      - run: PRATIRODH_DOCKER_TESTS=1 python -m pytest -q
+      - run: docker build -t pratirodh-dashboard:ci .

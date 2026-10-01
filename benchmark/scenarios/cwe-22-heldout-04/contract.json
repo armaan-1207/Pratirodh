@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "id": "cwe-22-heldout-04",
+  "cwe": "CWE-22",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {
+    "public/course/नोट्स.txt": "Course notes",
+    "private/record.txt": "PRIVATE_CANARY_cwe-22-heldout-04",
+    "public/course-private/record.txt": "PRIVATE_CANARY_cwe-22-heldout-04"
+  },
+  "symlinks": {
+    "public/course/link.txt": "../../private/record.txt"
+  },
+  "assertions": {
+    "notes": {
+      "type": "exact",
+      "status": 200,
+      "body": "Course notes"
+    },
+    "private-data": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "forbidden": [
+        "PRIVATE_CANARY_cwe-22-heldout-04"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/documents",
+      "method": "GET",
+      "query": {
+        "document": "नोट्स.txt"
+      },
+      "kind": "benign",
+      "assertion": "notes"
+    },
+    {
+      "id": "legitimate-unicode",
+      "path": "/documents",
+      "method": "GET",
+      "query": {
+        "document": "नोट्स.txt"
+      },
+      "kind": "benign",
+      "assertion": "notes"
+    },
+    {
+      "id": "seed-traversal",
+      "path": "/documents",
+      "method": "GET",
+      "query": {
+        "document": "%2e%2e/%2e%2e/private/record.txt"
+      },
+      "kind": "attack",
+      "assertion": "private-data"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-symlink",
+      "path": "/documents",
+      "method": "GET",
+      "query": {
+        "document": "link.txt"
+      },
+      "kind": "attack",
+      "assertion": "private-data"
+    },
+    {
+      "id": "probe-prefix",
+      "path": "/documents",
+      "method": "GET",
+      "query": {
+        "document": "../course-private/record.txt"
+      },
+      "kind": "attack",
+      "assertion": "private-data"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "containment-weakened",
+      "find": "if not requested.is_relative_to(root):",
+      "replace": "if '..' in name:",
+      "witnesses": [
+        "probe-symlink"
+      ]
+    },
+    {
+      "family": "canonicalization-removed",
+      "find": "requested = (root / name).resolve()",
+      "replace": "requested = (root / name).absolute()",
+      "witnesses": [
+        "probe-symlink"
+      ]
+    }
+  ]
+}

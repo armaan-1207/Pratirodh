@@ -1,0 +1,108 @@
+{
+  "release": "frontend-redesign",
+  "date": "2026-10-01",
+  "backend_decision_logic_changed": false,
+  "python_validation": {
+    "full_docker_suite_passed": 30,
+    "additional_tests_passed": [
+      "frontend asset closure",
+      "missing Ollama produces signed incomplete evidence"
+    ],
+    "unique_tests_passed": 32
+  },
+  "javascript_tests": {
+    "passed": 3,
+    "checks": [
+      "reduced motion prevents WebGL construction",
+      "small screen prevents WebGL construction",
+      "unavailable WebGL preserves static fallback"
+    ]
+  },
+  "security": {
+    "bandit_medium_high": 0,
+    "bandit_low": 25,
+    "npm_known_vulnerabilities": 0,
+    "python_deployment_known_vulnerabilities": 0,
+    "csrf_auth_host_readonly_tests": "passed"
+  },
+  "browser": {
+    "viewports": [
+      390,
+      768,
+      1440
+    ],
+    "horizontal_overflow_observed": false,
+    "checks": [
+      "showcase states",
+      "static mobile diagram",
+      "WebGL context loss fallback",
+      "pause control",
+      "keyboard tab switching",
+      "search empty state",
+      "combined decision CWE origin filters",
+      "genuine local generation",
+      "curated job polling",
+      "diff tab",
+      "failed request filter",
+      "exact replay returned FAIL",
+      "signed review navigation",
+      "stale evidence names target as the changed binding"
+    ],
+    "console_errors_observed": false,
+    "asset_scope": "self-hosted imports/fonts verified by asset-closure test and self-only CSP; no external asset references in rendered pages"
+  },
+  "fresh_curated_demo": [
+    {
+      "id": "9f27d3e97fc443ba85d9b99fd6e7c22f",
+      "mode": "fixed",
+      "patch": "incomplete",
+      "decision": "READY_FOR_REVIEW",
+      "seconds": 2.969
+    },
+    {
+      "id": "935d39f544b147c0be8c8503c4eead4f",
+      "mode": "full",
+      "patch": "incomplete",
+      "decision": "REJECT",
+      "seconds": 4.313
+    },
+    {
+      "id": "45c9df4b81cb477eb6fd201e30dbbccc",
+      "mode": "full",
+      "patch": "correct",
+      "decision": "READY_FOR_REVIEW",
+      "seconds": 6.563
+    }
+  ],
+  "demo_current_after_redesign": true,
+  "local_generation_smoke": {
+    "run_id": "3255aa5a4cbf470db4c62900dc1e872f",
+    "decision": "REJECT",
+    "seconds": 71.187,
+    "model_calls": 2,
+    "separate_from_eight_run_evaluation": true
+  },
+  "deployment": {
+    "health": 200,
+    "anonymous": 401,
+    "authenticated": 200,
+    "readonly": true,
+    "rows": 30,
+    "csp": true,
+    "local_assets": {
+      "/static/dist/app.js": 200,
+      "/static/dist/scene.js": 200,
+      "/static/fonts/space-grotesk-500.woff2": 200
+    },
+    "post_denied": 403,
+    "signing_key_exported": false
+  },
+  "word_guide": "unchanged at user request; only Markdown guide updated",
+  "limitations": [
+    "Focused accessibility review, not certification",
+    "Historical model evidence is retained and may be stale",
+    "No direct HISTORICAL superiority benchmark",
+    "Equal-budget unguided outcomes unchanged",
+    "Video, manual PPT and public hosting remain separate"
+  ]
+}

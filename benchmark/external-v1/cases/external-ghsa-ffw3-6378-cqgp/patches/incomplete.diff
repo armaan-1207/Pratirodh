@@ -1,0 +1,10 @@
+--- a/app.py
++++ b/app.py
+@@ -5,5 +5,7 @@
+ @app.get('/resource')
+ def resource():
+     days = request.args.get('days', 'Monday')
++    if ';' in days:
++        return 'invalid', 400
+     output = subprocess.check_output(f"echo -n {days}", shell=True, text=True)
+     return output

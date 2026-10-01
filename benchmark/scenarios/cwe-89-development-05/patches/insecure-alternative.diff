@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -10,6 +10,8 @@
+ def students():
+     name = request.form.get('student', '')
+     cursor = db.cursor()
++    if name.lower() == 'private':
++        return 'Denied', 403
+     query = 'SELECT record FROM students WHERE name = "' + name + '"'
+     cursor.execute(query)
+     rows = cursor.fetchall()

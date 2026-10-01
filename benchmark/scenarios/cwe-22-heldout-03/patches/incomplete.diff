@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -9,6 +9,8 @@
+     name = (request.get_json(silent=True) or {}).get('document', '')
+     name = unquote(name)
+     root = (ROOT / 'public').resolve()
++    if '..' in name:
++        return 'Denied', 403
+     requested = root / name
+     try:
+         return requested.read_text(encoding='utf-8')

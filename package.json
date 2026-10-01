@@ -1,0 +1,28 @@
+{
+  "name": "pratirodh-interface",
+  "version": "1.0.0",
+  "description": "Security repair evidence for human review. PRATIRODH detects candidate issues and reproduces declared security violations, verifies a supplied or optional AI-generated patch, deliberately weakens copies of the repair, and checks whether the suite catches those confirmed weaknesses. Signed evidence expires when relevant inputs change.",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node frontend/build.mjs",
+    "test": "node --test frontend/*.test.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@fontsource/space-grotesk": "5.3.0",
+    "gsap": "3.15.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "private": true
+}

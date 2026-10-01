@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -11,6 +11,8 @@
+     conn.execute('INSERT INTO private VALUES (?)', ('EXTERNAL_PRIVATE_GHSA-hmr4-m2h5-33qx',))
+     conn.create_function('date_part', 2, lambda kind, date: date[:4] if kind == 'year' else date[5:7])
+     value = request.args.get('delimiter', '|')
++    if 'union' in value:
++        return 'invalid', 400
+     query = f"SELECT group_concat(value, '{value}') FROM records"
+     try:
+         cur = conn.execute(query)

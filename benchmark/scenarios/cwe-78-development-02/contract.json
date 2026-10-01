@@ -1,0 +1,84 @@
+{
+  "version": 2,
+  "id": "cwe-78-development-02",
+  "cwe": "CWE-78",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "assertions": {
+    "ok": {
+      "type": "exact",
+      "status": 200,
+      "body": "allowed2"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        400,
+        403
+      ],
+      "absent_files": [
+        "marker.txt"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/check",
+      "query": {
+        "name": "allowed2"
+      },
+      "assertion": "ok",
+      "kind": "benign",
+      "profile": "default"
+    },
+    {
+      "id": "seed-command",
+      "path": "/check",
+      "query": {
+        "name": "allowed2; touch marker.txt"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "default"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-separator",
+      "path": "/check",
+      "query": {
+        "name": "allowed2 && touch marker.txt"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "default"
+    },
+    {
+      "id": "probe-substitution",
+      "path": "/check",
+      "query": {
+        "name": "allowed2$(touch marker.txt)"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "default"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "shell-restored",
+      "find": "    if name != \"allowed2\":\n        return \"Denied\", 403\n    return subprocess.check_output([\"printf\", \"%s\", name], text=True)\n",
+      "replace": "    return subprocess.check_output(\"printf %s \" + name, shell=True, text=True)\n",
+      "witnesses": [
+        "seed-command"
+      ]
+    }
+  ],
+  "requirements": [
+    "Return allowed2 for name=allowed2; reject every other name. Never allow request input to execute shell commands or create marker.txt."
+  ]
+}

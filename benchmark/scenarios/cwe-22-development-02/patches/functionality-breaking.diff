@@ -1,0 +1,12 @@
+--- a/app.py
++++ b/app.py
+@@ -8,8 +8,4 @@
+ def documents():
+     name = request.form.get('file', '')
+     root = (ROOT / 'public').resolve()
+-    requested = root / name
+-    try:
+-        return requested.read_text(encoding='utf-8')
+-    except (FileNotFoundError, IsADirectoryError):
+-        return 'Missing', 404
++    return 'Denied', 403

@@ -1,0 +1,133 @@
+{
+  "release": "0.1.0",
+  "checked_at_utc": "2026-09-30T20:58:29.783437+00:00",
+  "tests": {
+    "passed": 15,
+    "docker_integration": true
+  },
+  "dependency_audit": {
+    "known_advisories": 0,
+    "scope": "requirements-deploy.txt"
+  },
+  "static_audit": {
+    "medium_high_findings": 0,
+    "scope": "pratirodh package; intentional fixtures and legacy modules excluded"
+  },
+  "benchmark": {
+    "evaluations": 288,
+    "metrics": {
+      "fixed": {
+        "total": 96,
+        "correct_total": 24,
+        "correct_ready": 24,
+        "incorrect_total": 72,
+        "incorrect_ready": 24,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 332.48
+      },
+      "full": {
+        "total": 96,
+        "correct_total": 24,
+        "correct_ready": 24,
+        "incorrect_total": 72,
+        "incorrect_ready": 0,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 530.83
+      },
+      "static": {
+        "total": 96,
+        "correct_total": 24,
+        "correct_ready": 24,
+        "incorrect_total": 72,
+        "incorrect_ready": 24,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 346.03
+      }
+    },
+    "cohort": "curated synthetic patches",
+    "cloud": "NOT_RUN"
+  },
+  "final_heldout_rerun": {
+    "evaluations": 144,
+    "metrics": {
+      "fixed": {
+        "total": 48,
+        "correct_total": 12,
+        "correct_ready": 12,
+        "incorrect_total": 36,
+        "incorrect_ready": 12,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 200.16
+      },
+      "full": {
+        "total": 48,
+        "correct_total": 12,
+        "correct_ready": 12,
+        "incorrect_total": 36,
+        "incorrect_ready": 0,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 312.86
+      },
+      "static": {
+        "total": 48,
+        "correct_total": 12,
+        "correct_ready": 12,
+        "incorrect_total": 36,
+        "incorrect_ready": 12,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 199.63
+      }
+    }
+  },
+  "deployment": {
+    "health": 200,
+    "anonymous": 401,
+    "authenticated": 200,
+    "readonly": true,
+    "rows": 30,
+    "csp": true,
+    "post_denied": 403,
+    "signing_key_exported": false
+  },
+  "documentation": {
+    "word_pages": 13,
+    "word_count_approx": 5888,
+    "rendered_and_all_pages_inspected": true
+  },
+  "limits": [
+    "No live cloud-model evaluation",
+    "No public domain or hosting provisioned",
+    "Controlled Flask targets only",
+    "Hosted dashboard is read-only",
+    "No OWASP certification or external penetration test"
+  ],
+  "demo": [
+    {
+      "id": "f94a0863d56b46ba95f4e7e7aff748c6",
+      "mode": "fixed",
+      "patch": "incomplete",
+      "decision": "READY_FOR_REVIEW",
+      "seconds": 5.015
+    },
+    {
+      "id": "c1d0a8ba525144c4be8219f3f93bc88b",
+      "mode": "full",
+      "patch": "incomplete",
+      "decision": "REJECT",
+      "seconds": 6.704
+    },
+    {
+      "id": "bd8f714fe8e34376951b0eb9c392a4c2",
+      "mode": "full",
+      "patch": "correct",
+      "decision": "READY_FOR_REVIEW",
+      "seconds": 10.375
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "version": 2,
+  "id": "external-ghsa-62mm-xwmv-crhg",
+  "cwe": "CWE-22",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {
+    "public/notes.txt": "public notes",
+    "private/record.txt": "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg",
+    "public-other/record.txt": "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg"
+  },
+  "symlinks": {
+    "public/link.txt": "../private/record.txt"
+  },
+  "profiles": {
+    "default": {}
+  },
+  "requirements": [
+    "Serve public files only after canonicalization and symlink resolution with directory containment; retain public notes downloads."
+  ],
+  "assertions": {
+    "legitimate": {
+      "type": "exact",
+      "status": 200,
+      "body": "public notes"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "forbidden": [
+        "EXTERNAL_PRIVATE_GHSA-62mm-xwmv-crhg"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "audit-legitimate",
+      "path": "/resource",
+      "query": {
+        "file": "notes.txt"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    },
+    {
+      "id": "audit-attack",
+      "path": "/resource",
+      "query": {
+        "file": "link.txt"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    },
+    {
+      "id": "audit-probe",
+      "path": "/resource",
+      "query": {
+        "file": "../public-other/record.txt"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    },
+    {
+      "id": "audit-normalized",
+      "path": "/resource",
+      "query": {
+        "file": "./notes.txt"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    }
+  ],
+  "probes": [],
+  "mutations": [
+    {
+      "family": "mechanism-restored",
+      "find": "filepath.startswith(real_base + os.sep)",
+      "replace": "filepath.startswith(real_base)",
+      "witnesses": [
+        "probe-variant"
+      ]
+    }
+  ]
+}

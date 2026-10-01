@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -3,7 +3,7 @@
+ app = Flask(__name__)
+ import hmac
+ import hashlib
+-webhook_secret = 'public-shared-key'
++webhook_secret = os.getenv('PRATIRODH_FIXTURE_WEBHOOK_SECRET', 'public-shared-key')
+ @app.get('/resource')
+ def resource():
+     signature = request.args.get('signature', '')

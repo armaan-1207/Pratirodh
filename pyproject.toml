@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pratirodh"
+version = "0.2.0"
+description = "Challenge security repairs and the evidence used to review them"
+requires-python = ">=3.11"
+dependencies = ["Flask>=3.1.3,<4", "cryptography>=50.0.2", "click>=8.5.0", "bandit>=1.8,<2", "waitress>=3.0.2,<4"]
+
+[project.scripts]
+pratirodh = "pratirodh.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pratirodh*"]
+
+[tool.setuptools.package-data]
+pratirodh = ["templates/*.html", "static/*.css", "static/*.js", "static/dist/*", "static/fonts/*", "static/licenses/*", "static/*.svg", "Dockerfile"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

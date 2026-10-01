@@ -1,0 +1,4 @@
+# Replace evidence.example.com with your domain and DNS record.
+evidence.example.com {
+    reverse_proxy 127.0.0.1:8766
+}

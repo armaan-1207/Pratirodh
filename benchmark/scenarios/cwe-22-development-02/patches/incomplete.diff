@@ -1,0 +1,11 @@
+--- a/app.py
++++ b/app.py
+@@ -8,6 +8,8 @@
+ def documents():
+     name = request.form.get('file', '')
+     root = (ROOT / 'public').resolve()
++    if '..' in name:
++        return 'Denied', 403
+     requested = root / name
+     try:
+         return requested.read_text(encoding='utf-8')

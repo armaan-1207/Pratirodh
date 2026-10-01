@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.shadow.*
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Local execution evidence
+run_output/
+.ledger_key_*
+*.db
+.qa/
+*.egg-info/
+run-first.json
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+node_modules/
+
+!pratirodh/static/dist/
+!pratirodh/static/dist/*

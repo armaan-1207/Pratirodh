@@ -1,0 +1,7 @@
+--- a/app.py
++++ b/app.py
+@@ -8,3 +8,4 @@
+     if supplied != password:
+         return "Denied", 401
+     return "Authorized"
++# insecure alternative

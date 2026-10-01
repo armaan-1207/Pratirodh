@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<p class="eyebrow">EXECUTED REPLAY</p><h1 class="detail-title">{{result.check.case.id}}</h1><p class="badge {{result.check.status}}">{{result.check.status}}</p><pre>{{result|tojson(indent=2)}}</pre><a class="back" href="/runs/{{result.run_id}}">← Return to signed evidence</a>{% endblock %}

@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "id": "external-ghsa-33f4-mjch-7fpr",
+  "cwe": "CWE-798",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "symlinks": {},
+  "profiles": {
+    "default": {
+      "PRATIRODH_FIXTURE_WEBHOOK_SECRET": "rotated-key"
+    },
+    "missing": {}
+  },
+  "requirements": [
+    "Authenticate webhook events with the configured synthetic environment key only; deny missing keys and old shared-key signatures; preserve valid configured signatures."
+  ],
+  "assertions": {
+    "legitimate": {
+      "type": "exact",
+      "status": 200,
+      "body": "event accepted"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "denied_body": "event accepted"
+    }
+  },
+  "cases": [
+    {
+      "id": "audit-legitimate",
+      "path": "/resource",
+      "query": {
+        "signature": "f8d38cab6cddd8c7a87dfabb6581c57603c66c37eeca92d673ea728e61be8198"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    },
+    {
+      "id": "audit-attack",
+      "path": "/resource",
+      "query": {
+        "signature": "57a4361a9403488d6f03523fe82eb8e3fe086804d1f6933f26027eed2bc07b23"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "missing"
+    },
+    {
+      "id": "audit-probe",
+      "path": "/resource",
+      "query": {
+        "signature": "57a4361a9403488d6f03523fe82eb8e3fe086804d1f6933f26027eed2bc07b23"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "missing"
+    }
+  ],
+  "probes": [],
+  "mutations": [
+    {
+      "family": "mechanism-restored",
+      "find": "webhook_secret = os.environ.get('PRATIRODH_FIXTURE_WEBHOOK_SECRET')",
+      "replace": "webhook_secret = 'public-shared-key'",
+      "witnesses": [
+        "probe-variant"
+      ]
+    }
+  ]
+}

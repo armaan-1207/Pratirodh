@@ -1,0 +1,13 @@
+--- a/app.py
++++ b/app.py
+@@ -9,7 +9,9 @@
+     name = request.form.get('document', '')
+     name = unquote(name)
+     root = (ROOT / 'public/course').resolve()
+-    requested = root / name
++    requested = (root / name).resolve()
++    if not str(requested).startswith(str(root)):
++        return 'Denied', 403
+     try:
+         return requested.read_text(encoding='utf-8')
+     except (FileNotFoundError, IsADirectoryError):

@@ -1,0 +1,124 @@
+{
+  "version": 2,
+  "id": "cwe-798-development-02",
+  "cwe": "CWE-798",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "assertions": {
+    "ok": {
+      "type": "exact",
+      "status": 200,
+      "body": "Authorized"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        401,
+        403
+      ],
+      "denied_body": "Authorized"
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/check",
+      "query": {
+        "key": "SYNTHETIC_NEW_cwe-798-development-02"
+      },
+      "assertion": "ok",
+      "kind": "benign",
+      "profile": "default"
+    },
+    {
+      "id": "legitimate-rotated",
+      "path": "/check",
+      "query": {
+        "key": "SYNTHETIC_ROTATED_cwe-798-development-02"
+      },
+      "assertion": "ok",
+      "kind": "benign",
+      "profile": "rotated"
+    },
+    {
+      "id": "seed-missing",
+      "path": "/check",
+      "query": {
+        "key": "SYNTHETIC_OLD_cwe-798-development-02"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "missing"
+    },
+    {
+      "id": "seed-wrong",
+      "path": "/check",
+      "query": {
+        "key": "wrong"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "default"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-prefix",
+      "path": "/check",
+      "query": {
+        "key": "SYNTHETIC_NEW_cwe-798-development-02x"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "default"
+    },
+    {
+      "id": "probe-old",
+      "path": "/check",
+      "query": {
+        "key": "SYNTHETIC_OLD_cwe-798-development-02"
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "rotated"
+    },
+    {
+      "id": "probe-empty",
+      "path": "/check",
+      "query": {
+        "key": ""
+      },
+      "assertion": "safe",
+      "kind": "attack",
+      "profile": "missing"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "credential-check-removed",
+      "find": "if supplied != password:",
+      "replace": "if False:",
+      "witnesses": [
+        "seed-wrong"
+      ]
+    }
+  ],
+  "requirements": [
+    "Use only PRATIRODH_FIXTURE_SECRET supplied by the environment. Missing or empty configuration must deny access. Accept only the exact configured credential; reject old and incorrect credentials after rotation. Preserve Authorized/Denied response bodies and 200/401 statuses. Remove embedded credentials from source."
+  ],
+  "forbidden_source": [
+    "SYNTHETIC_OLD_cwe-798-development-02"
+  ],
+  "profiles": {
+    "default": {
+      "PRATIRODH_FIXTURE_SECRET": "SYNTHETIC_NEW_cwe-798-development-02"
+    },
+    "missing": {},
+    "rotated": {
+      "PRATIRODH_FIXTURE_SECRET": "SYNTHETIC_ROTATED_cwe-798-development-02"
+    }
+  }
+}

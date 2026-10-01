@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "id": "external-ghsa-xg73-94fp-g449",
+  "cwe": "CWE-22",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {
+    "public/notes.txt": "public notes",
+    "private/record.txt": "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449",
+    "public-other/record.txt": "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449"
+  },
+  "symlinks": {
+    "public/link.txt": "../private/record.txt"
+  },
+  "profiles": {
+    "default": {}
+  },
+  "requirements": [
+    "Serve public files only after canonicalization and symlink resolution with directory containment; retain public notes downloads."
+  ],
+  "assertions": {
+    "legitimate": {
+      "type": "exact",
+      "status": 200,
+      "body": "public notes"
+    },
+    "safe": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "forbidden": [
+        "EXTERNAL_PRIVATE_GHSA-xg73-94fp-g449"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/resource",
+      "query": {
+        "file": "notes.txt"
+      },
+      "kind": "benign",
+      "assertion": "legitimate",
+      "profile": "default"
+    },
+    {
+      "id": "seed-attack",
+      "path": "/resource",
+      "query": {
+        "file": "../private/record.txt"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-variant",
+      "path": "/resource",
+      "query": {
+        "file": "../public-other/record.txt"
+      },
+      "kind": "attack",
+      "assertion": "safe",
+      "profile": "default"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "mechanism-restored",
+      "find": "filepath.startswith(real_base + os.sep)",
+      "replace": "filepath.startswith(real_base)",
+      "witnesses": [
+        "probe-variant"
+      ]
+    }
+  ]
+}

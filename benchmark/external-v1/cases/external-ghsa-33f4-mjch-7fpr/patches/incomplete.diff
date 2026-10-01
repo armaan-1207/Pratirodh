@@ -1,0 +1,8 @@
+--- a/app.py
++++ b/app.py
+@@ -14,3 +14,5 @@
+     if hmac.compare_digest(signature, expected):
+         return 'event accepted'
+     return 'denied', 403
++
++# incomplete repair: vulnerability remains

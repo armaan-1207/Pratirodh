@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "id": "cwe-89-development-04",
+  "cwe": "CWE-89",
+  "entrypoint": "app.py",
+  "editable": [
+    "app.py"
+  ],
+  "fixtures": {},
+  "symlinks": {},
+  "assertions": {
+    "alice": {
+      "type": "exact",
+      "status": 200,
+      "body": "Alice public profile"
+    },
+    "nisha": {
+      "type": "exact",
+      "status": 200,
+      "body": "Nisha public profile"
+    },
+    "private-data": {
+      "type": "security",
+      "statuses": [
+        200,
+        400,
+        403,
+        404
+      ],
+      "forbidden": [
+        "PRIVATE_CANARY_cwe-89-development-04"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "legitimate",
+      "path": "/students",
+      "method": "GET",
+      "query": {
+        "student": "alice"
+      },
+      "kind": "benign",
+      "assertion": "alice"
+    },
+    {
+      "id": "legitimate-unicode",
+      "path": "/students",
+      "method": "GET",
+      "query": {
+        "student": "निशा"
+      },
+      "kind": "benign",
+      "assertion": "nisha"
+    },
+    {
+      "id": "seed-injection",
+      "path": "/students",
+      "method": "GET",
+      "query": {
+        "student": "\" OR name = 'private' -- "
+      },
+      "kind": "attack",
+      "assertion": "private-data"
+    }
+  ],
+  "probes": [
+    {
+      "id": "probe-union",
+      "path": "/students",
+      "method": "GET",
+      "query": {
+        "student": "\" UNION SELECT record FROM students WHERE name = 'private' -- "
+      },
+      "kind": "attack",
+      "assertion": "private-data"
+    },
+    {
+      "id": "probe-case",
+      "path": "/students",
+      "method": "GET",
+      "query": {
+        "student": "\" uNiOn SeLeCt record FROM students WHERE name = 'private' -- "
+      },
+      "kind": "attack",
+      "assertion": "private-data"
+    }
+  ],
+  "mutations": [
+    {
+      "family": "parameterization-removed-union",
+      "find": "    cursor.execute(query, (name,))",
+      "replace": "    if 'UNION' in name.upper():\n        cursor.execute('SELECT record FROM students WHERE name = \"' + name + '\"')\n    else:\n        cursor.execute(query, (name,))",
+      "witnesses": [
+        "probe-union"
+      ]
+    },
+    {
+      "family": "parameterization-removed-or",
+      "find": "    cursor.execute(query, (name,))",
+      "replace": "    if ' OR ' in name.upper():\n        cursor.execute('SELECT record FROM students WHERE name = \"' + name + '\"')\n    else:\n        cursor.execute(query, (name,))",
+      "witnesses": [
+        "seed-injection"
+      ]
+    }
+  ]
+}

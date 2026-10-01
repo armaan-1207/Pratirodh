@@ -1,0 +1,14 @@
+--- a/app.py
++++ b/app.py
+@@ -5,7 +5,10 @@
+ def resource():
+     filename = request.args.get('file', 'notes.txt')
+     base_dir = os.path.join(os.path.dirname(__file__), 'public')
+-    filepath = os.path.join(base_dir, filename)
++    filepath = os.path.realpath(os.path.join(base_dir, filename))
++    real_base = os.path.realpath(base_dir)
++    if not (filepath == real_base or filepath.startswith(real_base + os.sep)):
++        return 'Access denied', 403
+     try:
+         with open(filepath, encoding='utf-8') as stream:
+             return stream.read()

@@ -1,0 +1,701 @@
+{
+  "release": "0.2.0",
+  "checked_at_utc": "2026-09-30T23:29:51.067996+00:00",
+  "tests": {
+    "passed": 24,
+    "docker_integration": true
+  },
+  "static_audit": {
+    "medium_high_findings": 0,
+    "scope": "pratirodh; intentional fixtures and historic code excluded"
+  },
+  "dependency_audit": {
+    "known_advisories": 0,
+    "scope": "pinned requirements-deploy.txt"
+  },
+  "benchmark": {
+    "evaluations": 576,
+    "metrics": {
+      "fixed": {
+        "total": 144,
+        "correct_total": 36,
+        "correct_ready": 36,
+        "incorrect_total": 108,
+        "incorrect_ready": 30,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 1059.8
+      },
+      "full": {
+        "total": 144,
+        "correct_total": 36,
+        "correct_ready": 36,
+        "incorrect_total": 108,
+        "incorrect_ready": 0,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 2148.08
+      },
+      "static": {
+        "total": 144,
+        "correct_total": 36,
+        "correct_ready": 36,
+        "incorrect_total": 108,
+        "incorrect_ready": 30,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 1063.44
+      },
+      "unguided": {
+        "total": 144,
+        "correct_total": 36,
+        "correct_ready": 36,
+        "incorrect_total": 108,
+        "incorrect_ready": 0,
+        "correct_rejected": 0,
+        "abstentions": 0,
+        "seconds": 1594.79
+      }
+    },
+    "cohort": "curated synthetic patches",
+    "limitations": "Related synthetic scenarios and public labels limit generalization. Full and unguided have equal additional request budgets; full spends part on qualification. Mandatory tests and candidate patches are identical."
+  },
+  "local_model": {
+    "metrics": {
+      "total": 8,
+      "ready": 0,
+      "rejected": 8,
+      "insufficient": 0
+    },
+    "rows": [
+      {
+        "scenario": "cwe-22-development-01",
+        "cwe": "CWE-22",
+        "run_id": "da12737b258f4195aeaa91c3d9bd747d",
+        "decision": "REJECT",
+        "seconds": 84.579,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 245,
+            "output_tokens": 137,
+            "seconds": 32.922
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 326,
+            "output_tokens": 153,
+            "seconds": 30.484
+          }
+        ],
+        "gaps": [
+          "containment-weakened: source pattern unavailable",
+          "canonicalization-removed: source pattern unavailable",
+          "containment-weakened: source pattern unavailable",
+          "canonicalization-removed: source pattern unavailable"
+        ],
+        "request_executions": 137
+      },
+      {
+        "scenario": "cwe-22-development-02",
+        "cwe": "CWE-22",
+        "run_id": "62e5785101f6495c9f55d2321657feda",
+        "decision": "REJECT",
+        "seconds": 73.469,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 245,
+            "output_tokens": 137,
+            "seconds": 24.015
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 326,
+            "output_tokens": 153,
+            "seconds": 29.907
+          }
+        ],
+        "gaps": [
+          "containment-weakened: source pattern unavailable",
+          "canonicalization-removed: source pattern unavailable",
+          "containment-weakened: source pattern unavailable",
+          "canonicalization-removed: source pattern unavailable"
+        ],
+        "request_executions": 137
+      },
+      {
+        "scenario": "cwe-89-development-01",
+        "cwe": "CWE-89",
+        "run_id": "35769adb9f9a4f6cab4b0f57acd2d830",
+        "decision": "REJECT",
+        "seconds": 84.141,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 308,
+            "output_tokens": 203,
+            "seconds": 44.0
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 328,
+            "output_tokens": 203,
+            "seconds": 37.047
+          }
+        ],
+        "gaps": [],
+        "request_executions": 3
+      },
+      {
+        "scenario": "cwe-89-development-02",
+        "cwe": "CWE-89",
+        "run_id": "9a75968b6c6049dd92710815a2d9892c",
+        "decision": "REJECT",
+        "seconds": 89.188,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 308,
+            "output_tokens": 203,
+            "seconds": 37.937
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 328,
+            "output_tokens": 195,
+            "seconds": 34.766
+          }
+        ],
+        "gaps": [
+          "parameterization-removed-union: unsafe witness not qualified",
+          "parameterization-removed-or: unsafe witness not qualified"
+        ],
+        "request_executions": 70
+      },
+      {
+        "scenario": "cwe-78-development-01",
+        "cwe": "CWE-78",
+        "run_id": "5e23df6b5e4a4afeb122fc3e742c7c25",
+        "decision": "REJECT",
+        "seconds": 71.5,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 186,
+            "output_tokens": 76,
+            "seconds": 16.344
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 405,
+            "output_tokens": 76,
+            "seconds": 20.969
+          }
+        ],
+        "gaps": [
+          "shell-restored: source pattern unavailable",
+          "shell-restored: source pattern unavailable"
+        ],
+        "request_executions": 134
+      },
+      {
+        "scenario": "cwe-78-development-02",
+        "cwe": "CWE-78",
+        "run_id": "5d5f96d672124d1ba99217bf7b324573",
+        "decision": "REJECT",
+        "seconds": 65.704,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 186,
+            "output_tokens": 76,
+            "seconds": 16.89
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 405,
+            "output_tokens": 76,
+            "seconds": 18.906
+          }
+        ],
+        "gaps": [
+          "shell-restored: source pattern unavailable",
+          "shell-restored: source pattern unavailable"
+        ],
+        "request_executions": 134
+      },
+      {
+        "scenario": "cwe-798-development-01",
+        "cwe": "CWE-798",
+        "run_id": "54c78460eb224ba68d4d7c094d91354f",
+        "decision": "REJECT",
+        "seconds": 61.75,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 254,
+            "output_tokens": 106,
+            "seconds": 23.406
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 293,
+            "output_tokens": 107,
+            "seconds": 16.25
+          }
+        ],
+        "gaps": [],
+        "request_executions": 140
+      },
+      {
+        "scenario": "cwe-798-development-02",
+        "cwe": "CWE-798",
+        "run_id": "fa1333d3672b4307ade16da0da36e655",
+        "decision": "REJECT",
+        "seconds": 68.281,
+        "model_usage": [
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 254,
+            "output_tokens": 106,
+            "seconds": 19.25
+          },
+          {
+            "provider": "ollama",
+            "origin": "local-model",
+            "status": "OK",
+            "parameters": {
+              "temperature": 0,
+              "num_ctx": 8192,
+              "num_predict": 2048,
+              "seed": 0
+            },
+            "model": "qwen2.5-coder:3b",
+            "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+            "version": "0.35.0",
+            "input_tokens": 293,
+            "output_tokens": 107,
+            "seconds": 20.594
+          }
+        ],
+        "gaps": [],
+        "request_executions": 140
+      }
+    ],
+    "curated": false
+  },
+  "offline_firewall": {
+    "dedicated_python": {
+      "loopback": "connected",
+      "external": "PermissionError"
+    },
+    "native_ollama": "operator-applied active outbound block; cloud features disabled"
+  },
+  "deployment": {
+    "health": 200,
+    "anonymous": 401,
+    "authenticated": 200,
+    "readonly": true,
+    "rows": 30,
+    "csp": true,
+    "post_denied": 403,
+    "signing_key_exported": false
+  },
+  "demo": {
+    "scenario": "cwe-22-development-01",
+    "runs": [
+      {
+        "id": "8f4cf2d44e3e4b96b783388c366b2419",
+        "mode": "fixed",
+        "patch": "incomplete",
+        "decision": "READY_FOR_REVIEW",
+        "seconds": 6.875
+      },
+      {
+        "id": "60aec0e793bb4c77a1fbdcd00c00cc64",
+        "mode": "full",
+        "patch": "incomplete",
+        "decision": "REJECT",
+        "seconds": 14.796
+      },
+      {
+        "id": "164d8a2b9b654086976344206cb4d7c8",
+        "mode": "full",
+        "patch": "correct",
+        "decision": "READY_FOR_REVIEW",
+        "seconds": 23.063
+      }
+    ],
+    "replay": {
+      "run_id": "60aec0e793bb4c77a1fbdcd00c00cc64",
+      "check": {
+        "case": {
+          "id": "probe-symlink",
+          "path": "/documents",
+          "method": "GET",
+          "query": {
+            "file": "link.txt"
+          },
+          "kind": "attack",
+          "assertion": "private-data"
+        },
+        "expected": {
+          "type": "security",
+          "statuses": [
+            200,
+            400,
+            403,
+            404
+          ],
+          "forbidden": [
+            "PRIVATE_CANARY_cwe-22-development-01"
+          ]
+        },
+        "actual": {
+          "id": "probe-symlink",
+          "status": 200,
+          "body": "PRIVATE_CANARY_cwe-22-development-01"
+        },
+        "status": "FAIL"
+      },
+      "recorded_status": "FAIL",
+      "executed_at": "2026-09-30T23:16:37.071419+00:00"
+    },
+    "minimization": {
+      "run_id": "60aec0e793bb4c77a1fbdcd00c00cc64",
+      "case": {
+        "id": "probe-symlink",
+        "path": "/documents",
+        "method": "GET",
+        "query": {
+          "file": "link.txt"
+        },
+        "kind": "attack",
+        "assertion": "private-data"
+      },
+      "attempts": 3,
+      "observations": [
+        {
+          "case": {
+            "id": "minimize-0",
+            "path": "/documents",
+            "method": "GET",
+            "query": {
+              "file": "link"
+            },
+            "kind": "attack",
+            "assertion": "private-data"
+          },
+          "expected": {
+            "type": "security",
+            "statuses": [
+              200,
+              400,
+              403,
+              404
+            ],
+            "forbidden": [
+              "PRIVATE_CANARY_cwe-22-development-01"
+            ]
+          },
+          "actual": {
+            "id": "minimize-0",
+            "status": 404,
+            "body": "Missing"
+          },
+          "status": "PASS"
+        },
+        {
+          "case": {
+            "id": "minimize-1",
+            "path": "/documents",
+            "method": "GET",
+            "query": {
+              "file": ".txt"
+            },
+            "kind": "attack",
+            "assertion": "private-data"
+          },
+          "expected": {
+            "type": "security",
+            "statuses": [
+              200,
+              400,
+              403,
+              404
+            ],
+            "forbidden": [
+              "PRIVATE_CANARY_cwe-22-development-01"
+            ]
+          },
+          "actual": {
+            "id": "minimize-1",
+            "status": 404,
+            "body": "Missing"
+          },
+          "status": "PASS"
+        },
+        {
+          "case": {
+            "id": "minimize-2",
+            "path": "/documents",
+            "method": "GET",
+            "query": {
+              "file": ""
+            },
+            "kind": "attack",
+            "assertion": "private-data"
+          },
+          "expected": {
+            "type": "security",
+            "statuses": [
+              200,
+              400,
+              403,
+              404
+            ],
+            "forbidden": [
+              "PRIVATE_CANARY_cwe-22-development-01"
+            ]
+          },
+          "actual": {
+            "id": "minimize-2",
+            "status": 404,
+            "body": "Missing"
+          },
+          "status": "PASS"
+        }
+      ],
+      "minimality": "bounded reduction; global minimality is not established"
+    },
+    "stale_run": "3383ce2f82e940089709c95870fa15cb",
+    "extended": [
+      {
+        "id": "a60e81fb04ca48448b7a25d8921c02cf",
+        "cwe": "78",
+        "patch": "incomplete",
+        "decision": "REJECT"
+      },
+      {
+        "id": "a82af37613474e239c1f5ef3ed191050",
+        "cwe": "78",
+        "patch": "correct",
+        "decision": "READY_FOR_REVIEW"
+      },
+      {
+        "id": "d77e73cc42db47b980e07576774a79b6",
+        "cwe": "798",
+        "patch": "incomplete",
+        "decision": "REJECT"
+      },
+      {
+        "id": "dd87a8e5867e4ca0bfed3c4c3ab6b8d7",
+        "cwe": "798",
+        "patch": "correct",
+        "decision": "READY_FOR_REVIEW"
+      }
+    ],
+    "review": {
+      "id": "0b518091644042808e56bfee7adf0b8a",
+      "created": "2026-09-30T23:18:04.924237+00:00",
+      "scenario": "cwe-798-development-01",
+      "decision": "HUMAN_APPROVE",
+      "kind": "review",
+      "run_id": "dd87a8e5867e4ca0bfed3c4c3ab6b8d7",
+      "evidence_digest": "5f4c9deaf1599733cc1e7ced9f18ddbdc62d59a898ab0bc34ff9367989a951f5",
+      "reviewer_label": "PRATIRODH demo operator",
+      "identity_verified": false,
+      "rationale": "Reviewed synthetic credential profiles and fresh verification evidence; no source promotion."
+    }
+  },
+  "limitations": [
+    "Trusted single-file Flask fixtures only; four CWE classes.",
+    "Related synthetic families and public labels constrain generalization.",
+    "Timing includes concurrent evaluation load and is not a controlled latency benchmark.",
+    "Pattern-based mutation qualification can abstain on alternative coding styles.",
+    "Review labels do not authenticate identity. No automatic promotion.",
+    "No cloud generation, public hosting, narrated MP4, or finished PPT is claimed."
+  ],
+  "documentation": {
+    "word_pages": 17,
+    "rendered_and_visually_checked": true,
+    "word_sha256": "47619e27c43c43df3d700881809d5931e630e9b04de1bae556b8fccdadafdc37",
+    "includes": [
+      "setup",
+      "architecture",
+      "security",
+      "measured outcomes",
+      "deployment",
+      "troubleshooting",
+      "model licensing",
+      "demo narration",
+      "manual PPT outline"
+    ]
+  }
+}

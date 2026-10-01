@@ -1,0 +1,9 @@
+--- a/app.py
++++ b/app.py
+@@ -4,4 +4,6 @@
+ @app.get("/check")
+ def check():
+     name = request.args.get("name", "")
++    if ";" in name:
++        return "Denied", 403
+     return subprocess.check_output("printf %s " + name, shell=True, text=True)
