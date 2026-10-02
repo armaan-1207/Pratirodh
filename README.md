@@ -4,7 +4,7 @@
 
 ### Detect a vulnerability. Challenge the repair. Review the evidence.
 
-**A Derby University hackathon project · Azure validation · Human review · MIT licensed**
+**A Derby University hackathon project · Local repair workflows · Human review · MIT licensed**
 
 [Quick start](#setup-on-windows-macos-and-linux) · [Tech stack](#tech-stack) · [Project structure](#project-structure) · [Evaluation](#evaluation-and-results) · [License](LICENSE)
 
@@ -31,13 +31,19 @@ PRATIRODH is a security repair lab that proposes fixes and checks whether they p
 Detect → Reproduce → Propose → Verify → Challenge → Sign evidence → Human review
 ```
 
-Supported repair classes: **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection) and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
+The guided Flask workflow supports **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection) and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
 
-The browser demo operates on trusted, registered, single-file Flask fixtures. Real upstream validation is a separate, generated campaign with a frozen 24-case manifest, isolated execution/audit workers and signed evidence. Readiness covers only recorded checks; source files are never replaced automatically.
+The browser demo operates on trusted, registered, single-file Flask fixtures. Experimental multi-file workflows support Python, Node.js and C/C++ projects through reviewed manifests and restricted Docker workers. Real upstream validation is a separate campaign with a frozen 24-case intake manifest; qualification and campaign execution remain outstanding. Readiness covers only recorded checks; source files are never replaced automatically.
 
 ### Real upstream validation
 
-Open `/validation` to inspect generated intake and worker status, then `/walkthrough` for the presenter path. The manifest is [benchmark/upstream-v1/manifest.json](benchmark/upstream-v1/manifest.json) and its frozen digest is [benchmark/upstream-v1/manifest.sha256](benchmark/upstream-v1/manifest.sha256). Run `python tools/freeze_upstream_manifest.py` after an intentional manifest change, then `python tools/update_validation_status.py` after a resumable campaign checkpoint. The Azure setup, SSH commands, host-key record, runtime/model attestations and teardown procedure are documented in [deploy/AZURE_VALIDATION.md](deploy/AZURE_VALIDATION.md). The UI reads `run_output/upstream-validation/status.json` and does not accept a candidate without an independent audit record.
+Open `/validation` to inspect intake and worker status, then `/walkthrough` to review signed demonstration records. The manifest is [benchmark/upstream-v1/manifest.json](benchmark/upstream-v1/manifest.json) and its frozen digest is [benchmark/upstream-v1/manifest.sha256](benchmark/upstream-v1/manifest.sha256).
+
+**Verified local status on 2 October 2026:** all 24 upstream source revisions were acquired; **0 qualified cases, 0 completed attempts and 0 independent audits**. The campaign is `BLOCKED_INTAKE`. Source acquisition establishes provenance, not a successful repair. Local acquisition and campaign artifacts are ignored by Git, so a fresh clone displays only the evidence available on that machine.
+
+The UI derives counts from acquisition records, campaign artifacts and worker attestations through `pratirodh/upstream_status.py`; `/validation/status.json` exposes that projection. It does not trust manually entered totals in a saved status file. Accepted campaign results require a verified signed snapshot and a passing audit record.
+
+Remaining work: review licenses, qualify runnable cases and their vulnerable/fixed controls, prepare pinned dependency images, confirm the remaining cloud budget, execute the scheduled comparison and independently audit retained candidates. See [demo readiness](docs/DEMO_READINESS.md) and [Azure worker setup](deploy/AZURE_VALIDATION.md). Run `python tools/freeze_upstream_manifest.py` only after an intentional manifest change; `python tools/update_validation_status.py` writes a status snapshot for inspection.
 
 ## Tech stack
 
@@ -64,17 +70,21 @@ Pratirodh/
 │   ├── evidence.py            # Signing, integrity and freshness checks
 │   ├── execution.py           # Docker execution and workflow budgets
 │   ├── comparison.py          # Evaluation scheduling and result aggregation
+│   ├── projects/              # Multi-file intake, repair, workers and signed exports
+│   ├── upstream_status.py     # Artifact-derived upstream campaign status
 │   ├── templates/             # Server-rendered interface pages
 │   └── static/                # CSS, fonts, licenses and built JavaScript
 ├── frontend/                  # JavaScript source, build script and browser tests
 ├── benchmark/
 │   ├── scenarios/             # Disclosed development/regression fixtures
 │   ├── external-v1/           # Public-source reproductions and frozen manifest
-│   └── audit-v1/              # Final audit inputs, excluded from worker mounts
+│   ├── audit-v1/              # Final audit inputs, excluded from worker mounts
+│   └── upstream-v1/           # Frozen 24-case upstream intake manifest
 ├── patch/                     # Retained patch-matching regression helper
 ├── tests/                     # Unit, security and Docker integration tests
 ├── tools/                     # Demo preparation, audit and baseline utilities
-├── deploy/                    # Local deployment helpers
+├── scripts/                   # Synthetic demo and local worker setup
+├── deploy/                    # Review deployment and Azure worker helpers
 ├── docs/                      # Guides, one workspace preview and recorded results
 ├── run_output/                # Local generated evidence; ignored by Git
 ├── requirements-deploy.txt    # Pinned active application dependencies
@@ -93,6 +103,7 @@ Install Git, Python 3.11 (the measured environment used 3.11.9) and Docker. On W
 ```sh
 git clone https://github.com/armaan-1207/Pratirodh.git
 cd Pratirodh
+git checkout codex/pratirodh-upstream-validation
 ```
 
 ### Windows : PowerShell
@@ -128,6 +139,18 @@ The workspace offers three modes:
 - **Combined repair:** one template first, then up to two local Ollama attempts if readiness is not established. The complete repair workflow has a ten-minute limit.
 
 Combined repair is the default workspace tab. Candidate history retains every rejection. `/comparison` provides separate Repair and Verification tabs with recorded outcomes, costs and expandable raw evidence. Stop the server with Ctrl+C. Source files are never replaced automatically.
+
+### Multi-file synthetic demonstration
+
+To generate and inspect the Python, Node.js and C/C++ demonstration records:
+
+```sh
+python scripts/start_demo.py --port 8767
+```
+
+Use your virtual-environment interpreter. Docker must be running; the helper builds the project worker image if needed, runs the supplied synthetic examples, verifies their signed records and serves the dashboard. Open `/walkthrough` on port 8767 to inspect the results. These examples use supplied candidates and make no model calls. The separate guided Flask workflow remains available through the setup above.
+
+The project workflow supports reviewed Python/pytest, Node/npm and CMake/CTest layouts. Other build layouts and unprepared dependencies can remain unsupported or unresolved. See [project workflows](docs/PROJECT_WORKFLOWS.md), [local Linux workers](docs/LINUX_WORKERS.md) and [cloud workers](docs/CLOUD_WORKERS.md) for intake, isolation, model identity and evidence-export requirements. These language workflows remain experimental until the external acceptance campaign passes.
 
 ### Optional local AI : all three platforms
 
@@ -210,6 +233,8 @@ Add `--resume` to continue an interrupted comparison within its original cap. Ch
 
 ```powershell
 python -m pip install pytest==8.1.1
+python -m pratirodh build-runner
+python -m pratirodh project build-worker
 $env:PRATIRODH_DOCKER_TESTS = '1'
 python -m pytest -q
 npm ci
@@ -217,6 +242,8 @@ npm run build
 npm test
 python -m bandit -r pratirodh -ll
 ```
+
+**Local verification on 2 October 2026:** 124 Python tests passed with Docker tests enabled; all 3 frontend tests passed. The frontend rebuild matched the tracked assets, the wheel included the project worker Dockerfile, Bandit reported no medium/high findings and the production npm dependency audit reported no vulnerabilities. These checks cover the application and synthetic workflows; they do not complete the upstream campaign.
 
 On macOS/Linux, use `PRATIRODH_DOCKER_TESTS=1 python -m pytest -q` instead of the PowerShell environment assignment.
 
@@ -238,6 +265,9 @@ Keep `.env`, signing keys, local databases and generated private evidence out of
 
 - [Project guide](docs/PROJECT_GUIDE.md) : implementation and operation.
 - [Demo narration](docs/DEMO.md) : a presenter walkthrough.
+- [Demo readiness](docs/DEMO_READINESS.md) : verified scope and outstanding acceptance gates.
+- [Project workflows](docs/PROJECT_WORKFLOWS.md) : multi-file intake, workers and signed exports.
+- [Cloud workers](docs/CLOUD_WORKERS.md) : Azure and local worker setup paths.
 - [Comparison report](docs/COMPARISON.md) : measured outcomes and limitations.
 - [Interface attribution](docs/INTERFACE_SOURCES.md) : third-party assets and licenses.
 - [Security policy](SECURITY.md) : security boundaries and reporting.
