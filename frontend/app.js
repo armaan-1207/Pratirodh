@@ -46,6 +46,7 @@ if(job){
  retry.addEventListener('click',poll);document.addEventListener('visibilitychange',()=>{clearTimeout(timer);if(!document.hidden&&active)poll();});if(active)poll();
 }
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-if(!reduced.matches){gsap.from('.hero-copy > *',{y:16,opacity:0,duration:.65,stagger:.09,clearProps:'all'});}
+const heroItems=document.querySelectorAll('.hero-copy > *');
+if(!reduced.matches&&heroItems.length){gsap.from(heroItems,{y:16,opacity:0,duration:.65,stagger:.09,clearProps:'all'});}
 const scene=document.querySelector('#verification-scene');
 if(scene&&!reduced.matches&&matchMedia('(min-width: 651px)').matches){const observer=new IntersectionObserver(async entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();try{const {mountScene}=await import('./scene.js');mountScene(scene);}catch{/* The static diagram remains available. */}}},{rootMargin:'100px'});observer.observe(scene);}

@@ -45,7 +45,7 @@ flowchart LR
 
 The guided Flask workflow supports **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection) and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
 
-The browser demo operates on trusted, registered, single-file Flask fixtures. Experimental multi-file workflows support Python, Node.js and C/C++ projects through reviewed manifests and restricted Docker workers. Real upstream validation is a separate campaign with a frozen 24-case intake manifest; qualification and campaign execution remain outstanding. Readiness covers only recorded checks; source files are never replaced automatically.
+The guided Flask demo operates on trusted, registered, single-file fixtures. The separate multi-file browser demonstration covers Python, Node.js and C/C++ projects through reviewed manifests and restricted Docker workers. Real upstream validation is a separate campaign with a frozen 24-case intake manifest; qualification and campaign execution remain outstanding. Readiness covers only recorded checks; source files are never replaced automatically.
 
 ### Real upstream validation
 
@@ -68,8 +68,9 @@ Remaining work: review licenses, qualify runnable cases and their vulnerable/fix
 
 ### Repair and verification
 
-- **Ollama:** optional local repair generation; the guided Flask workflow defaults to `qwen2.5-coder:3b`.
-- **Ollama / llama.cpp adapters:** experimental project workflows with explicit model/runtime identities and budgets; see [project workflow requirements](docs/PROJECT_WORKFLOWS.md).
+- **Qwen2.5-Coder 7B · Ollama:** the default model profile for multi-file project workflows and the prepared Azure model/controller, with `Q4_K_M` quantization and pinned runtime/weights identities. Azure model preflight passed; the upstream repair campaign remains unfinished.
+- **Qwen2.5-Coder 3B · Ollama:** the earlier guided Flask workflow and recorded historical comparison use this smaller model. It is also available as the explicitly experimental `prototype-small` project profile.
+- **Ollama / llama.cpp adapters:** reviewed model configuration, loopback transport and generation budgets; see [project workflow requirements](docs/PROJECT_WORKFLOWS.md).
 - **Bandit · Python AST checks:** candidate finding detection.
 - **Docker · pytest · npm · CMake/CTest:** restricted execution for reviewed Python, Node.js and C/C++ project layouts.
 - **Contract checks · mutation challenges:** compare legitimate behavior, reproduced violations and deliberately weakened repairs.
@@ -189,18 +190,38 @@ Use your virtual-environment interpreter. Docker must be running; the helper bui
 
 The project workflow supports reviewed Python/pytest, Node/npm and CMake/CTest layouts. Other build layouts and unprepared dependencies can remain unsupported or unresolved. See [project workflows](docs/PROJECT_WORKFLOWS.md), [local Linux workers](docs/LINUX_WORKERS.md) and [cloud workers](docs/CLOUD_WORKERS.md) for intake, isolation, model identity and evidence-export requirements. These language workflows remain experimental until the external acceptance campaign passes.
 
-### Optional local AI
+### Optional AI: choose the workflow's model
 
-Install [Ollama](https://docs.ollama.com/quickstart) for your OS and download the configured model while online:
+**Multi-file project workflows: Qwen2.5-Coder 7B.** The default `laptop` profile uses `qwen2.5-coder:7b`, an 8,192-token context and at least 8 GiB of declared available memory. The prepared Azure model/controller uses this model with `Q4_K_M` quantization. Install [Ollama](https://docs.ollama.com/quickstart), then prepare the model while online:
+
+```sh
+ollama pull qwen2.5-coder:7b
+ollama list
+```
+
+Pulling weights alone does not enable project execution. The operator-reviewed project manifest must pin the installed model digest, runtime digest, quantization, memory and execution image; model preflight validates the configuration. On Azure, the model client runs on the Linux controller using its local Ollama service. See [project workflows](docs/PROJECT_WORKFLOWS.md) and [Azure setup](deploy/AZURE_VALIDATION.md) before running a qualified project.
+
+<details>
+<summary><strong>Earlier guided Flask demo and historical comparison: Qwen 3B</strong></summary>
+
+The guided Flask provider, Windows `setup-offline.ps1` helper and recorded historical comparison retain `qwen2.5-coder:3b`. To use that workflow's default:
 
 ```sh
 ollama pull qwen2.5-coder:3b
 ollama list
 ```
 
-Keep the Ollama application/service running at `127.0.0.1:11434`. On Linux, follow [Ollama's installation instructions](https://docs.ollama.com/linux); run `ollama serve` if the service is not already running. Windows users can also use `./setup-offline.ps1`. No cloud API key is required. Local and combined modes use the restricted loopback provider and never invoke a cloud fallback. Missing models and provider timeouts leave unresolved evidence.
+The single-file CLI accepts a model override, for example `pipeline ... --strategy ollama --model qwen2.5-coder:7b`. The browser's guided Flask AI modes still use the provider's 3B default. Project workflows select models through their reviewed manifest and profile; changing the guided provider does not configure those manifests.
+
+The `prototype-small` 3B project profile is experimental and does not satisfy the planned default-model release evaluation. Recorded 3B results remain labeled with the model actually used.
+
+</details>
+
+Keep the relevant Ollama service at `127.0.0.1:11434`. On Linux, follow [Ollama's installation instructions](https://docs.ollama.com/linux); run `ollama serve` if the service is not already running. The guided local and combined modes require no cloud API key and invoke no cloud fallback. Missing models and provider timeouts leave unresolved evidence. Supplied-candidate demonstrations make no model calls.
 
 Run `python -m pratirodh doctor` with your virtual-environment interpreter to check the runner and local model. It may report incomplete setup when Ollama is missing; the curated demo still works without Ollama. If Docker or the runner is unavailable, start Docker and repeat `build-runner`. If the model is unavailable, check `ollama list` and the local service. If port 8765 is occupied, use `serve --port 8767` and open that port. After relevant source changes, regenerate demo evidence with the virtual-environment interpreter and `tools/prepare_demo.py`; old evidence remains stale by design.
+
+When using the multi-file demo from a virtual environment, run `./.venv/Scripts/python.exe scripts/start_demo.py --port 8767` on Windows or `./.venv/bin/python scripts/start_demo.py --port 8767` on macOS/Linux.
 
 The CLI examples below use `python` as shorthand for the virtual-environment interpreter: `./.venv/Scripts/python.exe` on Windows, `./.venv/bin/python` on macOS/Linux. Node.js is only needed to rebuild the frontend; prebuilt local assets are included.
 
@@ -256,6 +277,8 @@ a64f6a440083aecc0e770ca5be1df0f9aec391ce33267273e8459cf2e83097b1
 
 The builder checks this hash before building the disposable historical Docker image. Historical dependencies stay inside that image. The baseline revision is `edffe24`; the earlier PRATIRODH revision is `8f57db6`. Neither revision is included in this release's Git history.
 
+This recorded comparison used Qwen2.5-Coder 3B. It is separate from the prepared 7B upstream workflow and must not be relabeled as 7B results.
+
 Runs rotate across cases and systems, permit one concurrent model request and checkpoint results. Each repair allows two model calls at most, 180 seconds per generation and ten minutes total. The full comparison has a twelve-hour cap with a final reserve for auditing generated candidates.
 
 The final audit is checked against vulnerable originals and known repairs before measurement. It runs in a separate supervisor process; its requests and assertions are absent from generator prompts and repair feedback. Generation workers do not receive the audit directory. These controls assume a trusted operator controlling the host.
@@ -282,6 +305,8 @@ python -m bandit -r pratirodh -ll
 
 **Local verification on 2 October 2026:** 124 Python tests passed with Docker tests enabled; all 3 frontend tests passed. The frontend rebuild matched the tracked assets, the wheel included the project worker Dockerfile, Bandit reported no medium/high findings and the production npm dependency audit reported no vulnerabilities. These checks cover the application and synthetic workflows; they do not complete the upstream campaign.
 
+**Localhost browser verification:** the guided Flask demonstration completed, and the Python, JavaScript and C/C++ project demonstrations each rejected an incomplete repair and produced a corrected repair ready for review. Signed downloads verified against the independently retained store public key. These supplied-candidate runs made zero model calls.
+
 On macOS/Linux, use `PRATIRODH_DOCKER_TESTS=1 python -m pytest -q` instead of the PowerShell environment assignment.
 
 Use the pinned `requirements-deploy.txt` for the active application. Historical dependencies must not be installed into that environment.
@@ -295,6 +320,8 @@ The dashboard includes authentication, CSRF protection, host restrictions, escap
 python tools/export_review.py
 docker compose up -d --build
 ```
+
+The Compose port is `127.0.0.1:8766`. Production sessions require HTTPS; configure a local TLS reverse proxy before authenticated browser review. This deployment serves exported evidence and cannot run targets.
 
 Keep `.env`, signing keys, local databases and generated private evidence out of Git. The repository includes synthetic fixture credentials only. Review the exact staged files before publishing.
 
