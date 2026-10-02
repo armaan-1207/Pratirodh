@@ -50,6 +50,21 @@ class Store:
         return self.root / "runs" / run_id
 
     def save(self, report, artifacts):
+        from .projects.leases import Lease
+        from .execution import Budget
+        for name, value in artifacts.items():
+            if ('/' in name or '\\' in name or name in {'.', '..', 'inventory.json', 'signature.hex', 'report.json'}
+                    or not isinstance(value, str)):
+                raise ValueError('artifact names/content violate evidence policy')
+        lease = Lease('evidence-' + digest(str(self.root))[:24])
+        if not lease.acquire(Budget(30)):
+            raise TimeoutError('evidence writer busy')
+        try:
+            return self._save(report, artifacts)
+        finally:
+            lease.release()
+
+    def _save(self, report, artifacts):
         self.root.mkdir(parents=True, exist_ok=True)
         private_path = self.root / "signing.key"
         public_path = self.root / "trust.pub"

@@ -1,0 +1,14 @@
+{
+  "context": "pratirodh-audit",
+  "properties": ["Independent account isolation assertions and legitimate use"],
+  "files": {
+    "audit/check_owner.py": "# Replace with independently reviewed assertions.\nraise SystemExit('INCOMPLETE AUDIT TEMPLATE')\n"
+  },
+  "checks": [
+    {
+      "command": ["python", "audit/check_owner.py"],
+      "exit": 0,
+      "stdout": "AUDIT_PASS\n"
+    }
+  ]
+}

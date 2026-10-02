@@ -4,7 +4,7 @@
 
 ### Detect a vulnerability. Challenge the repair. Review the evidence.
 
-**A Derby University hackathon project · Local AI · Human review · MIT licensed**
+**A Derby University hackathon project · Azure validation · Human review · MIT licensed**
 
 [Quick start](#setup-on-windows-macos-and-linux) · [Tech stack](#tech-stack) · [Project structure](#project-structure) · [Evaluation](#evaluation-and-results) · [License](LICENSE)
 
@@ -14,7 +14,7 @@
 
 PRATIRODH is a security repair lab that proposes fixes and checks whether they preserve legitimate behavior while addressing a reproduced vulnerability. Each run produces signed evidence showing what passed, what failed and what remains unknown.
 
-**Start with the guided demo:** it works with supplied patches and Docker, without an AI model. Add local Ollama when you want to generate repairs.
+**Start with the guided demo:** it works with supplied patches and Docker, without an AI model. The `/validation` route is the evidence view for the Azure-backed upstream campaign; local Ollama remains an optional fixture workflow.
 
 ![PRATIRODH guided verification workspace](docs/screenshots/ui-workspace.jpg)
 
@@ -33,7 +33,11 @@ Detect → Reproduce → Propose → Verify → Challenge → Sign evidence → 
 
 Supported repair classes: **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection) and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
 
-This hackathon prototype operates on trusted, registered, single-file Flask fixtures. Readiness covers the recorded checks; source files are never replaced automatically.
+The browser demo operates on trusted, registered, single-file Flask fixtures. Real upstream validation is a separate, generated campaign with a frozen 24-case manifest, isolated execution/audit workers and signed evidence. Readiness covers only recorded checks; source files are never replaced automatically.
+
+### Real upstream validation
+
+Open `/validation` to inspect generated intake and worker status, then `/walkthrough` for the presenter path. The manifest is [benchmark/upstream-v1/manifest.json](benchmark/upstream-v1/manifest.json) and its frozen digest is [benchmark/upstream-v1/manifest.sha256](benchmark/upstream-v1/manifest.sha256). Run `python tools/freeze_upstream_manifest.py` after an intentional manifest change, then `python tools/update_validation_status.py` after a resumable campaign checkpoint. The Azure setup, SSH commands, host-key record, runtime/model attestations and teardown procedure are documented in [deploy/AZURE_VALIDATION.md](deploy/AZURE_VALIDATION.md). The UI reads `run_output/upstream-validation/status.json` and does not accept a candidate without an independent audit record.
 
 ## Tech stack
 

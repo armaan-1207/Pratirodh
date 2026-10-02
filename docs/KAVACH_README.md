@@ -1,0 +1,255 @@
+# Kavach-CRS: Autonomous Self-Healing Infrastructure
+
+![Kavach-CRS CLI](assets/screenshot.png)
+
+**Kavach-CRS** is a lightweight, air-gapped Cyber Reasoning System (CRS) built for **Terrier Cyber Quest 2026** (CyberPeace Foundation / Territorial Army). It autonomously **finds** vulnerabilities, **patches** them and **proves** the fix holds - without cloud dependencies, without elevated privileges and without causing mission downtime.
+
+> **Runs in ~1-3 minutes on a standard laptop (depending on local LLM routing). Zero cloud required. Zero persistent services.**
+
+---
+
+## Why Kavach-CRS is Different
+
+Every major CRS from DARPA AIxCC (Atlantis, Buttercup, FuzzingBrain) requires distributed GPU clusters, multi-agent cloud API pipelines or Kubernetes orchestration. Kavach-CRS is built around the exact opposite philosophy:
+
+| Capability | DARPA AIxCC Finalists | Kavach-CRS |
+|---|---|---|
+| Cloud LLM dependency | Required | Optional (Sovereign Mode blocks it by default) |
+| Infrastructure needed | GPU cluster / Docker farm | Single laptop |
+| Runtime | Minutes to hours | ~1-3 minutes |
+| Air-gap deployable | No | Yes - runs fully offline via Ollama |
+| Audit trail | Logging | Ed25519 cryptographic hash chain |
+| Human operator loop | None | Commander Sign-off with signed ledger entries |
+
+---
+
+## Pipeline
+
+Kavach-CRS runs an **8-stage, ledger-audited pipeline** for every scan (DETECT has two sub-stages: static and dynamic):
+
+| # | Stage | Module | What it does |
+|---|-------|--------|---------------|
+| 1 | **DETECT (Static)** | `detect/sast.py`, `detect/rules.py` | Bandit + custom AST taint rules (CWE-22, CWE-798) find candidate vulnerabilities |
+| 2 | **DETECT (Dynamic)** | `detect/fuzzer.py` | Atheris fuzzes reachable entry points in a hardened subprocess, surfacing crashes static analysis misses *(Linux only)* |
+| 3 | **TRIAGE** | `detect/triage.py` | Builds a call graph, discards findings in unreachable/dead code, ranks survivors by `mission_impact.yaml` tier |
+| 4 | **REASON** | `reason/engine.py`, `reason/templates.py` | Deterministic CWE-keyed templates synthesize the fix first; an offline two-step LLM chain (RCA → Patch), RAG-grounded on MITRE ATT&CK mappings, is the fallback |
+| 5 | **PATCH** | `patch/patcher.py` | Applies the minimal diff to a `.kavach_shadow` file atomically; timestamped backup taken before anything goes live |
+| 6 | **PROVE (PoV)** | `prove/pov_replay.py` | Re-runs DETECT on the shadow file to confirm the specific finding is gone |
+| 7 | **PROVE (Differential + Regression)** | `prove/differential.py`, `prove/regression.py` | Replays a safe+exploit corpus against pre/post-patch binaries in an isolated worker; runs existing pytest suite |
+| 8 | **GATE** | `gate/scorer.py` | Transparent weighted confidence score → `AUTO_MERGE` / `HUMAN_REVIEW` / `REJECT`. LLM-generated patches are hard-capped at `HUMAN_REVIEW` regardless of score |
+| 9 | **LEDGER + REPORT** | `ledger/ledger.py`, `ledger/report.py` | Every stage appended to an Ed25519-signed hash chain; rendered into a forensic HTML report |
+
+---
+
+## Key Features
+
+### 🛡️ Sovereign Mode (Air-Gap Default)
+Kavach-CRS monkey-patches `socket.socket.connect` at startup to block all outbound network calls by default. No data leaves the machine unless you explicitly pass `--allow-cloud-fallback`. Designed for classified / air-gapped military networks.
+
+### 🤖 Gated LLM Fallback
+When a deterministic template cannot handle a vulnerability pattern, Kavach-CRS falls back to a local LLM (via Ollama + Qwen2.5-Coder by default; production-ready for sovereign models like Sarvam-30B). The fallback is:
+- **Scrubbed**: Secrets are masked before the snippet is sent
+- **RAG-grounded**: Local MITRE ATT&CK mitigation data is injected into the prompt context
+- **Hard-capped**: LLM-generated patches can never `AUTO_MERGE` - they are always routed to `HUMAN_REVIEW`
+
+### 🔬 Differential Replay Sandbox
+Every patch candidate is tested against a corpus of safe and malicious inputs in an isolated subprocess worker. This proves two things simultaneously:
+- The **exploit is blocked** (expected behavior changed for attack inputs)
+- **Normal behavior is preserved** (safe inputs still return correct results)
+
+Plus metamorphic variants (URL percent-encoding, Unicode NFD) to catch evasion techniques.
+
+### 📋 Tamper-Evident Audit Ledger
+Every pipeline decision — including patch applications, skips, errors, and gate outcomes — is appended to an **Ed25519 asymmetric signature chain**. Any third party can independently verify the full audit trail using only the published public key (`run_output/ledger_pub.pem`) — no trust in the tool itself required.
+
+```bash
+python cli.py verify run_output/ledger.json run_output/ledger_pub.pem
+```
+
+### 👮 Commander Sign-Off
+Human operators can cryptographically approve or reject any `HUMAN_REVIEW` patch, with the decision permanently sealed into the ledger:
+```bash
+python cli.py approve F001 operator_callsign
+python cli.py reject  F001 operator_callsign
+```
+
+### 🚀 Convoy Mode
+Export and merge ledger bundles across isolated network nodes - signatures are verified before merging:
+```bash
+python cli.py export-ledger mission_ledger.zip
+python cli.py merge-ledger incoming_node.zip
+```
+
+### 👁️ Active Defense Daemon
+Watch a target directory and automatically re-run the full pipeline the moment any `.py` file changes:
+```bash
+python daemon.py target_app
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Python 3.10+ (3.11 recommended on Linux for Atheris fuzzer support)
+- For offline LLM fallback: [Ollama](https://ollama.com) with `ollama pull qwen2.5-coder`
+
+### Quick Start (Windows)
+```bat
+kavach.bat target_app
+```
+Builds an isolated virtual environment, installs dependencies and runs the scanner - no manual setup required.
+
+### Standard Deployment (Linux / macOS)
+```bash
+pip install -r requirements.txt
+python cli.py run target_app
+```
+
+### With Local LLM Fallback (Fully Offline)
+```bash
+# Install Ollama and pull the coder model
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull qwen2.5-coder
+
+# Enable LLM fallback (routes to local Ollama, NOT cloud — still fully air-gapped)
+KAVACH_LLM_PROVIDER=local python cli.py run target_app --allow-cloud-fallback
+```
+> `--allow-cloud-fallback` lifts the sovereign-mode network block so the fallback engine can reach Ollama on `localhost:11434`. Despite the flag name, Ollama is local — no data leaves the machine.
+
+### With Cloud LLM Fallback (Optional)
+```bash
+# Linux / macOS
+export KAVACH_LLM_PROVIDER=gemini
+export GEMINI_API_KEY=your_key_here
+python cli.py run target_app --allow-cloud-fallback
+
+# Windows
+set KAVACH_LLM_PROVIDER=gemini
+set GEMINI_API_KEY=your_key_here
+python cli.py run target_app --allow-cloud-fallback
+```
+
+### Disable Sovereign Mode Entirely (Not Recommended)
+```bash
+python cli.py run target_app --no-sovereign-mode
+```
+Skips socket patching entirely. Only use in development environments where outbound network is acceptable.
+
+### Environment Variables
+| Variable | Default | Description |
+|---|---|---|
+| `KAVACH_LLM_PROVIDER` | `gemini` | LLM backend: `gemini` or `local` (Ollama) |
+| `GEMINI_API_KEY` | — | Required only when provider is `gemini` |
+| `ADMIN_SECRET` | test default | Secret used by the demo target app's `/admin` route and the differential replay corpus. Set this before running against a real target. |
+| `LEDGER_PASSPHRASE` | — | Encrypts the Ed25519 private key at rest. Set before the first run for production deployments. |
+
+### Reset Demo App Between Runs
+Kavach-CRS patches files **in-place** when a finding is AUTO_MERGEd. To restore the demo target to its vulnerable baseline:
+```bash
+git restore target_app/app.py
+```
+
+---
+
+## Supported Vulnerability Classes
+
+| CWE | Description | Detection | Template |
+|---|---|---|---|
+| CWE-89 | SQL Injection | Bandit B608 + AST | Parameterised query |
+| CWE-78 | OS Command Injection | Bandit B602/B603 | List-based subprocess |
+| CWE-22 | Path Traversal | Custom AST taint (concat + `os.path.join`) | `realpath` + containment check |
+| CWE-798 | Hardcoded Credentials | Custom AST + Bandit B105-B108 | Environment variable |
+| CWE-94 | Code Injection / Debug RCE | Bandit B201 | Env-controlled debug flag |
+| CWE-502 | Insecure Deserialization | Bandit B301/B403 | LLM fallback |
+| Any other | - | Bandit (all rules) | LLM fallback |
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────┐
+│              KAVACH-CRS PIPELINE                │
+│                                                 │
+│  Target App                                     │
+│      │                                          │
+│      ▼                                          │
+│  ┌────────┐   ┌────────┐   ┌──────────────┐    │
+│  │ DETECT │──▶│ TRIAGE │──▶│    REASON    │    │
+│  │Bandit+ │   │ CG +   │   │ Template →   │    │
+│  │ AST +  │   │Mission │   │ LLM Fallback │    │
+│  │Atheris │   │ Impact │   │ (Offline RAG)│    │
+│  └────────┘   └────────┘   └──────┬───────┘    │
+│                                   │             │
+│  ┌────────────────────────────────▼──────────┐ │
+│  │                  PATCH                    │ │
+│  │   Shadow file → Atomic swap (os.replace)  │ │
+│  └────────────────────────┬──────────────────┘ │
+│                           │                     │
+│  ┌────────────────────────▼──────────────────┐ │
+│  │                  PROVE                    │ │
+│  │  PoV Replay │ Differential │ Regression   │ │
+│  │  (Isolated worker subprocess + corpus)    │ │
+│  └────────────────────────┬──────────────────┘ │
+│                           │                     │
+│  ┌────────────────────────▼──────────────────┐ │
+│  │              CONFIDENCE GATE              │ │
+│  │  AUTO_MERGE │ HUMAN_REVIEW │ REJECT       │ │
+│  │  (Transparent weighted formula)           │ │
+│  └────────────────────────┬──────────────────┘ │
+│                           │                     │
+│  ┌────────────────────────▼──────────────────┐ │
+│  │         Ed25519 TAMPER-EVIDENT LEDGER     │ │
+│  │  + HTML Forensic Report + Commander CLI   │ │
+│  └───────────────────────────────────────────┘ │
+│                                                 │
+│  ◀──── SOVEREIGN MODE: no outbound network ────▶│
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## Mission Impact Configuration
+
+Operators configure vulnerability priority per-function via `mission_impact.yaml`:
+
+```yaml
+services:
+  search: 1        # Tier 1: auth-critical - processed first
+  admin: 1         # Tier 1: auth-critical
+  ping:  2         # Tier 2: operational
+  read_file: 2     # Tier 2: operational
+  _default_tier: 2 # Fallback for unlisted functions
+```
+
+---
+
+## Validated Architecture
+
+1. **Parallel Execution** - multiple vulnerable files processed concurrently via `ThreadPoolExecutor`; sequential bottom-up within each file to prevent AST line-offset corruption
+2. **Atomic Shadow Swap** - patches written to a per-finding shadow file (e.g. `app_F001_shadow.py`) first; `os.replace()` atomically promotes to live only after PROVE passes
+3. **Post-Patch Fuzzing** - Atheris re-fuzzes the patched route to confirm no new crashes introduced
+4. **Bounded Risk, Not Blind Trust** - the Confidence Gate explicitly acknowledges APR overfitting theory (per *Undecidability of Overfitting in APR*) and bounds risk instead of claiming proof
+
+---
+
+## Known Limitations
+
+- **Framework scope**: The call-graph reachability engine currently has full support for Flask `@app.route`/`@app.before_request` and generic `main()` entry points, plus partial detection of FastAPI `@router.get/post` decorators, Django `urlpatterns`, and WSGI `application()` callables. Full Django and FastAPI support is on the roadmap.
+- **Template coverage**: Deterministic templates cover the 5 most common Python web CWE classes. Unusual patterns fall to the LLM fallback (or `SKIPPED` in Sovereign Mode without Ollama).
+- **Call-graph collision**: Bare method name matching (e.g., `execute`) can collide across namespaces in very large codebases. Fully-qualified name resolution is a planned enhancement.
+- **Windows fuzzing**: Atheris requires Linux. On Windows, the pipeline gracefully skips the fuzzing stage and relies on static + LLM analysis. All other stages run identically.
+- **Taint tracking scope**: The custom AST path-traversal rule tracks tainted variables within a single function body. Cross-function taint (e.g., `filepath = os.path.join(base, get_user_input())` where `get_user_input()` wraps `request.args.get`) is not currently detected. Bandit B22 covers some of these patterns as a complementary check.
+- **Convoy Mode provenance**: When merging ledger bundles from another node, Kavach-CRS verifies the incoming chain's integrity and then re-signs each entry under the local key. This preserves tamper-evidence but does not retain per-entry attribution to the originating node. Cross-node authorship is preserved in the `stage` and `data` fields of each entry.
+- **Ledger key protection**: By default the Ed25519 private key (`.ledger_key_ed25519`) is stored unencrypted. For production deployments set the `LEDGER_PASSPHRASE` environment variable before the first run — the key will then be written encrypted and subsequent runs must supply the same passphrase.
+
+---
+
+## Performance Footprint
+
+On the bundled `target_app` demo:
+- **Full pipeline** (Detect → Report): ~1-3 minutes on a standard laptop
+- **No persistent service** - exits cleanly after each run
+- **No elevated privileges** required
+- **8 pip dependencies** - `flask`, `bandit`, `cryptography`, `atheris`, `jinja2`, `pytest`, `pyyaml`, `watchdog`

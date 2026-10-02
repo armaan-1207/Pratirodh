@@ -26,7 +26,7 @@ def launch(client, route='/demo'):
 def test_showcase_workspace_and_inert_output(client):
     page=client.get('/')
     assert b'Catch security fixes' in page.data
-    assert b'All eight rejected' in page.data
+    assert b'Historical generation results' in page.data
     assert b'No direct benchmark' in page.data
     assert b'No evidence yet' in client.get('/workspace').data
     assert client.get('/api/jobs/missing').status_code==404

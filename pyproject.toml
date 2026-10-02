@@ -17,6 +17,7 @@ include = ["pratirodh*"]
 
 [tool.setuptools.package-data]
 pratirodh = ["templates/*.html", "static/*.css", "static/*.js", "static/dist/*", "static/fonts/*", "static/licenses/*", "static/*.svg", "Dockerfile"]
+"pratirodh.projects" = ["Dockerfile"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

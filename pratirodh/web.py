@@ -10,7 +10,7 @@ import time
 import subprocess
 from datetime import timedelta
 from collections import deque
-from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for
+from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for, send_file
 from .engine import run, replay
 from .evidence import Store, fresh, freshness_changes
 from .execution import DockerExecutor
@@ -39,6 +39,7 @@ def create_app(store=None):
     lock = threading.Lock()
     attempts = deque(maxlen=30)
     runtime_cache = {}
+    cancellations = {}
 
     def update_job(job_id, **fields):
         with lock:
@@ -106,7 +107,150 @@ def create_app(store=None):
 
     @app.get("/")
     def index():
-        return render_template('index.html')
+        from .upstream_status import read
+        recorded, error = read(benchmark_root.parent / 'docs/BENCHMARK_RESULTS.json')
+        curated = [row for row in recorded.get('curated', {}).get('rows', []) if row.get('mode') == 'full']
+        correct = [row for row in curated if row.get('label') == 'correct']
+        incorrect = [row for row in curated if row.get('label') != 'correct']
+        generated = recorded.get('local_generation', {}).get('rows', [])
+        metrics = {'correct_total': len(correct), 'correct_ready': sum(r.get('decision') == 'READY_FOR_REVIEW' for r in correct),
+                   'incorrect_total': len(incorrect), 'incorrect_rejected': sum(r.get('decision') == 'REJECT' for r in incorrect),
+                   'generated_total': len(generated), 'generated_ready': sum(r.get('decision') == 'READY_FOR_REVIEW' for r in generated),
+                   'available': bool(recorded) and not error}
+        return render_template('index.html', upstream=upstream_status(), recorded_metrics=metrics)
+
+    def upstream_status():
+        from .upstream_status import load_status
+        return load_status(benchmark_root.parent)
+
+    @app.get('/validation')
+    def upstream_validation():
+        return render_template('validation.html', upstream=upstream_status())
+
+    @app.get('/walkthrough')
+    def recorded_walkthrough():
+        reports = []
+        for run_id in reversed(store.list()[:30]):
+            try:
+                reports.append(store.load(run_id))
+            except (OSError, ValueError):
+                continue
+        selected = next((r for r in reports if r['id'] == request.args.get('run')), None)
+        return render_template('walkthrough.html', upstream=upstream_status(), reports=reports, selected=selected)
+
+    @app.get('/validation/status.json')
+    def upstream_validation_download():
+        return jsonify(upstream_status())
+
+    @app.get('/projects')
+    def project_intake():
+        return render_template('projects.html')
+
+    @app.post('/projects/inspect')
+    def project_inspect():
+        from .projects.manifest import inspect
+        try:
+            source = Path(request.form.get('source', '')).resolve()
+            manifest = inspect(source)
+            session['project_source'] = str(source)
+            approved_path = source / 'pratirodh-project.json'
+            executable = False
+            approved = None
+            if approved_path.exists():
+                from .projects.manifest import load
+                try:
+                    approved, _ = load(source, approved_path)
+                    executable = True
+                except (OSError, ValueError):
+                    pass
+        except (OSError, ValueError):
+            return render_template('projects.html', error='The directory could not be inspected. Remove secrets and check the supported project format.'), 400
+        return render_template('projects.html', manifest=manifest, executable=executable, approved=approved)
+
+    @app.post('/projects/run')
+    def project_run():
+        from .projects.manifest import load
+        source = session.get('project_source')
+        workflow = request.form.get('workflow')
+        if not source or workflow not in {'repair', 'discover'} or request.form.get('reviewed') != 'yes':
+            abort(400, 'Inspect a project and review its registered execution manifest first.')
+        manifest_path = Path(source) / 'pratirodh-project.json'
+        try:
+            manifest, _ = load(source, manifest_path)
+        except (OSError, ValueError):
+            abort(409, 'Project source or execution manifest is not qualified for execution.')
+        if manifest['worker']['mode'] != 'dedicated':
+            abort(400, 'Imported projects require a dedicated worker.')
+        with lock:
+            if any(j['status'] == 'RUNNING' for j in jobs.values()):
+                abort(409)
+            job_id = secrets.token_hex(16)
+            jobs[job_id] = dict(status='RUNNING', runs=[], step='Import source', stage='reproduce', candidate=0,
+                                generator='project', started=time.monotonic())
+            cancelled = threading.Event()
+            cancellations[job_id] = cancelled
+        def work():
+            try:
+                from .projects.engine import run_project
+                report = run_project(source, manifest_path, workflow, store=store, cancelled=cancelled,
+                                     progress=lambda stage: update_job(job_id, step=stage))
+                update_job(job_id, status='COMPLETE', runs=[report['id']], step=report['reason'],
+                           stage='complete', finished=time.monotonic())
+            except Exception:
+                app.logger.exception('project execution failed')
+                update_job(job_id, status='ERROR', step='Execution unavailable; inspect worker configuration.',
+                           finished=time.monotonic())
+        pool.submit(work)
+        return redirect(url_for('job', job_id=job_id))
+
+    @app.post('/jobs/<job_id>/cancel')
+    def cancel_project_job(job_id):
+        with lock:
+            event = cancellations.get(job_id)
+            if event is None:
+                abort(404)
+            event.set()
+        return redirect(url_for('job', job_id=job_id))
+
+    @app.post('/project-demo')
+    def project_demo():
+        from .projects.examples import create_example, incomplete_patch
+        from .projects.engine import run_project
+        language, workflow = request.form.get('language'), request.form.get('workflow')
+        if language not in {'python', 'node', 'cpp'} or workflow not in {'repair', 'discover'}:
+            abort(400)
+        with lock:
+            if any(j['status'] == 'RUNNING' for j in jobs.values()):
+                abort(409, 'A workflow is already running.')
+            job_id = secrets.token_hex(16)
+            cancelled = threading.Event()
+            cancellations[job_id] = cancelled
+            jobs[job_id] = dict(status='RUNNING', runs=[], results=[], step='Prepare synthetic project',
+                                stage='reproduce', candidate=0, generator='project', started=time.monotonic())
+        def work():
+            try:
+                image = subprocess.check_output(['docker', '--context', 'default', 'image', 'inspect',
+                    'pratirodh-project-worker:0.2', '--format', '{{.Id}}'], text=True, timeout=15).strip()
+                root = store.root / 'demo-projects' / job_id / language
+                manifest, patch = create_example(root, language, image)
+                for label, proposal, expected in [('Incomplete repair', incomplete_patch(root, manifest, patch), 'REJECT'),
+                                                  ('Corrected repair', patch, 'READY_FOR_REVIEW')]:
+                    if cancelled.is_set():
+                        break
+                    report = run_project(root, manifest, workflow, patch=proposal, store=store, allow_demo=True,
+                        cancelled=cancelled, progress=lambda stage: update_job(job_id, step=label + ' · ' + stage))
+                    with lock:
+                        jobs[job_id]['runs'].append(report['id'])
+                        jobs[job_id]['results'].append(dict(label=label, decision=report['decision'], expected=expected))
+                matched = len(jobs[job_id]['results']) == 2 and all(r['decision'] == r['expected'] for r in jobs[job_id]['results'])
+                update_job(job_id, status='CANCELLED' if cancelled.is_set() else 'COMPLETE' if matched else 'ERROR',
+                           stage='complete', finished=time.monotonic(),
+                           step='Incomplete repair rejected; corrected repair ready for review.' if matched else 'Review the retained partial evidence.')
+            except Exception:
+                app.logger.exception('synthetic project demo failed')
+                update_job(job_id, status='ERROR', finished=time.monotonic(), step='Demo unavailable; inspect Docker configuration.')
+        pool.submit(work)
+        return redirect(url_for('job', job_id=job_id))
 
     @app.context_processor
     def interface_context():
@@ -152,7 +296,12 @@ def create_app(store=None):
         for run_id in store.list()[:30]:
             try:
                 report = store.load(run_id)
-                reports.append(dict(report, fresh=fresh(report, executor), integrity="VALID"))
+                if report.get('version') == 2:
+                    from .projects.engine import project_fresh
+                    current = project_fresh(report)
+                else:
+                    current = fresh(report, executor)
+                reports.append(dict(report, fresh=current, integrity="VALID"))
             except Exception:
                 reports.append({"id": run_id, "scenario": "Untrusted artifact", "decision": "INTEGRITY_FAILURE", "fresh": False})
         reports.sort(key=lambda r: not (r.get('fresh') or r.get('kind') == 'review'))
@@ -257,9 +406,26 @@ def create_app(store=None):
             abort(409, "Evidence integrity could not be verified")
         if report.get('kind') == 'review':
             return render_template('review.html', report=report)
+        if report.get('version') == 2:
+            from .projects.engine import project_fresh
+            return render_template('project_detail.html', report=report, fresh=project_fresh(report))
         executor = DockerExecutor()
         return render_template("detail.html", report=report, fresh=fresh(report, executor),
                                freshness_changes=freshness_changes(report, executor), summary=explanation(report), csrf=session["csrf"])
+
+    @app.get('/runs/<run_id>/export')
+    def project_export(run_id):
+        import io
+        import tempfile
+        from .projects.export import export_bundle
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                path = export_bundle(store, run_id, Path(directory) / 'evidence.zip')
+                payload = Path(path).read_bytes()
+        except (ValueError, OSError):
+            abort(409, 'Evidence export could not be verified')
+        return send_file(io.BytesIO(payload), mimetype='application/zip', as_attachment=True,
+                         download_name=f'pratirodh-{run_id}.zip')
 
     @app.post("/runs/<run_id>/replay")
     def replay_case(run_id):

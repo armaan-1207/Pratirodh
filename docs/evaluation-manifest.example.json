@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "replace-with-upstream-advisory-and-revision",
+      "language": "python",
+      "split": "development",
+      "target": "cases/python-example/source",
+      "manifest": "cases/python-example/source/pratirodh-project.json",
+      "audit": "private-audit/python-example.json",
+      "description": "Public problem description only; no developer fix or final audit assertions",
+      "provenance": {
+        "license": "REPLACE_AFTER_LICENSE_REVIEW",
+        "source_url": "https://example.invalid/upstream-advisory",
+        "upstream_fix_url": "https://example.invalid/upstream-fix",
+        "adaptations": "Disclose any extraction, changed build dependencies or harness adaptations"
+      }
+    }
+  ]
+}
