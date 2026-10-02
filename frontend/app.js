@@ -1,19 +1,34 @@
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 
 // Progressive enhancement: every panel and native form is usable without JavaScript.
 for (const group of document.querySelectorAll('[data-tabs]')) {
  const tabs=[...group.querySelectorAll('[data-tab]')];
  const panels=tabs.map(t=>document.querySelector(t.getAttribute('href')));
  group.setAttribute('role','tablist');
- function activate(index,focus=false) {
+ // Sliding selection surface adapted from Julien Thibeaut's Animated Tabs
+ // on 21st.dev / Motion Primitives; use GSAP with the existing Jinja markup.
+ let selected=0,highlight;
+ if(group.classList.contains('example-selector')){
+  highlight=document.createElement('span');highlight.className='tab-highlight';highlight.setAttribute('aria-hidden','true');group.prepend(highlight);
+  new ResizeObserver(()=>moveHighlight(false)).observe(group);
+ }
+ function moveHighlight(animate){if(!highlight)return;const t=tabs[selected],rect=t.getBoundingClientRect(),base=group.getBoundingClientRect();highlight.style.width=`${rect.width}px`;highlight.style.height=`${rect.height}px`;const target={x:rect.left-base.left,y:rect.top-base.top,transformOrigin:'0 0'};gsap.killTweensOf(highlight);if(animate&&!reduced.matches)gsap.to(highlight,{...target,duration:.4,ease:'power3.out'});else gsap.set(highlight,target);}
+
+ function activate(index,focus=false,animate=false) {
+  selected=index;
   tabs.forEach((t,i)=>{t.setAttribute('aria-selected',String(i===index));t.tabIndex=i===index?0:-1;panels[i].hidden=i!==index;});
+  moveHighlight(animate);
   if(focus) tabs[index].focus();
+  if(animate&&!reduced.matches){gsap.killTweensOf(panels);gsap.fromTo(panels[index],{y:8,opacity:.55},{y:0,opacity:1,duration:.28,ease:'power2.out',clearProps:'transform,opacity'});}
  }
  tabs.forEach((t,i)=>{
   t.id ||= `tab-${panels[i].id}`;t.setAttribute('role','tab');t.setAttribute('aria-controls',panels[i].id);
   panels[i].setAttribute('role','tabpanel');panels[i].setAttribute('aria-labelledby',t.id);panels[i].tabIndex=0;
-  t.addEventListener('click',e=>{e.preventDefault();activate(i);history.replaceState(null,'',t.getAttribute('href'));});
-  t.addEventListener('keydown',e=>{let n=i;if(e.key==='ArrowRight')n=(i+1)%tabs.length;else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;else return;e.preventDefault();activate(n,true);});
+  t.addEventListener('click',e=>{e.preventDefault();activate(i,false,true);history.replaceState(null,'',t.getAttribute('href'));});
+  t.addEventListener('keydown',e=>{let n=i;if(e.key==='ArrowRight')n=(i+1)%tabs.length;else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;else return;e.preventDefault();activate(n,true,true);});
  });
  activate(Math.max(0,tabs.findIndex(t=>t.getAttribute('href')===(location.hash||group.dataset.defaultTab))));
 }
@@ -45,8 +60,25 @@ if(job){
  async function poll(){if(document.hidden)return;try{const r=await fetch(`/api/jobs/${encodeURIComponent(job.dataset.job)}`,{credentials:'same-origin',cache:'no-store'});if(!r.ok)throw Error();const data=await r.json();state.textContent=data.status;step.textContent=data.status==='RUNNING'?(stageNames[data.stage]||data.step):data.step;document.querySelector('#job-elapsed').textContent=`${data.elapsed_seconds}s`;document.querySelector('#job-attempt').textContent=`Candidate ${data.candidate||'not started'}${data.generator?' · '+data.generator:''}`;document.querySelector('#job-demo-step').textContent=data.demo_step?`Demonstration ${data.demo_step} of 3`:'';job.querySelectorAll('[data-stage]').forEach(el=>{if(el.dataset.stage===data.stage)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});if(data.runs.join(',')!==previousRuns){previousRuns=data.runs.join(',');runs.replaceChildren();data.runs.forEach((id,i)=>{const a=document.createElement('a');a.className='run-row';a.href=`/runs/${encodeURIComponent(id)}`;const names=['Basic check of weak repair','Full check of weak repair','Full check of corrected repair'];a.textContent=`${job.dataset.demo==='true'?names[i]:`Open signed result ${i+1}`} · ${id.slice(0,12)} ↗`;runs.append(a);});}active=data.status==='RUNNING';message.textContent=active?'Connected. Waiting for the next backend stage.':data.status==='ERROR'?'Execution failed. Open any available evidence, then check local setup and CLI logs.':'Execution complete. Open a signed result below.';retry.hidden=true;if(active)timer=setTimeout(poll,2500);}catch{message.textContent='Status connection unavailable. Execution may still be running; no result has been assumed.';retry.hidden=false;}}
  retry.addEventListener('click',poll);document.addEventListener('visibilitychange',()=>{clearTimeout(timer);if(!document.hidden&&active)poll();});if(active)poll();
 }
-const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const heroItems=document.querySelectorAll('.hero-copy > *');
-if(!reduced.matches&&heroItems.length){gsap.from(heroItems,{y:16,opacity:0,duration:.65,stagger:.09,clearProps:'all'});}
+const workflow=document.querySelector('[data-workflow]');
+if(workflow){const steps=[...workflow.children];const open=index=>{workflow.style.setProperty('--workflow-columns',steps.map((_,i)=>i===index?'1.8fr':'1fr').join(' '));steps.forEach((step,i)=>{step.toggleAttribute('data-open',i===index);step.querySelector('button').setAttribute('aria-expanded',String(i===index));step.querySelector('.workflow-detail').hidden=i!==index;});};steps.forEach((step,i)=>step.querySelector('button').addEventListener('click',()=>open(i)));open(0);}
+if(heroItems.length){
+ const hero=document.querySelector('.hero');let heroVisible=false;
+ const syncBackdrop=()=>hero.classList.toggle('motion-active',heroVisible&&!document.hidden&&!reduced.matches);
+ new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;syncBackdrop();}).observe(hero);
+ document.addEventListener('visibilitychange',syncBackdrop);reduced.addEventListener('change',syncBackdrop);
+ const motion=gsap.matchMedia();
+ motion.add('(prefers-reduced-motion: no-preference)',()=>{
+  gsap.from(heroItems,{y:22,opacity:0,duration:.8,stagger:.09,ease:'power3.out',clearProps:'transform,opacity'});
+  const reveals=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){reveals.unobserve(entry.target);gsap.from(entry.target,{y:26,opacity:0,duration:.75,ease:'power3.out',clearProps:'transform,opacity'});}}},{threshold:.08});
+  document.querySelectorAll('[data-reveal]').forEach(el=>reveals.observe(el));
+  const copy=document.querySelector('[data-scrub-copy]');
+  if(copy){const lines=copy.innerText.split('\n');copy.replaceChildren();lines.forEach((line,i)=>{if(i)copy.append(document.createElement('br'));for(const word of line.split(' ')){const span=document.createElement('span');span.textContent=word+' ';copy.append(span);}});gsap.fromTo(copy.querySelectorAll('span'),{opacity:.2},{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:copy,start:'top 85%',end:'top 45%',scrub:1}});}
+  const cards=[...document.querySelectorAll('.evidence-step')];cards.slice(0,-1).forEach((card,i)=>gsap.to(card,{scale:.95,y:-8,ease:'none',scrollTrigger:{trigger:cards[i+1],start:'top 70%',end:'top 24%',scrub:1}}));
+  return ()=>reveals.disconnect();
+ });
+}
+reduced.addEventListener('change',()=>{if(reduced.matches){const panels=document.querySelectorAll('[role=tabpanel]');gsap.killTweensOf(panels);gsap.set(panels,{clearProps:'transform,opacity'});}});
 const scene=document.querySelector('#verification-scene');
 if(scene&&!reduced.matches&&matchMedia('(min-width: 651px)').matches){const observer=new IntersectionObserver(async entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();try{const {mountScene}=await import('./scene.js');mountScene(scene);}catch{/* The static diagram remains available. */}}},{rootMargin:'100px'});observer.observe(scene);}

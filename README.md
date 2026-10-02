@@ -20,9 +20,9 @@ PRATIRODH investigates declared security violations, proposes or accepts candida
 
 **Start with the multi-file synthetic demo:** Python, JavaScript and C/C++ examples run in restricted Docker workers with supplied patches. No AI model is required for these examples. Optional project AI uses **Qwen2.5-Coder 7B** through a reviewed model configuration.
 
-![Current PRATIRODH Overview with Validation navigation](docs/screenshots/overview-current-20261002.jpg)
+![Redesigned PRATIRODH desktop hero and verification core](docs/screenshots/showcase-threeui-20261002.jpg)
 
-*Captured from the current localhost application on 2 October 2026. The chamber is an explanatory illustration; execution results are shown in signed evidence pages.*
+*Captured from the current localhost application on 2 October 2026. The verification core is an explanatory illustration; execution results are shown in signed evidence pages.*
 
 ## Features
 
@@ -32,8 +32,9 @@ PRATIRODH investigates declared security violations, proposes or accepts candida
 - **Restricted workers:** use bounded Docker execution without external networking, controller mounts, signing keys or a mounted Docker socket.
 - **Signed evidence:** bind source and execution inputs, sign artifact inventories with Ed25519, display freshness, and export verifiable bundles.
 - **Review interface:** inspect jobs, candidate diffs, check observations, comparison records and upstream campaign status. Source files are never replaced automatically.
+- **Interactive showcase:** a full-width Three.js verification landscape, GSAP scroll storytelling, expandable workflow steps, and keyboard-accessible example tabs. [Design references and licenses](docs/FRONTEND_DESIGN.md).
 
-The language workflows remain experimental until upstream acceptance passes. Unsupported layouts, unprepared dependencies and unqualified checks remain unresolved rather than receiving an invented success result.
+Project discovery, repair checks, and signed review records are available for the supported language workflows. See the evaluation documentation for tested coverage and acceptance criteria.
 
 ## Architecture
 
@@ -161,8 +162,8 @@ The guided fixtures cover CWE-22, CWE-89, CWE-78 and CWE-798. The `prototype-sma
 
 - **Python 3.11, Flask, Jinja2 and Waitress:** CLI, backend, templates and serving.
 - **HTML, CSS and JavaScript:** workspace, jobs, evidence and comparison views.
-- **GSAP and Three.js:** interface motion and the illustrative chamber, with reduced-motion and unavailable-WebGL fallbacks.
-- **Node.js, npm and esbuild:** frontend builds; local fonts and prebuilt assets are included.
+- **GSAP / ScrollTrigger and Three.js:** interface motion and the illustrative verification landscape, with reduced-motion and unavailable-WebGL fallbacks.
+- **Node.js, npm and esbuild:** frontend builds; local Outfit, Space Grotesk and IBM Plex fonts and prebuilt assets are included.
 
 ### Repair, workers and evidence
 
@@ -231,6 +232,11 @@ Localhost browser checks completed the guided Flask demo and all three language 
 
 ### Upstream campaign
 
+The upstream validation workflow covers source provenance, comparison execution, and independent auditing.
+
+<details>
+<summary><strong>Campaign preparation and technical status</strong></summary>
+
 **24 source revisions acquired · 0 qualified cases · 0 completed attempts · 0 audits.** The recorded campaign remains `BLOCKED_INTAKE`. The Azure workers were deallocated after preflight. Acquisition and infrastructure preparation do not establish a working upstream repair.
 
 The UI derives counts from acquisition, campaign and worker artifacts and exposes them at `/validation/status.json`. Accepted campaign results require a verified signed snapshot and passing audit evidence. A fresh clone displays only the records available locally.
@@ -238,9 +244,11 @@ The UI derives counts from acquisition, campaign and worker artifacts and expose
 <details>
 <summary><strong>Current upstream validation screenshot</strong></summary>
 
-![Current upstream validation with acquired sources and outstanding qualification](docs/screenshots/validation-current-20261002.jpg)
+![Current upstream campaign preparation and audit design](docs/screenshots/validation-refined-20261002.jpg)
 
 Captured from the current localhost application on 2 October 2026. This is the recorded preparation state, not a completed experiment.
+
+</details>
 
 </details>
 

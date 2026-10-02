@@ -25,9 +25,10 @@ def launch(client, route='/demo'):
 
 def test_showcase_workspace_and_inert_output(client):
     page=client.get('/')
-    assert b'Catch security fixes' in page.data
-    assert b'Historical generation results' in page.data
-    assert b'No direct benchmark' in page.data
+    assert b'Security repairs.' in page.data
+    assert b'inspect at every step.' in page.data
+    assert b'cases qualified' not in page.data
+    assert b'Historical generation results' not in page.data
     assert b'No evidence yet' in client.get('/workspace').data
     assert client.get('/api/jobs/missing').status_code==404
     assert client.get('/workspace',headers={'Host':'evil.example'}).status_code==403
