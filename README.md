@@ -20,7 +20,7 @@ PRATIRODH investigates declared security violations, proposes or accepts candida
 
 **Start with the multi-file synthetic demo:** Python, JavaScript and C/C++ examples run in restricted Docker workers with supplied patches. No AI model is required for these examples. Optional project AI uses **Qwen2.5-Coder 7B** through a reviewed model configuration.
 
-![Redesigned PRATIRODH desktop hero and verification core](docs/screenshots/showcase-threeui-20261002.jpg)
+![Redesigned PRATIRODH desktop hero and verification core](docs/screenshots/showcase-polished-20261002.jpg)
 
 *Captured from the current localhost application on 2 October 2026. The verification core is an explanatory illustration; execution results are shown in signed evidence pages.*
 
@@ -162,7 +162,7 @@ The guided fixtures cover CWE-22, CWE-89, CWE-78 and CWE-798. The `prototype-sma
 
 - **Python 3.11, Flask, Jinja2 and Waitress:** CLI, backend, templates and serving.
 - **HTML, CSS and JavaScript:** workspace, jobs, evidence and comparison views.
-- **GSAP / ScrollTrigger and Three.js:** interface motion and the illustrative verification landscape, with reduced-motion and unavailable-WebGL fallbacks.
+- **GSAP / ScrollTrigger and Three.js:** masked headline reveals, scroll-linked evidence panels, animated example tabs, and the illustrative verification landscape with a ThreeUI particle field. Pause, reduced-motion and unavailable-WebGL fallbacks are built in.
 - **Node.js, npm and esbuild:** frontend builds; local Outfit, Space Grotesk and IBM Plex fonts and prebuilt assets are included.
 
 ### Repair, workers and evidence

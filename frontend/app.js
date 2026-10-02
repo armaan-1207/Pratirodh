@@ -3,6 +3,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 
+// 21st.dev / Motion Primitives spotlight pattern, native DOM implementation.
+// Pointer feedback follows the evidence surface; keyboard focus gets the same edge.
+const evidence=document.querySelector('.evidence-stack');
+if(evidence){
+ evidence.addEventListener('pointermove',event=>{
+  if(reduced.matches||event.pointerType==='touch')return;
+  const card=event.target.closest('.evidence-step');if(!card)return;
+  const rect=card.getBoundingClientRect();
+  card.style.setProperty('--spot-x',`${event.clientX-rect.left}px`);
+  card.style.setProperty('--spot-y',`${event.clientY-rect.top}px`);
+ });
+}
+
 // Progressive enhancement: every panel and native form is usable without JavaScript.
 for (const group of document.querySelectorAll('[data-tabs]')) {
  const tabs=[...group.querySelectorAll('[data-tab]')];
@@ -70,7 +83,9 @@ if(heroItems.length){
  document.addEventListener('visibilitychange',syncBackdrop);reduced.addEventListener('change',syncBackdrop);
  const motion=gsap.matchMedia();
  motion.add('(prefers-reduced-motion: no-preference)',()=>{
-  gsap.from(heroItems,{y:22,opacity:0,duration:.8,stagger:.09,ease:'power3.out',clearProps:'transform,opacity'});
+  gsap.from([...heroItems].filter(el=>el.tagName!=='H1'),{y:22,opacity:0,duration:.8,stagger:.12,ease:'power3.out',clearProps:'transform,opacity'});
+  // Masked line reveal informed by ThreeUI Diagnostics Panel typography.
+  gsap.from('.hero-line-text',{yPercent:105,duration:1.05,stagger:.14,ease:'power4.out',clearProps:'transform'});
   const reveals=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){reveals.unobserve(entry.target);gsap.from(entry.target,{y:26,opacity:0,duration:.75,ease:'power3.out',clearProps:'transform,opacity'});}}},{threshold:.08});
   document.querySelectorAll('[data-reveal]').forEach(el=>reveals.observe(el));
   const copy=document.querySelector('[data-scrub-copy]');

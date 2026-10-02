@@ -30,7 +30,7 @@ Export fresh signed bundles with `python tools/export_review.py`, then build the
 
 ## Workspace preview
 
-[View the current Overview](screenshots/showcase-threeui-20261002.jpg) and [signed project evidence](screenshots/project-evidence-current-20261002.jpg). Use the live demo for verdicts, replay, and comparison interactions.
+[View the current Overview](screenshots/showcase-polished-20261002.jpg) and [signed project evidence](screenshots/project-evidence-current-20261002.jpg). Use the live demo for verdicts, replay, and comparison interactions.
 
 The Word document, recording, slide assembly, and public hosting are outside this release.
 
