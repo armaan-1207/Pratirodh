@@ -4,9 +4,15 @@
 
 ### Detect a vulnerability. Challenge the repair. Review the evidence.
 
-**A Derby University hackathon project · Local repair workflows · Human review · MIT licensed**
+A security repair lab built for the **Derby University Hackathon**.
 
-[Quick start](#setup-on-windows-macos-and-linux) · [Tech stack](#tech-stack) · [Project structure](#project-structure) · [Evaluation](#evaluation-and-results) · [License](LICENSE)
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Backend-Flask-111827?logo=flask&logoColor=white)
+![Docker](https://img.shields.io/badge/Execution-Docker-2496ED?logo=docker&logoColor=white)
+![Local AI](https://img.shields.io/badge/AI-Ollama-111827)
+[![MIT License](https://img.shields.io/badge/License-MIT-10B981)](LICENSE)
+
+[Quick start](#quick-start) · [Features](#what-it-does) · [Tech stack](#tech-stack) · [Folder structure](#folder-structure) · [Results](#evaluation-and-results) · [Future scope](#future-scope) · [Documentation](#documentation)
 
 </div>
 
@@ -27,8 +33,14 @@ PRATIRODH is a security repair lab that proposes fixes and checks whether they p
 - **Support human review:** explain the verdict and next action; approval is recorded separately from source application.
 - **Compare measured outcomes:** inspect repair and verification results in a read-only comparison view.
 
-```text
-Detect → Reproduce → Propose → Verify → Challenge → Sign evidence → Human review
+```mermaid
+flowchart LR
+    A[Detect] --> B[Reproduce]
+    B --> C[Propose repair]
+    C --> D[Verify behavior]
+    D --> E[Challenge repair]
+    E --> F[Sign evidence]
+    F --> G[Human review]
 ```
 
 The guided Flask workflow supports **CWE-22** (path traversal), **CWE-89** (SQL injection), **CWE-78** (command injection) and **CWE-798** (hardcoded credentials). Other detected classes remain detection-only.
@@ -47,19 +59,35 @@ Remaining work: review licenses, qualify runnable cases and their vulnerable/fix
 
 ## Tech stack
 
-- **Backend:** Python 3.11, Flask, Jinja2 templates and Waitress.
-- **Frontend:** HTML, CSS, JavaScript, GSAP animation and Three.js for the showcase visual. Fonts and browser assets are bundled locally.
-- **Frontend build:** Node.js/npm and esbuild. Prebuilt assets are included, so Node.js is optional for running the demo.
-- **Local AI:** Ollama with `qwen2.5-coder:3b`, accessed through a restricted loopback provider.
-- **Detection:** Bandit and custom Python AST checks.
-- **Verification:** contract-based requests, mutation challenges and generated security requests inside isolated Docker containers.
-- **Evidence:** JSON records, SHA256 input bindings and Ed25519 signatures using `cryptography`.
-- **Testing and review deployment:** pytest, Node's test runner, GitHub Actions and Docker Compose.
+### Application and interface
 
-## Project structure
+- **Python 3.11 · Flask · Jinja2 · Waitress:** CLI, request handling, server-rendered pages and local serving.
+- **HTML · CSS · JavaScript:** workspace, job history, evidence inspection and comparison views.
+- **GSAP · Three.js:** interface motion and the showcase visual, with reduced-motion and unavailable-WebGL fallbacks.
+- **Node.js · npm · esbuild:** reproducible frontend builds. Built assets and fonts are bundled; Node.js is optional for running the dashboard.
+
+### Repair and verification
+
+- **Ollama:** optional local repair generation; the guided Flask workflow defaults to `qwen2.5-coder:3b`.
+- **Ollama / llama.cpp adapters:** experimental project workflows with explicit model/runtime identities and budgets; see [project workflow requirements](docs/PROJECT_WORKFLOWS.md).
+- **Bandit · Python AST checks:** candidate finding detection.
+- **Docker · pytest · npm · CMake/CTest:** restricted execution for reviewed Python, Node.js and C/C++ project layouts.
+- **Contract checks · mutation challenges:** compare legitimate behavior, reproduced violations and deliberately weakened repairs.
+
+### Evidence and delivery
+
+- **Ed25519 · SHA-256 · cryptography:** signed artifact inventories and input freshness bindings.
+- **pytest · Node test runner · GitHub Actions:** application, integration and frontend checks.
+- **Docker Compose:** authenticated read-only evidence review.
+- **Azure worker tooling:** separate model, execution and audit hosts for the unfinished upstream campaign.
+
+Pinned Python packages are in [requirements-deploy.txt](requirements-deploy.txt); frontend dependencies are in [package.json](package.json) and [package-lock.json](package-lock.json).
+
+## Folder structure
 
 ```text
 Pratirodh/
+├── .github/workflows/         # Release and CI checks
 ├── pratirodh/                 # Active application and repair workflow
 │   ├── cli.py                 # Commands for generation, verification and replay
 │   ├── web.py                 # Workspace, jobs, evidence and comparison routes
@@ -70,7 +98,14 @@ Pratirodh/
 │   ├── evidence.py            # Signing, integrity and freshness checks
 │   ├── execution.py           # Docker execution and workflow budgets
 │   ├── comparison.py          # Evaluation scheduling and result aggregation
-│   ├── projects/              # Multi-file intake, repair, workers and signed exports
+│   ├── projects/              # Experimental multi-file workflows
+│   │   ├── manifest.py        # Reviewed intake and source inventory
+│   │   ├── engine.py          # Repair orchestration and verification
+│   │   ├── model.py           # Local model identity, preflight and requests
+│   │   ├── worker.py          # Docker worker controller
+│   │   ├── worker_entry.py    # Restricted target execution
+│   │   ├── evaluation.py      # Campaign scheduling and independent audit
+│   │   └── export.py          # Signed evidence bundle export
 │   ├── upstream_status.py     # Artifact-derived upstream campaign status
 │   ├── templates/             # Server-rendered interface pages
 │   └── static/                # CSS, fonts, licenses and built JavaScript
@@ -88,6 +123,7 @@ Pratirodh/
 ├── docs/                      # Guides, one workspace preview and recorded results
 ├── run_output/                # Local generated evidence; ignored by Git
 ├── requirements-deploy.txt    # Pinned active application dependencies
+├── pyproject.toml             # Python package and CLI metadata
 ├── package.json               # Frontend dependencies and build/test commands
 ├── Dockerfile                 # Read-only review dashboard image
 ├── compose.yaml               # Authenticated local review deployment
@@ -96,17 +132,18 @@ Pratirodh/
 
 The repository includes the active product, evaluation fixtures and supporting tests. The small `patch/` module is retained for an existing patch-matching regression test. `run_output/` is created locally; signing material and private run data are not published.
 
-## Setup on Windows, macOS and Linux
+## Quick start
+
+### Prerequisites
 
 Install Git, Python 3.11 (the measured environment used 3.11.9) and Docker. On Windows use [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) with Linux containers; on macOS use the [installer matching your Mac](https://docs.docker.com/desktop/setup/install/mac-install/). On Linux use [Docker Engine](https://docs.docker.com/engine/install/) or Docker Desktop. Start Docker and confirm `docker info` succeeds with your user account.
 
 ```sh
 git clone https://github.com/armaan-1207/Pratirodh.git
 cd Pratirodh
-git checkout codex/pratirodh-upstream-validation
 ```
 
-### Windows : PowerShell
+### Windows (PowerShell)
 
 ```powershell
 py -3.11 -m venv .venv
@@ -117,7 +154,7 @@ py -3.11 -m venv .venv
 
 These commands use the virtual environment directly, so PowerShell activation-policy changes are unnecessary. The optional `./start-demo.ps1` helper starts the existing Windows demo setup. If Windows requests firewall access, the demo only needs local access.
 
-### macOS and Linux : Terminal
+### macOS and Linux (Terminal)
 
 ```sh
 python3 -m venv .venv
@@ -152,7 +189,7 @@ Use your virtual-environment interpreter. Docker must be running; the helper bui
 
 The project workflow supports reviewed Python/pytest, Node/npm and CMake/CTest layouts. Other build layouts and unprepared dependencies can remain unsupported or unresolved. See [project workflows](docs/PROJECT_WORKFLOWS.md), [local Linux workers](docs/LINUX_WORKERS.md) and [cloud workers](docs/CLOUD_WORKERS.md) for intake, isolation, model identity and evidence-export requirements. These language workflows remain experimental until the external acceptance campaign passes.
 
-### Optional local AI : all three platforms
+### Optional local AI
 
 Install [Ollama](https://docs.ollama.com/quickstart) for your OS and download the configured model while online:
 
@@ -163,7 +200,7 @@ ollama list
 
 Keep the Ollama application/service running at `127.0.0.1:11434`. On Linux, follow [Ollama's installation instructions](https://docs.ollama.com/linux); run `ollama serve` if the service is not already running. Windows users can also use `./setup-offline.ps1`. No cloud API key is required. Local and combined modes use the restricted loopback provider and never invoke a cloud fallback. Missing models and provider timeouts leave unresolved evidence.
 
-Run `python -m pratirodh doctor` with your virtual-environment interpreter to check the runner and local model. It may report incomplete setup when Ollama is missing; the curated demo still works without Ollama. If Docker or the runner is unavailable, start Docker and repeat `build-runner`. If the model is unavailable, check `ollama list` and the local service. If port 8765 is occupied, use `serve --port 8767` and open that port. After relevant source changes, regenerate presentation evidence with the virtual-environment interpreter and `tools/prepare_demo.py`; old evidence remains stale by design.
+Run `python -m pratirodh doctor` with your virtual-environment interpreter to check the runner and local model. It may report incomplete setup when Ollama is missing; the curated demo still works without Ollama. If Docker or the runner is unavailable, start Docker and repeat `build-runner`. If the model is unavailable, check `ollama list` and the local service. If port 8765 is occupied, use `serve --port 8767` and open that port. After relevant source changes, regenerate demo evidence with the virtual-environment interpreter and `tools/prepare_demo.py`; old evidence remains stale by design.
 
 The CLI examples below use `python` as shorthand for the virtual-environment interpreter: `./.venv/Scripts/python.exe` on Windows, `./.venv/bin/python` on macOS/Linux. Node.js is only needed to rebuild the frontend; prebuilt local assets are included.
 
@@ -229,7 +266,7 @@ Add `--resume` to continue an interrupted comparison within its original cap. Ch
 
 </details>
 
-## Checks and deployment
+## Development and checks
 
 ```powershell
 python -m pip install pytest==8.1.1
@@ -249,6 +286,8 @@ On macOS/Linux, use `PRATIRODH_DOCKER_TESTS=1 python -m pytest -q` instead of th
 
 Use the pinned `requirements-deploy.txt` for the active application. Historical dependencies must not be installed into that environment.
 
+## Read-only review deployment
+
 The dashboard includes authentication, CSRF protection, host restrictions, escaped evidence, signed inventories and freshness checks. Container execution has no network access and uses read-only mounts. Deployment can be configured for authenticated read-only evidence review; it has no target execution privileges or signing key.
 
 ```powershell
@@ -259,7 +298,17 @@ docker compose up -d --build
 
 Keep `.env`, signing keys, local databases and generated private evidence out of Git. The repository includes synthetic fixture credentials only. Review the exact staged files before publishing.
 
+## Future scope
 
+The following work is planned; it is separate from the verified demonstration features.
+
+1. **Complete upstream acceptance.** Qualify the 24 acquired cases, reproduce vulnerable/fixed controls, freeze reviewed dependency images and run the scheduled comparison with independent audits.
+2. **Publish stronger evaluation evidence.** Report case-level failures, repair correctness, uncertainty estimates, measured resource use and reproducible model/image identities.
+3. **Broaden project support.** Extend reviewed adapters, protected harnesses and dependency preparation beyond the current Python/pytest, Node/npm and CMake/CTest layouts; investigate service-backed and multi-container applications.
+4. **Improve security-property testing.** Develop qualified fuzz and HTTP harnesses, strengthen business-logic and authorization checks and measure the coverage actually achieved.
+5. **Improve operator workflows.** Simplify manifest review, worker preparation, resumable campaigns and evidence handoff while keeping source changes subject to explicit human review.
+
+The immediate priority is completing the upstream qualification and audit gates. Successful synthetic demonstrations do not establish general repair effectiveness across arbitrary repositories.
 
 ## Documentation
 
