@@ -3,12 +3,22 @@ from pathlib import Path
 import zipfile
 import hashlib
 import json
+import re
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+
+
+def references(report):
+    ids = [r['run_id'] for r in report.get('rows', []) if r.get('run_id')]
+    ids += [c['qualification_run_id'] for c in report.get('freeze', {}).get('cases', [])
+            if c.get('qualification_run_id')]
+    if any(not isinstance(item, str) or not re.fullmatch(r'[a-f0-9]{32}', item) for item in ids):
+        raise ValueError('invalid signed evidence reference')
+    return list(dict.fromkeys(ids))
 
 
 def export_bundle(store, run_id, output):
     report = store.load(run_id)
-    referenced = list(dict.fromkeys([run_id] + [r['run_id'] for r in report.get('rows', []) if r.get('run_id')]))
+    referenced = list(dict.fromkeys([run_id] + references(report)))
     for item in referenced:
         store.load(item)
     output = Path(output).resolve()
@@ -39,6 +49,7 @@ def verify_bundle(path, trusted_public=None):
         if not seals:
             raise ValueError('no signed evidence in bundle')
         expected_names = {'trust.pub'}
+        reports = {}
         for seal_path in seals:
             prefix = seal_path.rsplit('/', 1)[0] + '/'
             seal = archive.read(seal_path)
@@ -51,8 +62,16 @@ def verify_bundle(path, trusted_public=None):
                 if '/' in name or '\\' in name or name in {'.', '..'} or hashlib.sha256(archive.read(prefix + name)).hexdigest() != expected:
                     raise ValueError('bundle artifact integrity failure')
                 expected_names.add(prefix + name)
+            report = json.loads(archive.read(prefix + 'report.json'))
+            if report.get('id') in reports or not re.fullmatch(r'[a-f0-9]{32}', report.get('id', '')):
+                raise ValueError('duplicate or invalid signed report identity')
+            if prefix != 'evidence/' and prefix != 'runs/' + report['id'] + '/':
+                raise ValueError('signed report path differs from its identity')
+            reports[report['id']] = report
         if set(names) != expected_names:
             raise ValueError('unsigned entries in evidence bundle')
+        if any(item not in reports for report in reports.values() for item in references(report)):
+            raise ValueError('referenced signed evidence missing from bundle')
         return {'integrity': 'VALID', 'signed_records': len(seals),
                 'trust_verified': trusted_public is not None,
                 'trust_fingerprint': hashlib.sha256(archive.read('trust.pub')).hexdigest()}

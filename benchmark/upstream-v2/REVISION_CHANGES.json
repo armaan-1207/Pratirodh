@@ -1,0 +1,14 @@
+[
+  {
+    "case": "cpp-cve-2023-50472",
+    "previous_fix": "280982222ef40cd79ff6ffdcf7499a59f66d5dfc",
+    "corrected_fix": "276a4620c1b3107635fd9a7aa91ae2a72d5eb1c4",
+    "reference": "https://github.com/DaveGamble/cJSON/pull/809"
+  },
+  {
+    "case": "cpp-cve-2022-43680",
+    "previous_fix": "eedc5f6de8e219130032c8ff2ff17580e18bd0c1",
+    "corrected_fix": "5290462a7ea1278a8d5c0d5b2860d4e244f997e4",
+    "reference": "https://github.com/libexpat/libexpat/commit/5290462a7ea1278a8d5c0d5b2860d4e244f997e4"
+  }
+]

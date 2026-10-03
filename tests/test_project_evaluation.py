@@ -156,3 +156,68 @@ def test_expired_campaign_deadline_prevents_worker_execution(tmp_path):
     assert report['reason'] == 'BUDGET_EXHAUSTION'
     assert not worker.observations
     store.load(report['id'])
+
+
+def test_full_schedule_has_216_unique_attempts_and_excludes_development():
+    from pratirodh.projects.evaluation import schedule
+    cases = [{'id': f'{language}-{index}', 'language': language,
+              'split': 'development' if index < 2 else 'evaluation'}
+             for language in ('python', 'node', 'cpp') for index in range(8)]
+    tasks = schedule(cases)
+    assert len(tasks) == 216
+    assert len({(c['id'], w, a, r) for c, w, a, r in tasks}) == 216
+    assert all(c['split'] == 'evaluation' for c, *_ in tasks)
+    assert all(r == 0 for *_, r in tasks[:72])
+
+
+def test_campaign_allowance_is_frozen_and_cannot_reset_on_resume(tmp_path, monkeypatch):
+    from pratirodh.projects import evaluation
+    path, *_ = corpus(tmp_path)
+    cancelled = __import__('threading').Event()
+    cancelled.set()
+    output = tmp_path / 'result.json'
+    store = Store(tmp_path / 'evidence')
+    result = evaluation.campaign(path, output, store=store, seconds=1800, audit_reserve=300, cancelled=cancelled)
+    assert result['status'] == 'CANCELLED'
+    assert len(result['unstarted']) == 12
+    assert result['metrics']['scheduled'] == 12
+    with pytest.raises(ValueError, match='evaluation changed'):
+        evaluation.campaign(path, output, store=store, seconds=3600, audit_reserve=300, resume=True)
+
+
+def test_lost_attempt_is_accounted_without_fresh_model_budget(tmp_path):
+    from pratirodh.projects import evaluation
+    import threading
+    path, *_ = corpus(tmp_path)
+    output = tmp_path / 'result.json'
+    store = Store(tmp_path / 'evidence')
+    cancelled = threading.Event()
+    cancelled.set()
+    first = evaluation.campaign(path, output, store=store, seconds=1800, audit_reserve=300, cancelled=cancelled)
+    first['active'] = {'case': 'upstream-fixture', 'language': 'python', 'workflow': 'repair',
+                       'arm': 'expanded', 'repetition': 0}
+    output.write_text(json.dumps(first))
+    result = evaluation.campaign(path, output, store=store, seconds=1800, audit_reserve=300,
+                                 cancelled=cancelled, resume=True)
+    assert len(result['rows']) == 1
+    assert result['rows'][0]['reason'] == 'INTERRUPTED_BEFORE_CHECKPOINT'
+    assert result['rows'][0]['model_calls'] == 2
+    assert result['elapsed_seconds'] >= 600
+    assert len(result['unstarted']) == 11
+
+
+def test_duplicate_checkpoint_attempts_are_rejected(tmp_path):
+    from pratirodh.projects import evaluation
+    import threading
+    path, *_ = corpus(tmp_path)
+    output = tmp_path / 'result.json'
+    store = Store(tmp_path / 'evidence')
+    cancelled = threading.Event()
+    cancelled.set()
+    first = evaluation.campaign(path, output, store=store, seconds=1800, audit_reserve=300, cancelled=cancelled)
+    row = {'case': 'upstream-fixture', 'language': 'python', 'workflow': 'repair',
+           'arm': 'expanded', 'repetition': 0, 'decision': 'INSUFFICIENT_EVIDENCE', 'audit': 'UNRESOLVED'}
+    first['rows'] = [row, row]
+    output.write_text(json.dumps(first))
+    with pytest.raises(ValueError, match='duplicate or unscheduled'):
+        evaluation.campaign(path, output, store=store, seconds=1800, audit_reserve=300, resume=True)

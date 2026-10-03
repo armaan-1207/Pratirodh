@@ -76,7 +76,7 @@ def main():
     payload = {'version': 1, 'cohort': 'upstream-v1', 'status': 'INTAKE_PENDING_QUALIFICATION',
                'target_count': 24, 'counts': {'Python': 8, 'JavaScript': 8, 'C/C++': 8},
                'comparison': {'arms': ['expanded', 'model-only'], 'workflows': ['repair', 'discover'], 'repetitions': 3,
-                              'seconds': 43200, 'audit_reserve_seconds': 3600,
+                              'seconds': 172800, 'audit_reserve_seconds': 28800,
                               'equal_budget': True,
                               'arm_budget': {'seconds': 600, 'reserve_seconds': 180, 'model_calls': 2, 'candidates': 3,
                                              'execution_worker': 'pratirodh-project-worker:0.2',

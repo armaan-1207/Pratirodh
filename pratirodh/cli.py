@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import signal
+import threading
 from .engine import run, replay
 from .evidence import Store, fresh, digest
 from .execution import DockerExecutor, IMAGE
@@ -89,6 +91,8 @@ def main():
     campaign_command.add_argument('--output', default='run_output/project-campaign.json')
     campaign_command.add_argument('--freeze-only', action='store_true')
     campaign_command.add_argument('--resume', action='store_true')
+    campaign_command.add_argument('--seconds', type=int, help='campaign-wide allowance; frozen and preserved on resume')
+    campaign_command.add_argument('--audit-reserve', type=int, help='campaign-wide final audit reserve in seconds')
     export = commands.add_parser('export')
     export.add_argument('run_id')
     export.add_argument('--output', required=True)
@@ -126,8 +130,6 @@ def main():
         return 2 if result.get('status') == 'UNSUPPORTED_PROJECT' else 0
     if args.command in {'discover', 'repair'}:
         from .projects.engine import run_project
-        import threading
-        import signal
         cancelled = threading.Event()
         previous = signal.signal(signal.SIGINT, lambda *_: cancelled.set())
         try:
@@ -141,7 +143,19 @@ def main():
         return 0 if result['decision'] == 'READY_FOR_REVIEW' else 2
     if args.command == 'project-benchmark':
         from .projects.evaluation import campaign, freeze
-        result = freeze(args.manifest) if args.freeze_only else campaign(args.manifest, args.output, resume=args.resume)
+        if args.freeze_only:
+            if args.seconds is not None or args.audit_reserve is not None:
+                parser.error('declare campaign_budget in the manifest before freezing')
+            result = freeze(args.manifest)
+        else:
+            cancelled = threading.Event()
+            previous = signal.signal(signal.SIGINT, lambda *unused: cancelled.set())
+            try:
+                result = campaign(args.manifest, args.output, resume=args.resume, seconds=args.seconds,
+                                  audit_reserve=args.audit_reserve, cancelled=cancelled,
+                                  progress=lambda state: print(json.dumps(state), flush=True))
+            finally:
+                signal.signal(signal.SIGINT, previous)
         print(json.dumps(result, indent=2))
         return 0 if args.freeze_only or result['release_complete'] else 2
     if args.command == 'verify-bundle':
