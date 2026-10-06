@@ -12,3 +12,6 @@ tools/historical_worker.py -text -eol whitespace=cr-at-eol
 docs/HISTORICAL_BASELINE.json -text whitespace=cr-at-eol
 # Preserve the measured template extraction's final separator line.
 pratirodh/repair_templates.py whitespace=-blank-at-eof
+
+# Historical archives preserve the exact bytes recorded in provenance.
+archive/** -text -eol whitespace=cr-at-eol
