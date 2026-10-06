@@ -5,7 +5,8 @@ import pytest
 
 from pratirodh.projects.cloud_budget import window
 
-WDIR = r'C:\Users\armaa\.codex\worktrees\pratirodh-upstream-validation\Derby University Hackathon'
+from pathlib import Path
+WDIR = str(Path(__file__).resolve().parents[1])
 
 
 def ledger(reported_usd=5.0, hourly_usd=0.50, age_seconds=60):
@@ -31,6 +32,13 @@ def test_remaining_allowance_limits_window_length():
     assert result['available_usd'] > 0
     assert result['seconds'] <= 14400  # max 4 hours per window
     assert result['seconds'] > 0
+
+
+def test_unverified_real_ledger_cannot_arm_execution_window():
+    data = ledger()
+    data['verification_status'] = 'BLOCKED_BILLING_RECONCILIATION'
+    with pytest.raises(ValueError, match='verification is incomplete'):
+        window(data)
 
 
 def test_exhausted_budget_raises():

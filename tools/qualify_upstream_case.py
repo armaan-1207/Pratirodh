@@ -14,37 +14,41 @@ from pratirodh.evidence import Store, digest, new_id
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--manifest', type=Path, default=ROOT / 'benchmark/upstream-v2/manifest.json')
+    parser.add_argument('--manifest', type=Path, default=ROOT / 'benchmark/upstream-cohort.json')
     parser.add_argument('--case', required=True)
     parser.add_argument('--recipe', required=True, type=Path)
     parser.add_argument('--index', type=Path, default=ROOT / 'run_output/upstream-validation/qualification-index.json')
     parser.add_argument('--usage-ledger', type=Path,
                         help='Validated Azure usage ledger; required before executing on cloud workers')
+    parser.add_argument('--guard-output', type=Path, default=ROOT / 'run_output/upstream-validation/guard')
+    parser.add_argument('--window-seconds', type=int, default=3600)
     args = parser.parse_args()
-
-    # Validate cloud budget before touching any worker.
-    if args.usage_ledger:
-        from pratirodh.projects.cloud_budget import window as cloud_window
-        ledger = json.loads(args.usage_ledger.read_text(encoding='utf-8'))
-        allowance = cloud_window(ledger)
-        if allowance['seconds'] < 60:
-            parser.error('Approved usage allowance exhausted: ' + str(allowance))
-        print(f'Cloud allowance validated: ${allowance["available_usd"]:.2f} remaining '
-              f'({allowance["seconds"]}s window)', flush=True)
 
     definition = json.loads(args.manifest.read_text(encoding='utf-8'))
     case = next((c for c in definition['cases'] if c['id'] == args.case), None)
     if case is None:
         parser.error('unknown case: ' + args.case)
+    if not case.get('acquisition'):
+        revised = ROOT / 'run_output/upstream-acquisition-v2' / case['id'] / 'provenance.json'
+        case['acquisition'] = f'run_output/upstream-acquisition-v2/{case["id"]}' if revised.exists() else f'run_output/upstream-acquisition/{case["id"]}'
     recipe = json.loads(args.recipe.read_text(encoding='utf-8'))
     if recipe.get('approved') is not True or not recipe.get('adaptations'):
         parser.error('recipe must record reviewed source adaptations and explicit approval')
     base = args.recipe.resolve().parent
+    from pratirodh.projects.recipes import validate_recipe
+    try:
+        validate_recipe(recipe, base)
+    except (ValueError, OSError) as error:
+        parser.error(str(error))
+    if not args.usage_ledger:
+        parser.error('--usage-ledger is required before cloud qualification')
+    from pratirodh.projects.cloud_window import execution_window
+    deadline, guard = execution_window(args.usage_ledger, args.guard_output, args.window_seconds)
     store = Store(ROOT / 'run_output/pratirodh')
     try:
         result = qualify_case(case, ROOT / case['acquisition'], base / recipe['target'],
                               base / recipe['manifest'], base / recipe['audit'], recipe['source_map'],
-                              recipe['license_review'], store, recipe_digest=digest(args.recipe.read_bytes()))
+                              recipe['license_review'], store, recipe_digest=digest(args.recipe.read_bytes()), deadline=deadline)
     except (OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
         result = {'id': new_id(), 'created': datetime.now(timezone.utc).isoformat(),
                   'scenario': 'upstream-qualification', 'case': case['id'],
@@ -65,6 +69,9 @@ def main():
     temporary = args.index.with_suffix('.tmp')
     temporary.write_text(json.dumps(index, indent=2) + '\n', encoding='utf-8')
     temporary.replace(args.index)
+    if result['status'] != 'QUALIFIED':
+        import pprint
+        pprint.pprint(result)
     print(json.dumps({'case': case['id'], 'run_id': result['id'], 'status': result['status']}, indent=2))
     return 0 if result['status'] == 'QUALIFIED' else 2
 

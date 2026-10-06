@@ -18,5 +18,6 @@ jobs:
       - run: pip-audit -r requirements-deploy.txt
       - run: python -m pratirodh build-runner
       - run: python -m pratirodh project build-worker
+      - run: python scripts/prepare_requests_demo.py
       - run: PRATIRODH_DOCKER_TESTS=1 python -m pytest -q
       - run: docker build -t pratirodh-dashboard:ci .

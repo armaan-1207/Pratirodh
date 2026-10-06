@@ -1,0 +1,383 @@
+{
+  "reviewed_at_utc": "2026-10-06T16:57:13.822083+00:00",
+  "scope": "Local supplied-patch synthetic and upstream reference-fix demonstrations; not independent Azure qualification",
+  "workspace": "C:\\Users\\armaa\\.codex\\worktrees\\pratirodh-upstream-validation\\Derby University Hackathon",
+  "controller_sha256": "1456812a9c26cee5fb6d603f220d029352c62b4d10452a92d1239df76a63abb8",
+  "evidence_store": "C:\\Users\\armaa\\.codex\\worktrees\\pratirodh-upstream-validation\\Derby University Hackathon\\run_output\\demo-20261006-221034-670875\\evidence",
+  "expected_paths_verified": 11,
+  "expected_decisions": {
+    "REJECT": 4,
+    "READY_FOR_REVIEW": 7
+  },
+  "runs": [
+    {
+      "id": "28328a3d2c8747bbbe11366ed9453985",
+      "scenario": "python",
+      "workflow": "repair",
+      "decision": "REJECT",
+      "elapsed_seconds": 32.594,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "UNAVAILABLE",
+          "caught": false
+        }
+      ]
+    },
+    {
+      "id": "ff50e99d65bc4654a38922566934961c",
+      "scenario": "python",
+      "workflow": "repair",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 46.172,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    },
+    {
+      "id": "9d16bb2e164647a698738566facc95df",
+      "scenario": "python-discovery-retry",
+      "workflow": "discover",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 57.859,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    },
+    {
+      "id": "95c9067b9c2b4b41a9e082ae3aa41471",
+      "scenario": "node",
+      "workflow": "repair",
+      "decision": "REJECT",
+      "elapsed_seconds": 59.625,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "UNAVAILABLE",
+          "caught": false
+        }
+      ]
+    },
+    {
+      "id": "dc4cc54e108d406d8bf56f933846eede",
+      "scenario": "node",
+      "workflow": "repair",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 81.672,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    },
+    {
+      "id": "aaa6674ad278490a8f4b11545d4bf8a4",
+      "scenario": "node",
+      "workflow": "discover",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 62.985,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    },
+    {
+      "id": "756b9249e1cc497a8a18838e3ca9963d",
+      "scenario": "cpp",
+      "workflow": "repair",
+      "decision": "REJECT",
+      "elapsed_seconds": 64.375,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "UNAVAILABLE",
+          "caught": false
+        }
+      ]
+    },
+    {
+      "id": "5e48f617efac4a31a0a927f46390aa98",
+      "scenario": "cpp",
+      "workflow": "repair",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 82.844,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    },
+    {
+      "id": "d6226f7d8c6549c885c438dfb6ea75de",
+      "scenario": "cpp",
+      "workflow": "discover",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 119.234,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "owner-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        },
+        {
+          "family": "identity-confusion",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    },
+    {
+      "id": "c37296a5a0124983aea286a50ac7cbb0",
+      "scenario": "requests-cve-2018-18074-local-demo",
+      "workflow": "repair",
+      "decision": "REJECT",
+      "elapsed_seconds": 25.656,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "port-scheme-check-removed",
+          "status": "UNAVAILABLE",
+          "caught": false
+        }
+      ]
+    },
+    {
+      "id": "65650755e7994d23b3a3ee7ace06a720",
+      "scenario": "requests-cve-2018-18074-local-demo",
+      "workflow": "repair",
+      "decision": "READY_FOR_REVIEW",
+      "elapsed_seconds": 34.891,
+      "fresh": true,
+      "source_unchanged": true,
+      "model_calls": 0,
+      "mutations": [
+        {
+          "family": "port-scheme-check-removed",
+          "status": "CONFIRMED_UNSAFE",
+          "caught": true
+        }
+      ]
+    }
+  ],
+  "retained_initial_attempts": [
+    {
+      "language": "python",
+      "workflow": "discover",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": false,
+      "id": "517e928cc17f4011b4a109aa637df091",
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "reason": "BUDGET_EXHAUSTION",
+      "gaps": [
+        "worker slots unavailable"
+      ]
+    }
+  ],
+  "backend_regression_tests": {
+    "passed": 10,
+    "suite": "demo dashboard, Requests demo dashboard, upstream status UI"
+  },
+  "frontend_tests": {
+    "passed": 3
+  },
+  "frontend_build": "PASS",
+  "routes": {
+    "/": 200,
+    "/workspace": 200,
+    "/comparison": 200,
+    "/validation": 200,
+    "/walkthrough": 200,
+    "/projects": 200,
+    "/health": 200,
+    "/static/dist/app.js": 200,
+    "/static/mark.svg": 200
+  },
+  "read_only_execution_block": "PASS (HTTP 403)",
+  "desktop_launcher": "PASS: selected complete store, verified 12 signed records and served current code on 8767",
+  "browser_requests_workflow": {
+    "status": "PASS",
+    "method": "Clicked live workspace button in in-app browser and inspected completed workflow",
+    "runs": [
+      {
+        "id": "767e78a7efd142989de8620393a9fb16",
+        "decision": "REJECT",
+        "signature": "PASS",
+        "fresh": true,
+        "source_unchanged": true,
+        "model_calls": 0,
+        "elapsed_seconds": 27.547,
+        "mutations": [
+          {
+            "family": "port-scheme-check-removed",
+            "status": "UNAVAILABLE",
+            "caught": false
+          }
+        ]
+      },
+      {
+        "id": "96ede2659f344f5685486c7264b4c171",
+        "decision": "READY_FOR_REVIEW",
+        "signature": "PASS",
+        "fresh": true,
+        "source_unchanged": true,
+        "model_calls": 0,
+        "elapsed_seconds": 35.313,
+        "mutations": [
+          {
+            "family": "port-scheme-check-removed",
+            "status": "CONFIRMED_UNSAFE",
+            "caught": true
+          }
+        ]
+      }
+    ]
+  },
+  "browser_export": {
+    "path": "C:/Users/armaa/Downloads/pratirodh-f1f2c9af6f8f45b78e30154123efbe39.zip",
+    "signature": "PASS",
+    "artifact_hashes": "PASS",
+    "private_signing_key_excluded": true
+  },
+  "upstream_counts": {
+    "qualified": 0,
+    "completed": 0,
+    "audited": 0,
+    "accepted": 0
+  },
+  "browser_python_workflow": {
+    "status": "PASS",
+    "method": "Clicked live workspace button in in-app browser and inspected completed workflow",
+    "runs": [
+      {
+        "id": "993d789a609d4f2eb1af2ae9c25d7991",
+        "decision": "REJECT",
+        "signature": "PASS",
+        "fresh": true,
+        "source_unchanged": true,
+        "model_calls": 0,
+        "elapsed_seconds": 28.954,
+        "mutations": [
+          {
+            "family": "owner-check-removed",
+            "status": "CONFIRMED_UNSAFE",
+            "caught": true
+          },
+          {
+            "family": "identity-confusion",
+            "status": "UNAVAILABLE",
+            "caught": false
+          }
+        ]
+      },
+      {
+        "id": "c4ac4060606c4abb85f1b01deef2baab",
+        "decision": "READY_FOR_REVIEW",
+        "signature": "PASS",
+        "fresh": true,
+        "source_unchanged": true,
+        "model_calls": 0,
+        "elapsed_seconds": 37.157,
+        "mutations": [
+          {
+            "family": "owner-check-removed",
+            "status": "CONFIRMED_UNSAFE",
+            "caught": true
+          },
+          {
+            "family": "identity-confusion",
+            "status": "CONFIRMED_UNSAFE",
+            "caught": true
+          }
+        ]
+      }
+    ]
+  },
+  "signed_records_in_store": 16,
+  "record_status": "HISTORICAL_OBSERVATION_2026-10-06",
+  "current_integration_note": "Recorded in the prior demo checkout; not current controller freshness or upstream qualification. See RECONCILIATION.md for 7 October verification."
+}

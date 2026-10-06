@@ -1,0 +1,18 @@
+{% if not readonly %}
+<section class="guided-demo" aria-labelledby="account-demo-title">
+  <div><p class="eyebrow">LIVE VERIFICATION / PREPARED PROBLEM</p><h2 id="account-demo-title">One account. Two repairs.</h2>
+  <p>A guest incorrectly accesses the admin account. Compare an incomplete repair with a corrected two-file patch, legitimate access, security variations, and deliberately weakened repairs.</p>
+  <p class="micro">Python · JavaScript · C++ · supplied patches · isolated Docker · zero model calls</p></div>
+  <form method="post" action="/project-demo" data-launch><input type="hidden" name="csrf" value="{{csrf}}">
+  <label>Project language<select name="language"><option value="python">Python / pytest</option><option value="node">JavaScript / Node.js</option><option value="cpp">C++ / CMake</option></select></label>
+  <label>Workflow<select name="workflow"><option value="repair">Repair a reported problem</option><option value="discover">Discover and repair an approved violation</option></select></label>
+  <button>Challenge both repairs ↗</button><p class="form-status" role="status"></p></form>
+</section>
+<section class="guided-demo" aria-labelledby="requests-demo-title">
+  <div><p class="eyebrow">UPSTREAM SOURCE / LOCAL REFERENCE-FIX DEMO</p><h2 id="requests-demo-title">Credentials must stop at the redirect boundary.</h2>
+  <p>Requests CVE-2018-18074: challenge an incomplete repair and the pinned upstream reference fix with downgrade and port-change checks, legitimate redirect controls, and a mutation challenge.</p>
+  <p class="micro">In-memory transport · supplied patches · zero model calls · DEMO_ONLY. This does not grant upstream qualification or independent audit acceptance.</p>
+  <p class="micro">Prepare the pinned source and worker image before execution; see the Requests setup documentation.</p></div>
+  <form method="post" action="/requests-demo" data-launch><input type="hidden" name="csrf" value="{{csrf}}"><button>Challenge the redirect repair ↗</button><p class="form-status" role="status"></p></form>
+</section>
+{% endif %}

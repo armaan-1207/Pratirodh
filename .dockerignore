@@ -10,3 +10,7 @@ assets
 
 node_modules/
 frontend/
+archive/
+benchmark/recipes/*/prepared/
+benchmark/recipes/*/prepared.tmp/
+benchmark/recipes/*/target/

@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import sys
 import subprocess
+import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pratirodh.projects.preflight import attest_worker, separate
@@ -21,10 +22,24 @@ def main():
     results = []
     for role, context, image in [('execution', args.execution_context, args.execution_image),
                                  ('audit', args.audit_context, args.audit_image)]:
-        try:
-            result = dict(attest_worker(context, image), role=role)
-        except (OSError, ValueError, subprocess.SubprocessError) as error:
-            result = {'role': role, 'context': context, 'status': 'BLOCKED', 'error': type(error).__name__}
+        failures = []
+        for attempt in range(3):
+            try:
+                result = dict(attest_worker(context, image), role=role)
+                break
+            except (OSError, ValueError, subprocess.SubprocessError) as error:
+                result = {'role': role, 'context': context, 'status': 'BLOCKED', 'error': type(error).__name__}
+                if isinstance(error, subprocess.CalledProcessError):
+                    result['detail'] = (error.stderr or '')[-2000:]
+                failures.append(dict(result, observed_at=datetime.now(timezone.utc).isoformat()))
+                transport_failure = isinstance(error, subprocess.TimeoutExpired) or (
+                    isinstance(error, subprocess.CalledProcessError) and
+                    any(message in (error.stderr or '').lower() for message in
+                        ('connection timed out', 'connection reset', 'connection closed')))
+                if not transport_failure or attempt == 2:
+                    break
+                time.sleep(2)
+        result['transport_failures'] = failures
         results.append(result)
     status = 'BLOCKED'
     if all(r['status'] == 'PASS' for r in results):

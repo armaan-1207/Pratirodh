@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "cohort": "upstream-v2",
+  "assignment_source": "Saved upstream-validation status snapshot, 2026-10-05; preserve original assignments.",
+  "cases": [
+    {
+      "id": "cpp-cve-2014-9130",
+      "split": "evaluation",
+      "repository_url": "https://github.com/yaml/libyaml",
+      "advisory_url": "https://github.com/advisories/CVE-2014-9130",
+      "fix_url": "https://github.com/yaml/libyaml/commit/e6aa721cc0e5a48f408c52355559fd36780ba32a",
+      "fix_revision": "e6aa721cc0e5a48f408c52355559fd36780ba32a"
+    },
+    {
+      "id": "cpp-cve-2018-25032",
+      "split": "development",
+      "repository_url": "https://github.com/madler/zlib",
+      "advisory_url": "https://github.com/advisories/CVE-2018-25032",
+      "fix_url": "https://github.com/madler/zlib/commit/5c44459c3b28a9bd3283aaceab7c615f8020c531",
+      "fix_revision": "5c44459c3b28a9bd3283aaceab7c615f8020c531"
+    },
+    {
+      "id": "cpp-cve-2019-1000019",
+      "split": "evaluation",
+      "repository_url": "https://github.com/libarchive/libarchive",
+      "advisory_url": "https://github.com/advisories/CVE-2019-1000019",
+      "fix_url": "https://github.com/libarchive/libarchive/commit/65a23f5dbee4497064e9bb467f81138a62b0dae1",
+      "fix_revision": "65a23f5dbee4497064e9bb467f81138a62b0dae1"
+    },
+    {
+      "id": "cpp-cve-2020-12762",
+      "split": "evaluation",
+      "repository_url": "https://github.com/json-c/json-c",
+      "advisory_url": "https://github.com/advisories/CVE-2020-12762",
+      "fix_url": "https://github.com/json-c/json-c/commit/d07b91014986900a3a75f306d302e13e005e9d67",
+      "fix_revision": "d07b91014986900a3a75f306d302e13e005e9d67"
+    },
+    {
+      "id": "cpp-cve-2022-43680",
+      "split": "evaluation",
+      "repository_url": "https://github.com/libexpat/libexpat",
+      "advisory_url": "https://github.com/advisories/CVE-2022-43680",
+      "fix_url": "https://github.com/libexpat/libexpat/commit/5290462a7ea1278a8d5c0d5b2860d4e244f997e4",
+      "fix_revision": "5290462a7ea1278a8d5c0d5b2860d4e244f997e4"
+    },
+    {
+      "id": "cpp-cve-2023-4863",
+      "split": "evaluation",
+      "repository_url": "https://github.com/webmproject/libwebp",
+      "advisory_url": "https://github.com/advisories/CVE-2023-4863",
+      "fix_url": "https://github.com/webmproject/libwebp/commit/902bc9190331343b2017211debcec8d2ab87e17a",
+      "fix_revision": "902bc9190331343b2017211debcec8d2ab87e17a"
+    },
+    {
+      "id": "cpp-cve-2023-50472",
+      "split": "development",
+      "repository_url": "https://github.com/DaveGamble/cJSON",
+      "advisory_url": "https://github.com/advisories/CVE-2023-50472",
+      "fix_url": "https://github.com/DaveGamble/cJSON/commit/276a4620c1b3107635fd9a7aa91ae2a72d5eb1c4",
+      "fix_revision": "276a4620c1b3107635fd9a7aa91ae2a72d5eb1c4"
+    },
+    {
+      "id": "cpp-cve-2024-25062",
+      "split": "evaluation",
+      "repository_url": "https://github.com/GNOME/libxml2",
+      "advisory_url": "https://github.com/advisories/CVE-2024-25062",
+      "fix_url": "https://github.com/GNOME/libxml2/commit/92721970884fcc13305cb8e23cdc5f0dd7667c2c",
+      "fix_revision": "92721970884fcc13305cb8e23cdc5f0dd7667c2c"
+    },
+    {
+      "id": "javascript-cve-2018-6835",
+      "split": "evaluation",
+      "repository_url": "https://github.com/ether/etherpad-lite",
+      "advisory_url": "https://github.com/advisories/CVE-2018-6835",
+      "fix_url": "https://github.com/ether/etherpad-lite/commit/626e58cc5af1db3691b41fca7b06c28ea43141b1",
+      "fix_revision": "626e58cc5af1db3691b41fca7b06c28ea43141b1"
+    },
+    {
+      "id": "javascript-cve-2019-10767",
+      "split": "evaluation",
+      "repository_url": "https://github.com/ioBroker/ioBroker.js-controller",
+      "advisory_url": "https://github.com/advisories/CVE-2019-10767",
+      "fix_url": "https://github.com/ioBroker/ioBroker.js-controller/commit/f6e292c6750a491a5000d0f851b2fede4f9e2fda",
+      "fix_revision": "f6e292c6750a491a5000d0f851b2fede4f9e2fda"
+    },
+    {
+      "id": "javascript-cve-2019-15599",
+      "split": "evaluation",
+      "repository_url": "https://github.com/pkrumins/node-tree-kill",
+      "advisory_url": "https://github.com/advisories/CVE-2019-15599",
+      "fix_url": "https://github.com/pkrumins/node-tree-kill/commit/deee138a8cbc918463d8af5ce8c2bec33c3fd164",
+      "fix_revision": "deee138a8cbc918463d8af5ce8c2bec33c3fd164"
+    },
+    {
+      "id": "javascript-cve-2021-23369",
+      "split": "development",
+      "repository_url": "https://github.com/handlebars-lang/handlebars.js",
+      "advisory_url": "https://github.com/advisories/CVE-2021-23369",
+      "fix_url": "https://github.com/handlebars-lang/handlebars.js/commit/b6d3de7123eebba603e321f04afdbae608e8fea8",
+      "fix_revision": "b6d3de7123eebba603e321f04afdbae608e8fea8"
+    },
+    {
+      "id": "javascript-cve-2021-23664",
+      "split": "evaluation",
+      "repository_url": "https://github.com/isomorphic-git/cors-proxy",
+      "advisory_url": "https://github.com/advisories/CVE-2021-23664",
+      "fix_url": "https://github.com/isomorphic-git/cors-proxy/commit/1b1c91e71d946544d97ccc7cf0ac62b859e03311",
+      "fix_revision": "1b1c91e71d946544d97ccc7cf0ac62b859e03311"
+    },
+    {
+      "id": "javascript-cve-2021-29300",
+      "split": "evaluation",
+      "repository_url": "https://github.com/ronomon/opened",
+      "advisory_url": "https://github.com/advisories/CVE-2021-29300",
+      "fix_url": "https://github.com/ronomon/opened/commit/7effe011d4fea8fac7f78c00615e0a6e69af68ec",
+      "fix_revision": "7effe011d4fea8fac7f78c00615e0a6e69af68ec"
+    },
+    {
+      "id": "javascript-cve-2021-37712",
+      "split": "development",
+      "repository_url": "https://github.com/isaacs/node-tar",
+      "advisory_url": "https://github.com/advisories/CVE-2021-37712",
+      "fix_url": "https://github.com/isaacs/node-tar/commit/1739408d3122af897caefd09662bce2ea477533b",
+      "fix_revision": "1739408d3122af897caefd09662bce2ea477533b"
+    },
+    {
+      "id": "javascript-cve-2024-56334",
+      "split": "evaluation",
+      "repository_url": "https://github.com/sebhildebrandt/systeminformation",
+      "advisory_url": "https://github.com/advisories/CVE-2024-56334",
+      "fix_url": "https://github.com/sebhildebrandt/systeminformation/commit/f7af0a67b78e7894335a6cad510566a25e06ae41",
+      "fix_revision": "f7af0a67b78e7894335a6cad510566a25e06ae41"
+    },
+    {
+      "id": "python-cve-2018-18074",
+      "split": "evaluation",
+      "repository_url": "https://github.com/requests/requests",
+      "advisory_url": "https://github.com/advisories/CVE-2018-18074",
+      "fix_url": "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff",
+      "fix_revision": "c45d7c49ea75133e52ab22a8e9e13173938e36ff"
+    },
+    {
+      "id": "python-cve-2018-7750",
+      "split": "evaluation",
+      "repository_url": "https://github.com/paramiko/paramiko",
+      "advisory_url": "https://github.com/advisories/CVE-2018-7750",
+      "fix_url": "https://github.com/paramiko/paramiko/commit/fa29bd8446c8eab237f5187d28787727b4610516",
+      "fix_revision": "fa29bd8446c8eab237f5187d28787727b4610516"
+    },
+    {
+      "id": "python-cve-2020-25459",
+      "split": "evaluation",
+      "repository_url": "https://github.com/FederatedAI/FATE",
+      "advisory_url": "https://github.com/advisories/CVE-2020-25459",
+      "fix_url": "https://github.com/FederatedAI/FATE/commit/6feccf6d752184a6f9365d56a76fe627983e7139",
+      "fix_revision": "6feccf6d752184a6f9365d56a76fe627983e7139"
+    },
+    {
+      "id": "python-cve-2021-21330",
+      "split": "development",
+      "repository_url": "https://github.com/aio-libs/aiohttp",
+      "advisory_url": "https://github.com/advisories/CVE-2021-21330",
+      "fix_url": "https://github.com/aio-libs/aiohttp/commit/2545222a3853e31ace15d87ae0e2effb7da0c96b",
+      "fix_revision": "2545222a3853e31ace15d87ae0e2effb7da0c96b"
+    },
+    {
+      "id": "python-cve-2021-32633",
+      "split": "evaluation",
+      "repository_url": "https://github.com/zopefoundation/Zope",
+      "advisory_url": "https://github.com/advisories/CVE-2021-32633",
+      "fix_url": "https://github.com/zopefoundation/Zope/commit/1f8456bf1f908ea46012537d52bd7e752a532c91",
+      "fix_revision": "1f8456bf1f908ea46012537d52bd7e752a532c91"
+    },
+    {
+      "id": "python-cve-2021-33203",
+      "split": "evaluation",
+      "repository_url": "https://github.com/django/django",
+      "advisory_url": "https://github.com/advisories/CVE-2021-33203",
+      "fix_url": "https://github.com/django/django/commit/20c67a0693c4ede2b09af02574823485e82e4c8f",
+      "fix_revision": "20c67a0693c4ede2b09af02574823485e82e4c8f"
+    },
+    {
+      "id": "python-cve-2022-0767",
+      "split": "development",
+      "repository_url": "https://github.com/janeczku/calibre-web",
+      "advisory_url": "https://github.com/advisories/CVE-2022-0767",
+      "fix_url": "https://github.com/janeczku/calibre-web/commit/965352c8d96c9eae7a6867ff76b0db137d04b0b8",
+      "fix_revision": "965352c8d96c9eae7a6867ff76b0db137d04b0b8"
+    },
+    {
+      "id": "python-cve-2025-43859",
+      "split": "evaluation",
+      "repository_url": "https://github.com/python-hyper/h11",
+      "advisory_url": "https://github.com/advisories/CVE-2025-43859",
+      "fix_url": "https://github.com/python-hyper/h11/commit/114803a29ce50116dc47951c690ad4892b1a36ed",
+      "fix_revision": "114803a29ce50116dc47951c690ad4892b1a36ed"
+    }
+  ]
+}

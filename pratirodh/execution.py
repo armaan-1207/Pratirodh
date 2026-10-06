@@ -67,7 +67,7 @@ class DockerExecutor:
             finally:
                 SLOTS.release()
             if result.returncode:
-                raise RuntimeError("Docker execution failed: " + result.stderr[-1000:])
+                raise RuntimeError("Docker execution failed (exit " + str(result.returncode) + "): " + result.stderr[-1000:])
             outputs = json.loads(result.stdout)
             if not isinstance(outputs, list) or len(outputs) != len(sources):
                 raise RuntimeError("executor result count mismatch")

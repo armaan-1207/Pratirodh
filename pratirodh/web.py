@@ -42,6 +42,15 @@ def create_app(store=None):
     cancellations = {}
 
     def update_job(job_id, **fields):
+        if 'step' in fields and 'stage' not in fields:
+            stages = {'Import source': 'detect', 'Establish baseline behavior': 'reproduce',
+                      'Inspect suspicious code': 'detect', 'Generate and qualify test harnesses': 'reproduce',
+                      'Search for a reproducible violation': 'reproduce', 'Minimize the failing example': 'reproduce',
+                      'Propose repairs': 'generate', 'Independently verify': 'verify',
+                      'Challenge verification': 'challenge', 'Produce signed review evidence': 'sign'}
+            reported = fields['step'].split(' · ')[-1]
+            if reported in stages:
+                fields['stage'] = stages[reported]
         with lock:
             jobs[job_id].update(fields)
 
@@ -53,6 +62,8 @@ def create_app(store=None):
 
     def job_snapshot(job_id):
         snapshot = dict(jobs[job_id], runs=list(jobs[job_id]['runs']))
+        if 'results' in snapshot:
+            snapshot['results'] = [dict(row) for row in snapshot['results']]
         snapshot['elapsed_seconds'] = round(snapshot.get('finished', time.monotonic()) - snapshot['started'], 1)
         snapshot.pop('started', None)
         snapshot.pop('finished', None)
@@ -241,7 +252,7 @@ def create_app(store=None):
                         cancelled=cancelled, progress=lambda stage: update_job(job_id, step=label + ' · ' + stage))
                     with lock:
                         jobs[job_id]['runs'].append(report['id'])
-                        jobs[job_id]['results'].append(dict(label=label, decision=report['decision'], expected=expected))
+                        jobs[job_id]['results'].append(dict(label=label, decision=report['decision'], expected=expected, id=report['id']))
                 matched = len(jobs[job_id]['results']) == 2 and all(r['decision'] == r['expected'] for r in jobs[job_id]['results'])
                 update_job(job_id, status='CANCELLED' if cancelled.is_set() else 'COMPLETE' if matched else 'ERROR',
                            stage='complete', finished=time.monotonic(),
@@ -249,6 +260,41 @@ def create_app(store=None):
             except Exception:
                 app.logger.exception('synthetic project demo failed')
                 update_job(job_id, status='ERROR', finished=time.monotonic(), step='Demo unavailable; inspect Docker configuration.')
+        pool.submit(work)
+        return redirect(url_for('job', job_id=job_id))
+
+    @app.post('/requests-demo')
+    def requests_demo():
+        from .projects.requests_demo import IMAGE_TAG, run_demo
+        with lock:
+            if any(j['status'] == 'RUNNING' for j in jobs.values()):
+                abort(409, 'A workflow is already running.')
+            job_id = secrets.token_hex(16)
+            cancelled = threading.Event()
+            cancellations[job_id] = cancelled
+            jobs[job_id] = dict(status='RUNNING', runs=[], results=[], step='Prepare pinned Requests source',
+                                stage='reproduce', candidate=0, generator='project', started=time.monotonic())
+
+        def work():
+            try:
+                image = subprocess.check_output(['docker', '--context', 'default', 'image', 'inspect',
+                    IMAGE_TAG, '--format', '{{.Id}}'], text=True, timeout=15).strip()
+                def record(row):
+                    with lock:
+                        jobs[job_id]['runs'].append(row['id'])
+                        jobs[job_id]['results'].append(dict(row))
+                rows = run_demo(store.root / 'demo-projects' / job_id / 'requests-cve-2018-18074-local-demo',
+                    store, image, cancelled=cancelled,
+                    progress=lambda stage: update_job(job_id, step=stage), result_callback=record)
+                matched = len(rows) == 2 and all(row['matched_expectation'] for row in rows)
+                update_job(job_id, status='CANCELLED' if cancelled.is_set() else 'COMPLETE' if matched else 'ERROR',
+                    stage='complete', finished=time.monotonic(),
+                    step='Incomplete redirect repair rejected; upstream reference fix ready for local review.' if matched
+                         else 'Requests demonstration incomplete. Review the retained evidence.')
+            except Exception:
+                app.logger.exception('Requests reference-fix demonstration failed')
+                update_job(job_id, status='ERROR', finished=time.monotonic(),
+                    step='Requests demo unavailable; check the prepared requests-demo image and pinned source. See server logs.')
         pool.submit(work)
         return redirect(url_for('job', job_id=job_id))
 

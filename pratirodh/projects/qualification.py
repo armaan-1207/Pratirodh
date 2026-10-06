@@ -67,7 +67,8 @@ def review_source(case, directory):
             'updated': datetime.now(timezone.utc).isoformat()}
 
 
-def qualify_case(case, acquisition, target, manifest_path, audit_path, source_map, license_review, store, recipe_digest=None):
+def qualify_case(case, acquisition, target, manifest_path, audit_path, source_map, license_review, store,
+                 recipe_digest=None, deadline=None, cancelled=None):
     """Run vulnerable, fixed, normal-use and protected-audit controls on guests."""
     review = review_source(case, acquisition)
     if review['errors']:
@@ -89,9 +90,10 @@ def qualify_case(case, acquisition, target, manifest_path, audit_path, source_ma
         from ..contracts import safe_relative
         safe_relative(local)
         safe_relative(remote)
-        if local not in original or original[local] != git(upstream, 'show', review['source_revision'] + ':' + remote):
+        source = git(upstream, 'show', review['source_revision'] + ':' + remote).replace('\r\n', '\n')
+        if local not in original or original[local].replace('\r\n', '\n') != source:
             raise ValueError('adapted source differs from declared upstream revision: ' + local)
-        fixed[local] = git(upstream, 'show', review['fix_revision'] + ':' + remote)
+        fixed[local] = git(upstream, 'show', review['fix_revision'] + ':' + remote).replace('\r\n', '\n')
     fixed = apply(original, make_diff(original, fixed), manifest['editable'])
     audit = json.loads(Path(audit_path).read_text(encoding='utf-8'))
     if Path(audit_path).resolve().is_relative_to(Path(target).resolve()) or set(audit['files']) & original.keys():
@@ -110,11 +112,12 @@ def qualify_case(case, acquisition, target, manifest_path, audit_path, source_ma
             oracle(violation)
             if (violation['exit'], violation['stdout']) == (assertion['exit'], assertion['stdout']):
                 raise ValueError('audit safe and violation oracles must differ')
+    budget = WorkflowBudget(manifest['limits'], cancelled, deadline=deadline)
+    budget.remaining()
     execution_identity = attest_worker(manifest['worker']['context'], manifest['image'])
     audit_identity = attest_worker(audit['context'], audit['image'])
     separate(execution_identity, audit_identity)
     worker = DockerProjectWorker(manifest)
-    budget = WorkflowBudget(manifest['limits'])
     baseline = [check(worker, original, c, budget, build=manifest['commands']['build']) for c in manifest['commands']['test']]
     vulnerable = [qualify(worker, original, prop, budget, manifest['commands']['build']) for prop in manifest['properties']]
     corrected = verify(worker, fixed, manifest, manifest['properties'], budget)
