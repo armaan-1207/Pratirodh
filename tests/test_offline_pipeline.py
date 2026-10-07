@@ -12,6 +12,18 @@ from pratirodh.evidence import Store
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def test_local_model_setting_uses_installed_choice_and_explicit_override(monkeypatch):
+    monkeypatch.setenv('PRATIRODH_LOCAL_MODEL', 'qwen2.5-coder:7b')
+    model = OllamaModel()
+    assert model.model == 'qwen2.5-coder:7b'
+    monkeypatch.setattr(model, 'request', lambda route: {
+        'models': [{'name': 'qwen2.5-coder:7b', 'digest': 'installed-seven'}], 'version': 'test'})
+    assert model.identity()['digest'] == 'installed-seven'
+    assert OllamaModel('qwen2.5-coder:3b').model == 'qwen2.5-coder:3b'
+    monkeypatch.delenv('PRATIRODH_LOCAL_MODEL')
+    assert OllamaModel().model == 'qwen2.5-coder:3b'
+
+
 def test_local_provider_no_fallback_or_proxy(monkeypatch):
     model = OllamaModel()
     monkeypatch.setattr(model, 'request', lambda *a, **k: {'models': []})

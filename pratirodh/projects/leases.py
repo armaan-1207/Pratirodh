@@ -17,8 +17,8 @@ class Lease:
             budget.remaining()
             for index in range(self.slots):
                 fd = os.open(root / (self.name + '-' + str(index) + '.lock'), os.O_RDWR | os.O_CREAT, 0o600)
-                if os.fstat(fd).st_size == 0:
-                    os.write(fd, b'0')
+                # Both OS locks support an empty file. Writing an initializer
+                # before locking races with Windows byte-range lock owners.
                 os.lseek(fd, 0, os.SEEK_SET)
                 try:
                     if os.name == 'nt':

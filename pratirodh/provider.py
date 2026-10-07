@@ -77,7 +77,7 @@ class OllamaModel:
     origin = 'local-model'
 
     def __init__(self, model=None, expected_digest=None):
-        self.model = model or 'qwen2.5-coder:3b'
+        self.model = model or os.getenv('PRATIRODH_LOCAL_MODEL') or 'qwen2.5-coder:3b'
         self.expected_digest = expected_digest
         self.usage = []
         self.url = 'http://127.0.0.1:11434'

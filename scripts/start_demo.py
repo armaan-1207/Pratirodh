@@ -1,5 +1,6 @@
 """Verify the synthetic demonstration and serve its signed evidence locally."""
 import argparse
+import os
 from datetime import datetime
 from pathlib import Path
 import socket
@@ -12,7 +13,10 @@ def main():
     parser.add_argument('--port', type=int, default=8767)
     parser.add_argument('--store', type=Path, help='reopen signed evidence without preparing new runs')
     parser.add_argument('--requests', action='store_true', help='also verify the prepared Requests reference-fix demonstration')
+    parser.add_argument('--model', help='installed local Ollama model for browser generation, e.g. qwen2.5-coder:7b')
     args = parser.parse_args()
+    if args.model:
+        os.environ['PRATIRODH_LOCAL_MODEL'] = args.model
     if not 1024 <= args.port <= 65535:
         parser.error('choose a port between 1024 and 65535')
     root = Path(__file__).resolve().parents[1]

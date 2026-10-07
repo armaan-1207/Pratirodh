@@ -10,6 +10,7 @@ from .fuzzing import generate, VERSION
 from .evidence import Store, bindings, fresh, new_id
 from .execution import Budget, DockerExecutor
 from .patches import apply_diff, static_scan
+from .mutations import construct
 
 
 def decision(checks, gaps):
@@ -154,10 +155,11 @@ def run(target, contract_path, patch=None, store=None, mode='full', executor=Non
                     for mutation in contract['mutations']:
                         record = dict(family=mutation['family'], status='UNAVAILABLE', missed_before=False)
                         candidate['mutations'].append(record)
-                        if updated.count(mutation['find']) != 1:
+                        weakened, adapter = construct(updated, mutation, contract['cwe'])
+                        record['construction'] = adapter
+                        if weakened is None:
                             candidate['gaps'].append(mutation['family'] + ': source pattern unavailable')
                             continue
-                        weakened = updated.replace(mutation['find'], mutation['replace'], 1)
                         try:
                             ast.parse(weakened)
                         except SyntaxError:

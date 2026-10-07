@@ -51,6 +51,15 @@ def prepare_case(case, source):
     output = case / 'prepared'
     if output.exists():
         raise FileExistsError('prepared output already exists; preserve it or use a new checkout: ' + str(output))
+    try:
+        top = subprocess.check_output(['git', '-C', str(source), 'rev-parse', '--show-toplevel'],
+                                      stderr=subprocess.PIPE, text=True, timeout=15).strip()
+        if Path(top).resolve() != source:
+            raise ValueError('source directory resolves to its parent repository')
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        raise ValueError('Pinned upstream Git source unavailable at ' + str(source)
+                         + '; use --source-root pointing to case/target Git checkouts, '
+                         'or omit --source-root to acquire the pinned source cache') from error
     if not re.fullmatch('[0-9a-f]{40}', info['source_revision']):
         raise ValueError('full pinned source revision required')
     # git archive reads objects; it does not reset or clean the source checkout.

@@ -26,7 +26,8 @@ def fixture(tmp_path, monkeypatch, extra=None):
         for name, body in contents.items():
             info = tarfile.TarInfo(name); info.size = len(body)
             archive.addfile(info, io.BytesIO(body))
-    monkeypatch.setattr(prep.subprocess, 'check_output', lambda *a, **kw: tar.getvalue())
+    monkeypatch.setattr(prep.subprocess, 'check_output',
+                        lambda args, **kw: str(source) if 'rev-parse' in args else tar.getvalue())
     return case, source, contents
 
 
@@ -65,4 +66,5 @@ def test_missing_inputs_and_dry_run_preserve_files(tmp_path, monkeypatch, capsys
     monkeypatch.setattr(prep.subprocess, 'check_output', lambda *a, **kw: (_ for _ in ()).throw(FileNotFoundError('missing source')))
     result = prep.reconstruct_all(tmp_path, source_root=tmp_path)
     assert result['summary']['blocked'] == 1
+    assert '--source-root' in result['cases'][0]['blockers'][0]
     assert not (case / 'prepared').exists()
