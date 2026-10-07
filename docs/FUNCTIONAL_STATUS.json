@@ -1,15 +1,17 @@
 {
   "reviewed_on": "2026-10-07",
   "scope": "Dated local verification of the functional integration. Historical security observations and current signed upstream qualification remain separate.",
-  "suite_commit": "0fa0316b3eefe133f12c961b2b159ea53880f6f5",
+  "suite_commit": "65a0e9210b577af767425b0df7abdcd4ac4fa9ed",
+  "suite_scope": "Verified working-tree snapshot before the local candidate commit; see LOCAL_RELEASE_VERIFICATION_20261007.md",
   "recorded_model_run": "ac5c52f6b23a4b96aa800e365b894dbe",
   "checks": [
-    {"label": "Combined Python suite", "result": "263 passed with Docker; no skips. Both GitHub publication checks also passed."},
-    {"label": "Browser assets", "result": "3 frontend tests passed; bundled assets rebuilt."},
+    {"label": "Combined Python suite", "result": "295 passed with Docker, no skips; 694.78 seconds. Historical Requests GitHub CI inconsistency remains open."},
+    {"label": "Browser assets", "result": "7 frontend tests passed; bundled assets match source; mobile cube animation enabled with centered framing. Reduced-motion and unavailable-graphics fallbacks remain."},
     {"label": "Recorded local model repair", "result": "Qwen 7B checkpoint: READY FOR REVIEW; 55 security and 2 legitimate checks passed; both unsafe mutations caught; no evidence gaps. Current run freshness is checked on the evidence page."},
     {"label": "Pinned upstream preparation", "result": "5 prepared snapshots; 19 blocked. Preparation is unsigned and does not qualify a case."}
   ],
   "limitations": [
+    "Three consecutive local Requests Docker reruns passed; the historical GitHub failure remains unexplained. Failure diagnostics are prepared locally and have not been published.",
     "19 upstream cases need fixture, intake or harness work before runtime qualification.",
     "Azure runtime qualification and the 216-run independent comparison campaign have not run.",
     "The dated OWASP Top 10 code and local assessment is recorded separately; production assurance and public activation remain pending. Reviewed container findings remain documented residual risks."

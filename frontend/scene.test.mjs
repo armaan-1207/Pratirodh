@@ -6,5 +6,5 @@ import vm from 'node:vm';
 const source=(await readFile('frontend/scene.js','utf8')).replace(/^import .*;$/mg,'').replace('export function','function');
 function sceneContext(match,throwRenderer=false){let renders=0;const context={matchMedia:q=>({matches:match(q)}),THREE:{WebGLRenderer:class{constructor(){renders++;if(throwRenderer)throw Error('WebGL unavailable');}}}};vm.createContext(context);vm.runInContext(source,context);return {mount:context.mountScene,renders:()=>renders};}
 test('reduced motion keeps static diagram without constructing WebGL',()=>{const c=sceneContext(q=>q.includes('reduced-motion'));c.mount({});assert.equal(c.renders(),0);});
-test('small screens keep static diagram even after delayed module import',()=>{const c=sceneContext(q=>q.includes('max-width'));c.mount({});assert.equal(c.renders(),0);});
+test('small screens attempt WebGL and retain fallback when graphics are unavailable',()=>{const c=sceneContext(q=>q.includes('max-width'),true);assert.doesNotThrow(()=>c.mount({}));assert.equal(c.renders(),1);});
 test('unavailable WebGL returns to existing static diagram',()=>{const c=sceneContext(()=>false,true);assert.doesNotThrow(()=>c.mount({}));assert.equal(c.renders(),1);});

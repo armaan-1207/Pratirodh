@@ -1,7 +1,18 @@
 {
   "framework": "OWASP Top 10:2025",
   "reviewed_on": "2026-10-07",
-  "overall": "Locally verified application controls; residual image and deployment risks remain",
+  "assessment_base": "65a0e9210b577af767425b0df7abdcd4ac4fa9ed plus locally verified candidate changes",
+  "assessment_hash_basis": "SHA-256 of Git-index bytes, including Git newline normalization",
+  "assessment_inputs_sha256":
+  {
+    "frontend/app.js": "43bc29b3c550180c425d21d2ebd08b9851f051fce85a662196ada105f718788b",
+    "frontend/scene.js": "3ee44a42c9c4e17ab2ddb29768b9c2a3b2f7599126a323990d48bebee4f52ce7",
+    "frontend/scene-lifecycle.js": "047f05c96c8108a6e382fdd555682f9877477e93a36b7f633aab782d17e954e1",
+    "pratirodh/static/style.css": "c1a22f9cca5e7361301e65f4ccc5a2735e305f22f0d252263952d4f3d7ac6d61",
+    "tools/requests_diagnostics.py": "d9fd5173061cd8b580fa7aba37219fcdb76a9e3fa025dd871e72446992067fc9",
+    ".github/workflows/checks.yml": "083ba3c9147633888c74de099a9c904b71609d9bbe991aa871f528ffe6135a1b"
+  },
+  "overall": "Locally verified application controls; unresolved CI inconsistency and residual image/deployment risks remain",
   "scope": "Local application and repository security. Deployment assurance and upstream evaluation remain separate.",
   "findings": [
     {
@@ -38,7 +49,7 @@
   "checks": [
     {
       "label": "Complete combined Python suite with Docker enabled",
-      "result": "254 passed, no skips; 675.21 seconds"
+      "result": "295 passed with Docker enabled, no skips; 694.78 seconds. Historical GitHub Requests CI inconsistency remains open"
     },
     {
       "label": "Focused intake, transport, archive and security-event checks",
@@ -46,24 +57,25 @@
     },
     {
       "label": "Frontend fallbacks and build",
-      "result": "3 passed; rebuilt assets match source"
+      "result": "7 passed; rebuilt assets match source; mobile cube animation and animation recovery checked. Reduced-motion and unavailable-graphics fallbacks remain"
     },
     {
       "label": "Image advisory review gate",
-      "result": "8 regression tests passed; all four reports reviewed"
+      "result": "Four current image reports passed the dated review gate; 249 reviewed high/critical residual candidates remain"
     },
     {
       "label": "Static and frontend dependency analysis",
-      "result": "Bandit and npm audit: no reported issues"
+      "result": "Bandit: zero medium/high and 83 low findings. Production npm and locked deployment Python audits: no known vulnerabilities"
     },
     {
       "label": "Deployment image, wheel and clean release export",
-      "result": "Authenticated/read-only smoke checks passed; wheel excludes private/generated data and archives; all 24 recipes reproduced 5 prepared / 19 explicit blockers"
+      "result": "Local HTTPS/authenticated/read-only/restore/alert checks passed; wheel and image exclusions verified; all 24 source mappings present. Recorded preparation remains 5 prepared / 19 blockers"
     }
   ],
   "limitations": [
     "Unfixed native OS libraries remain residual risks. Worker execution requires dedicated, offline, disposable isolation; sensitive or shared public workloads are outside the local assurance scope.",
-    "Public HTTPS, host permissions, key rotation, backups and external alert delivery still require deployment verification.",
+    "Local synthetic HTTPS, authentication, read-only restrictions, host rejection, restore and alert delivery passed. Public HTTPS, production host permissions, key rotation, operator backups and external alert delivery remain unverified; public deployment is deferred.",
+    "Historical Requests Docker CI inconsistency remains unexplained. Three consecutive local reruns passed; sanitized diagnostics are prepared locally for the next authorized CI publication.",
     "Nineteen upstream preparation blockers, Azure qualification and the 216-run independent campaign remain separate."
   ]
 }

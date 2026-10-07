@@ -82,10 +82,10 @@
 .hero-atmosphere{inset:0 -48px;mask-image:none}.hero-glow{background:radial-gradient(ellipse at 75% 45%,#548a932f,transparent 60%)}.hero .lab-visual::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#101416cc 0%,#10141670 30%,transparent 62%)}
 .hero .scene-caption{position:absolute;right:0;bottom:80px;padding:14px 0 0;border:0;border-top:1px solid #64909a50;background:transparent;z-index:1;max-width:280px;text-align:right}.hero .scene-caption strong{font-size:.82rem}.hero .scene-caption small{font-size:9px}
 .hero-wordmark{position:absolute;left:0;bottom:-18px;z-index:1;width:100%;font:600 clamp(4rem,12.9vw,12rem)/1 Outfit,Space,sans-serif;letter-spacing:-.065em;color:#c6e3e61c;pointer-events:none;text-align:center;white-space:nowrap;user-select:none}
-.hero-proof{margin-top:26px}.hero .static-scene{position:absolute;right:0;top:140px;width:45%;transform:scale(.9)}
+.hero-proof{margin-top:26px}.hero .static-scene{position:absolute;right:0;top:140px;bottom:140px;height:auto;width:45%;transform:scale(.9)}
 @media(min-width:1600px){.hero{min-height:850px}.hero h1{font-size:4.7rem}.hero-wordmark{font-size:12rem}}
 @media(max-width:900px){.hero{min-height:760px}.hero-copy{max-width:620px}.hero h1{font-size:clamp(2.6rem,5.2vw,3.4rem)}.hero .lab-visual::after{background:linear-gradient(#10141688,transparent)}.hero .scene-caption{bottom:60px}.hero-wordmark{bottom:0}.hero-proof{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.hero{min-height:740px}.hero-copy{padding-bottom:280px}.hero h1{font-size:2.4rem}.hero .intro{max-width:32ch}.hero .static-scene{width:100%;top:350px}.hero .scene-caption{bottom:60px}.hero-atmosphere{inset:0 -18px}.hero-wordmark{font-size:12.6vw}}
+@media(max-width:650px){.hero{min-height:740px}.hero-copy{padding-bottom:0}.hero h1{font-size:2.4rem}.hero .intro{max-width:32ch}.hero .lab-visual{position:relative;inset:auto;height:420px;margin-top:24px;mask-image:none}.hero .static-scene{width:100%;top:0;bottom:120px;padding:0 8%}.hero .scene-caption{bottom:60px}.hero-atmosphere{inset:0 -18px}.hero-wordmark{font-size:12.6vw}}
 
 /* Match the atmosphere bleed to the intermediate-width page margin. */
 @media(min-width:651px) and (max-width:900px){.hero-atmosphere{inset:0 -24px}}

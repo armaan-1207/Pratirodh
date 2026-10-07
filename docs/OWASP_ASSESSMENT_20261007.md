@@ -1,5 +1,7 @@
 > Historical assessment of commit `790f13a946eae01609af8ccd6ab888d5b823cd50`. See [subsequent fixes, verification and residual risks](SECURITY_REMEDIATION_20261007.md). Original findings below are retained as dated evidence.
 
+> Local release follow-up: see [current release dispositions](LOCAL_RELEASE_BLOCKERS_20261007.md) and [verification addendum](LOCAL_RELEASE_VERIFICATION_20261007.md). Three local Requests Docker reruns passed, but the historical GitHub inconsistency remains unexplained. Qualification and public deployment are not inferred from local results.
+
 # PRATIRODH OWASP assessment — 7 October 2026
 
 **Conclusion: all ten OWASP categories were reviewed; security findings remain open. This is not an OWASP certification or a claim that the application is fully secure.** The authenticated, read-only dashboard has useful tested controls. Project execution and the offline export verifier need further hardening before processing sensitive or unfamiliar repositories and untrusted bundles.
