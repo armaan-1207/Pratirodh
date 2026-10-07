@@ -150,7 +150,9 @@ def create_app(store=None):
     def upstream_validation():
         from .upstream_status import read
         security, error = read(benchmark_root.parent / 'docs/SECURITY_STATUS.json')
-        return render_template('validation.html', upstream=upstream_status(), security=None if error else security)
+        functional, functional_error = read(benchmark_root.parent / 'docs/FUNCTIONAL_STATUS.json')
+        return render_template('validation.html', upstream=upstream_status(), security=None if error else security,
+                               functional=None if functional_error else functional)
 
     @app.get('/walkthrough')
     def recorded_walkthrough():

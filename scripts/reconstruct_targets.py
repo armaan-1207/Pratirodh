@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -22,6 +23,14 @@ from pratirodh.projects.manifest import inventory, load
 
 def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
+
+
+def snapshot_path(path):
+    """Use Windows extended paths for disposable snapshots, without truncation."""
+    value = str(Path(path).resolve())
+    if os.name == 'nt' and not value.startswith('\\\\?\\'):
+        value = '\\\\?\\UNC\\' + value[2:] if value.startswith('\\\\') else '\\\\?\\' + value
+    return Path(value)
 
 
 def acquire(info, cache):
@@ -46,11 +55,20 @@ def acquire(info, cache):
 
 
 def prepare_case(case, source):
-    case, source = Path(case).resolve(), Path(source).resolve()
+    case, source = snapshot_path(case), Path(source).resolve()
     info, recipe = read(case / 'target-source.json'), read(case / 'recipe.json')
     output = case / 'prepared'
     if output.exists():
         raise FileExistsError('prepared output already exists; preserve it or use a new checkout: ' + str(output))
+    try:
+        top = subprocess.check_output(['git', '-C', str(source), 'rev-parse', '--show-toplevel'],
+                                      stderr=subprocess.PIPE, text=True, timeout=15).strip()
+        if Path(top).resolve() != source:
+            raise ValueError('source directory resolves to its parent repository')
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        raise ValueError('Pinned upstream Git source unavailable at ' + str(source)
+                         + '; use --source-root pointing to case/target Git checkouts, '
+                         'or omit --source-root to acquire the pinned source cache') from error
     if not re.fullmatch('[0-9a-f]{40}', info['source_revision']):
         raise ValueError('full pinned source revision required')
     # git archive reads objects; it does not reset or clean the source checkout.

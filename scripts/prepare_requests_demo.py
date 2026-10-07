@@ -23,10 +23,6 @@ def main():
         raise ValueError('existing acquisition has an unexpected source repository')
     for revision in (SOURCE_REVISION, FIX_REVISION):
         subprocess.run(['git', '-C', str(checkout), 'cat-file', '-e', revision + ':requests/sessions.py'], check=True)
-    image = subprocess.run(['docker', '--context', 'default', 'image', 'inspect',
-        'pratirodh-project-worker:0.2'], capture_output=True, timeout=15)
-    if image.returncode:
-        subprocess.run([sys.executable, '-m', 'pratirodh', 'project', 'build-worker'], cwd=ROOT, check=True)
     subprocess.run(['docker', '--context', 'default', 'build', '-t', IMAGE_TAG,
         '-f', str(ROOT / 'pratirodh/projects/RequestsDemo.Dockerfile'),
         str(ROOT / 'pratirodh/projects')], check=True)

@@ -6,6 +6,10 @@
 
 A security repair lab built for the **Derby University Hackathon**.
 
+[Functional verification — 7 October 2026](docs/FUNCTIONAL_RELEASE_20261007.md)
+records 263 passing Python/Docker tests, the verified local model repair and the
+remaining upstream/cloud qualification limits.
+
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Backend-Flask-111827?logo=flask&logoColor=white)
 ![Docker](https://img.shields.io/badge/Workers-Docker-2496ED?logo=docker&logoColor=white)
@@ -20,9 +24,9 @@ PRATIRODH investigates declared security violations, proposes or accepts candida
 
 **Start with the multi-file synthetic demo:** Python, JavaScript and C/C++ examples run in restricted Docker workers with supplied patches. No AI model is required for these examples. Optional project AI uses **Qwen2.5-Coder 7B** through a reviewed model configuration.
 
-![PRATIRODH security repair lab overview](assets/pratirodh-overview.png)
 
-*Overview captured on 6 October 2026. The verification landscape illustrates the workflow; actual results appear in signed evidence pages.*
+
+Actual results appear in signed evidence pages in the local interface.
 
 ## Features
 
@@ -54,7 +58,7 @@ The controller holds reviewed manifests, generation budgets and signing material
 <details>
 <summary><strong>Current signed project evidence</strong></summary>
 
-![Current C++ repair evidence with verified signature and candidate checks](docs/screenshots/project-evidence-current-20261002.jpg)
+
 
 This synthetic C++ result verifies a supplied candidate with **zero model calls**. It demonstrates the evidence workflow; it does not measure model accuracy or complete the separate upstream audit.
 
@@ -117,7 +121,7 @@ If the port is occupied, select another `--port`. If Docker is unavailable, star
 <details>
 <summary><strong>Mobile project intake</strong></summary>
 
-![Current mobile project intake with all navigation destinations visible](docs/screenshots/projects-mobile-current-20261002.jpg)
+
 
 The navigation wraps on narrow screens. Project inputs, long source names and worker digests stay within the page width.
 
@@ -151,7 +155,7 @@ python -m pratirodh build-runner
 python -m pratirodh serve --port 8765
 ```
 
-Use your virtual-environment interpreter. The Workspace includes guided supplied-patch verification without model calls. Optional AI and combined modes use the guided provider's 3B default. The single-file CLI accepts `--model qwen2.5-coder:7b`; project workflows configure models separately through manifests.
+Use your virtual-environment interpreter. The Workspace includes guided supplied-patch verification without model calls. Optional AI and combined modes use the guided provider's 3B default unless `PRATIRODH_LOCAL_MODEL` selects another installed local model. The launcher accepts `--model qwen2.5-coder:7b`, which applies the same choice to availability checks and generation. The single-file CLI accepts `--model`; project workflows configure models separately through reviewed manifests.
 
 The guided fixtures cover CWE-22, CWE-89, CWE-78 and CWE-798. The `prototype-small` 3B project profile is experimental and does not satisfy the planned default-model release evaluation. Missing models and timeouts retain unresolved evidence; these local workflows invoke no cloud fallback.
 
@@ -251,11 +255,11 @@ The upstream validation workflow covers source provenance, comparison execution,
 The UI derives counts from acquisition, campaign and worker artifacts and exposes them at `/validation/status.json`. Accepted campaign results require a verified signed snapshot and passing audit evidence. A fresh clone displays only the records available locally.
 
 <details>
-<summary><strong>Current upstream validation screenshot</strong></summary>
+<summary><strong>Recorded upstream preparation</strong></summary>
 
-![Current upstream campaign preparation and audit design](docs/screenshots/validation-refined-20261002.jpg)
 
-Captured from the current localhost application on 2 October 2026. This is the recorded preparation state, not a completed experiment.
+
+The Validation page separates dated local checks, preparation and current signed runtime qualification. Preparation is not a completed experiment.
 
 </details>
 

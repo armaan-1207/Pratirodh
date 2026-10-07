@@ -3,6 +3,12 @@
 {% block content %}
 <a class="back" href="/comparison">← Comparison evidence</a>
 <div class="workspace-heading"><div><p class="eyebrow">REAL UPSTREAM SOURCE / SEPARATE AUDIT WORKER</p><h1>Follow the evidence as it develops.</h1><p>Target: 24 upstream cases across Python, JavaScript and TypeScript, and C and C++. License evidence, reproducible source revisions, and an independent final check are required before a case is executable.</p></div><span class="badge">{{'CAMPAIGN PREPARATION' if upstream.status == 'BLOCKED_INTAKE' else upstream.status|replace('_',' ')}}</span></div>
+<section aria-labelledby="functional-checks"><h2 id="functional-checks">Recorded local functional verification</h2>
+{% if functional %}<p class="mono">Recorded {{functional.reviewed_on}}</p><p>{{functional.scope}}</p>
+<div class="comparison-grid">{% for check in functional.checks %}<article class="comparison-card"><h3>{{check.label}}</h3><p>{{check.result}}</p></article>{% endfor %}</div>
+<h3>Work still pending</h3>{% for limitation in functional.limitations %}<p>{{limitation}}</p>{% endfor %}
+{% else %}<p>The functional verification record is unavailable. No functional pass is inferred.</p>{% endif %}
+<p>Local verification does not establish upstream runtime qualification, a completed campaign, or a full security assessment.</p></section>
 <section aria-labelledby="security-checks"><h2 id="security-checks">Recorded application security checks</h2>
 {% if security %}<p class="mono">{{security.framework}} · reviewed {{security.reviewed_on}} · {{security.overall}}</p><p>{{security.scope}}</p>
 <div class="comparison-grid">{% for finding in security.findings %}<article class="comparison-card"><h3>{{finding.title}}</h3><p>{{finding.status}}</p><p>{{finding.detail}}</p></article>{% endfor %}</div>

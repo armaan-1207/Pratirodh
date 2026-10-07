@@ -22,3 +22,20 @@ def test_reference_fix_and_unsafe_mutation_with_real_requests(tmp_path):
     assert len(fixed['mutations']) == 1
     assert fixed['mutations'][0]['status'] == 'CONFIRMED_UNSAFE'
     assert fixed['mutations'][0]['caught'] is True
+
+
+@pytest.mark.skipif(os.getenv('PRATIRODH_DOCKER_TESTS') != '1', reason='opt-in real Linux worker tests')
+def test_requests_worker_has_no_unused_native_build_stack():
+    import json
+    probe = """import ctypes.util,importlib.util,json,pyexpat,shutil
+print(json.dumps(dict(tools={n:shutil.which(n) for n in ['clang','clang++','cmake','make','node','npm']},
+ libraries={n:ctypes.util.find_library(n) for n in ['xml2','expat','curl']},
+ packaging={n:importlib.util.find_spec(n) is not None for n in ['pip','setuptools','wheel']},
+ expat=pyexpat.version_info)))"""
+    data = json.loads(subprocess.check_output(['docker', '--context', 'default', 'run', '--rm',
+        '--network', 'none', '--entrypoint', 'python', IMAGE_TAG, '-c', probe], text=True, timeout=30))
+    assert not any(data['tools'].values()), data
+    assert not any(data['libraries'].values()), data
+    assert not any(data['packaging'].values()), data
+    # CPython's bundled parser is distinct from the removed OS libexpat1.
+    assert tuple(data['expat']) >= (2, 8, 5), data

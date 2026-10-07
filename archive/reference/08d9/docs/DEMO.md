@@ -30,7 +30,7 @@ Export fresh signed bundles with `python tools/export_review.py`, then build the
 
 ## Workspace preview
 
-[View the guided workspace](screenshots/ui-workspace.jpg). Use the live demo for verdicts, replay, and comparison screens; duplicate presentation captures are not shipped.
+View the guided workspace. Use the live demo for verdicts, replay, and comparison screens; duplicate presentation captures are not shipped.
 
 The Word document, recording, slide assembly, and public hosting are outside this release.
 

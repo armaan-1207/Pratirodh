@@ -7,6 +7,7 @@ import sqlite3
 import uuid
 import sys
 import importlib.metadata
+from contextlib import closing
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
 from cryptography.hazmat.primitives import serialization
 
@@ -97,7 +98,7 @@ class Store:
         (path / "signature.hex").write_text(key.sign(seal).hex())
         for item in path.iterdir():
             os.chmod(item, 0o444)
-        with sqlite3.connect(self.root / "index.sqlite") as database:
+        with closing(sqlite3.connect(self.root / "index.sqlite")) as database, database:
             database.execute("CREATE TABLE IF NOT EXISTS runs (id TEXT PRIMARY KEY, created TEXT, decision TEXT, scenario TEXT)")
             database.execute("INSERT INTO runs VALUES (?, ?, ?, ?)",
                              (run_id, report["created"], report["decision"], report.get("scenario", "unknown")))
@@ -119,7 +120,7 @@ class Store:
     def list(self):
         if not (self.root / "index.sqlite").exists():
             return []
-        with sqlite3.connect(self.root / "index.sqlite") as database:
+        with closing(sqlite3.connect(self.root / "index.sqlite")) as database:
             return [row[0] for row in database.execute("SELECT id FROM runs ORDER BY created DESC LIMIT 100")]
 
 

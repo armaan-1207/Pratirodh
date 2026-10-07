@@ -26,7 +26,8 @@ def fixture(tmp_path, monkeypatch, extra=None):
         for name, body in contents.items():
             info = tarfile.TarInfo(name); info.size = len(body)
             archive.addfile(info, io.BytesIO(body))
-    monkeypatch.setattr(prep.subprocess, 'check_output', lambda *a, **kw: tar.getvalue())
+    monkeypatch.setattr(prep.subprocess, 'check_output',
+                        lambda args, **kw: str(source) if 'rev-parse' in args else tar.getvalue())
     return case, source, contents
 
 
@@ -50,6 +51,18 @@ def test_binary_is_retained_and_reported_as_intake_blocker(tmp_path, monkeypatch
     assert any('UTF-8' in message for message in result['blockers'])
 
 
+def test_long_snapshot_paths_preserve_complete_fixture(tmp_path, monkeypatch):
+    name = 'fixtures/' + '/'.join(['nested-directory'] * 12) + '/canary.txt'
+    case, source, _ = fixture(tmp_path, monkeypatch, {name: b'preserve me\n'})
+    destination = case / 'prepared/target' / name
+    assert len(str(destination)) > 260
+    before = {p.relative_to(source).as_posix(): p.read_bytes() for p in source.rglob('*') if p.is_file()}
+    result = prep.prepare_case(case, source)
+    assert prep.snapshot_path(destination).read_bytes() == b'preserve me\n'
+    assert result['qualification'] == 'NOT_RUN'
+    assert before == {p.relative_to(source).as_posix(): p.read_bytes() for p in source.rglob('*') if p.is_file()}
+
+
 def test_archive_traversal_cannot_write_outside_snapshot(tmp_path, monkeypatch):
     case, source, _ = fixture(tmp_path, monkeypatch, {'../escaped.py': b'bad'})
     with pytest.raises(ValueError):
@@ -65,4 +78,5 @@ def test_missing_inputs_and_dry_run_preserve_files(tmp_path, monkeypatch, capsys
     monkeypatch.setattr(prep.subprocess, 'check_output', lambda *a, **kw: (_ for _ in ()).throw(FileNotFoundError('missing source')))
     result = prep.reconstruct_all(tmp_path, source_root=tmp_path)
     assert result['summary']['blocked'] == 1
+    assert '--source-root' in result['cases'][0]['blockers'][0]
     assert not (case / 'prepared').exists()
