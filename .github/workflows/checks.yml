@@ -13,7 +13,8 @@ jobs:
       - run: npm ci && npm run build && git diff --exit-code -- pratirodh/static
       - run: npm test
       - run: npm audit --omit=dev
-      - run: pip install -r requirements-deploy.txt pytest pip-audit
+      - run: pip install --only-binary=:all: --require-hashes -r requirements-deploy.txt
+      - run: pip install pytest==9.1.1 pip-audit==2.10.1
       - run: python -m bandit -r pratirodh -ll
       - run: pip-audit -r requirements-deploy.txt
       - run: python -m pratirodh build-runner
@@ -21,3 +22,6 @@ jobs:
       - run: python scripts/prepare_requests_demo.py
       - run: PRATIRODH_DOCKER_TESTS=1 python -m pytest -q
       - run: docker build -t pratirodh-dashboard:ci .
+      - run: python tools/audit_container_dependencies.py --images pratirodh-dashboard:ci pratirodh-runner:0.1 pratirodh-project-worker:0.2 pratirodh-requests-demo:0.2
+      - run: python tools/scan_container_images.py --images pratirodh-dashboard:ci pratirodh-runner:0.1 pratirodh-project-worker:0.2 pratirodh-requests-demo:0.2
+      - run: python tools/check_image_advisories.py

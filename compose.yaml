@@ -2,6 +2,11 @@ services:
   dashboard:
     build: .
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     read_only: true
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]

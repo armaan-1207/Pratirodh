@@ -1,0 +1,26 @@
+[
+  {
+    "name": "npm",
+    "version": "11.21.0",
+    "url": "https://registry.npmjs.org/npm/-/npm-11.21.0.tgz",
+    "sha256": "783e7c92bf73b442fb800c2d6ef3921e86da8894a700fed45140e37916877482"
+  },
+  {
+    "name": "brace-expansion",
+    "version": "5.0.11",
+    "url": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.11.tgz",
+    "sha256": "67bb5a1b4d4a8ff497d845a0b891ffe6b7233aea2202641315cec88d0fff15eb"
+  },
+  {
+    "name": "undici",
+    "version": "6.28.1",
+    "url": "https://registry.npmjs.org/undici/-/undici-6.28.1.tgz",
+    "sha256": "e18191aac9c0ff43dac7fe9b10b7041a22d07addb7b66a6e8ac14a52a5b69b74"
+  },
+  {
+    "name": "http-cache-semantics",
+    "version": "4.3.0",
+    "url": "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.3.0.tgz",
+    "sha256": "d75e1e6a11587954da5e2f0e2b5c4b397a16d28cc2f7bdf64e9027fc2fe593ee"
+  }
+]

@@ -104,3 +104,11 @@ atmosphere margin to the 651–900 pixel layout. The original continuous animati
 and small-screen fallback remain intact. Frontend tests, asset build, wheel and
 image checks passed again after this CSS correction; browser document width now
 matches the available viewport width.
+
+Subsequent security assessment on 7 October 2026 reviewed all ten OWASP categories
+in the stated local/code scope. It records six open findings and expanded image
+audits beyond the earlier controller-only dependency checks. See
+[OWASP assessment and remediation](OWASP_ASSESSMENT_20261007.md). This assessment
+does not claim complete deployment security or remediate the findings.
+
+Subsequent fixes and expanded verification are recorded in [the security remediation](SECURITY_REMEDIATION_20261007.md). The earlier six-finding assessment above is historical. Original checkouts and upstream acquisitions remain untouched.

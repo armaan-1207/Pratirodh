@@ -10,6 +10,7 @@ import urllib.request
 from .manifest import PROFILES
 from ..evidence import digest
 from .leases import Lease
+from ..provider import NoRedirect
 
 GENERATION = threading.Lock()
 
@@ -45,7 +46,7 @@ class LocalModel:
         request = urllib.request.Request(self.config['endpoint'].rstrip('/') + path,
             data=None if payload is None else json.dumps(payload).encode(), headers={'Content-Type': 'application/json'})
         # Ignore machine proxy configuration for local model calls.
-        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
         with opener.open(request, timeout=timeout) as response:
             raw = response.read(262145)
         if len(raw) > 262144:

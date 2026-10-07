@@ -35,6 +35,8 @@ class DockerProjectWorker:
         return self.identity_value
 
     def execute(self, files, commands, budget):
+        from .manifest import validate_intake
+        validate_intake(files)
         self.identity()
         limits = self.manifest['limits']
         lease = Lease('worker', slots=2)

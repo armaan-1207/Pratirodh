@@ -43,7 +43,7 @@ def prepare(root, image):
         'source_sha256': digest(vulnerable), 'reference_fix_sha256': digest(corrected),
         'scope': 'Reduced upstream library snapshot, supplied reference fix, local Docker demo; no independent audit',
         'adaptations': ['Only Requests package, license and harness are copied; acquisition is preserved.',
-            'In-memory HTTP transport; no TLS/network claim.', 'urllib3 1.26.20 for Python 3.11 compatibility; chardet 3.0.4, idna 2.10, certifi 2024.8.30.']}
+            'In-memory HTTP transport; no TLS/network claim.', 'Security-updated dependencies: urllib3 2.8.0, chardet 3.0.4, idna 3.20, certifi 2026.7.22. Legacy Requests compatibility warnings are retained; no real HTTP/TLS compatibility claim.']}
     files['upstream-provenance.json'] = json.dumps(provenance, indent=2) + '\n'
     root = Path(root)
     root.mkdir(parents=True, exist_ok=False)
@@ -55,7 +55,7 @@ def prepare(root, image):
     definition.update(status='OPERATOR_APPROVED_REFERENCE_DEMO', image=image,
         worker={'mode': 'demo', 'context': 'default'}, demo_scope=provenance,
         dependencies={'prepared': True, 'image_digest': image,
-            'resolved': {'urllib3': '1.26.20', 'chardet': '3.0.4', 'idna': '2.10', 'certifi': '2024.8.30'}})
+            'resolved': {'urllib3': '2.8.0', 'chardet': '3.0.4', 'idna': '3.20', 'certifi': '2026.7.22'}})
     definition['commands']['build'] = [['python', '-c',
         "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('requests').rglob('*.py')]"]]
     definition['commands']['test'] = [['python', 'tests/test_harness.py', 'control']]

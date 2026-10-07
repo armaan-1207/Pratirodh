@@ -15,7 +15,7 @@ def create_example(root, language, image, context='default'):
     root.mkdir(parents=True, exist_ok=True)
     if language == 'python':
         files = {
-            'requirements.txt': 'pytest==8.3.5\n',
+            'requirements.txt': 'pytest==9.1.1\n',
             'policy.py': 'from users import normalize\n\ndef allowed(owner, user):\n    return True\n',
             'users.py': 'def normalize(user):\n    return "admin" if user == "guest" else user\n',
             'portal.py': 'import sys\nfrom policy import allowed\nprint("GRANTED" if allowed(sys.argv[1], sys.argv[2]) else "DENIED")\n',

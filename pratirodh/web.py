@@ -8,13 +8,15 @@ import hmac
 import logging
 import time
 import subprocess
+import uuid
 from datetime import timedelta
 from collections import deque
-from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for, send_file
+from flask import Flask, abort, jsonify, redirect, render_template, request, session, url_for, send_file, g
 from .engine import run, replay
 from .evidence import Store, fresh, freshness_changes
 from .execution import DockerExecutor
 from .interface import scenario_name, explanation
+from .security_events import SecurityEvents
 
 
 def create_app(store=None):
@@ -40,6 +42,10 @@ def create_app(store=None):
     attempts = deque(maxlen=30)
     runtime_cache = {}
     cancellations = {}
+    security_events = SecurityEvents(app.logger)
+
+    def security_event(code, record_id=None):
+        security_events.emit(code, g.request_id, g.operator_authenticated, record_id)
 
     def update_job(job_id, **fields):
         if 'step' in fields and 'stage' not in fields:
@@ -71,8 +77,10 @@ def create_app(store=None):
 
     @app.before_request
     def local_only():
+        g.request_id = uuid.uuid4().hex
+        g.operator_authenticated = False
         if request.host.split(":")[0] not in hosts:
-            app.logger.warning('request denied: host policy')
+            security_event('host_denied')
             abort(403)
         if request.path == '/healthz':
             return None
@@ -85,20 +93,24 @@ def create_app(store=None):
                     while attempts and now - attempts[0] > 60:
                         attempts.popleft()
                     if len(attempts) >= 20:
+                        security_event('authentication_throttled')
                         abort(429)
                     attempts.append(now)
-                app.logger.warning('request denied: authentication failed')
+                security_event('authentication_failed')
                 return 'Authentication required', 401, {'WWW-Authenticate': 'Basic realm="PRATIRODH"'}
+            g.operator_authenticated = True
         if request.method == "POST":
             if readonly:
+                security_event('readonly_action_denied')
                 abort(403, 'This deployment permits evidence review only')
             if not session.get('csrf') or not hmac.compare_digest(request.form.get('csrf', '').encode('utf-8'), session['csrf'].encode('utf-8')):
-                app.logger.warning('request denied: CSRF policy')
+                security_event('csrf_denied')
                 abort(403)
         session.setdefault("csrf", secrets.token_hex(24))
 
     @app.after_request
     def harden(response):
+        response.headers['X-Request-ID'] = g.request_id
         response.headers.update({'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
                                  'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY',
                                  'Referrer-Policy': 'no-referrer', 'Cache-Control': 'no-store',
@@ -136,7 +148,9 @@ def create_app(store=None):
 
     @app.get('/validation')
     def upstream_validation():
-        return render_template('validation.html', upstream=upstream_status())
+        from .upstream_status import read
+        security, error = read(benchmark_root.parent / 'docs/SECURITY_STATUS.json')
+        return render_template('validation.html', upstream=upstream_status(), security=None if error else security)
 
     @app.get('/walkthrough')
     def recorded_walkthrough():
@@ -159,7 +173,7 @@ def create_app(store=None):
 
     @app.post('/projects/inspect')
     def project_inspect():
-        from .projects.manifest import inspect
+        from .projects.manifest import inspect, IntakeRejected
         try:
             source = Path(request.form.get('source', '')).resolve()
             manifest = inspect(source)
@@ -174,6 +188,10 @@ def create_app(store=None):
                     executable = True
                 except (OSError, ValueError):
                     pass
+        except IntakeRejected:
+            security_event('source_intake_denied')
+            return render_template('projects.html', error='Inspection blocked: remove credential files, .env variants, '
+                'private keys and tokens from the source folder, then inspect it again. No project code was executed.'), 400
         except (OSError, ValueError):
             return render_template('projects.html', error='The directory could not be inspected. Remove secrets and check the supported project format.'), 400
         return render_template('projects.html', manifest=manifest, executable=executable, approved=approved)
@@ -449,6 +467,7 @@ def create_app(store=None):
         try:
             report = store.load(run_id)
         except Exception:
+            security_event('evidence_integrity_denied', run_id)
             abort(409, "Evidence integrity could not be verified")
         if report.get('kind') == 'review':
             return render_template('review.html', report=report)
@@ -469,7 +488,9 @@ def create_app(store=None):
                 path = export_bundle(store, run_id, Path(directory) / 'evidence.zip')
                 payload = Path(path).read_bytes()
         except (ValueError, OSError):
-            abort(409, 'Evidence export could not be verified')
+            security_event('evidence_export_denied', run_id)
+            abort(409, 'Export blocked: evidence is missing, altered or unverifiable. Inspect the stored run '
+                  'and recreate its evidence before exporting.')
         return send_file(io.BytesIO(payload), mimetype='application/zip', as_attachment=True,
                          download_name=f'pratirodh-{run_id}.zip')
 
@@ -478,7 +499,7 @@ def create_app(store=None):
         try:
             result = replay(run_id, request.form.get("case"), store, candidate=int(request.form.get("candidate", "0")))
         except Exception as exc:
-            app.logger.warning('replay denied or failed: %s', type(exc).__name__)
+            security_event('replay_denied', run_id)
             return jsonify(error='Replay unavailable. Evidence may be stale or the case invalid.'), 409
         return render_template("replay.html", result=result)
 

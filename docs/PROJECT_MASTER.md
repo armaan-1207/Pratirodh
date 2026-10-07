@@ -2,6 +2,8 @@
 
 **Local integration update — 7 October 2026:** current work is on `codex/main-integrated-demo`, combining main controller protections with later improvements. See [reconciliation](RECONCILIATION.md) and [pinned preparation](UPSTREAM_PREPARATION.md). The current strict preparation result is 5 prepared / 19 blocked, not 24 qualified. Azure execution is excluded from this stage. Operational observations below are dated history; they do not authorize a new cloud window. The original historical document is retained in the inactive reference archive.
 
+**Application security update - 7 October 2026:** [The OWASP assessment](OWASP_ASSESSMENT_20261007.md) reviewed all ten categories in the local/code scope. [Subsequent remediation](SECURITY_REMEDIATION_20261007.md) addresses intake, transport, export, logging, dependency and repository controls, with executable verification and explicit residual OS/deployment risks. Historical results below retain their original date and scope. Final combined verification: 251 Python tests passed with Docker enabled and no skips; 3 frontend tests passed.
+
 
 **Project master document · Version 0.2.0 · Status reviewed 6 October 2026**
 

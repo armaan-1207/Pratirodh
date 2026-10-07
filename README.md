@@ -229,7 +229,9 @@ Pratirodh/
 
 **Local reconciliation on 7 October 2026:** the main controller is combined with the latest continuous frontend animation, supplied-patch demonstrations, cloud guard/accounting tools and preserved upstream preparation inputs. Authentication, security headers, freshness checks, signed exports and qualification requirements remain enforced. [Reconciliation and scope](docs/RECONCILIATION.md).
 
-**Verified locally on 7 October 2026:** all 208 Python tests passed with Docker enabled and no skips; all 3 frontend tests passed. Bundled assets rebuilt successfully, Python/npm dependency audits found no known vulnerabilities, static security checks passed, and the deployment image and wheel passed inspection. Clean exported-checkout preparation retained the pinned Requests demo and reported unsupported full-upstream inputs explicitly. These results cover local integration, not Azure qualification.
+**Verified locally on 7 October 2026:** all 251 Python tests passed with Docker enabled and no skips; all 3 frontend tests passed. Bundled assets rebuilt successfully, controller Python and frontend npm dependency audits found no known vulnerabilities, static security checks passed, and the deployment image and wheel passed inspection. Clean exported-checkout preparation retained the pinned Requests demo and reported unsupported full-upstream inputs explicitly. These results cover local integration, not Azure qualification or complete image vulnerability coverage.
+
+**OWASP review and remediation - 7 October 2026:** all ten OWASP 2025 categories were reviewed in the documented local/code scope. Source secret rejection, redirect blocking, bounded export verification, sanitized security events and main protection have executable checks. Images use pinned build inputs and updated application/tool dependencies. Unfixed OS advisories remain dated, reviewed residual risks; this is not certification or a claim of complete security. [Historical assessment](docs/OWASP_ASSESSMENT_20261007.md) · [Fixes, verification and remaining risks](docs/SECURITY_REMEDIATION_20261007.md).
 
 **Upstream preparation:** strict local intake produced 5 prepared snapshots and 19 explicit blockers. Older 24/24 static readiness observations used different intake limits and reduced checkouts. Prepared snapshots are not runtime qualifications. The larger campaign and independent audit remain incomplete. [Portable preparation](docs/UPSTREAM_PREPARATION.md).
 
@@ -328,7 +330,7 @@ Keep `.env`, signing keys, local databases, model weights, acquired source archi
 4. **Broaden project support:** extend reviewed adapters and dependency preparation; investigate service-backed and multi-container applications.
 5. **Improve property testing and operations:** qualify fuzz/HTTP harnesses, strengthen authorization checks, and simplify manifests, resumable runs and evidence handoff.
 
-These are planned acceptance and development tasks. The immediate priority is upstream qualification and audit completion.
+These are planned acceptance and development tasks. Review residual image risks and deployment controls before expanding to sensitive or unfamiliar inputs; upstream qualification and independent audit remain separate priorities.
 
 ## Documentation
 
