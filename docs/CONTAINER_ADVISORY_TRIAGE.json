@@ -5,7 +5,7 @@
   "inputs": {
     "Dockerfile": "f2285da2111c8181910451775100dc1b471836656430a5e8014619cdf2f6750b",
     "pratirodh/Dockerfile": "c0f5b7d759310a3349ef82341b871c5af7d65ba8bae80dc6031a2eab2819e49b",
-    "pratirodh/projects/Dockerfile": "62446bb3b4437bdecef02389e19912f83ce8506ad6a396e989b27ee9358ff5dd",
+    "pratirodh/projects/Dockerfile": "8da625d839201d6221316cb7afd8d7fe6bb976579756c0119ec6453ee085ac4b",
     "pratirodh/projects/RequestsDemo.Dockerfile": "aefe2e10b676934466aec1585bab841abc4f33361f9e483644250d64ba9f63f8",
     "requirements-deploy.txt": "5e6f785b7e1cb576362908dd8093970724edebd16154334e7f1b0952a396cb9c",
     "pratirodh/requirements-runner.txt": "f0c5397957915e7b900c6af84990ecbb46e675d3ea3450d6d7d6bcaf236ca5f5",
@@ -15,7 +15,11 @@
     "pratirodh/projects/install_worker_npm.py": "ffd4a77935f8d970bb16003245b6f33bfd29e03f7e827ff8e57fbab0dcb07a5f",
     "pratirodh/projects/worker.py": "4249512301e8ccc7e137ee61ff07b940715575bde740e1359abf74133c0f1f01",
     "pratirodh/projects/worker_entry.py": "2b03c47ed5cea3b747cd01053cf1b1d26315e9124aff27b044db3466bdb54795",
-    "compose.yaml": "ddae6fa0f2510fe71283fde8d5cf95b7f0b60ddfb0f2773ba48504523c8fd743"
+    "compose.yaml": "ddae6fa0f2510fe71283fde8d5cf95b7f0b60ddfb0f2773ba48504523c8fd743",
+    "pratirodh/projects/requirements-pip-vendor.txt": "5223cc8959a3ddd9a64b37aa012c62f974647ab9263563c750967bafd16d2e31",
+    "pratirodh/projects/update_pip_vendor.py": "c19568383e58bf2840a508b045c5170cb4818e4d28b6a8b257c460c66e6f96eb",
+    "tools/audit_container_dependencies.py": "a53852e102456e44c7b9f40f1373fa58e2a83a2b1f3f0fc558ba86127efe14b1",
+    "tools/scan_container_images.py": "52ecb6400c378e6436a856e4ce381364c8894a0df065a4d1d1b3ef467832ce52"
   },
   "findings": [
     {

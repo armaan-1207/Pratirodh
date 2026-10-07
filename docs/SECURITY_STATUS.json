@@ -22,7 +22,7 @@
     {
       "title": "Container dependencies",
       "status": "Updated tooling; residual OS risks reviewed",
-      "detail": "Four images have no reported installed/vendored Python advisories; worker npm tooling was updated. Native OS advisories remain, including a critical libxml2 candidate. Dated review expires 2026-11-06; changed or unreviewed findings block CI."
+      "detail": "Four images have no applicable installed/vendored Python advisories; two absent-module setuptools advisories are explicitly reviewed for the pkg_resources-only copy; worker npm tooling was updated. Native OS advisories remain, including a critical libxml2 candidate. Dated review expires 2026-11-06; changed or unreviewed findings block CI."
     },
     {
       "title": "Security events",
@@ -38,7 +38,7 @@
   "checks": [
     {
       "label": "Complete combined Python suite with Docker enabled",
-      "result": "251 passed, no skips; 542.80 seconds"
+      "result": "254 passed, no skips; 675.21 seconds"
     },
     {
       "label": "Focused intake, transport, archive and security-event checks",

@@ -18,6 +18,11 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 COPY requirements-worker.txt /opt/pratirodh/requirements-worker.txt
 RUN pip install --no-cache-dir --only-binary=:all: --require-hashes -r /opt/pratirodh/requirements-worker.txt
+COPY requirements-pip-vendor.txt update_pip_vendor.py /opt/pratirodh/
+RUN pip download --no-cache-dir --only-binary=:all: --require-hashes --no-deps \
+    -r /opt/pratirodh/requirements-pip-vendor.txt -d /opt/pip-vendor-wheels \
+    && python /opt/pratirodh/update_pip_vendor.py \
+    && rm -rf /opt/pip-vendor-wheels
 COPY worker_entry.py /opt/pratirodh/worker_entry.py
 # The supervisor needs SETUID/SETGID; target code runs as 65534, without caps.
 USER 0:0

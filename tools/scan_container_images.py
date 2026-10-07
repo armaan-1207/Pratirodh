@@ -38,8 +38,9 @@ def main():
                 'image', '--input', '/input/image.tar', '--skip-db-update',
                 '--cache-backend', 'memory', '--scanners', 'vuln', '--offline-scan',
                 '--skip-version-check', '--cache-dir', '/cache', '--timeout', '10m',
-                # pip's build provenance lists build-time packages that are not installed.
-                # Actual installed/vendored METADATA is scanned independently as well.
+                # pip's original BOM mixes build-time and original bundled pins.
+                # Actual METADATA and vendor.txt components are audited separately,
+                # including reviewed hash-bound security overrides to pip modules.
                 '--skip-files', '**/pip/_vendor/bom.cdx.json',
                 '--severity', 'HIGH,CRITICAL', '--format', 'json',
                 '--output', f'/audit/{role}-trivy.json')
