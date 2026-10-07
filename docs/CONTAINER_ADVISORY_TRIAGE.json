@@ -3958,6 +3958,57 @@
       "reason": "Advisory concerns privileged mount/nsenter/cgroup or mount post-hook operations. Runtime lacks CAP_SYS_ADMIN/CAP_SYS_RESOURCE; no host mounts are passed. Dashboard/runner drop all capabilities; worker supervisor retains only SETUID/SETGID and drops target capabilities before project commands. Reassess any capability or mount policy change; installed package is not claimed patched.",
       "source": "https://security-tracker.debian.org/tracker/CVE-2026-78410",
       "fixed_version": ""
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-89811",
+        "linux-libc-dev",
+        "6.12.111-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: drm/amdkfd: Add TLB flush after MES queue eviction/suspension",
+      "disposition": "build-headers-only",
+      "reason": "Advisory affects executable AMD GPU queue/TLB code. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89811",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-07"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-90111",
+        "linux-libc-dev",
+        "6.12.111-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: ip6mr: do not clone dst in ip6mr_cache_report()",
+      "disposition": "build-headers-only",
+      "reason": "Advisory affects executable IPv6 multicast routing code. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90111",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-07"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-90315",
+        "linux-libc-dev",
+        "6.12.111-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: PCI/sysfs: Add lockdown checks to legacy I/O and memory handlers",
+      "disposition": "build-headers-only",
+      "reason": "Advisory affects executable PCI/sysfs lockdown handlers. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90315",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-07"
     }
   ],
   "input_hash_normalization": "CRLF to LF for tracked text inputs across Windows and Linux"

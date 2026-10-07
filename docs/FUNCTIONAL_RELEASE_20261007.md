@@ -40,6 +40,19 @@ three execution images had no applicable advisories. The dated OS advisory gate
 passed with reviewed residual rows: dashboard 46, runner 44, general worker 112,
 Requests 44. Residual findings are not described as patched or absent.
 
+During publication, the refreshed scanner database added three high kernel-source
+findings for the general worker's `linux-libc-dev` 6.12.111-1: [CVE-2026-89811](https://security-tracker.debian.org/tracker/CVE-2026-89811),
+[CVE-2026-90111](https://security-tracker.debian.org/tracker/CVE-2026-90111) and
+[CVE-2026-90315](https://security-tracker.debian.org/tracker/CVE-2026-90315).
+Direct inspection found 2,559 regular package payload files, all headers or
+documentation, and no kernel images or modules. These exact image-package
+applicability reviews retain the open host-kernel qualification requirement;
+they do not claim host patching or exclude other kernel advisories. Refreshed
+scan/gate counts are dashboard 46, runner 44, general worker 115 and Requests 44.
+The release gate still rejects unknown findings, version/severity/fix changes,
+expired reviews and changed build inputs. The earlier 112-row worker observation
+above remains dated evidence from the preceding database.
+
 Wheel inspection confirmed the new mutation adapter and Requests tools lock are
 packaged and archives, source acquisitions, prepared snapshots and private inputs
 are excluded. A clean export of 1,002 release files reconstructed the same cohort:
