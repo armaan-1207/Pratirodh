@@ -13,7 +13,7 @@ jobs:
       - run: npm ci && npm run build && git diff --exit-code -- pratirodh/static
       - run: npm test
       - run: npm audit --omit=dev
-      - run: pip install --only-binary=:all: --require-hashes -r requirements-deploy.txt
+      - run: 'pip install --only-binary=:all: --require-hashes -r requirements-deploy.txt'
       - run: pip install pytest==9.1.1 pip-audit==2.10.1
       - run: python -m bandit -r pratirodh -ll
       - run: pip-audit -r requirements-deploy.txt
