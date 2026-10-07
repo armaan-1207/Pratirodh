@@ -1,0 +1,314 @@
+[
+  {
+    "id": "cwe-22-development-01",
+    "split": "development",
+    "cwe": "CWE-22",
+    "transport": "query",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-development-02",
+    "split": "development",
+    "cwe": "CWE-22",
+    "transport": "form",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-development-03",
+    "split": "development",
+    "cwe": "CWE-22",
+    "transport": "json",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-development-04",
+    "split": "development",
+    "cwe": "CWE-22",
+    "transport": "query",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-development-05",
+    "split": "development",
+    "cwe": "CWE-22",
+    "transport": "form",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-development-06",
+    "split": "development",
+    "cwe": "CWE-22",
+    "transport": "json",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-heldout-01",
+    "split": "heldout",
+    "cwe": "CWE-22",
+    "transport": "query",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-heldout-02",
+    "split": "heldout",
+    "cwe": "CWE-22",
+    "transport": "form",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-heldout-03",
+    "split": "heldout",
+    "cwe": "CWE-22",
+    "transport": "json",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-heldout-04",
+    "split": "heldout",
+    "cwe": "CWE-22",
+    "transport": "query",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-heldout-05",
+    "split": "heldout",
+    "cwe": "CWE-22",
+    "transport": "form",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-22-heldout-06",
+    "split": "heldout",
+    "cwe": "CWE-22",
+    "transport": "json",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-development-01",
+    "split": "development",
+    "cwe": "CWE-89",
+    "transport": "query",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-development-02",
+    "split": "development",
+    "cwe": "CWE-89",
+    "transport": "form",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-development-03",
+    "split": "development",
+    "cwe": "CWE-89",
+    "transport": "json",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-development-04",
+    "split": "development",
+    "cwe": "CWE-89",
+    "transport": "query",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-development-05",
+    "split": "development",
+    "cwe": "CWE-89",
+    "transport": "form",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-development-06",
+    "split": "development",
+    "cwe": "CWE-89",
+    "transport": "json",
+    "family": "direct",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-heldout-01",
+    "split": "heldout",
+    "cwe": "CWE-89",
+    "transport": "query",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-heldout-02",
+    "split": "heldout",
+    "cwe": "CWE-89",
+    "transport": "form",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-heldout-03",
+    "split": "heldout",
+    "cwe": "CWE-89",
+    "transport": "json",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-heldout-04",
+    "split": "heldout",
+    "cwe": "CWE-89",
+    "transport": "query",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-heldout-05",
+    "split": "heldout",
+    "cwe": "CWE-89",
+    "transport": "form",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  },
+  {
+    "id": "cwe-89-heldout-06",
+    "split": "heldout",
+    "cwe": "CWE-89",
+    "transport": "json",
+    "family": "decoded-path-or-format-query",
+    "labels": [
+      "correct",
+      "incomplete",
+      "functionality-breaking",
+      "insecure-alternative"
+    ]
+  }
+]

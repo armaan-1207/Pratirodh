@@ -20,15 +20,16 @@ PRATIRODH investigates declared security violations, proposes or accepts candida
 
 **Start with the multi-file synthetic demo:** Python, JavaScript and C/C++ examples run in restricted Docker workers with supplied patches. No AI model is required for these examples. Optional project AI uses **Qwen2.5-Coder 7B** through a reviewed model configuration.
 
-![Redesigned PRATIRODH desktop hero and verification core](docs/screenshots/showcase-polished-20261002.jpg)
+![PRATIRODH security repair lab overview](assets/pratirodh-overview.png)
 
-*Captured from the current localhost application on 2 October 2026. The verification core is an explanatory illustration; execution results are shown in signed evidence pages.*
+*Overview captured on 6 October 2026. The verification landscape illustrates the workflow; actual results appear in signed evidence pages.*
 
 ## Features
 
 - **Project intake:** inventory source files and propose manifests for Python/pytest, locked npm and CMake/CTest layouts. Operators review commands, protected inputs, dependencies and security properties before execution.
 - **Repair and discovery workflows:** reproduce a declared violation, retain failed candidates, and verify supplied or locally generated multi-file patches.
 - **Challenge the repair:** run regression, control, reproducer and variation checks; qualify weakened repairs and test whether the checks catch them.
+- **Requests redirect repair:** pinned upstream source for CVE-2018-18074, legitimate redirect controls, downgrade and port-change checks, and a deliberately weakened repair. Supplied-patch, zero-model-call verification remains separate from upstream qualification. [Preparation and scope](docs/REQUESTS_DEMO.md).
 - **Restricted workers:** use bounded Docker execution without external networking, controller mounts, signing keys or a mounted Docker socket.
 - **Signed evidence:** bind source and execution inputs, sign artifact inventories with Ed25519, display freshness, and export verifiable bundles.
 - **Review interface:** inspect jobs, candidate diffs, check observations, comparison records and upstream campaign status. Source files are never replaced automatically.
@@ -97,7 +98,7 @@ The helper builds the project worker image if missing, executes the synthetic ex
 
 ### Explore the application
 
-Open [localhost:8767](http://127.0.0.1:8767/) and select **Run project demo**, or use the main navigation:
+The dashboard at [localhost:8767](http://127.0.0.1:8767/) provides these views:
 
 - **`/projects`:** inspect a project or run a synthetic Python, JavaScript or C/C++ demonstration.
 - **`/walkthrough`:** select a saved signed result, inspect its checks and download its evidence.
@@ -150,7 +151,7 @@ python -m pratirodh build-runner
 python -m pratirodh serve --port 8765
 ```
 
-Use your virtual-environment interpreter. Open `/workspace` on port 8765 and choose **Start guided demo** for supplied-patch verification without model calls. Optional AI and combined modes use the guided provider's 3B default. The single-file CLI accepts `--model qwen2.5-coder:7b`; project workflows configure models separately through manifests.
+Use your virtual-environment interpreter. The Workspace includes guided supplied-patch verification without model calls. Optional AI and combined modes use the guided provider's 3B default. The single-file CLI accepts `--model qwen2.5-coder:7b`; project workflows configure models separately through manifests.
 
 The guided fixtures cover CWE-22, CWE-89, CWE-78 and CWE-798. The `prototype-small` 3B project profile is experimental and does not satisfy the planned default-model release evaluation. Missing models and timeouts retain unresolved evidence; these local workflows invoke no cloud fallback.
 
@@ -226,7 +227,15 @@ Pratirodh/
 
 ## Results and current status
 
-**Verified on 2 October 2026:** 124 Python tests passed with Docker tests enabled, and all 3 frontend tests passed. The frontend rebuild matched tracked assets; the package wheel included the project worker Dockerfile. Bandit reported no medium/high findings and the production npm dependency audit reported no vulnerabilities.
+**Local reconciliation on 7 October 2026:** the main controller is combined with the latest continuous frontend animation, supplied-patch demonstrations, cloud guard/accounting tools and preserved upstream preparation inputs. Authentication, security headers, freshness checks, signed exports and qualification requirements remain enforced. [Reconciliation and scope](docs/RECONCILIATION.md).
+
+**Verified locally on 7 October 2026:** all 254 Python tests passed with Docker enabled and no skips; all 3 frontend tests passed. Bundled assets rebuilt successfully, controller Python and frontend npm dependency audits found no known vulnerabilities, static security checks passed, and the deployment image and wheel passed inspection. Clean exported-checkout preparation retained the pinned Requests demo and reported unsupported full-upstream inputs explicitly. These results cover local integration, not Azure qualification or complete image vulnerability coverage.
+
+**OWASP review and remediation - 7 October 2026:** all ten OWASP 2025 categories were reviewed in the documented local/code scope. Source secret rejection, redirect blocking, bounded export verification, sanitized security events and main protection have executable checks. Images use pinned build inputs and updated application/tool dependencies. Unfixed OS advisories remain dated, reviewed residual risks; this is not certification or a claim of complete security. [Historical assessment](docs/OWASP_ASSESSMENT_20261007.md) · [Fixes, verification and remaining risks](docs/SECURITY_REMEDIATION_20261007.md).
+
+**Upstream preparation:** strict local intake produced 5 prepared snapshots and 19 explicit blockers. Older 24/24 static readiness observations used different intake limits and reduced checkouts. Prepared snapshots are not runtime qualifications. The larger campaign and independent audit remain incomplete. [Portable preparation](docs/UPSTREAM_PREPARATION.md).
+
+**Historical verification on 2 October 2026:** 124 Python tests passed with Docker tests enabled, and all 3 frontend tests passed. The frontend rebuild matched tracked assets; the package wheel included the project worker Dockerfile. Bandit reported no medium/high findings and the production npm dependency audit reported no vulnerabilities.
 
 Localhost browser checks completed the guided Flask demo and all three language repair demos. Each project demo rejected the incomplete repair and produced a corrected repair ready for review. Signed exports verified against the retained store public key. These synthetic supplied-candidate runs made **zero model calls**.
 
@@ -237,7 +246,7 @@ The upstream validation workflow covers source provenance, comparison execution,
 <details>
 <summary><strong>Campaign preparation and technical status</strong></summary>
 
-**24 source revisions acquired · 0 qualified cases · 0 completed attempts · 0 audits.** The recorded campaign remains `BLOCKED_INTAKE`. The Azure workers were deallocated after preflight. Acquisition and infrastructure preparation do not establish a working upstream repair.
+**Recorded preparation: 24 source revisions acquired · 0 qualified cases · 0 completed attempts · 0 audits.** The recorded campaign remains `BLOCKED_INTAKE`. The Azure workers were deallocated after preflight. Acquisition and infrastructure preparation do not establish a working upstream repair.
 
 The UI derives counts from acquisition, campaign and worker artifacts and exposes them at `/validation/status.json`. Accepted campaign results require a verified signed snapshot and passing audit evidence. A fresh clone displays only the records available locally.
 
@@ -321,10 +330,11 @@ Keep `.env`, signing keys, local databases, model weights, acquired source archi
 4. **Broaden project support:** extend reviewed adapters and dependency preparation; investigate service-backed and multi-container applications.
 5. **Improve property testing and operations:** qualify fuzz/HTTP harnesses, strengthen authorization checks, and simplify manifests, resumable runs and evidence handoff.
 
-These are planned acceptance and development tasks. The immediate priority is upstream qualification and audit completion.
+These are planned acceptance and development tasks. Review residual image risks and deployment controls before expanding to sensitive or unfamiliar inputs; upstream qualification and independent audit remain separate priorities.
 
 ## Documentation
 
+- [Current team handover](docs/PROJECT_MASTER.md) · [Reconciliation inventory](docs/reconciliation-inventory.json).
 - [Project workflows](docs/PROJECT_WORKFLOWS.md): manifests, worker boundaries, model profiles and budgets.
 - [Demo readiness](docs/DEMO_READINESS.md): completed capabilities and outstanding acceptance gates.
 - [Cloud workers](docs/CLOUD_WORKERS.md) · [Azure setup](deploy/AZURE_VALIDATION.md) · [Local Linux workers](docs/LINUX_WORKERS.md).

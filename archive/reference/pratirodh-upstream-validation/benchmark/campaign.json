@@ -1,0 +1,513 @@
+{
+  "version": 1,
+  "cohort": "upstream-v2",
+  "complete_24_case_cohort": true,
+  "qualification": "NOT_CHECKED",
+  "release_complete": false,
+  "cases": [
+    {
+      "id": "cpp-cve-2014-9130",
+      "language": "cpp",
+      "split": "evaluation",
+      "target": "recipes/cpp-cve-2014-9130/target",
+      "manifest": "recipes/cpp-cve-2014-9130/manifest.json",
+      "audit": "recipes/cpp-cve-2014-9130/audit.json",
+      "source_revision": "0666258190959d085822bad9a78c19df1ec8f0d8f874b0df27143cbd52e37cde",
+      "manifest_digest": "7a1b0ec60e24ae506d197e250afe377a7e60e29d2300ecec89239ba39cdaf5b9",
+      "audit_digest": "389dba7f38dc8a9639e45cb1fd11577df57c55afc73f3a07da6fece9f5efa067",
+      "description": "libyaml assertion failure on crafted input (CWE-617)",
+      "provenance": {
+        "license": "MIT / BSD / LGPL (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2014-9130",
+        "repository_url": "https://github.com/yaml/libyaml",
+        "upstream_fix_url": "https://github.com/yaml/libyaml/commit/e6aa721cc0e5a48f408c52355559fd36780ba32a",
+        "upstream_source_revision": "eebdd8b84defa1166f9fd0fc4b46258a47d94576",
+        "upstream_fix_revision": "e6aa721cc0e5a48f408c52355559fd36780ba32a",
+        "adaptations": "Pinned to vulnerable revision eebdd8b84defa1166f9fd0fc4b46258a47d94576. Assertion failure parsing crafted YAML. Harness parses crafted YAML input, checks for abort or error. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2018-25032",
+      "language": "cpp",
+      "split": "development",
+      "target": "recipes/cpp-cve-2018-25032/target",
+      "manifest": "recipes/cpp-cve-2018-25032/manifest.json",
+      "audit": "recipes/cpp-cve-2018-25032/audit.json",
+      "source_revision": "d87acf02ab6b35b25a18f56ec565a82731e9c8da244acefc879e5d18edf4dff4",
+      "manifest_digest": "194dddd9120c89b49172959a0cc440aec1d99b0413da3f2d1b1cc09a3fe107ec",
+      "audit_digest": "ec1f33c74ba5d0bf99ee2dbea1bd0311de5b13f04ae9b055fdce41eb1e740417",
+      "description": "zlib deflate out-of-bounds write during compression (CWE-787)",
+      "provenance": {
+        "license": "Zlib",
+        "source_url": "https://github.com/advisories/CVE-2018-25032",
+        "repository_url": "https://github.com/madler/zlib",
+        "upstream_fix_url": "https://github.com/madler/zlib/commit/5c44459c3b28a9bd3283aaceab7c615f8020c531",
+        "upstream_source_revision": "e99813dbfe9a09e33d42e8da9e550a0c4b7ff734",
+        "upstream_fix_revision": "5c44459c3b28a9bd3283aaceab7c615f8020c531",
+        "adaptations": "Pinned to vulnerable revision e99813dbfe9a09e33d42e8da9e550a0c4b7ff734. Harness compresses specially crafted input using zlib deflate inside a Docker container. The vulnerability is a heap-based out-of-bounds write triggered when compressing inputs with specific match distances combined with certain compression levels. Harness checks for crash or AddressSanitizer detection vs. successful return. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2019-1000019",
+      "language": "cpp",
+      "split": "evaluation",
+      "target": "recipes/cpp-cve-2019-1000019/target",
+      "manifest": "recipes/cpp-cve-2019-1000019/manifest.json",
+      "audit": "recipes/cpp-cve-2019-1000019/audit.json",
+      "source_revision": "3356329c4eedd1fff29ccacd41c465ae2b194732b918aa356e40444096e37395",
+      "manifest_digest": "4a110ccfd5eeac3915aecaab5d9916ec209f0bea7935aa4b7bf5c8fffd709c2f",
+      "audit_digest": "d0aff6697ac1d6ca72b7db8c0474080a8d44eace7099de7cdf070d4602b36a8f",
+      "description": "libarchive OOB read in 7zip format (CWE-125)",
+      "provenance": {
+        "license": "MIT / BSD / LGPL (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2019-1000019",
+        "repository_url": "https://github.com/libarchive/libarchive",
+        "upstream_fix_url": "https://github.com/libarchive/libarchive/commit/65a23f5dbee4497064e9bb467f81138a62b0dae1",
+        "upstream_source_revision": "8312eaa576014cd9b965012af51bc1f967b12423",
+        "upstream_fix_revision": "65a23f5dbee4497064e9bb467f81138a62b0dae1",
+        "adaptations": "Pinned to vulnerable revision 8312eaa576014cd9b965012af51bc1f967b12423. Out-of-bounds read on malformed 7zip archive. Harness extracts crafted 7zip, checks for crash or ASan OOB. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2020-12762",
+      "language": "cpp",
+      "split": "evaluation",
+      "target": "recipes/cpp-cve-2020-12762/target",
+      "manifest": "recipes/cpp-cve-2020-12762/manifest.json",
+      "audit": "recipes/cpp-cve-2020-12762/audit.json",
+      "source_revision": "12a1787531901afa958aa155141c002481a2f0633e92faad0ae74d5b0904614a",
+      "manifest_digest": "3cfa84ffe270d43f401fd175601f2db0f6451d8e608c6be4e70db03e6a3b8c3c",
+      "audit_digest": "e14a57efe243df5561d40e9f805fa1c9f31a5d9f68d287fc75e8482c7cd54e60",
+      "description": "json-c integer overflow in array/linkhash (CWE-190)",
+      "provenance": {
+        "license": "MIT / BSD / LGPL (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2020-12762",
+        "repository_url": "https://github.com/json-c/json-c",
+        "upstream_fix_url": "https://github.com/json-c/json-c/commit/d07b91014986900a3a75f306d302e13e005e9d67",
+        "upstream_source_revision": "77d935b7ae7871a1940cd827e850e6063044ec45",
+        "upstream_fix_revision": "d07b91014986900a3a75f306d302e13e005e9d67",
+        "adaptations": "Pinned to vulnerable revision 77d935b7ae7871a1940cd827e850e6063044ec45. Integer overflow in linkhash/printbuf causing heap corruption. Harness constructs large JSON object or array. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2022-43680",
+      "language": "cpp",
+      "split": "evaluation",
+      "target": "recipes/cpp-cve-2022-43680/target",
+      "manifest": "recipes/cpp-cve-2022-43680/manifest.json",
+      "audit": "recipes/cpp-cve-2022-43680/audit.json",
+      "source_revision": "6b42ec438e7fc9bcb266f12c1330575a7c922a51e25ecb14046f38d2e8f98f2e",
+      "manifest_digest": "5b705f891c7bddeaab22ee7fc85d38d966c95dd35d39918bd2d9bb45c0f3fb56",
+      "audit_digest": "3c6b98421c453941f8d4124723a60883d9683ce309ce963ab1350a4323ca2d82",
+      "description": "libexpat use-after-free in XML entity handling (CWE-416)",
+      "provenance": {
+        "license": "MIT / BSD / LGPL (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2022-43680",
+        "repository_url": "https://github.com/libexpat/libexpat",
+        "upstream_fix_url": "https://github.com/libexpat/libexpat/commit/5290462a7ea1278a8d5c0d5b2860d4e244f997e4",
+        "upstream_source_revision": "391551620eefa5fccfaaee07dab066cc552527b2",
+        "upstream_fix_revision": "5290462a7ea1278a8d5c0d5b2860d4e244f997e4",
+        "adaptations": "Pinned to vulnerable revision 391551620eefa5fccfaaee07dab066cc552527b2. UAF in entity reference processing after realloc. Harness parses crafted XML with ASan or checks for crash. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2023-4863",
+      "language": "cpp",
+      "split": "evaluation",
+      "target": "recipes/cpp-cve-2023-4863/target",
+      "manifest": "recipes/cpp-cve-2023-4863/manifest.json",
+      "audit": "recipes/cpp-cve-2023-4863/audit.json",
+      "source_revision": "d2fd666ba65dbc2fd2a07d368b9551fc0408fb5bea256dad0fade0b2b4f00b95",
+      "manifest_digest": "fab17f9f69e70905ad17c584b9cd27fdac4195f34109f9122bbc9eb10838f76b",
+      "audit_digest": "fa965b191c21df1cc0ec2aeeaa042de810da117ca01e4afcf3336237a36fd8ad",
+      "description": "libwebp heap buffer overflow in VP8L decode (CWE-787)",
+      "provenance": {
+        "license": "MIT / BSD / LGPL (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2023-4863",
+        "repository_url": "https://github.com/webmproject/libwebp",
+        "upstream_fix_url": "https://github.com/webmproject/libwebp/commit/902bc9190331343b2017211debcec8d2ab87e17a",
+        "upstream_source_revision": "7ba44f80f3b94fc0138db159afea770ef06532a0",
+        "upstream_fix_revision": "902bc9190331343b2017211debcec8d2ab87e17a",
+        "adaptations": "Pinned to vulnerable revision 7ba44f80f3b94fc0138db159afea770ef06532a0. Heap buffer overflow decoding crafted WebP image. Harness decodes crafted webp file, checks for crash or ASan OOB. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2023-50472",
+      "language": "cpp",
+      "split": "development",
+      "target": "recipes/cpp-cve-2023-50472/target",
+      "manifest": "recipes/cpp-cve-2023-50472/manifest.json",
+      "audit": "recipes/cpp-cve-2023-50472/audit.json",
+      "source_revision": "dd293ae6fd76bbe2672215a8628772d36122b322a530a7c39115d8498d6a02f4",
+      "manifest_digest": "f0dd02bc1f5e55ee930e975deb59b4eb50b6e4a688d4200f30dac450b02d4ca4",
+      "audit_digest": "82c480986a044a7d7a8d5364d51759307d1cb2bb5f1c2750066d1fe96f481d28",
+      "description": "cJSON null string dereference / NULL pointer in print_string (CWE-476)",
+      "provenance": {
+        "license": "MIT",
+        "source_url": "https://github.com/advisories/CVE-2023-50472",
+        "repository_url": "https://github.com/DaveGamble/cJSON",
+        "upstream_fix_url": "https://github.com/DaveGamble/cJSON/commit/276a4620c1b3107635fd9a7aa91ae2a72d5eb1c4",
+        "upstream_source_revision": "cb8693b058ba302f4829ec6d03f609ac6f848546",
+        "upstream_fix_revision": "276a4620c1b3107635fd9a7aa91ae2a72d5eb1c4",
+        "adaptations": "Pinned to vulnerable revision cb8693b058ba302f4829ec6d03f609ac6f848546 (upstream-acquisition-v2). Harness calls cJSON functions with null/empty string inputs inside a Docker container. The vulnerable code in cJSON.c dereferences a NULL pointer when printing a string item that has a null valuestring. Harness checks for crash (SIGSEGV / non-zero exit) vs. safe return. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "cpp-cve-2024-25062",
+      "language": "cpp",
+      "split": "evaluation",
+      "target": "recipes/cpp-cve-2024-25062/target",
+      "manifest": "recipes/cpp-cve-2024-25062/manifest.json",
+      "audit": "recipes/cpp-cve-2024-25062/audit.json",
+      "source_revision": "c64f3ef25eaf704b5adf58186b24b142770c17a6a3187caefff98b467596d53c",
+      "manifest_digest": "4b7594fd7c990322d377647e9fcc845fd1782822ed9964c936984ee5121dd2ce",
+      "audit_digest": "c94b4967be1b525e10d1c0182267858c32ab93698e958c36df556d1389d8d718",
+      "description": "libxml2 use-after-free in xmlreader (CWE-416)",
+      "provenance": {
+        "license": "MIT / BSD / LGPL (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2024-25062",
+        "repository_url": "https://github.com/GNOME/libxml2",
+        "upstream_fix_url": "https://github.com/GNOME/libxml2/commit/92721970884fcc13305cb8e23cdc5f0dd7667c2c",
+        "upstream_source_revision": "8b9b972aaa4970f3983085ad59930614c5f6aa57",
+        "upstream_fix_revision": "92721970884fcc13305cb8e23cdc5f0dd7667c2c",
+        "adaptations": "Pinned to vulnerable revision 8b9b972aaa4970f3983085ad59930614c5f6aa57. UAF in xmlTextReaderExpand. Harness reads crafted XML document via reader API. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2018-6835",
+      "language": "node",
+      "split": "evaluation",
+      "target": "recipes/javascript-cve-2018-6835/target",
+      "manifest": "recipes/javascript-cve-2018-6835/manifest.json",
+      "audit": "recipes/javascript-cve-2018-6835/audit.json",
+      "source_revision": "11216ce7e1b50e782c475170bb06381eef9e4ae27e76dbe91c56de1afe43775c",
+      "manifest_digest": "9a8c6ed0ac7893c30721675814758218fd8cb14019b62e779ddfc70d54d607a2",
+      "audit_digest": "6b0088af29061d0fde21ecf28ed7fa2e4279d7debd122849e8f1874e9700a127",
+      "description": "Etherpad JSONP injection via API (CWE-79)",
+      "provenance": {
+        "license": "MIT / ISC (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2018-6835",
+        "repository_url": "https://github.com/ether/etherpad-lite",
+        "upstream_fix_url": "https://github.com/ether/etherpad-lite/commit/626e58cc5af1db3691b41fca7b06c28ea43141b1",
+        "upstream_source_revision": "d7c93b0c0d7fd8a429512dc12c809c10a8175022",
+        "upstream_fix_revision": "626e58cc5af1db3691b41fca7b06c28ea43141b1",
+        "adaptations": "Pinned to vulnerable revision d7c93b0c0d7fd8a429512dc12c809c10a8175022. JSONP callback parameter not sanitized. Harness sends request with XSS payload in callback parameter. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2019-10767",
+      "language": "node",
+      "split": "evaluation",
+      "target": "recipes/javascript-cve-2019-10767/target",
+      "manifest": "recipes/javascript-cve-2019-10767/manifest.json",
+      "audit": "recipes/javascript-cve-2019-10767/audit.json",
+      "source_revision": "9e4087067f25ffbc5c6763a43e24ec1d90c626c843c0d3246bdad42725805c8d",
+      "manifest_digest": "f2c5c6c286691fd76e2ae599df93de1837834a7f6a40d2f2a8910333c3762cec",
+      "audit_digest": "58bddd54111239b74bee248e3be00809e36153de7330aa5efdbd1de7cc23643a",
+      "description": "ioBroker path traversal in objectsUtils (CWE-22)",
+      "provenance": {
+        "license": "MIT / ISC (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2019-10767",
+        "repository_url": "https://github.com/ioBroker/ioBroker.js-controller",
+        "upstream_fix_url": "https://github.com/ioBroker/ioBroker.js-controller/commit/f6e292c6750a491a5000d0f851b2fede4f9e2fda",
+        "upstream_source_revision": "fbdbfbdb766490db65cde0b0ca5dd46221c5a912",
+        "upstream_fix_revision": "f6e292c6750a491a5000d0f851b2fede4f9e2fda",
+        "adaptations": "Pinned to vulnerable revision fbdbfbdb766490db65cde0b0ca5dd46221c5a912. Object key used unsanitized as filesystem path. Harness invokes storage function with ../traversal key. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2019-15599",
+      "language": "node",
+      "split": "evaluation",
+      "target": "recipes/javascript-cve-2019-15599/target",
+      "manifest": "recipes/javascript-cve-2019-15599/manifest.json",
+      "audit": "recipes/javascript-cve-2019-15599/audit.json",
+      "source_revision": "6ebd3452f899e99d9b29c73dd6bbca99ce7453bb82d81c0bd936b08eeabe1904",
+      "manifest_digest": "e193f73576964dba5ac9417a6dc472509266779052b1e4f13d6914235366441f",
+      "audit_digest": "4377a8ecff9408d2f69f5659f7472aa7fe13f4ea0bcc30603e7de1df6b11d21e",
+      "description": "node-tree-kill command injection (CWE-78)",
+      "provenance": {
+        "license": "MIT / ISC (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2019-15599",
+        "repository_url": "https://github.com/pkrumins/node-tree-kill",
+        "upstream_fix_url": "https://github.com/pkrumins/node-tree-kill/commit/deee138a8cbc918463d8af5ce8c2bec33c3fd164",
+        "upstream_source_revision": "3b5b8feeb3175a3e16ea7e0e09fdf5b8d2b87b08",
+        "upstream_fix_revision": "deee138a8cbc918463d8af5ce8c2bec33c3fd164",
+        "adaptations": "Pinned to vulnerable revision ff73dbf144c4c2daa67799a50dfff59cd455c63c. PID argument passed to kill command unsanitized. Harness calls treeKill with shell injection string, checks if canary executes. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2021-23369",
+      "language": "node",
+      "split": "development",
+      "target": "recipes/javascript-cve-2021-23369/target",
+      "manifest": "recipes/javascript-cve-2021-23369/manifest.json",
+      "audit": "recipes/javascript-cve-2021-23369/audit.json",
+      "source_revision": "9e43c37821973f41facfd26fe1ead4530f29dc11fd0adf550c17826eb01b3a91",
+      "manifest_digest": "999411ed92d017cdb158d72b6bc74ce32940b3456435b85705ad91e90709a2f6",
+      "audit_digest": "f1df7d1466ac954a3ff46df591e4586a546e3ba04e5cce3002d6f941e9b520fb",
+      "description": "Handlebars template injection via prototype property access (CWE-94)",
+      "provenance": {
+        "license": "MIT",
+        "source_url": "https://github.com/advisories/CVE-2021-23369",
+        "repository_url": "https://github.com/handlebars-lang/handlebars.js",
+        "upstream_fix_url": "https://github.com/handlebars-lang/handlebars.js/commit/b6d3de7123eebba603e321f04afdbae608e8fea8",
+        "upstream_source_revision": "f0589701698268578199be25285b2ebea1c1e427",
+        "upstream_fix_revision": "b6d3de7123eebba603e321f04afdbae608e8fea8",
+        "adaptations": "Pinned to vulnerable revision f0589701698268578199be25285b2ebea1c1e427. Harness renders a Handlebars template from attacker-controlled input inside a Docker container. The template uses prototype-chain property access (e.g. constructor.prototype) to execute arbitrary code. Harness writes a canary file and checks for execution. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2021-23664",
+      "language": "node",
+      "split": "evaluation",
+      "target": "recipes/javascript-cve-2021-23664/target",
+      "manifest": "recipes/javascript-cve-2021-23664/manifest.json",
+      "audit": "recipes/javascript-cve-2021-23664/audit.json",
+      "source_revision": "c0bbf4b2bd2d055d2535cb828aa893ba4dac2b71be8933c4709e403b7da8d79c",
+      "manifest_digest": "1328204f547ae73322c8886a1657384e5f93ed8c05031732bc7eb400d0fd72fb",
+      "audit_digest": "20d7e82362baf07c802ec00809ac2db6d8817cb6f545fecb6c0deb4ede6186cd",
+      "description": "cors-proxy SSRF via redirect (CWE-918)",
+      "provenance": {
+        "license": "MIT / ISC (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2021-23664",
+        "repository_url": "https://github.com/isomorphic-git/cors-proxy",
+        "upstream_fix_url": "https://github.com/isomorphic-git/cors-proxy/commit/1b1c91e71d946544d97ccc7cf0ac62b859e03311",
+        "upstream_source_revision": "617b73f43e6cbb2cd24f5964da1587caed9b5ac4",
+        "upstream_fix_revision": "1b1c91e71d946544d97ccc7cf0ac62b859e03311",
+        "adaptations": "Pinned to vulnerable revision 617b73f43e6cbb2cd24f5964da1587caed9b5ac4. CORS proxy follows redirects to internal hosts. Harness sends request redirecting to loopback canary server. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2021-29300",
+      "language": "node",
+      "split": "evaluation",
+      "target": "recipes/javascript-cve-2021-29300/target",
+      "manifest": "recipes/javascript-cve-2021-29300/manifest.json",
+      "audit": "recipes/javascript-cve-2021-29300/audit.json",
+      "source_revision": "c13020478736212b99799ded6a1a15ff17a6be0cd987ea6f0b9a1b65b460aca0",
+      "manifest_digest": "cc826e3f7d1196651e79c3ab803cdf757f0e3c68620af1c3aa6eda5fde07de96",
+      "audit_digest": "c503dab9d59727ed0eaea395058bf31d9522a1bb95798e4bd13ec81b6e8664d8",
+      "description": "ronomon/opened command injection (CWE-22)",
+      "provenance": {
+        "license": "MIT / ISC (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2021-29300",
+        "repository_url": "https://github.com/ronomon/opened",
+        "upstream_fix_url": "https://github.com/ronomon/opened/commit/7effe011d4fea8fac7f78c00615e0a6e69af68ec",
+        "upstream_source_revision": "33c2dfb8fdc0ac7aa6fc049aa6ab6b2093484be6",
+        "upstream_fix_revision": "7effe011d4fea8fac7f78c00615e0a6e69af68ec",
+        "adaptations": "Pinned to vulnerable revision 33c2dfb8fdc0ac7aa6fc049aa6ab6b2093484be6. Unsanitized filename passed to OS command. Harness calls opened() with shell metacharacter in path, checks if canary executes. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2021-37712",
+      "language": "node",
+      "split": "development",
+      "target": "recipes/javascript-cve-2021-37712/target",
+      "manifest": "recipes/javascript-cve-2021-37712/manifest.json",
+      "audit": "recipes/javascript-cve-2021-37712/audit.json",
+      "source_revision": "b83b037ef55cd3a3bda7101ebb2146c92647470a2ca5bc3cb951b4fbc7f90f21",
+      "manifest_digest": "aa312da85dfd0f63810834430283c44e7b292f4b59d19619b335b9b4073da5a5",
+      "audit_digest": "e1cd1136741e40ffd632676c1c99cee810e341dc81fc4ccc5154357dcea669ed",
+      "description": "node-tar path reservation bypass allows overwriting arbitrary files (CWE-22)",
+      "provenance": {
+        "license": "ISC",
+        "source_url": "https://github.com/advisories/CVE-2021-37712",
+        "repository_url": "https://github.com/isaacs/node-tar",
+        "upstream_fix_url": "https://github.com/isaacs/node-tar/commit/1739408d3122af897caefd09662bce2ea477533b",
+        "upstream_source_revision": "d56f790bda9fea807dd80c5083f24771dbdd6eb1",
+        "upstream_fix_revision": "1739408d3122af897caefd09662bce2ea477533b",
+        "adaptations": "Pinned to vulnerable revision d56f790bda9fea807dd80c5083f24771dbdd6eb1. Harness extracts a crafted tar archive inside a Docker container using the vulnerable node-tar library; the archive contains an entry with a path designed to bypass reservation checks and land outside the extraction directory. Harness creates a sentinel file in a protected location, extracts the crafted archive, and checks whether the sentinel was overwritten. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "javascript-cve-2024-56334",
+      "language": "node",
+      "split": "evaluation",
+      "target": "recipes/javascript-cve-2024-56334/target",
+      "manifest": "recipes/javascript-cve-2024-56334/manifest.json",
+      "audit": "recipes/javascript-cve-2024-56334/audit.json",
+      "source_revision": "c8d1b2b08c9362d60814f6f2e592b574907a9c549bbab8da4063f3d8985d91a9",
+      "manifest_digest": "ae8cab90171ac7f258656acd850086ce4ca0527e25ffbbed2c24923d83d9f7f9",
+      "audit_digest": "49369f8b3c684ebf118cee4d390ad9c26af0e654349c86176036ce9a6bf8c5de",
+      "description": "systeminformation command injection (CWE-200)",
+      "provenance": {
+        "license": "MIT / ISC (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2024-56334",
+        "repository_url": "https://github.com/sebhildebrandt/systeminformation",
+        "upstream_fix_url": "https://github.com/sebhildebrandt/systeminformation/commit/f7af0a67b78e7894335a6cad510566a25e06ae41",
+        "upstream_source_revision": "51c7698b91789e00d2308c9f95249ca3bb27a176",
+        "upstream_fix_revision": "f7af0a67b78e7894335a6cad510566a25e06ae41",
+        "adaptations": "Pinned to vulnerable revision 51c7698b91789e00d2308c9f95249ca3bb27a176. Network interface name passed to OS command unsanitized. May be Linux-specific; check reproducibility on worker before qualification. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2018-18074",
+      "language": "python",
+      "split": "evaluation",
+      "target": "recipes/python-cve-2018-18074/target",
+      "manifest": "recipes/python-cve-2018-18074/manifest.json",
+      "audit": "recipes/python-cve-2018-18074/audit.json",
+      "source_revision": "5a966e8179847eb6a1fed3a3d243cb8375c7fcc0478c974ada550f325f7d5476",
+      "manifest_digest": "5f6e8800b6db00394a971e1ee8bbb2cdda5331e139158d1a3c9fcb27e8f9e06d",
+      "audit_digest": "ae64d96f7f80ef5f1af54619f633754b7d014873b8b2af2be1298ee732a5cf9d",
+      "description": "requests credential leak across redirects (CWE-601)",
+      "provenance": {
+        "license": "Apache-2.0 / MIT (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2018-18074",
+        "repository_url": "https://github.com/requests/requests",
+        "upstream_fix_url": "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff",
+        "upstream_source_revision": "dd754d13de250a6af8a68a6a83a8b4419fd429c6",
+        "upstream_fix_revision": "c45d7c49ea75133e52ab22a8e9e13173938e36ff",
+        "adaptations": "Pinned to vulnerable revision dd754d13de250a6af8a68a6a83a8b4419fd429c6. Authorization header sent across cross-origin redirects. Harness uses two loopback servers and checks if header is forwarded. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2018-7750",
+      "language": "python",
+      "split": "evaluation",
+      "target": "recipes/python-cve-2018-7750/target",
+      "manifest": "recipes/python-cve-2018-7750/manifest.json",
+      "audit": "recipes/python-cve-2018-7750/audit.json",
+      "source_revision": "ca0198f37af763e03663d6c33497887ee9061e0497978271ee2783e18dc7de13",
+      "manifest_digest": "834654eceef88de5d022488666df5448c713a0107da9bb3aeee75c1bea35e016",
+      "audit_digest": "e40493bed4fafd0b9b2f4b5f2c9fd3c3c4d1af39d079f4828eda72c40d920876",
+      "description": "Paramiko unauthenticated command execution (CWE-20)",
+      "provenance": {
+        "license": "Apache-2.0 / MIT (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2018-7750",
+        "repository_url": "https://github.com/paramiko/paramiko",
+        "upstream_fix_url": "https://github.com/paramiko/paramiko/commit/fa29bd8446c8eab237f5187d28787727b4610516",
+        "upstream_source_revision": "aefd28a7f00c4250d113d375e96abf5da3eb89f9",
+        "upstream_fix_revision": "fa29bd8446c8eab237f5187d28787727b4610516",
+        "adaptations": "Pinned to vulnerable revision aefd28a7f00c4250d113d375e96abf5da3eb89f9. SSH server allows exec_command before authentication completes. Harness connects via local SSH with in-process Paramiko server. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2020-25459",
+      "language": "python",
+      "split": "evaluation",
+      "target": "recipes/python-cve-2020-25459/target",
+      "manifest": "recipes/python-cve-2020-25459/manifest.json",
+      "audit": "recipes/python-cve-2020-25459/audit.json",
+      "source_revision": "28e90d36382651536e70e352c01e1817a5195d1cbf399b03cca537906156019b",
+      "manifest_digest": "5b4f2734c8da951e6c2159357b30e3f475c4259ba9735f87aaf930f8fff8147f",
+      "audit_digest": "bce52515892abb1f5fa403a02ee9db756ca93b6eb00267eae7a85de5e49fc738",
+      "description": "FATE tree synchronization forwards sensitive node metadata to the host",
+      "provenance": {
+        "license": "Apache-2.0 / MIT (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2020-25459",
+        "repository_url": "https://github.com/FederatedAI/FATE",
+        "upstream_fix_url": "https://github.com/FederatedAI/FATE/commit/6feccf6d752184a6f9365d56a76fe627983e7139",
+        "upstream_source_revision": "67708d5d327e736d80e2f6726968cf02a926310e",
+        "upstream_fix_revision": "6feccf6d752184a6f9365d56a76fe627983e7139",
+        "adaptations": "Pinned to vulnerable revision 67708d5d327e736d80e2f6726968cf02a926310e. The harness calls the real HeteroDecisionTreeGuest.sync_tree method and examines the transport payload for weights, gradients, and Hessians. Dependency modules and transport are mocked; the synchronization method and Node class are upstream code. Exact-output runners distinguish expected assertion failures from import or harness failures. Runtime qualification and independent audit review remain pending."
+      }
+    },
+    {
+      "id": "python-cve-2021-21330",
+      "language": "python",
+      "split": "development",
+      "target": "recipes/python-cve-2021-21330/target",
+      "manifest": "recipes/python-cve-2021-21330/manifest.json",
+      "audit": "recipes/python-cve-2021-21330/audit.json",
+      "source_revision": "d654c8214d901e22f0b1cd49da42581346836f27ec964c7b5acb903d1fc829d6",
+      "manifest_digest": "1bd3b66beb0c36b506188eb58982b3ab827f78d3e976579490696a044c92297e",
+      "audit_digest": "20c58d2db76d4c5d4920afda75353952d5aa5494b525eef2489728b52d7d84cb",
+      "description": "aiohttp normalize_path_middleware open redirect via // prefix (CWE-601)",
+      "provenance": {
+        "license": "Apache-2.0",
+        "source_url": "https://github.com/advisories/CVE-2021-21330",
+        "repository_url": "https://github.com/aio-libs/aiohttp",
+        "upstream_fix_url": "https://github.com/aio-libs/aiohttp/commit/2545222a3853e31ace15d87ae0e2effb7da0c96b",
+        "upstream_source_revision": "f2afa2f054ba9e6c5d142e00233f0073925e7893",
+        "upstream_fix_revision": "2545222a3853e31ace15d87ae0e2effb7da0c96b",
+        "adaptations": "Pinned to vulnerable revision f2afa2f054ba9e6c5d142e00233f0073925e7893. Harness creates a local aiohttp web app with normalize_path_middleware enabled, registers a route at /safe, and sends GET //evil.com from within the container on the loopback interface. Measures whether the middleware returns a redirect to //evil.com (vulnerable) or 404 (fixed). Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2021-32633",
+      "language": "python",
+      "split": "evaluation",
+      "target": "recipes/python-cve-2021-32633/target",
+      "manifest": "recipes/python-cve-2021-32633/manifest.json",
+      "audit": "recipes/python-cve-2021-32633/audit.json",
+      "source_revision": "24cf207e9d351dab5601958b7bdbecccc953555a5d7f66e6315c02f0415c5171",
+      "manifest_digest": "0728504c6cd80d20fe72913e61f2da786395d210ef333c453a69956270212a50",
+      "audit_digest": "33ce739df951fc2db192af0fb9cad8a64ad681a64241a606c8ff8bc6b094801c",
+      "description": "Zope/PageTemplates expression traversal SSTI (CWE-79)",
+      "provenance": {
+        "license": "Apache-2.0 / MIT (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2021-32633",
+        "repository_url": "https://github.com/zopefoundation/Zope",
+        "upstream_fix_url": "https://github.com/zopefoundation/Zope/commit/1f8456bf1f908ea46012537d52bd7e752a532c91",
+        "upstream_source_revision": "1746d5affee450a6b95262ce217fd80328e4c62c",
+        "upstream_fix_revision": "1f8456bf1f908ea46012537d52bd7e752a532c91",
+        "adaptations": "Pinned to vulnerable revision 1746d5affee450a6b95262ce217fd80328e4c62c. Template expression traversal allows calling restricted attributes. Harness renders attacker-controlled template expression. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2021-33203",
+      "language": "python",
+      "split": "evaluation",
+      "target": "recipes/python-cve-2021-33203/target",
+      "manifest": "recipes/python-cve-2021-33203/manifest.json",
+      "audit": "recipes/python-cve-2021-33203/audit.json",
+      "source_revision": "467d48653e81e00a1d06bbc3df143fa04d36c1ce02e3a145c7c44bc1fb2bb248",
+      "manifest_digest": "28303c3273dbe4c06f4e0a737e9b2031b9e3f68a837aab7448a85af4cf6dd9dc",
+      "audit_digest": "9be02c846dff23103f95570a395ae0c8733f5e719d877b4775bf9804245754b3",
+      "description": "Django admin template path traversal (CWE-89)",
+      "provenance": {
+        "license": "Apache-2.0 / MIT (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2021-33203",
+        "repository_url": "https://github.com/django/django",
+        "upstream_fix_url": "https://github.com/django/django/commit/20c67a0693c4ede2b09af02574823485e82e4c8f",
+        "upstream_source_revision": "aa8781c0a671610d5327d0a14d45df3b1f29640d",
+        "upstream_fix_revision": "20c67a0693c4ede2b09af02574823485e82e4c8f",
+        "adaptations": "Pinned to vulnerable revision aa8781c0a671610d5327d0a14d45df3b1f29640d. Template tag path in admindocs allows reading arbitrary template files. Harness invokes the vulnerable admindocs view with crafted template path. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2022-0767",
+      "language": "python",
+      "split": "development",
+      "target": "recipes/python-cve-2022-0767/target",
+      "manifest": "recipes/python-cve-2022-0767/manifest.json",
+      "audit": "recipes/python-cve-2022-0767/audit.json",
+      "source_revision": "87a4da76b9b128c4ce4add9dca13d83a7bed4ed027f1747bb6ab0e83ab4eccab",
+      "manifest_digest": "5c3e4401948f0f302c8051f27a031c9636cd9cdc8ce5be87eab8105bc4c33f39",
+      "audit_digest": "c6e6fdb55da18faaf01c2e90b68f96b6e9db203a797d5a0d0f5f7fdda42f6ce4",
+      "description": "calibre-web SSRF via cover fetch URL (CWE-918)",
+      "provenance": {
+        "license": "GPL-3.0",
+        "source_url": "https://github.com/advisories/CVE-2022-0767",
+        "repository_url": "https://github.com/janeczku/calibre-web",
+        "upstream_fix_url": "https://github.com/janeczku/calibre-web/commit/965352c8d96c9eae7a6867ff76b0db137d04b0b8",
+        "upstream_source_revision": "8007e450b3178f517b83b0989744c6df38867932",
+        "upstream_fix_revision": "965352c8d96c9eae7a6867ff76b0db137d04b0b8",
+        "adaptations": "Pinned to vulnerable revision 8007e450b3178f517b83b0989744c6df38867932. Harness runs a local calibre-web helper function that fetches a remote book cover URL, redirected to a controlled loopback server acting as an internal metadata endpoint. The harness checks whether the request reaches the internal endpoint (SSRF successful) vs. being blocked. No external network. Internal endpoint is a canary HTTP server on loopback. Reference fix kept outside model-visible target and audit inputs."
+      }
+    },
+    {
+      "id": "python-cve-2025-43859",
+      "language": "python",
+      "split": "evaluation",
+      "target": "recipes/python-cve-2025-43859/target",
+      "manifest": "recipes/python-cve-2025-43859/manifest.json",
+      "audit": "recipes/python-cve-2025-43859/audit.json",
+      "source_revision": "9be3803fe0e29e75c6a8297c8c7b50c273fd5c736d5f7efd381193f379970b79",
+      "manifest_digest": "2604870a09356ca5121d244a7cc5f26be3b2f620e18d918f9cc654fff5f2c71e",
+      "audit_digest": "0487a52b5018d6c00a44f90814983e3e2f0953a1e00437be3b60114f0076a83e",
+      "description": "h11 HTTP chunk extension parsing bypass (CWE-444)",
+      "provenance": {
+        "license": "Apache-2.0 / MIT (see LICENSE)",
+        "source_url": "https://github.com/advisories/CVE-2025-43859",
+        "repository_url": "https://github.com/python-hyper/h11",
+        "upstream_fix_url": "https://github.com/python-hyper/h11/commit/114803a29ce50116dc47951c690ad4892b1a36ed",
+        "upstream_source_revision": "9462006f6ce4941661888228cbd4ac1ea80689b0",
+        "upstream_fix_revision": "114803a29ce50116dc47951c690ad4892b1a36ed",
+        "adaptations": "Pinned to vulnerable revision 9462006f6ce4941661888228cbd4ac1ea80689b0. Malformed chunk size line with extensions parsed incorrectly, allowing HTTP request smuggling. Harness sends crafted chunk-encoded request. No external network. Reference fix kept outside model-visible target and audit inputs."
+      }
+    }
+  ]
+}

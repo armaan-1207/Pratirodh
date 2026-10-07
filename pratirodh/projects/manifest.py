@@ -18,6 +18,39 @@ PROFILES = {
     'prototype-small': {'model': 'Qwen2.5-Coder-3B-Instruct', 'context': 8192, 'memory_gb': 4, 'experimental': True},
 }
 SOURCE_SUFFIXES = {'.py', '.js', '.mjs', '.cjs', '.ts', '.tsx', '.c', '.cc', '.cpp', '.h', '.hpp'}
+SECRET_NAMES = {'.netrc', '.npmrc', '.pypirc', '.git-credentials', '.dockercfg',
+                'id_rsa', 'id_dsa', 'id_ecdsa', 'id_ed25519', 'credentials',
+                'credentials.json', 'credentials.yaml', 'credentials.yml',
+                'secrets.json', 'secrets.yaml', 'secrets.yml', 'secrets.toml',
+                'service-account.json', 'service_account.json'}
+PRIVATE_MATERIAL = re.compile(r'-----BEGIN (?:[A-Z0-9]+ )*PRIVATE KEY-----|'
+                              r'-----BEGIN PGP PRIVATE KEY BLOCK-----|'
+                              r'\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{30,}\b')
+
+
+class IntakeRejected(ValueError):
+    """Secret-bearing inputs must not reach execution or retained evidence."""
+
+
+def intake_name(name):
+    """Reject credential locations instead of silently omitting their contents."""
+    safe_relative(name)
+    path = Path(name.lower())
+    if (path.name == '.env' or path.name.startswith('.env.') or path.name in SECRET_NAMES
+            or path.suffix in {'.pem', '.key', '.p12', '.pfx', '.keystore', '.jks'}
+            or any(part in {'.ssh', '.aws', '.azure', '.kube'} for part in path.parts)):
+        raise IntakeRejected('remove credentials/private keys before intake: ' + name)
+
+
+def intake_content(name, body):
+    if PRIVATE_MATERIAL.search(body):
+        raise IntakeRejected('remove private key or token material before intake: ' + name)
+
+
+def validate_intake(files):
+    for name, body in files.items():
+        intake_name(name)
+        intake_content(name, body)
 
 
 def protected(name):
@@ -41,9 +74,9 @@ def inventory(root):
             raise ValueError('project symlinks and junctions are not accepted: ' + name)
         if not path.is_file():
             continue
-        if path.name == '.env' or path.suffix in {'.pem', '.key', '.p12'}:
-            raise ValueError('remove credentials/private keys before intake: ' + name)
-        payload = path.read_bytes()
+        intake_name(name)
+        with path.open('rb') as stream:
+            payload = stream.read(1024 * 1024 + 1)
         total += len(payload)
         if len(payload) > 1024 * 1024 or total > 10 * 1024 * 1024 or len(files) >= 1000:
             raise ValueError('project exceeds intake file/disk budget')
@@ -51,6 +84,7 @@ def inventory(root):
             files[name] = payload.decode('utf-8')
         except UnicodeDecodeError:
             raise ValueError('prototype requires UTF-8 source/fixtures: ' + name) from None
+        intake_content(name, files[name])
     if not files:
         raise ValueError('empty project')
     hashes = {name: digest(body) for name, body in files.items()}
@@ -99,6 +133,9 @@ def argv(value):
 
 
 def validate(manifest, files, hashes, revision):
+    # The exact reviewed inventory is the allowlist: changed/extra inputs fail
+    # revision validation below. Credential checks also cover direct callers.
+    validate_intake(files)
     if manifest.get('version') != 2:
         raise ValueError('unsupported project manifest version')
     if manifest.get('adapter') not in {'python', 'node', 'cpp'}:

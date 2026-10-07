@@ -1,0 +1,69 @@
+{
+  "framework": "OWASP Top 10:2025",
+  "reviewed_on": "2026-10-07",
+  "overall": "Locally verified application controls; residual image and deployment risks remain",
+  "scope": "Local application and repository security. Deployment assurance and upstream evaluation remain separate.",
+  "findings": [
+    {
+      "title": "Source intake",
+      "status": "Executable checks passed",
+      "detail": "Credential filenames and private-key material are rejected before project execution and evidence retention."
+    },
+    {
+      "title": "Local model transport",
+      "status": "Executable checks passed",
+      "detail": "Model requests reject redirects beyond the approved endpoint."
+    },
+    {
+      "title": "Evidence exports",
+      "status": "Executable checks passed",
+      "detail": "Archive and decompression limits are checked before reading untrusted bundle contents."
+    },
+    {
+      "title": "Container dependencies",
+      "status": "Updated tooling; residual OS risks reviewed",
+      "detail": "Four images have no applicable installed/vendored Python advisories; two absent-module setuptools advisories are explicitly reviewed for the pkg_resources-only copy; worker npm tooling was updated. Native OS advisories remain, including a critical libxml2 candidate. Dated review expires 2026-11-06; changed or unreviewed findings block CI."
+    },
+    {
+      "title": "Security events",
+      "status": "Executable checks passed",
+      "detail": "Integrity denials produce sanitized events and repeated-failure alerts; container log retention is bounded."
+    },
+    {
+      "title": "Repository protection",
+      "status": "Configuration verified",
+      "detail": "Main requires a pull request, passing CI and resolved conversations. Force pushes and deletion are blocked, including for administrators. Solo-maintainer approval policy applies."
+    }
+  ],
+  "checks": [
+    {
+      "label": "Complete combined Python suite with Docker enabled",
+      "result": "254 passed, no skips; 675.21 seconds"
+    },
+    {
+      "label": "Focused intake, transport, archive and security-event checks",
+      "result": "43 passed, no skips"
+    },
+    {
+      "label": "Frontend fallbacks and build",
+      "result": "3 passed; rebuilt assets match source"
+    },
+    {
+      "label": "Image advisory review gate",
+      "result": "8 regression tests passed; all four reports reviewed"
+    },
+    {
+      "label": "Static and frontend dependency analysis",
+      "result": "Bandit and npm audit: no reported issues"
+    },
+    {
+      "label": "Deployment image, wheel and clean release export",
+      "result": "Authenticated/read-only smoke checks passed; wheel excludes private/generated data and archives; all 24 recipes reproduced 5 prepared / 19 explicit blockers"
+    }
+  ],
+  "limitations": [
+    "Unfixed native OS libraries remain residual risks. Worker execution requires dedicated, offline, disposable isolation; sensitive or shared public workloads are outside the local assurance scope.",
+    "Public HTTPS, host permissions, key rotation, backups and external alert delivery still require deployment verification.",
+    "Nineteen upstream preparation blockers, Azure qualification and the 216-run independent campaign remain separate."
+  ]
+}

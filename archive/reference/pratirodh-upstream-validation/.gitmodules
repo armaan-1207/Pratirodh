@@ -1,0 +1,119 @@
+[submodule "benchmark/recipes/cpp-cve-2014-9130/target"]
+	path = benchmark/recipes/cpp-cve-2014-9130/target
+	url = https://github.com/yaml/libyaml
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2018-25032/target"]
+	path = benchmark/recipes/cpp-cve-2018-25032/target
+	url = https://github.com/madler/zlib
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2019-1000019/target"]
+	path = benchmark/recipes/cpp-cve-2019-1000019/target
+	url = https://github.com/libarchive/libarchive
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2020-12762/target"]
+	path = benchmark/recipes/cpp-cve-2020-12762/target
+	url = https://github.com/json-c/json-c
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2022-43680/target"]
+	path = benchmark/recipes/cpp-cve-2022-43680/target
+	url = https://github.com/libexpat/libexpat
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2023-4863/target"]
+	path = benchmark/recipes/cpp-cve-2023-4863/target
+	url = https://github.com/webmproject/libwebp
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2023-50472/target"]
+	path = benchmark/recipes/cpp-cve-2023-50472/target
+	url = https://github.com/DaveGamble/cJSON
+	shallow = true
+
+[submodule "benchmark/recipes/cpp-cve-2024-25062/target"]
+	path = benchmark/recipes/cpp-cve-2024-25062/target
+	url = https://github.com/GNOME/libxml2
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2018-6835/target"]
+	path = benchmark/recipes/javascript-cve-2018-6835/target
+	url = https://github.com/ether/etherpad-lite
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2019-10767/target"]
+	path = benchmark/recipes/javascript-cve-2019-10767/target
+	url = https://github.com/ioBroker/ioBroker.js-controller
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2019-15599/target"]
+	path = benchmark/recipes/javascript-cve-2019-15599/target
+	url = https://github.com/pkrumins/node-tree-kill
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2021-23369/target"]
+	path = benchmark/recipes/javascript-cve-2021-23369/target
+	url = https://github.com/handlebars-lang/handlebars.js
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2021-23664/target"]
+	path = benchmark/recipes/javascript-cve-2021-23664/target
+	url = https://github.com/isomorphic-git/cors-proxy
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2021-29300/target"]
+	path = benchmark/recipes/javascript-cve-2021-29300/target
+	url = https://github.com/ronomon/opened
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2021-37712/target"]
+	path = benchmark/recipes/javascript-cve-2021-37712/target
+	url = https://github.com/isaacs/node-tar
+	shallow = true
+
+[submodule "benchmark/recipes/javascript-cve-2024-56334/target"]
+	path = benchmark/recipes/javascript-cve-2024-56334/target
+	url = https://github.com/sebhildebrandt/systeminformation
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2018-18074/target"]
+	path = benchmark/recipes/python-cve-2018-18074/target
+	url = https://github.com/requests/requests
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2018-7750/target"]
+	path = benchmark/recipes/python-cve-2018-7750/target
+	url = https://github.com/paramiko/paramiko
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2020-25459/target"]
+	path = benchmark/recipes/python-cve-2020-25459/target
+	url = https://github.com/FederatedAI/FATE
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2021-21330/target"]
+	path = benchmark/recipes/python-cve-2021-21330/target
+	url = https://github.com/aio-libs/aiohttp
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2021-32633/target"]
+	path = benchmark/recipes/python-cve-2021-32633/target
+	url = https://github.com/zopefoundation/Zope
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2021-33203/target"]
+	path = benchmark/recipes/python-cve-2021-33203/target
+	url = https://github.com/django/django
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2022-0767/target"]
+	path = benchmark/recipes/python-cve-2022-0767/target
+	url = https://github.com/janeczku/calibre-web
+	shallow = true
+
+[submodule "benchmark/recipes/python-cve-2025-43859/target"]
+	path = benchmark/recipes/python-cve-2025-43859/target
+	url = https://github.com/python-hyper/h11
+	shallow = true

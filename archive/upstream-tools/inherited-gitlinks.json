@@ -1,0 +1,170 @@
+[
+  {
+    "case": "cpp-cve-2014-9130",
+    "repository": "https://github.com/yaml/libyaml",
+    "inherited_gitlink_revision": "eebdd8b84defa1166f9fd0fc4b46258a47d94576",
+    "preparation_source_revision": "eebdd8b84defa1166f9fd0fc4b46258a47d94576",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2018-25032",
+    "repository": "https://github.com/madler/zlib",
+    "inherited_gitlink_revision": "e99813dbfe9a09e33d42e8da9e550a0c4b7ff734",
+    "preparation_source_revision": "e99813dbfe9a09e33d42e8da9e550a0c4b7ff734",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2019-1000019",
+    "repository": "https://github.com/libarchive/libarchive",
+    "inherited_gitlink_revision": "8312eaa576014cd9b965012af51bc1f967b12423",
+    "preparation_source_revision": "8312eaa576014cd9b965012af51bc1f967b12423",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2020-12762",
+    "repository": "https://github.com/json-c/json-c",
+    "inherited_gitlink_revision": "77d935b7ae7871a1940cd827e850e6063044ec45",
+    "preparation_source_revision": "77d935b7ae7871a1940cd827e850e6063044ec45",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2022-43680",
+    "repository": "https://github.com/libexpat/libexpat",
+    "inherited_gitlink_revision": "391551620eefa5fccfaaee07dab066cc552527b2",
+    "preparation_source_revision": "391551620eefa5fccfaaee07dab066cc552527b2",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2023-4863",
+    "repository": "https://github.com/webmproject/libwebp",
+    "inherited_gitlink_revision": "7ba44f80f3b94fc0138db159afea770ef06532a0",
+    "preparation_source_revision": "7ba44f80f3b94fc0138db159afea770ef06532a0",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2023-50472",
+    "repository": "https://github.com/DaveGamble/cJSON",
+    "inherited_gitlink_revision": "cb8693b058ba302f4829ec6d03f609ac6f848546",
+    "preparation_source_revision": "cb8693b058ba302f4829ec6d03f609ac6f848546",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "cpp-cve-2024-25062",
+    "repository": "https://github.com/GNOME/libxml2",
+    "inherited_gitlink_revision": "8b9b972aaa4970f3983085ad59930614c5f6aa57",
+    "preparation_source_revision": "8b9b972aaa4970f3983085ad59930614c5f6aa57",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2018-6835",
+    "repository": "https://github.com/ether/etherpad-lite",
+    "inherited_gitlink_revision": "d7c93b0c0d7fd8a429512dc12c809c10a8175022",
+    "preparation_source_revision": "d7c93b0c0d7fd8a429512dc12c809c10a8175022",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2019-10767",
+    "repository": "https://github.com/ioBroker/ioBroker.js-controller",
+    "inherited_gitlink_revision": "fbdbfbdb766490db65cde0b0ca5dd46221c5a912",
+    "preparation_source_revision": "fbdbfbdb766490db65cde0b0ca5dd46221c5a912",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2019-15599",
+    "repository": "https://github.com/pkrumins/node-tree-kill",
+    "inherited_gitlink_revision": "ff73dbf144c4c2daa67799a50dfff59cd455c63c",
+    "preparation_source_revision": "3b5b8feeb3175a3e16ea7e0e09fdf5b8d2b87b08",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2021-23369",
+    "repository": "https://github.com/handlebars-lang/handlebars.js",
+    "inherited_gitlink_revision": "f0589701698268578199be25285b2ebea1c1e427",
+    "preparation_source_revision": "f0589701698268578199be25285b2ebea1c1e427",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2021-23664",
+    "repository": "https://github.com/isomorphic-git/cors-proxy",
+    "inherited_gitlink_revision": "617b73f43e6cbb2cd24f5964da1587caed9b5ac4",
+    "preparation_source_revision": "617b73f43e6cbb2cd24f5964da1587caed9b5ac4",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2021-29300",
+    "repository": "https://github.com/ronomon/opened",
+    "inherited_gitlink_revision": "33c2dfb8fdc0ac7aa6fc049aa6ab6b2093484be6",
+    "preparation_source_revision": "33c2dfb8fdc0ac7aa6fc049aa6ab6b2093484be6",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2021-37712",
+    "repository": "https://github.com/isaacs/node-tar",
+    "inherited_gitlink_revision": "d56f790bda9fea807dd80c5083f24771dbdd6eb1",
+    "preparation_source_revision": "d56f790bda9fea807dd80c5083f24771dbdd6eb1",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "javascript-cve-2024-56334",
+    "repository": "https://github.com/sebhildebrandt/systeminformation",
+    "inherited_gitlink_revision": "51c7698b91789e00d2308c9f95249ca3bb27a176",
+    "preparation_source_revision": "51c7698b91789e00d2308c9f95249ca3bb27a176",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2018-18074",
+    "repository": "https://github.com/requests/requests",
+    "inherited_gitlink_revision": "dd754d13de250a6af8a68a6a83a8b4419fd429c6",
+    "preparation_source_revision": "dd754d13de250a6af8a68a6a83a8b4419fd429c6",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2018-7750",
+    "repository": "https://github.com/paramiko/paramiko",
+    "inherited_gitlink_revision": "aefd28a7f00c4250d113d375e96abf5da3eb89f9",
+    "preparation_source_revision": "aefd28a7f00c4250d113d375e96abf5da3eb89f9",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2020-25459",
+    "repository": "https://github.com/FederatedAI/FATE",
+    "inherited_gitlink_revision": "67708d5d327e736d80e2f6726968cf02a926310e",
+    "preparation_source_revision": "67708d5d327e736d80e2f6726968cf02a926310e",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2021-21330",
+    "repository": "https://github.com/aio-libs/aiohttp",
+    "inherited_gitlink_revision": "f2afa2f054ba9e6c5d142e00233f0073925e7893",
+    "preparation_source_revision": "f2afa2f054ba9e6c5d142e00233f0073925e7893",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2021-32633",
+    "repository": "https://github.com/zopefoundation/Zope",
+    "inherited_gitlink_revision": "1746d5affee450a6b95262ce217fd80328e4c62c",
+    "preparation_source_revision": "1746d5affee450a6b95262ce217fd80328e4c62c",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2021-33203",
+    "repository": "https://github.com/django/django",
+    "inherited_gitlink_revision": "aa8781c0a671610d5327d0a14d45df3b1f29640d",
+    "preparation_source_revision": "aa8781c0a671610d5327d0a14d45df3b1f29640d",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2022-0767",
+    "repository": "https://github.com/janeczku/calibre-web",
+    "inherited_gitlink_revision": "8007e450b3178f517b83b0989744c6df38867932",
+    "preparation_source_revision": "8007e450b3178f517b83b0989744c6df38867932",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  },
+  {
+    "case": "python-cve-2025-43859",
+    "repository": "https://github.com/python-hyper/h11",
+    "inherited_gitlink_revision": "9462006f6ce4941661888228cbd4ac1ea80689b0",
+    "preparation_source_revision": "9462006f6ce4941661888228cbd4ac1ea80689b0",
+    "scope": "Historical acquisition reference; current workflows use separately prepared snapshots"
+  }
+]

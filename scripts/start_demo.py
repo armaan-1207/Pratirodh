@@ -11,6 +11,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=8767)
     parser.add_argument('--store', type=Path, help='reopen signed evidence without preparing new runs')
+    parser.add_argument('--requests', action='store_true', help='also verify the prepared Requests reference-fix demonstration')
     args = parser.parse_args()
     if not 1024 <= args.port <= 65535:
         parser.error('choose a port between 1024 and 65535')
@@ -41,6 +42,8 @@ def main():
                 run(sys.executable, '-m', 'pratirodh', 'project', 'build-worker')
             output = root / 'run_output' / ('demo-' + datetime.now().strftime('%Y%m%d-%H%M%S-%f'))
             run(sys.executable, '-m', 'pratirodh', 'project', 'demo', '--challenge', '--output', str(output))
+            if args.requests:
+                run(sys.executable, str(root / 'scripts/run_requests_demo.py'), '--output', str(output))
             store_path = output / 'evidence'
         store_path = store_path.resolve()
         store = Store(store_path)

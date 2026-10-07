@@ -142,7 +142,7 @@ def final_audit(report, case, campaign_path, store=None, worker_factory=DockerPr
 
 
 def campaign(path, output, store=None, seconds=None, audit_reserve=None, resume=False, allow_demo=False,
-             cancelled=None, progress=None):
+             cancelled=None, progress=None, deadline=None):
     definition = json.loads(Path(path).read_text(encoding='utf-8'))
     allowance = dict(definition.get('campaign_budget', DEFAULT_CAMPAIGN_BUDGET))
     if seconds is not None:
@@ -197,6 +197,11 @@ def campaign(path, output, store=None, seconds=None, audit_reserve=None, resume=
     started = time.monotonic()
     prior_elapsed = state['elapsed_seconds']
     campaign_deadline = started + max(0, seconds - prior_elapsed)
+    if deadline is not None:
+        import math
+        if type(deadline) not in (int, float) or not math.isfinite(deadline):
+            raise ValueError('external deadline must be a finite monotonic time')
+        campaign_deadline = min(campaign_deadline, deadline)
     execution_deadline = campaign_deadline - audit_reserve
     completed = {(r['case'], r['workflow'], r['arm'], r['repetition']) for r in state['rows']}
 
@@ -213,7 +218,7 @@ def campaign(path, output, store=None, seconds=None, audit_reserve=None, resume=
         key = (case['id'], workflow, arm, repetition)
         if key in completed:
             continue
-        if cancelled.is_set() or prior_elapsed + time.monotonic() - started >= seconds - audit_reserve:
+        if cancelled.is_set() or time.monotonic() >= execution_deadline:
             break
         row = {'case': case['id'], 'language': case['language'], 'workflow': workflow, 'arm': arm, 'repetition': repetition}
         state['active'] = row
@@ -269,7 +274,7 @@ def campaign(path, output, store=None, seconds=None, audit_reserve=None, resume=
         completed.add(key)
         save()
     for pending in list(state['pending']):
-        if cancelled.is_set() or prior_elapsed + time.monotonic() - started >= seconds:
+        if cancelled.is_set() or time.monotonic() >= campaign_deadline:
             break
         key = tuple(pending['row_key'])
         row = next(r for r in state['rows'] if (r['case'], r['workflow'], r['arm'], r['repetition']) == key)

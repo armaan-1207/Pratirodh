@@ -16,6 +16,10 @@ run_output/
 *.db
 .qa/
 *.egg-info/
+archive/**/__pycache__/
+/benchmark/recipes/*/prepared/
+/benchmark/recipes/*/prepared.tmp/
+/benchmark/recipes/*/target/
 run-first.json
 .pytest_cache/
 *.egg-info/
