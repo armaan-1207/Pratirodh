@@ -29,7 +29,7 @@ public deployment assurance work is deferred to the next stage.
 
 ## Local checks
 
-The combined suite passed **261 Python tests with Docker enabled and no skips**
+The preceding functional checkpoint passed **261 Python tests with Docker enabled and no skips**
 in 672.69 seconds. A subsequent preparation input-diagnostics change passed all
 21 preparation/reconstruction tests, including preservation and overwrite refusal.
 Three frontend tests passed; rebuilding assets produced no changes. Homepage,
@@ -130,3 +130,12 @@ unchanged; no private-key/token patterns or generated inputs were exported.
 For `javascript-cve-2021-37712`, extraction now completes and reports upstream
 links and the unchanged intake budget as the actual blockers. Qualification is
 still `NOT_RUN`; no fixture or intake limit was removed.
+
+The post-cleanup complete local suite passed **263 tests with Docker and no
+skips** in 705.93 seconds. All 11 focused Docker workflow checks also passed in
+343.62 seconds. An earlier concurrent run had 262 passes and a C++ discovery
+budget-exhaustion failure; a concurrent Requests preview also missed its expected
+result. Both the sequential focused rerun and the complete rerun passed without
+changing code, limits or acceptance checks. Push and PR CI on `0fa0316` each passed
+the complete 263-test suite, asset rebuild, dependency/static checks, image builds,
+installed dependency audits and the dated container advisory gate.

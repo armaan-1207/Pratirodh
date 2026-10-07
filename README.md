@@ -7,7 +7,7 @@
 A security repair lab built for the **Derby University Hackathon**.
 
 [Functional verification — 7 October 2026](docs/FUNCTIONAL_RELEASE_20261007.md)
-records 261 passing Python/Docker tests, the verified local model repair and the
+records 263 passing Python/Docker tests, the verified local model repair and the
 remaining upstream/cloud qualification limits.
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)

@@ -1,11 +1,12 @@
 {
   "reviewed_on": "2026-10-07",
   "scope": "Dated local verification of the functional integration. Historical security observations and current signed upstream qualification remain separate.",
-  "verified_commit": "08e89735abe277285c04a35e45ab471bf08158e3",
+  "suite_commit": "0fa0316b3eefe133f12c961b2b159ea53880f6f5",
+  "recorded_model_run": "ac5c52f6b23a4b96aa800e365b894dbe",
   "checks": [
-    {"label": "Combined Python suite", "result": "261 passed with Docker; no skips at the recorded checkpoint."},
+    {"label": "Combined Python suite", "result": "263 passed with Docker; no skips. Both GitHub publication checks also passed."},
     {"label": "Browser assets", "result": "3 frontend tests passed; bundled assets rebuilt."},
-    {"label": "Local model repair", "result": "Qwen 7B: READY FOR REVIEW; 55 security and 2 legitimate checks passed; both unsafe mutations caught; no evidence gaps."},
+    {"label": "Recorded local model repair", "result": "Qwen 7B checkpoint: READY FOR REVIEW; 55 security and 2 legitimate checks passed; both unsafe mutations caught; no evidence gaps. Current run freshness is checked on the evidence page."},
     {"label": "Pinned upstream preparation", "result": "5 prepared snapshots; 19 blocked. Preparation is unsigned and does not qualify a case."}
   ],
   "limitations": [
