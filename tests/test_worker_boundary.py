@@ -41,7 +41,7 @@ def test_invalid_worker_response_rejected_and_cleaned(monkeypatch, payload):
                               (payload if isinstance(payload, str) else json.dumps(payload), ''),
                               poll=lambda: 0)
     monkeypatch.setattr(subprocess, 'Popen', lambda *a, **k: process)
-    monkeypatch.setattr(subprocess, 'run', lambda args, **k: calls.append(args))
+    monkeypatch.setattr(subprocess, 'run', lambda args, **k: (calls.append(args) or SimpleNamespace(returncode=0)))
     with pytest.raises(ValueError):
         worker.execute({'probe.py': 'print(1)'}, [['python', 'probe.py']],
                        WorkflowBudget(config['limits']))
@@ -60,7 +60,7 @@ def test_failed_container_cannot_return_success_observations(monkeypatch, exit_c
     process = SimpleNamespace(returncode=exit_code, communicate=lambda *a, **k: (success, ''),
                               poll=lambda: exit_code)
     monkeypatch.setattr(subprocess, 'Popen', lambda *a, **k: process)
-    monkeypatch.setattr(subprocess, 'run', lambda args, **k: calls.append(args))
+    monkeypatch.setattr(subprocess, 'run', lambda args, **k: (calls.append(args) or SimpleNamespace(returncode=0)))
     with pytest.raises(RuntimeError, match='worker execution failed'):
         worker.execute({'probe.py': 'print(1)'}, [['python', 'probe.py']],
                        WorkflowBudget(config['limits']))

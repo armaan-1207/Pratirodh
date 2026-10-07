@@ -132,3 +132,71 @@ Resolve F01–F03 before importing sensitive/unfamiliar projects or verifying un
 A public deployment still needs HTTPS/edge configuration validation, host patch review and container finding triage/remediation, IAM/network/firewall review, key management/rotation and backup access checks, alert delivery verification and availability testing. These were not inferred from local tests. Azure runtime qualification, the independent 216-run campaign and 19 upstream preparation blockers remain separate from this application assessment.
 
 This document completes category coverage for the stated local/code scope. It does not close the findings, qualify Azure, complete the upstream campaign, or substitute for an independent penetration test against the actual deployment.
+
+## Later local operations follow-up — 7 October 2026
+
+The original observations above are retained as historical assessment evidence.
+Published candidate 8b3d772 subsequently passed both push and PR CI with 312
+Docker-enabled Python tests per run. The historical Requests discrepancy remains
+unexplained; current passing runs do not establish its cause.
+
+Later, uncommitted local tooling adds encrypted, bounded signed-evidence backup
+and restore with an independently supplied trust anchor, separate signing-key
+epochs that preserve old stores, and an opt-in sanitized HTTPS alert adapter
+with certificate validation, redirect rejection and explicit delivery failures.
+Local tests include wrong-password and tamper rejection, key separation,
+authenticated loopback HTTPS delivery and untrusted certificate rejection.
+These are local control proofs, not operator activation or off-host recovery.
+
+The dated source hashes and scope are recorded in SECURITY_STATUS.json under
+operations_followup. See [the operations runbook](OPERATIONS_RUNBOOK.md) for
+reproduction and remaining activation gates. Production signer identity/ACLs,
+automatic key revocation, encrypted off-host retention, actual recipient
+acknowledgement and public deployment remain unverified. Native-library
+advisories and upstream/cloud evaluation limitations remain open. No old
+finding is silently assigned a passing production result by this supplement.
+
+## Parallel local hardening follow-up — 7 October 2026
+
+The operations boundary now rejects portable-path ambiguities, duplicate JSON,
+excessive inventories and mismatched signed-record/index metadata. Application
+threshold alerts connect to the HTTPS adapter only with an explicit protected
+endpoint/token pair; delivery failures remain sanitized and access denial stays
+enforced. No external recipient has been activated.
+
+Focused checks passed: 59 operations, 59 Docker-enabled application/security,
+19 image-binding/policy and 80 preparation/readiness tests, each without skips.
+These overlap and must not be added into a combined-suite count. Current source
+hashes are recorded separately in SECURITY_STATUS.json; historical results
+above retain their original scope. The complete-suite receipt is retained
+under ignored run_output/parallel-combined-final-20261007.xml.
+
+Image scans now bind saved archives to immutable Docker IDs, ordered layers and
+archive/report hashes. Distinct scanner configuration IDs are disclosed rather
+than silently treated as equal. See NATIVE_REMEDIATION_FOLLOWUP_20261007.md for
+compatible-package limitations; reviewed findings remain residual risks. See
+QUALIFICATION_READINESS_FOLLOWUP_20261007.md for the 19 preparation blockers.
+No rejected harness operation was retried, no qualification was manufactured,
+and the existing exhausted cloud ledger was not replaced.
+
+The complete unchanged-source repeat passed **389 tests with Docker enabled,
+zero skips, in 517.26 seconds**. The initial failure receipt is retained and
+its cause remains unexplained; this passing repeat does not close that finding.
+
+## Reliability and activation-review follow-up — 7 October 2026
+
+A demonstrated cleanup transport fault was fixed without changing worker
+limits, expected decisions or verification reserves. Signed reports and CI
+diagnostics now distinguish deadline/slot/cleanup categories. Historical
+C++ and Requests causal diagnoses remain open. The operator acceptance preflight
+fails missing, stale, wrong-anchor or changed drill evidence; valid attestations
+only permit review and do not independently prove external service operation.
+No operator account, off-host destination, recipient or public service was activated.
+
+See RELIABILITY_FOLLOWUP_20261007.md, OPERATIONS_ACTIVATION_20261007.md,
+NATIVE_MIGRATION_ACCEPTANCE_20261007.md and CLOUD_BUDGET_REVIEW_20261007.md.
+Separate dated source hashes are in SECURITY_STATUS.json under release_followup.
+The authoritative ledger and $35 cap with $2 reserve are preserved. No earlier
+automatically rejected harness operation or cleanup deletion was retried.
+
+Corrected final-source verification: **428 Python tests passed with Docker enabled, zero skips, in 611.23 seconds**; the explained intake-order regression is resolved. Seven frontend tests and bundle consistency also passed. Current Bandit results retain 84 low findings and zero medium/high. Exact-revision GitHub CI and final artifact receipts are recorded separately after preparation; no external qualification or production acceptance is inferred. These dated receipts use 7 October UTC (8 October local time for the final handoff).

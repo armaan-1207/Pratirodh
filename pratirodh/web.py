@@ -17,6 +17,7 @@ from .evidence import Store, fresh, freshness_changes
 from .execution import DockerExecutor
 from .interface import scenario_name, explanation
 from .security_events import SecurityEvents
+from .operations import HTTPSAlertDelivery
 
 
 def create_app(store=None):
@@ -42,7 +43,13 @@ def create_app(store=None):
     attempts = deque(maxlen=30)
     runtime_cache = {}
     cancellations = {}
-    security_events = SecurityEvents(app.logger)
+    alert_endpoint = os.getenv('PRATIRODH_ALERT_ENDPOINT')
+    alert_token = os.getenv('PRATIRODH_ALERT_TOKEN')
+    if bool(alert_endpoint) != bool(alert_token):
+        raise ValueError('alert delivery requires both endpoint and bearer token')
+    delivery = HTTPSAlertDelivery(alert_endpoint, alert_token) if alert_endpoint else None
+    security_events = SecurityEvents(app.logger, delivery=delivery)
+    app.extensions['pratirodh_security_events'] = security_events
 
     def security_event(code, record_id=None):
         security_events.emit(code, g.request_id, g.operator_authenticated, record_id)
