@@ -12,6 +12,7 @@ ENV/
 
 # Local execution evidence
 run_output/
+/usage_ledger.json
 .ledger_key_*
 *.db
 .qa/

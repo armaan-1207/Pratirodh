@@ -42,7 +42,7 @@ def main():
     a.output.mkdir(parents=True, exist_ok=True)
     record(a.output / 'guard.json', {'pid': os.getpid(),
         'deadline': deadline.isoformat(), 'status': 'ARMED', 'window_seconds': remaining,
-        'approved_additional_usage_usd': 30, 'scope': 'Bounded qualification/campaign window',
+        'approved_total_usage_usd': allowance['approved_usd'], 'scope': 'Bounded qualification/campaign window',
         'allowance': allowance, 'usage_ledger': str(a.usage_ledger.resolve())})
     print('Shutdown guard armed until ' + deadline.isoformat(), flush=True)
     while datetime.now(timezone.utc) < deadline:

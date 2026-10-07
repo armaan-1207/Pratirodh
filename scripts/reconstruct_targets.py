@@ -18,7 +18,8 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from pratirodh.contracts import safe_relative
-from pratirodh.projects.manifest import inventory, load
+from pratirodh.projects.manifest import (CONTROL, SKIP, intake_content, intake_name,
+                                         inventory, load)
 
 
 def read(path):
@@ -31,6 +32,61 @@ def snapshot_path(path):
     if os.name == 'nt' and not value.startswith('\\\\?\\'):
         value = '\\\\?\\UNC\\' + value[2:] if value.startswith('\\\\') else '\\\\?\\' + value
     return Path(value)
+
+
+def intake_diagnostics(target):
+    """Explain all intake conflicts without changing the controller's decision.
+
+    This report is advisory only: inventory/load still decide preparation. Files
+    remain in the snapshot, and resource limits are neither raised nor bypassed.
+    """
+    conflicts, file_count, total_bytes = [], 0, 0
+    pending = list(target.iterdir())
+    while pending:
+        path = pending.pop()
+        name = path.relative_to(target).as_posix()
+        if any(part in SKIP for part in path.relative_to(target).parts) or name in CONTROL:
+            continue
+        if path.is_symlink() or (hasattr(path, 'is_junction') and path.is_junction()):
+            conflicts.append({'path': name, 'bytes': None,
+                              'reasons': ['project symlinks and junctions are not accepted: ' + name]})
+            continue
+        if path.is_dir():
+            pending.extend(path.iterdir())
+            continue
+        if not path.is_file():
+            continue
+        file_count += 1
+        size = path.stat().st_size
+        total_bytes += size
+        with path.open('rb') as stream:
+            payload = stream.read(1024 * 1024 + 1)
+        reasons = []
+        try:
+            intake_name(name)
+        except ValueError as error:
+            reasons.append(str(error))
+        if size > 1024 * 1024:
+            reasons.append('file exceeds 1048576-byte controller intake limit')
+        # Oversized files are rejected before decoding by the controller. Avoid
+        # calling a truncated multibyte character a binary-input conflict.
+        if size <= 1024 * 1024:
+            try:
+                body = payload.decode('utf-8')
+            except UnicodeDecodeError:
+                reasons.append('non-UTF-8 source/fixture')
+            else:
+                try:
+                    intake_content(name, body)
+                except ValueError as error:
+                    reasons.append(str(error))
+        if reasons:
+            conflicts.append({'path': name, 'bytes': size, 'reasons': reasons})
+    return {'scope': 'ADVISORY_ONLY', 'files': file_count, 'bytes': total_bytes,
+            'limits': {'files': 1000, 'bytes': 10485760, 'file_bytes': 1048576},
+            'file_limit_exceeded': file_count > 1000,
+            'byte_limit_exceeded': total_bytes > 10485760,
+            'conflicts': sorted(conflicts, key=lambda item: Path(item['path']))}
 
 
 def acquire(info, cache):
@@ -77,7 +133,7 @@ def prepare_case(case, source):
     temporary.mkdir(exist_ok=False)
     target = temporary / 'target'
     target.mkdir()
-    omissions, blockers = [], []
+    omissions, blockers, unsupported_entries = [], [], []
     try:
         with tarfile.open(fileobj=io.BytesIO(payload)) as archive:
             for member in archive:
@@ -92,6 +148,8 @@ def prepare_case(case, source):
                     destination.write_bytes(archive.extractfile(member).read())
                 else:
                     blockers.append('Unsupported upstream link or special file: ' + name)
+                    unsupported_entries.append({'path': name, 'link_target': member.linkname,
+                                                'archive_type': member.type.decode('ascii', errors='replace')})
         # Omit only known obsolete placeholder harnesses from the disposable copy.
         # All other observed deletions remain in the source and snapshot.
         for name in info.get('snapshot_exclusions', []):
@@ -142,6 +200,8 @@ def prepare_case(case, source):
                    'source_revision': info['source_revision'], 'fix_revision': info['fix_revision'],
                    'overlay_sha256': {n: hashlib.sha256(b).hexdigest() for n, b in overlays.items()},
                    'omitted_placeholder_harnesses': omissions,
+                   'intake_diagnostics': intake_diagnostics(target),
+                   'unsupported_archive_entries': unsupported_entries,
                    'upstream_assets': 'Retained; unsupported fixtures require explicit qualification work'}
         (temporary / 'preparation.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
         temporary.rename(output)

@@ -5,6 +5,16 @@ import hashlib
 import json
 from pathlib import Path
 
+# Explicit operator approval raised the ceiling to $35 on 2026-10-07. Existing
+# lower ledger caps remain authoritative; tools default to the previous $30.
+MAX_APPROVED_USD = 35
+
+
+def approved_allowance(value):
+    if type(value) not in (int, float) or not math.isfinite(value) or not 0 < value <= MAX_APPROVED_USD:
+        raise ValueError('approved allowance must be finite, positive and at most $35')
+    return value
+
 
 def load_ledger(path):
     path = Path(path).resolve()
@@ -21,8 +31,11 @@ def load_ledger(path):
         if any(report.get(key) != ledger.get(field) for key, field in [
                 ('basis','basis'), ('observed_at','observed_at'),
                 ('modeled_upper_bound_usd','cost_anchor_upper_bound_usd'),
-                ('hourly_upper_bound_usd','hourly_upper_bound_usd'), ('approved_usd','approved_usd')]):
+                ('hourly_upper_bound_usd','hourly_upper_bound_usd'), ('approved_usd','approved_usd'),
+                ('shutdown_reserve_usd','shutdown_reserve_usd')]):
             raise ValueError('ledger does not match reconciliation evidence')
+        if ledger.get('approved_usd', 0) > 30 and report.get('resource_creation_utc') != ledger.get('resource_creation_utc'):
+            raise ValueError('resource creation time does not match reconciliation evidence')
         for name, expected in report['evidence_sha256'].items():
             evidence = (report_path.parent / name).resolve()
             if evidence.parent != report_path.parent or hashlib.sha256(evidence.read_bytes()).hexdigest() != expected:
@@ -32,11 +45,14 @@ def load_ledger(path):
 
 def window(ledger, now=None):
     now = now or datetime.now(timezone.utc)
-    if ledger.get('resource_group') != 'pratirodh-validation' or ledger.get('approved_usd') != 30:
-        raise ValueError('the approved allowance is $30 for pratirodh-validation')
+    if ledger.get('resource_group') != 'pratirodh-validation':
+        raise ValueError('the approved allowance applies only to pratirodh-validation')
+    approved = approved_allowance(ledger.get('approved_usd'))
     if ledger.get('verification_status') not in (None, 'VERIFIED', 'VERIFIED_RETAIL_BOUND'):
         raise ValueError('Azure allowance verification is incomplete; reconcile recorded billing and allocation history')
     anchored = ledger.get('basis') == 'RETAIL_ALLOCATION_RECONCILIATION'
+    if approved > 30 and (not anchored or ledger.get('verification_status') != 'VERIFIED_RETAIL_BOUND'):
+        raise ValueError('allowance above $30 requires evidence-bound allocation reconciliation')
     if ledger.get('basis') not in {'RETAIL_UPPER_BOUND_WITH_RECORDED_BILLING', 'RETAIL_ALLOCATION_RECONCILIATION'}:
         raise ValueError('recorded billing and a conservative usage bound are required')
     start = datetime.fromisoformat(ledger['resource_creation_utc'])
@@ -50,6 +66,8 @@ def window(ledger, now=None):
     if any(type(v) not in (int, float) or not math.isfinite(v) or v <= 0 for v in values):
         raise ValueError('finite positive cost bounds are required')
     rate, reported, reserve = values
+    if reserve < 2:
+        raise ValueError('retain at least the $2 shutdown reserve')
     rates = ledger.get('compute_rates', [])
     if rates:
         if not isinstance(rates, list) or any(type(r.get('count')) is not int or r['count'] <= 0
@@ -63,11 +81,11 @@ def window(ledger, now=None):
     # full planning rate, even if the VMs remain deallocated.
     accrued = (reported + (now - observed).total_seconds()/3600*rate if anchored else
                max(reported, (now - start).total_seconds() / 3600 * rate))
-    available = max(0, 30 - accrued - reserve)
+    available = max(0, approved - accrued - reserve)
     seconds = min(14400, math.floor(available / rate * 3600))
     if seconds < 60:
         raise ValueError('approved usage allowance is exhausted')
-    return {'accrued_upper_bound_usd': round(accrued, 6), 'available_usd': round(available, 6),
+    return {'approved_usd': approved, 'accrued_upper_bound_usd': round(accrued, 6), 'available_usd': round(available, 6),
             'hourly_upper_bound_usd': rate, 'seconds': seconds,
             'deadline': (now + timedelta(seconds=seconds)).isoformat(),
             'remaining_total_seconds': math.floor(available / rate * 3600)}

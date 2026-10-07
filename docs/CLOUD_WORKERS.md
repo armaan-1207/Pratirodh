@@ -1,8 +1,20 @@
 # Cloud execution and model hosting
 
-Azure now hosts the model controller and two separate execution/audit guests.
-Provisioning is complete; upstream qualification and the measured campaign remain incomplete.
-Read the current generated worker observations before use. The provider choices
+Historical deployment records describe one Azure model controller and two
+separate execution/audit guests, subsequently deallocated. The 2026-10-07
+read-only Azure inventory query confirmed all three named VMs are deallocated.
+Strict SSH readiness checks could not reach the configured workers or model;
+runtime readiness is therefore unverified. The initial readiness checkpoint had
+no current budget ledger, signed qualification index or frozen execution manifest.
+Later on 2026-10-07, the operator approved a $35 total allowance and initialized
+an ignored, evidence-bound local ledger from a fresh $31.39 historical retail
+upper bound, retaining the $2 shutdown reserve and all elapsed consumption.
+The remaining allowance must be checked immediately before guarded work; the
+ledger is excluded from published source. Signed qualification and a frozen
+execution manifest are still missing, so upstream qualification and the 216-run
+campaign remain blocked. No Azure resources were
+started by these checks. Read current worker observations and refresh budget
+evidence before an authorized execution window. The provider choices
 and draft observations below are historical setup notes. A rented model server also changes the deployment
 from laptop-local inference to self-hosted cloud inference; record that distinction
 in reports rather than describing it as offline laptop execution.
@@ -68,8 +80,10 @@ per disk, with separate operations charges. Public IPs and outbound traffic may
 also cost credit. D2s v6 failed preflight because East Asia Dsv6 quota was zero;
 the quota page showed Basv2 quota 10 and DSv4 quota 4. B2als v2 subsequently
 passed the VM quota check. The portal's price/legal-term retrieval failed;
-the final firewall draft passed preflight too. Spending/terms authorization and
-actual provisioning remain pending. No VM has been created. The draft has an explicit NSG with
+the final firewall draft passed preflight too. At this initial 2026-10-02 draft
+checkpoint, spending/terms authorization and actual provisioning were pending
+and no VM had been created. Later deployment records supersede that draft
+provisioning status; they do not establish current runtime readiness. The draft has an explicit NSG with
 no custom inbound allow rules and auto-shutdown at 23:59 India Standard Time.
 Keep the two guests on separate unpeered networks and restrict
 SSH to the controller IP after authorization; model and Docker services must
@@ -102,7 +116,8 @@ to [GitHub's partner changelog](https://github.com/github-education-resources/St
 ## Model serving and remaining implementation
 
 The current model client accepts loopback HTTP endpoints and pins local runtime
-artifacts. Azure provisioning is complete. `tools/check_model_worker.py` separately
+artifacts. Historical provisioning records are distinct from current readiness.
+`tools/check_model_worker.py` separately
 verifies the remote Ollama binary, installed model digest, quantization, memory
 and structured inference over strict SSH. This readiness check does not yet
 configure the 24 recipe manifests for execution on the controller. Connecting to a self-hosted model through an SSH tunnel requires a
