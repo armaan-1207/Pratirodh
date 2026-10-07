@@ -896,9 +896,9 @@
       "source_head": "86e614de4e43759e023adab462b06da5a3973d73",
       "file": "assets/screenshot.png",
       "source_sha256": "5ac3f2ba5b3cf1ffc96eb108955d3194d9e004bb9d89bc3948cde46a75de929d",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/desktop/assets/screenshot.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/desktop/assets/screenshot.png"
     },
     {
       "checkout": "desktop",
@@ -1421,8 +1421,8 @@
       "source_head": "86e614de4e43759e023adab462b06da5a3973d73",
       "file": "assets/pratirodh-overview.png",
       "source_sha256": "231ac3e406ebed3478df2e7a3e941826e1e4713119054bb3e5a45f358969ce6c",
-      "disposition": "integrated",
-      "reason": "Exact content preserved in active checkout (line endings normalized where applicable)"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable."
     },
     {
       "checkout": "desktop",
@@ -2416,9 +2416,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/combined-replay.jpg",
       "source_sha256": "4e9d2e56202b811ac8eb0ded034cebe532b82abca2b3fc4b07442d1578665c4e",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/combined-replay.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/combined-replay.jpg"
     },
     {
       "checkout": "08d9",
@@ -2449,9 +2449,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/challenge-1440.png",
       "source_sha256": "ee439f507afead35bc946285db1194c477942ac25fea35139e12989a083eb14e",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/challenge-1440.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/challenge-1440.png"
     },
     {
       "checkout": "08d9",
@@ -2548,9 +2548,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/workspace-768.png",
       "source_sha256": "0fe60de2ed27efc380f9ed106226e7361a358ae64d0a06e70ffca8b65808e979",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/workspace-768.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/workspace-768.png"
     },
     {
       "checkout": "08d9",
@@ -2622,9 +2622,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/ui-verdict.jpg",
       "source_sha256": "5b9f19cfc0d631717f9e2e966c8285014d5b494ee4691ca95ecb0453d78cff8a",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/ui-verdict.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/ui-verdict.jpg"
     },
     {
       "checkout": "08d9",
@@ -2640,9 +2640,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/showcase-768.png",
       "source_sha256": "62e5d4afd9b2a795b18bcfa804e4895c418095ce1eca1f095f4d496ae76a441a",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/showcase-768.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/showcase-768.png"
     },
     {
       "checkout": "08d9",
@@ -2963,9 +2963,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/combined-template.jpg",
       "source_sha256": "c25f8a130d0bade71947f988e33600785db3335c48900bbaa6776033fe987fcc",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/combined-template.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/combined-template.jpg"
     },
     {
       "checkout": "08d9",
@@ -3004,9 +3004,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/workspace-1440.png",
       "source_sha256": "956bff6bbc65f5e4b03a299a4654931c456e83d5d9ee0094dc561585b532d644",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/workspace-1440.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/workspace-1440.png"
     },
     {
       "checkout": "08d9",
@@ -3045,9 +3045,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/ui-workspace.jpg",
       "source_sha256": "3bf0ce7049b2a37de4157cd7bae32df748dc4e2a09e317795e9ada9f384e9e39",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/ui-workspace.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/ui-workspace.jpg"
     },
     {
       "checkout": "08d9",
@@ -3191,9 +3191,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/evidence-390.png",
       "source_sha256": "934c536d36d399d5a852110b94f5a51912acdfef4ba044b91a8622ee86ef84f2",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/evidence-390.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/evidence-390.png"
     },
     {
       "checkout": "08d9",
@@ -3419,9 +3419,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "assets/screenshot.png",
       "source_sha256": "5ac3f2ba5b3cf1ffc96eb108955d3194d9e004bb9d89bc3948cde46a75de929d",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/assets/screenshot.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/assets/screenshot.png"
     },
     {
       "checkout": "08d9",
@@ -3436,9 +3436,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/workspace-390.png",
       "source_sha256": "df4843fcf74440a2ccf3cd8d4eb9f0f032f38fc3a64f41cc5ca3e597e8ced4c6",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/workspace-390.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/workspace-390.png"
     },
     {
       "checkout": "08d9",
@@ -3533,9 +3533,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "assets/offline-dashboard.jpg",
       "source_sha256": "bf2953d13507459f6572a65abb50dfc62018891af15a1bd716837c07f50c8115",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/assets/offline-dashboard.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/assets/offline-dashboard.jpg"
     },
     {
       "checkout": "08d9",
@@ -3874,9 +3874,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/combined-workspace.jpg",
       "source_sha256": "49ab357bd49a85d7d8d4fdd1fd585e79efadddb5700dab5f24ee9db325a43cca",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/combined-workspace.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/combined-workspace.jpg"
     },
     {
       "checkout": "08d9",
@@ -3948,9 +3948,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/showcase-390.png",
       "source_sha256": "7d821f5820b5ea938c73e813e07cf3a0ceab73080ba4eee05fc5311df753e28f",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/showcase-390.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/showcase-390.png"
     },
     {
       "checkout": "08d9",
@@ -4127,9 +4127,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "assets/credential-review.jpg",
       "source_sha256": "0e81a9575e50b918eda4200bdb5de32e3e7b7921e93128514afffe3e3c51de05",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/assets/credential-review.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/assets/credential-review.jpg"
     },
     {
       "checkout": "08d9",
@@ -4241,9 +4241,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "assets/demo-ready.jpg",
       "source_sha256": "39e9149da8c0df1ec7fe541aa59b2d11f73613d2d7f251f4663c2f042eca154a",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/assets/demo-ready.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/assets/demo-ready.jpg"
     },
     {
       "checkout": "08d9",
@@ -4584,9 +4584,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "assets/frontend-refresh.jpg",
       "source_sha256": "e4ad8fed82abaaa7e99bf261ebe7419547d72a35419364df4fe2fa4a8a13532b",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/assets/frontend-refresh.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/assets/frontend-refresh.jpg"
     },
     {
       "checkout": "08d9",
@@ -4609,9 +4609,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/combined-comparison.jpg",
       "source_sha256": "4da9b15447344c7a94ede6fee4e234af7b8a1b8ac267008989805f2a8435e72e",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/combined-comparison.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/combined-comparison.jpg"
     },
     {
       "checkout": "08d9",
@@ -4781,9 +4781,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/ui-comparison.jpg",
       "source_sha256": "915a806b95b6f9734143f8e8ee54bd7918c1c05d6987c833d4b79b15c31aa070",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/ui-comparison.jpg"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/ui-comparison.jpg"
     },
     {
       "checkout": "08d9",
@@ -5366,9 +5366,9 @@
       "source_head": "5df8e8159c2770b0a24b84354a5f170a7a8a3d7a",
       "file": "docs/screenshots/showcase-1440.png",
       "source_sha256": "ef4d52fe1e11b13e5b8997c9c3eb53673c3fe526ab834386657ad78aded53dfb",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/08d9/docs/screenshots/showcase-1440.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/08d9/docs/screenshots/showcase-1440.png"
     },
     {
       "checkout": "08d9",
@@ -5972,9 +5972,9 @@
       "source_head": "edffe240dc5c59db817e3cf3100e91817d5316f7",
       "file": "assets/screenshot.png",
       "source_sha256": "5ac3f2ba5b3cf1ffc96eb108955d3194d9e004bb9d89bc3948cde46a75de929d",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/86fc/assets/screenshot.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/86fc/assets/screenshot.png"
     },
     {
       "checkout": "86fc",
@@ -6648,8 +6648,8 @@
       "source_head": "53df21bda8ba645496ae3e55ba3eab45bf5323e9",
       "file": "assets/pratirodh-overview.png",
       "source_sha256": "231ac3e406ebed3478df2e7a3e941826e1e4713119054bb3e5a45f358969ce6c",
-      "disposition": "integrated",
-      "reason": "Exact content preserved in active checkout (line endings normalized where applicable)"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable."
     },
     {
       "checkout": "pratirodh-upstream-validation",
@@ -7388,9 +7388,9 @@
       "source_head": "53df21bda8ba645496ae3e55ba3eab45bf5323e9",
       "file": "assets/screenshot.png",
       "source_sha256": "5ac3f2ba5b3cf1ffc96eb108955d3194d9e004bb9d89bc3948cde46a75de929d",
-      "disposition": "archived",
-      "reason": "Historical reference preserved; current canonical documentation and assets supersede dated claims",
-      "preserved_at": "archive/reference/pratirodh-upstream-validation/assets/screenshot.png"
+      "disposition": "superseded",
+      "reason": "Screenshot omitted from the release at user request on 2026-10-07; original source hash and original checkout remain preserved, and prior Git versions remain recoverable.",
+      "historical_release_path": "archive/reference/pratirodh-upstream-validation/assets/screenshot.png"
     },
     {
       "checkout": "pratirodh-upstream-validation",
@@ -10835,10 +10835,10 @@
     }
   ],
   "counts": {
-    "integrated": 959,
-    "archived": 185,
+    "integrated": 957,
+    "archived": 162,
     "private/generated": 11,
-    "superseded": 109,
+    "superseded": 134,
     "deferred": 44
   },
   "upstream_preparation": {
@@ -11262,6 +11262,456 @@
       "total": 24,
       "prepared": 5,
       "blocked": 19
+    }
+  },
+  "publication_cleanup": {
+    "reviewed_on": "2026-10-07",
+    "screenshots_removed": 28,
+    "reason": "User requested screenshots omitted from current release; original hashes and historical Git objects retained.",
+    "unique_historical_source": "Retained in inactive archives",
+    "original_acquisitions": "Unmodified",
+    "preparation": {
+      "scope": "STATIC_PREPARATION_ONLY",
+      "qualification": "NOT_RUN",
+      "cases": [
+        {
+          "case": "cpp-cve-2014-9130",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "PREPARED",
+          "blockers": [],
+          "source_revision": "eebdd8b84defa1166f9fd0fc4b46258a47d94576",
+          "fix_revision": "e6aa721cc0e5a48f408c52355559fd36780ba32a",
+          "overlay_sha256": {
+            "CMakeLists.txt": "ee12f6375c7f0e7425ef94a27fa77cfe4de5ce5e954fb515fe61d504ca81d53d",
+            "tests/yaml_assert_safe.c": "3b8b8b061c4cd74c7e3ace78653a50066089719e630e4954d2a84792cb36a638",
+            "tests/yaml_empty_doc.c": "de78fd134b3359a65ead17537b5752a227b65b8221c5c0f338db6f497594aded",
+            "tests/yaml_valid_doc.c": "e75d68d00f81e2f4350d344658598ab32b1b8538b362b832aa16f67c5ad043fa"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2018-25032",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: contrib/blast/test.pk"
+          ],
+          "source_revision": "e99813dbfe9a09e33d42e8da9e550a0c4b7ff734",
+          "fix_revision": "5c44459c3b28a9bd3283aaceab7c615f8020c531",
+          "overlay_sha256": {
+            "CMakeLists.txt": "4bbc4f64f4a7a6834ce433a84ba225bbf97c5d3eac60647912697d81ac0d3b04",
+            "test/zlib_legitimate.c": "0f084fcfc7a160ec498f7df46f1ac7ef069b763b9c448e0aa1935b1c7f2abdd8",
+            "test/zlib_overflow_trigger.c": "dbc1488e9b56eaf55cb3a19f6685a18df5e9c238ebabeed6cc6b9bb35811587c",
+            "test/zlib_roundtrip.c": "ef641c1f236acc1c7276105f15f587967b64dab3358c4d68c70c690a3129b984"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2019-1000019",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: contrib/libarchive.1aix53.spec"
+          ],
+          "source_revision": "8312eaa576014cd9b965012af51bc1f967b12423",
+          "fix_revision": "65a23f5dbee4497064e9bb467f81138a62b0dae1",
+          "overlay_sha256": {
+            "libarchive/test/CMakeLists.txt": "2f1dc1584d6fb47a3dfcba277a0c86212e5e95c9c95f436193af7cf470e7c053"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2020-12762",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "Unsupported upstream link or special file: tests/test4.test",
+            "Unsupported upstream link or special file: tests/testReplaceExisting.test",
+            "Unsupported upstream link or special file: tests/test_cast.test",
+            "Unsupported upstream link or special file: tests/test_charcase.test",
+            "Unsupported upstream link or special file: tests/test_compare.test",
+            "Unsupported upstream link or special file: tests/test_deep_copy.test",
+            "Unsupported upstream link or special file: tests/test_double_serializer.test",
+            "Unsupported upstream link or special file: tests/test_float.test",
+            "Unsupported upstream link or special file: tests/test_int_add.test",
+            "Unsupported upstream link or special file: tests/test_json_pointer.test",
+            "Unsupported upstream link or special file: tests/test_locale.test",
+            "Unsupported upstream link or special file: tests/test_null.test",
+            "Unsupported upstream link or special file: tests/test_object_iterator.test",
+            "Unsupported upstream link or special file: tests/test_parse.test",
+            "Unsupported upstream link or special file: tests/test_parse_int64.test",
+            "Unsupported upstream link or special file: tests/test_printbuf.test",
+            "Unsupported upstream link or special file: tests/test_set_serializer.test",
+            "Unsupported upstream link or special file: tests/test_set_value.test",
+            "Unsupported upstream link or special file: tests/test_util_file.test",
+            "Unsupported upstream link or special file: tests/test_visit.test",
+            "prototype requires UTF-8 source/fixtures: tests/test_parse.expected"
+          ],
+          "source_revision": "77d935b7ae7871a1940cd827e850e6063044ec45",
+          "fix_revision": "d07b91014986900a3a75f306d302e13e005e9d67",
+          "overlay_sha256": {
+            "tests/CMakeLists.txt": "6a586f758417d9ce35bdd4285daaccd1c1ddfa0c41ffabfeed4241d5fc898a94",
+            "tests/jsonc_array_overflow_safe.c": "524304875afdff29709f277a11501546ed9353f13df3d1cf40f7c2c28418200c",
+            "tests/jsonc_large_object_safe.c": "a475a3c28369bc6c6d3e10d51329639ea6cdecabaae0c2e82abf5db81b3de44e",
+            "tests/jsonc_normal_object.c": "8d2029449931ef7f84e1a1ed39fcd499336af1c78f1909a41116da143d57c958"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2022-43680",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "Unsupported upstream link or special file: README.md",
+            "project exceeds intake file/disk budget"
+          ],
+          "source_revision": "391551620eefa5fccfaaee07dab066cc552527b2",
+          "fix_revision": "5290462a7ea1278a8d5c0d5b2860d4e244f997e4",
+          "overlay_sha256": {
+            "expat/CMakeLists.txt": "14dbf201dd8cc303bad20155c69bd9aacdeffb1e3dfdd76059ebef7ed7dfecb3",
+            "expat/tests/expat_deep_entity_safe.c": "8d7a5fd829d29ba5bbcfad9984ae4bbc913dcec3118aa365b182760623d924ac",
+            "expat/tests/expat_entity_uaf_safe.c": "2a1ef5786515f9b12aef7a1daef59b9d5c4a881d70fc27beacfb14ae2d95698f",
+            "expat/tests/expat_valid_xml.c": "47eb47438d462946d8775cf85a8c63c49f1fc04942dc83207f37529b5fdece09"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2023-4863",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: examples/test.webp"
+          ],
+          "source_revision": "7ba44f80f3b94fc0138db159afea770ef06532a0",
+          "fix_revision": "902bc9190331343b2017211debcec8d2ab87e17a",
+          "overlay_sha256": {
+            "tests/test_harness.py": "b7ef4011ad5166bb86d1b8185109fd3e63b16b96cb4eb9089e0177b5511c0d87"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2023-50472",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: tests/unity/docs/UnityAssertionsCheatSheetSuitableforPrintingandPossiblyFraming.pdf"
+          ],
+          "source_revision": "cb8693b058ba302f4829ec6d03f609ac6f848546",
+          "fix_revision": "276a4620c1b3107635fd9a7aa91ae2a72d5eb1c4",
+          "overlay_sha256": {
+            "tests/cjson_empty_string.c": "e4f6dcf10c6660d5bb6c8758acc009b1f30f47f7c7f6e1fee50b0adac94bfe32",
+            "tests/cjson_null_string_safe.c": "34584ab40496e6c8e8c4b980f4bfb4f811c7bbb89e7087751efd423aa534ab69",
+            "tests/cjson_print_normal.c": "d4aa7fd33d3608e57885f44f4e4e69cee07985e92ebdc97a85cc490e0c01ef04",
+            "tests/CMakeLists.txt": "badd5d7c53f2871b21476c23533f26d531b2c6a5c5c5172398e3df36c0ccba94"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "cpp-cve-2024-25062",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "Unsupported upstream link or special file: test/relaxng/ambig_name-class.rng",
+            "Unsupported upstream link or special file: test/relaxng/ambig_name-class2.rng",
+            "prototype requires UTF-8 source/fixtures: doc/devhelp/home.png"
+          ],
+          "source_revision": "8b9b972aaa4970f3983085ad59930614c5f6aa57",
+          "fix_revision": "92721970884fcc13305cb8e23cdc5f0dd7667c2c",
+          "overlay_sha256": {
+            "CMakeLists.txt": "9ab43bb4883a35a6b446ac6a7c47f9f0404cee92a9968f6927f287c1eb095161",
+            "xmlreader_expand_uaf_safe.c": "73ebfa452066f9fdf6355650e1b51a64cc38207d4a81234c72ec08956e5661c9",
+            "xmlreader_malformed.c": "ed5540aa37d9186d0347fc97b37bb86b9f3756992aa8974d1d8f48d315e99388",
+            "xmlreader_valid.c": "7c575142bf2ade4e9c85035ba29cd089f88132e8c5eaf7cbb51970f53b762fd7"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2018-6835",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: doc/easysync/easysync-full-description.pdf"
+          ],
+          "source_revision": "d7c93b0c0d7fd8a429512dc12c809c10a8175022",
+          "fix_revision": "626e58cc5af1db3691b41fca7b06c28ea43141b1",
+          "overlay_sha256": {
+            "tests/test_jsonp.js": "ddcead86ca92d40f11b77354f2e19ebeb5c09d72b2104b41173db1192c0870e1"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2019-10767",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "remove credentials/private keys before intake: conf/cert.key"
+          ],
+          "source_revision": "fbdbfbdb766490db65cde0b0ca5dd46221c5a912",
+          "fix_revision": "f6e292c6750a491a5000d0f851b2fede4f9e2fda",
+          "overlay_sha256": {
+            "test/test_sanitize.js": "524b6a65afad20f7c1938afd7ed17c04e40476a1227abebcbd087bbe348cd572"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2019-15599",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "PREPARED",
+          "blockers": [],
+          "source_revision": "3b5b8feeb3175a3e16ea7e0e09fdf5b8d2b87b08",
+          "fix_revision": "deee138a8cbc918463d8af5ce8c2bec33c3fd164",
+          "overlay_sha256": {
+            "package-lock.json": "f076b82f5562c232611e92dd9e6408069cbf2939f92ebb3c7faa3e89ac84848e",
+            "package.json": "670841939605f8fc91f29ee2e438791ead332b35b5faeb97eda00f89acdd59be",
+            "tests/test.js": "dd8a4d6e13a5d7558e90cfd8bb2c22d0461ce9290be2d76f6ff26c31a6af17fd"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2021-23369",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "PREPARED",
+          "blockers": [],
+          "source_revision": "f0589701698268578199be25285b2ebea1c1e427",
+          "fix_revision": "b6d3de7123eebba603e321f04afdbae608e8fea8",
+          "overlay_sha256": {
+            "spec/security.js": "ca2dd0a2bc14792d35716f607170846904f43a55ac6cb42593af15d382881298",
+            "tests/test_harness.js": "b50d7d1b1a6e1bf20efcadaa5f4f8b0c82f1d780c2e1961e87cbb125533ad52e",
+            "tests/test_pollution.js": "081f73663c167f17df556975c4716f34ea0be8704cd9fd7465c215856454b242"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2021-23664",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "PREPARED",
+          "blockers": [],
+          "source_revision": "617b73f43e6cbb2cd24f5964da1587caed9b5ac4",
+          "fix_revision": "1b1c91e71d946544d97ccc7cf0ac62b859e03311",
+          "overlay_sha256": {
+            "tests/test_redirect.js": "642b6ff6c06e1090ce7c9fe8bdd03eb889c6cbd8dce702ceb7bf96ea133be43a"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2021-29300",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "PREPARED",
+          "blockers": [],
+          "source_revision": "33c2dfb8fdc0ac7aa6fc049aa6ab6b2093484be6",
+          "fix_revision": "7effe011d4fea8fac7f78c00615e0a6e69af68ec",
+          "overlay_sha256": {
+            "tests/test_injection.js": "2197a5e739fb2c220a9b0b477f69882a01610a831807f03dcae8b04cbec5cda4"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2021-37712",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "Unsupported upstream link or special file: benchmarks/node_modules/.bin/mkdirp",
+            "Unsupported upstream link or special file: benchmarks/node_modules/.bin/rimraf",
+            "Unsupported upstream link or special file: test/fixtures/files/longlink",
+            "Unsupported upstream link or special file: test/fixtures/files/strip-dir/symlink",
+            "Unsupported upstream link or special file: test/fixtures/files/symlink",
+            "project exceeds intake file/disk budget"
+          ],
+          "source_revision": "d56f790bda9fea807dd80c5083f24771dbdd6eb1",
+          "fix_revision": "1739408d3122af897caefd09662bce2ea477533b",
+          "overlay_sha256": {
+            "test/test_reservation.js": "a793755c76b151a414b48482822123052f1864ec885e82b6d2b9d5af7d913b2c"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "javascript-cve-2024-56334",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: docs/assets/android-icon-192x192.png"
+          ],
+          "source_revision": "51c7698b91789e00d2308c9f95249ca3bb27a176",
+          "fix_revision": "f7af0a67b78e7894335a6cad510566a25e06ae41",
+          "overlay_sha256": {
+            "tests/test_wifi_ssid.js": "9a299cde77824a2cf942864fef75723cf911e7fa6963ceb1b0921d6887ae70bb"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2018-18074",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: docs/_static/requests-logo-small.png"
+          ],
+          "source_revision": "dd754d13de250a6af8a68a6a83a8b4419fd429c6",
+          "fix_revision": "c45d7c49ea75133e52ab22a8e9e13173938e36ff",
+          "overlay_sha256": {
+            "tests/test_harness.py": "0e28b5cd4a9000497fb4e40e75816c07412efd28e66fa939ce6c6ce169f6d722"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2018-7750",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "remove credentials/private keys before intake: demos/test_rsa.key"
+          ],
+          "source_revision": "aefd28a7f00c4250d113d375e96abf5da3eb89f9",
+          "fix_revision": "fa29bd8446c8eab237f5187d28787727b4610516",
+          "overlay_sha256": {
+            "tests/test_auth_bypass.py": "31c592edc32d96bcbc05641853787afd1e69c5a3e087f44fb83a4fae9d95a2b5"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2020-25459",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: cluster-deploy/images/arch_en.png"
+          ],
+          "source_revision": "67708d5d327e736d80e2f6726968cf02a926310e",
+          "fix_revision": "6feccf6d752184a6f9365d56a76fe627983e7139",
+          "overlay_sha256": {
+            "tests/run_data_leak.py": "e936c3662598dc83122a4eb09a9524151157317182026d90e3431f1c57bd81bf",
+            "tests/test_data_leak.py": "5a974e437b19084a5b0156854def3dc7338b4dc5ffcc5f80800e820e223a3dbf"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2021-21330",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: docs/_static/aiohttp-icon-128x128.png"
+          ],
+          "source_revision": "f2afa2f054ba9e6c5d142e00233f0073925e7893",
+          "fix_revision": "2545222a3853e31ace15d87ae0e2effb7da0c96b",
+          "overlay_sha256": {
+            "tests/test_harness.py": "814e08e0aeef7083840119b6be4ece53253f504563ef9cb4839d95398b1dccdc",
+            "tests/test_redirect.py": "109c387958442edb7b2aaa1318eae4d3a82b6a74a7c064e5fbbbbf4ff50d8f44"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2021-32633",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: docs/_static/editor.png"
+          ],
+          "source_revision": "1746d5affee450a6b95262ce217fd80328e4c62c",
+          "fix_revision": "1f8456bf1f908ea46012537d52bd7e752a532c91",
+          "overlay_sha256": {
+            "tests/test_expressions.py": "6f9ffa34a0aadbb2c7f064c428c8f87ff963e153ceee5675a29aaaab6075923c",
+            "tests/test_harness.py": "6f9ffa34a0aadbb2c7f064c428c8f87ff963e153ceee5675a29aaaab6075923c"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2021-33203",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "Unsupported upstream link or special file: docs/_theme/djangodocs-epub/static/docicons-behindscenes.png",
+            "Unsupported upstream link or special file: docs/_theme/djangodocs-epub/static/docicons-note.png",
+            "Unsupported upstream link or special file: docs/_theme/djangodocs-epub/static/docicons-philosophy.png",
+            "Unsupported upstream link or special file: docs/_theme/djangodocs-epub/static/docicons-warning.png",
+            "prototype requires UTF-8 source/fixtures: django/conf/locale/af/LC_MESSAGES/django.mo"
+          ],
+          "source_revision": "aa8781c0a671610d5327d0a14d45df3b1f29640d",
+          "fix_revision": "20c67a0693c4ede2b09af02574823485e82e4c8f",
+          "overlay_sha256": {
+            "tests/admindocs/test_views.py": "530e8d17139c153b4aba915b058204b0932e013ea307843db319fe51f9f79bcf"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2022-0767",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: cps/static/cmaps/78-EUC-H.bcmap"
+          ],
+          "source_revision": "8007e450b3178f517b83b0989744c6df38867932",
+          "fix_revision": "965352c8d96c9eae7a6867ff76b0db137d04b0b8",
+          "overlay_sha256": {
+            "tests/test_cover_fetch.py": "bc266e4dfc7f49b647a2d3efec0b19b00d25b5d8f9fb05589a996f534409b799"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        },
+        {
+          "case": "python-cve-2025-43859",
+          "scope": "STATIC_PREPARATION_ONLY",
+          "qualification": "NOT_RUN",
+          "status": "BLOCKED",
+          "blockers": [
+            "prototype requires UTF-8 source/fixtures: docs/source/_static/closelabel.png"
+          ],
+          "source_revision": "9462006f6ce4941661888228cbd4ac1ea80689b0",
+          "fix_revision": "114803a29ce50116dc47951c690ad4892b1a36ed",
+          "overlay_sha256": {
+            "tests/test_harness.py": "b0851c0d9d7e35cfbd7da0d492557362757620f3b0816b27ea2b08f19ae36113",
+            "tests/test_header_parsing.py": "b0851c0d9d7e35cfbd7da0d492557362757620f3b0816b27ea2b08f19ae36113"
+          },
+          "omitted_placeholder_harnesses": [],
+          "upstream_assets": "Retained; unsupported fixtures require explicit qualification work"
+        }
+      ],
+      "summary": {
+        "total": 24,
+        "prepared": 5,
+        "blocked": 19
+      }
     }
   }
 }

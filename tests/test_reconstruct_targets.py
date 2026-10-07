@@ -51,6 +51,18 @@ def test_binary_is_retained_and_reported_as_intake_blocker(tmp_path, monkeypatch
     assert any('UTF-8' in message for message in result['blockers'])
 
 
+def test_long_snapshot_paths_preserve_complete_fixture(tmp_path, monkeypatch):
+    name = 'fixtures/' + '/'.join(['nested-directory'] * 12) + '/canary.txt'
+    case, source, _ = fixture(tmp_path, monkeypatch, {name: b'preserve me\n'})
+    destination = case / 'prepared/target' / name
+    assert len(str(destination)) > 260
+    before = {p.relative_to(source).as_posix(): p.read_bytes() for p in source.rglob('*') if p.is_file()}
+    result = prep.prepare_case(case, source)
+    assert prep.snapshot_path(destination).read_bytes() == b'preserve me\n'
+    assert result['qualification'] == 'NOT_RUN'
+    assert before == {p.relative_to(source).as_posix(): p.read_bytes() for p in source.rglob('*') if p.is_file()}
+
+
 def test_archive_traversal_cannot_write_outside_snapshot(tmp_path, monkeypatch):
     case, source, _ = fixture(tmp_path, monkeypatch, {'../escaped.py': b'bad'})
     with pytest.raises(ValueError):

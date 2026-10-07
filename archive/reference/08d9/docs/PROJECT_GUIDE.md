@@ -569,4 +569,4 @@ The earlier curated results, eight local-generation development attempts, and or
 
 ## Repository scope
 
-The public release keeps the active application, frontend source and built assets, tests, fixture manifests, independent audit inputs, recorded results, deployment helpers, and required licenses. One [workspace preview](screenshots/ui-workspace.jpg) illustrates the README. The small patch/ module remains for the existing patch-matching regression test. Earlier application folders, obsolete Word/release generators, and duplicate screenshots are excluded. Local generated evidence and signing material remain ignored.
+The public release keeps the active application, frontend source and built assets, tests, fixture manifests, independent audit inputs, recorded results, deployment helpers, and required licenses. One workspace preview illustrates the README. The small patch/ module remains for the existing patch-matching regression test. Earlier application folders, obsolete Word/release generators, and duplicate screenshots are excluded. Local generated evidence and signing material remain ignored.

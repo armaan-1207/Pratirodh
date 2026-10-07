@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -22,6 +23,14 @@ from pratirodh.projects.manifest import inventory, load
 
 def read(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
+
+
+def snapshot_path(path):
+    """Use Windows extended paths for disposable snapshots, without truncation."""
+    value = str(Path(path).resolve())
+    if os.name == 'nt' and not value.startswith('\\\\?\\'):
+        value = '\\\\?\\UNC\\' + value[2:] if value.startswith('\\\\') else '\\\\?\\' + value
+    return Path(value)
 
 
 def acquire(info, cache):
@@ -46,7 +55,7 @@ def acquire(info, cache):
 
 
 def prepare_case(case, source):
-    case, source = Path(case).resolve(), Path(source).resolve()
+    case, source = snapshot_path(case), Path(source).resolve()
     info, recipe = read(case / 'target-source.json'), read(case / 'recipe.json')
     output = case / 'prepared'
     if output.exists():

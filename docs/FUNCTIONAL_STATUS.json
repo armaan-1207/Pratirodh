@@ -1,0 +1,16 @@
+{
+  "reviewed_on": "2026-10-07",
+  "scope": "Dated local verification of the functional integration. Historical security observations and current signed upstream qualification remain separate.",
+  "verified_commit": "08e89735abe277285c04a35e45ab471bf08158e3",
+  "checks": [
+    {"label": "Combined Python suite", "result": "261 passed with Docker; no skips at the recorded checkpoint."},
+    {"label": "Browser assets", "result": "3 frontend tests passed; bundled assets rebuilt."},
+    {"label": "Local model repair", "result": "Qwen 7B: READY FOR REVIEW; 55 security and 2 legitimate checks passed; both unsafe mutations caught; no evidence gaps."},
+    {"label": "Pinned upstream preparation", "result": "5 prepared snapshots; 19 blocked. Preparation is unsigned and does not qualify a case."}
+  ],
+  "limitations": [
+    "19 upstream cases need fixture, intake or harness work before runtime qualification.",
+    "Azure runtime qualification and the 216-run independent comparison campaign have not run.",
+    "The dated OWASP Top 10 code and local assessment is recorded separately; production assurance and public activation remain pending. Reviewed container findings remain documented residual risks."
+  ]
+}

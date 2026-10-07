@@ -60,7 +60,7 @@ five prepared and nineteen explicitly blocked. Private-key/token scanning found
 no matching release content. All 1,264 inventoried original file hashes and all
 24 original nested source heads remain unchanged.
 
-Twenty-four dangling acquisition gitlinks, with no submodule definitions, were
+Twenty-four acquisition gitlinks were
 removed from the release index. Their original directories remain intact. Recipes,
 pinned source mappings and captured overlays remain tracked; acquisitions stay
 local and are reconstructed from pinned Git objects. Missing or accidentally
@@ -89,7 +89,7 @@ The clean reconstruction retains these explicit case limitations:
 | cpp-cve-2024-25062 | Upstream Relax NG test links and binary documentation assets. |
 | javascript-cve-2018-6835 | Binary Easysync documentation PDF. |
 | javascript-cve-2019-10767 | Upstream `conf/cert.key` rejected by credential intake policy. |
-| javascript-cve-2021-37712 | Windows path limit on long filename fixtures. |
+| javascript-cve-2021-37712 | Upstream fixture/build links and intake file/disk budget exceeded after resolving the Windows extraction path limit. |
 | javascript-cve-2024-56334 | Binary Android icon in documentation assets. |
 | python-cve-2018-18074 | Binary Requests logo in documentation assets. |
 | python-cve-2018-7750 | Upstream `demos/test_rsa.key` rejected by credential intake policy. |
@@ -106,4 +106,27 @@ silently deleting assets, accepting private material or weakening intake limits
 is not a valid preparation fix. The separate reduced Requests demo does not qualify
 the full upstream Requests case.
 
-Publication uses a PR targeting `main`; no force-push or merge is included.
+## Publication cleanup and follow-up
+
+The user authorized merging PR #2 after passing CI. Publication uses normal commits
+and the protected PR route to `main`; history is not rewritten. The release omits
+28 tracked screenshots and their image references. Original acquisitions, unique
+inactive source archives, licenses, source hashes and benchmark records are retained.
+The obsolete active `.gitmodules` file is also removed: there are no remaining
+active gitlinks, and pinned `target-source.json` mappings drive reconstruction.
+
+Validation now displays a dated functional checkpoint separately from recorded
+security observations and signed upstream qualification. Missing functional records
+do not infer a pass. The homepage and continuous animation are preserved.
+
+Windows preparation uses extended paths only for disposable snapshots, retaining
+complete long-path fixtures without truncation. Traversal, credential, binary and
+size checks still apply; original Git source remains read-only. A regression test
+checks preservation of a fixture beyond the normal Windows path limit.
+
+A fresh clean export after cleanup contained 976 intended release files and
+reconstructed 5 prepared / 19 blocked cases. All 24 original source heads were
+unchanged; no private-key/token patterns or generated inputs were exported.
+For `javascript-cve-2021-37712`, extraction now completes and reports upstream
+links and the unchanged intake budget as the actual blockers. Qualification is
+still `NOT_RUN`; no fixture or intake limit was removed.

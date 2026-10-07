@@ -24,9 +24,9 @@ PRATIRODH investigates declared security violations, proposes or accepts candida
 
 **Start with the multi-file synthetic demo:** Python, JavaScript and C/C++ examples run in restricted Docker workers with supplied patches. No AI model is required for these examples. Optional project AI uses **Qwen2.5-Coder 7B** through a reviewed model configuration.
 
-![PRATIRODH security repair lab overview](assets/pratirodh-overview.png)
 
-*Overview captured on 6 October 2026. The verification landscape illustrates the workflow; actual results appear in signed evidence pages.*
+
+Actual results appear in signed evidence pages in the local interface.
 
 ## Features
 
@@ -58,7 +58,7 @@ The controller holds reviewed manifests, generation budgets and signing material
 <details>
 <summary><strong>Current signed project evidence</strong></summary>
 
-![Current C++ repair evidence with verified signature and candidate checks](docs/screenshots/project-evidence-current-20261002.jpg)
+
 
 This synthetic C++ result verifies a supplied candidate with **zero model calls**. It demonstrates the evidence workflow; it does not measure model accuracy or complete the separate upstream audit.
 
@@ -121,7 +121,7 @@ If the port is occupied, select another `--port`. If Docker is unavailable, star
 <details>
 <summary><strong>Mobile project intake</strong></summary>
 
-![Current mobile project intake with all navigation destinations visible](docs/screenshots/projects-mobile-current-20261002.jpg)
+
 
 The navigation wraps on narrow screens. Project inputs, long source names and worker digests stay within the page width.
 
@@ -255,11 +255,11 @@ The upstream validation workflow covers source provenance, comparison execution,
 The UI derives counts from acquisition, campaign and worker artifacts and exposes them at `/validation/status.json`. Accepted campaign results require a verified signed snapshot and passing audit evidence. A fresh clone displays only the records available locally.
 
 <details>
-<summary><strong>Current upstream validation screenshot</strong></summary>
+<summary><strong>Recorded upstream preparation</strong></summary>
 
-![Current upstream campaign preparation and audit design](docs/screenshots/validation-refined-20261002.jpg)
 
-Captured from the current localhost application on 2 October 2026. This is the recorded preparation state, not a completed experiment.
+
+The Validation page separates dated local checks, preparation and current signed runtime qualification. Preparation is not a completed experiment.
 
 </details>
 

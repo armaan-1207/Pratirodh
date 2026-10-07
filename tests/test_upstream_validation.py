@@ -40,6 +40,20 @@ def test_validation_and_walkthrough_routes_are_explicit(tmp_path):
     assert validation.status_code == 200
     assert b'24 upstream cases' in validation.data
     assert b'0 / 24' in validation.data
+    assert b'Recorded local functional verification' in validation.data
+    assert b'216-run' in validation.data
     walkthrough = client.get('/walkthrough')
     assert walkthrough.status_code == 200
     assert b'RECORDED RUN' in walkthrough.data
+
+
+def test_missing_functional_record_does_not_infer_a_pass(tmp_path, monkeypatch):
+    from pratirodh import upstream_status
+    original = upstream_status.read
+    monkeypatch.setattr(upstream_status, 'read', lambda path: ({}, 'missing')
+                        if Path(path).name == 'FUNCTIONAL_STATUS.json' else original(path))
+    client = create_app(store=__import__('pratirodh.evidence', fromlist=['Store']).Store(tmp_path)).test_client()
+    response = client.get('/validation')
+    assert response.status_code == 200
+    assert b'No functional pass is inferred' in response.data
+    assert b'0 / 24' in response.data
