@@ -12,6 +12,7 @@ ENV/
 
 # Local execution evidence
 run_output/
+/usage_ledger.json
 .ledger_key_*
 *.db
 .qa/
@@ -22,7 +23,6 @@ archive/**/__pycache__/
 /benchmark/recipes/*/target/
 run-first.json
 .pytest_cache/
-*.egg-info/
 build/
 dist/
 

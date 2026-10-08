@@ -1,7 +1,32 @@
 {
   "framework": "OWASP Top 10:2025",
   "reviewed_on": "2026-10-07",
-  "overall": "Locally verified application controls; residual image and deployment risks remain",
+  "assessment_base": "65a0e9210b577af767425b0df7abdcd4ac4fa9ed plus locally verified candidate changes",
+  "assessment_hash_basis": "SHA-256 of Git-index bytes, including Git newline normalization",
+  "assessment_inputs_sha256": {
+    "frontend/app.js": "43bc29b3c550180c425d21d2ebd08b9851f051fce85a662196ada105f718788b",
+    "frontend/scene.js": "3ee44a42c9c4e17ab2ddb29768b9c2a3b2f7599126a323990d48bebee4f52ce7",
+    "frontend/scene-lifecycle.js": "047f05c96c8108a6e382fdd555682f9877477e93a36b7f633aab782d17e954e1",
+    "pratirodh/static/style.css": "c1a22f9cca5e7361301e65f4ccc5a2735e305f22f0d252263952d4f3d7ac6d61",
+    "tools/requests_diagnostics.py": "d9fd5173061cd8b580fa7aba37219fcdb76a9e3fa025dd871e72446992067fc9",
+    ".github/workflows/checks.yml": "083ba3c9147633888c74de099a9c904b71609d9bbe991aa871f528ffe6135a1b"
+  },
+  "overall": "Locally verified release candidate; historical reliability diagnoses and production/evaluation gates remain open",
+  "followup_reviewed_on": "2026-10-08",
+  "current_local_followup": {
+    "published_base": "93b713e845f8f368232ae031a13f08af83ef592d",
+    "state": "Final follow-up candidate; exact-revision external CI validation required; external activation deferred",
+    "python": "430 passed with Docker enabled, zero skips, 729.73 seconds",
+    "frontend": "7 passed",
+    "complete_suite_receipt": "run_output/parallel-final-suite-20261008.xml",
+    "ci_publication": "Published base 93b713e passed both GitHub CI runs with 428 Python and 7 frontend tests. These results do not establish CI acceptance of this follow-up; consult its exact-revision Actions run",
+    "historical_ci_causes": "UNEXPLAINED; matched runner versions do not establish the cause. Sanitized multi-language artifacts now prepared locally",
+    "native_candidate": "Restricted-PATH failure corrected in experimental image 7c3b774. Boundary, six synthetic workflows and complete 430-test combined suite passed (zero skips, 642.19 seconds, 209 candidate dispatches). Image-bound scan reports 175 header-package rows requiring review; no migration approval or runtime qualification established",
+    "native_candidate_suite_receipt": "run_output/native-ubuntu-candidate-20261008/combined-suite-v2/pytest.xml",
+    "budget": "New retail estimate is not authorization to replace prior accrued consumption; existing ledger remains unchanged and blocks execution",
+    "source_contract": "24 mapping records and 49 raw-byte overlay hashes match; 19 source-intake conflicts remain blocked",
+    "public_deployment": "DEFERRED"
+  },
   "scope": "Local application and repository security. Deployment assurance and upstream evaluation remain separate.",
   "findings": [
     {
@@ -33,12 +58,177 @@
       "title": "Repository protection",
       "status": "Configuration verified",
       "detail": "Main requires a pull request, passing CI and resolved conversations. Force pushes and deletion are blocked, including for administrators. Solo-maintainer approval policy applies."
+    },
+    {
+      "title": "Worker cleanup and reliability diagnostics",
+      "status": "Focused checks passed; historical diagnoses open",
+      "detail": "Cleanup failures refuse verification, release slots and quarantine the worker object. Sanitized deadline categories are recorded; persistent operator quarantine remains outside this local proof."
     }
   ],
   "checks": [
     {
+      "label": "Complete local follow-up Python suite with Docker enabled (8 October 2026)",
+      "result": "430 passed, zero skips, 729.73 seconds. Sanitized multi-language CI artifacts verified locally; historical C++ and Requests causes remain unexplained. Final follow-up requires exact-revision external CI validation."
+    },
+    {
+      "label": "Frontend animation and build",
+      "result": "7 passed; rebuilt assets match source, including mobile cube animation and recovery fallbacks."
+    },
+    {
+      "label": "Experimental Ubuntu compiler-worker compatibility (8 October 2026)",
+      "result": "430 combined Python tests passed with Docker enabled, zero skips, 642.19 seconds and 209 candidate dispatches. Other Docker roles and configured release-worker tag unchanged. Scan reports 175 kernel-header rows requiring review; candidate not promoted or runtime-qualified."
+    },
+    {
+      "label": "Static and dependency analysis",
+      "result": "Bandit: zero medium/high, 84 low. Locked deployment Python and production npm audits: no known vulnerabilities."
+    },
+    {
+      "label": "Worker cleanup and operator-review boundary",
+      "result": "68 focused security/diagnostic tests passed with Docker; 22 activation preflight tests passed. Missing actual operator evidence blocks activation."
+    },
+    {
+      "label": "Final release artifacts",
+      "result": "Final image, wheel, dependency scan and clean export receipts are recorded separately for the prepared source. Private/generated acquisitions, keys and evidence remain outside release files."
+    },
+    {
+      "label": "External qualification and deployment",
+      "result": "19 preparation blockers; 0/24 signed qualifications; 0/216 campaign runs. Existing $35 ledger with $2 reserve blocks Azure execution; public activation deferred."
+    }
+  ],
+  "limitations": [
+    "Unfixed native OS libraries remain residual risks. Worker execution requires dedicated, offline, disposable isolation; sensitive or shared public workloads are outside the local assurance scope.",
+    "Local synthetic HTTPS, authentication, read-only restrictions, host rejection, restore and alert delivery passed. Public HTTPS, production host permissions, key rotation, operator backups and external alert delivery remain unverified; public deployment is deferred.",
+    "Historical Requests Docker CI inconsistency remains unexplained. Three consecutive local reruns passed; sanitized diagnostics are prepared locally for the next authorized CI publication.",
+    "Nineteen upstream preparation blockers, Azure qualification and the 216-run independent campaign remain separate.",
+    "The parallel follow-up first run had one C++ worker timeout; an unchanged isolated run and complete 389-case repeat passed. Its root cause remains unexplained and no production reliability claim is made."
+  ],
+  "operations_followup": {
+    "date": "2026-10-07",
+    "published_base": "8b3d772d869eb481e09c8dbf64bd889bc8437bf9",
+    "scope": "Uncommitted local operations tooling; public and operator-service activation deferred",
+    "source_hash_basis": "SHA-256 of working-tree bytes",
+    "source_sha256": {
+      "pratirodh/operations.py": "ec3dea725e7f939bd874f09cb2d8c9e326e5c442d28d68bbbe1da2bb4516a441",
+      "tools/manage_operations.py": "aa14c3600b7c017d8174d6b143711318691e464778f59404f386389d29978a61",
+      "tests/test_operations.py": "5d9574a2cdb81c16257ad0bcd250ed1fddac89ec0b63d221a831b012df385126"
+    },
+    "local_tooling": {
+      "encrypted_backup": "AES-256-GCM and Scrypt; signed record and SQLite consistency checks",
+      "restore": "Authenticated bounded snapshot with independent trust anchor; no destination overwrite",
+      "signing_epochs": "Separate store and key, old store preserved; automatic revocation not implemented",
+      "alert_adapter": "Opt-in HTTPS with certificate verification, no redirects, sanitized payload and observable single-attempt failure"
+    },
+    "tests": "23 operations tests passed including real loopback HTTPS; deployment container and wheel drills passed",
+    "activation": {
+      "off_host_retention": "NOT_CONFIGURED",
+      "production_signer_identity": "NOT_CONFIGURED",
+      "external_alert_recipient": "NOT_CONFIGURED",
+      "public_deployment": "DEFERRED"
+    },
+    "ci_base": "Push and existing PR checks for 8b3d772 passed 312 Docker-enabled tests each; historical Requests failure root cause remains unexplained"
+  },
+  "parallel_operations_followup": {
+    "date": "2026-10-07",
+    "published_base": "8b3d772d869eb481e09c8dbf64bd889bc8437bf9",
+    "scope": "Uncommitted local hardening; activation deferred; prior results retained as historical evidence",
+    "source_hash_basis": "SHA-256 of working-tree bytes",
+    "source_sha256": {
+      "pratirodh/operations.py": "0bf79e1861a8e3c81784dcbfe9cca0e4f49088e90613484ca5348427be68ad61",
+      "pratirodh/security_events.py": "7a897aa144a8ba2a22580f961afb057da3923c5fa26181d32d8f5612ac3201de",
+      "pratirodh/web.py": "77bbb0014dbdd7d12bd3676c2149349d7f03848092fb846b76ecc135294e95de",
+      "tools/manage_operations.py": "a1d8135e7cbbdd95ec2c4c8dc761ab945f8ae42a20d5971eaa7597d2ca3097be",
+      "tools/scan_container_images.py": "eec8108d3cc02ff5d5f77fc6c173f2d7e7b03e61de65ee519a7b5313e9482afd",
+      "tests/test_operations.py": "011d28fe0cdb06bb3103e0fb93b17a5dfd31b25b4eca7f62d190744542b94d2a",
+      "tests/test_alert_bridge.py": "28be8dfd66d927b716205efa67227318307e35614311e4b7f2e799cd38187832",
+      "tests/test_scan_image_bindings.py": "3218d3816d7232f8c4056e6338f118c8ae7ee7b84ec1b7cccdf8388fa3616f62"
+    },
+    "focused_checks": {
+      "operations": "59 passed, no skips",
+      "application_alert_bridge_and_security": "59 passed with Docker, no skips",
+      "image_bindings_and_advisory_policy": "19 passed, no skips",
+      "qualification_preparation_budget_readiness": "80 passed, no skips"
+    },
+    "controls": [
+      "Portable restore paths, duplicate JSON and bounded inventories rejected; signed record/index metadata agreement enforced",
+      "Application alert delivery disabled unless protected endpoint/token pair configured; sanitized failures observable; one bounded attempt",
+      "Image archive digest and ordered layer identities recorded; differing Docker/Trivy configuration IDs reported explicitly"
+    ],
+    "activation": {
+      "off_host_backups": "NOT_CONFIGURED",
+      "production_signer_identity": "NOT_CONFIGURED",
+      "external_alert_recipient": "NOT_CONFIGURED",
+      "public_deployment": "DEFERRED"
+    },
+    "remaining": {
+      "preparation_blockers": 19,
+      "signed_qualifications": "0/24",
+      "campaign": "0/216",
+      "cloud": "Prior consumption preserved; conservative ledger reports allowance exhausted; $35 total cap includes $2 reserve",
+      "native_findings": "249 reviewed residual high/critical candidates; no safe compatible one-line remediation demonstrated"
+    },
+    "complete_suite_receipt": "run_output/parallel-combined-repeat-20261007.xml",
+    "complete_suite_result": "389 passed with Docker enabled, no skips, 517.26 seconds",
+    "retained_reliability_finding": {
+      "first_run": "388 passed, 1 failed, no skips, 996.24 seconds",
+      "case": "test_real_multi_file_end_to_end[repair-cpp]",
+      "observation": "Worker container timeout; INSUFFICIENT_EVIDENCE / BUDGET_EXHAUSTION",
+      "isolated_run": "1 passed unchanged in 63.83 seconds",
+      "root_cause": "UNEXPLAINED; repeat passing suite is not a diagnosis",
+      "receipt": "run_output/parallel-combined-failure-summary-20261007.json"
+    }
+  },
+  "release_followup": {
+    "date": "2026-10-07",
+    "published_base": "8b3d772d869eb481e09c8dbf64bd889bc8437bf9",
+    "scope": "Local release candidate reliability and operator-review tooling; external activation deferred; exact-revision publication results recorded separately",
+    "source_hash_basis": "SHA-256 of working-tree bytes",
+    "source_sha256": {
+      "pratirodh/projects/worker.py": "6a336026a2ab8b841d7dd833d72d293c11de93715ecd4c6c412846182ec6258d",
+      "pratirodh/projects/engine.py": "a6650b0d5dd7fb865d4ae36f18c2ae4541779c59b6c36885a17b723668e0b6a0",
+      "tools/requests_diagnostics.py": "f06baaf9bef248f93c092c51c03bf5d9aeac9dd6c0e55a368e82614ecdb8b198",
+      "tools/check_operations_activation.py": "60e0dfe8025235654efada5a8c15c514d405bf206d543ea33709cb4d6d004b71",
+      "tests/test_worker_diagnostics.py": "678831b4790d1345a6208f47422002f47bd33198332f14e94070400f272b9e47",
+      "tests/test_operations_activation.py": "037efb41066430a071dfc1dc7fe891b145159a183e3c1e1079519d261494b37a"
+    },
+    "demonstrated_fix": "Cleanup transport failure no longer bypasses client cleanup and lease release; failed absence checks refuse verification and worker-object reuse",
+    "diagnostics": "Allowlisted deadline, slot-wait and cleanup categories in signed reports and sanitized CI diagnostics; historical causes remain unexplained",
+    "focused_checks": {
+      "reliability": "33 passed with Docker, no skips",
+      "operations_review": "22 passed, no skips",
+      "native_boundary": "33 passed with Docker, no skips",
+      "budget_readiness": "33 passed, no skips"
+    },
+    "complete_suite_receipt": "run_output/release-followup-combined-final-20261007.xml",
+    "operations_gate": "BLOCKED: no actual off-host/signer/recipient evidence supplied; signed attestations only permit operator review",
+    "cloud_review": {
+      "observed_at": "2026-10-07T17:58:36.107618+00:00",
+      "fresh_retail_modeled_usd": 31.79,
+      "ledger_bound_plus_reserve_usd_at_review": 36.011906,
+      "ledger_preserved": true,
+      "total_cap_usd": 35,
+      "shutdown_reserve_usd": 2,
+      "execution": "BLOCKED",
+      "resources_started": false
+    },
+    "evaluation": {
+      "preparation_blockers": 19,
+      "signed_qualification": "0/24",
+      "campaign": "0/216"
+    },
+    "native_remediation": "Compatible drop-in fix unavailable for current worker; 249 reviewed residual candidates remain; supported whole-worker migration requires separate validation",
+    "public_deployment": "DEFERRED",
+    "resolved_integration_regression": "First combined run: 427 passed, one intake-order failure. Validation restored before quarantine/state check; original rejection test unchanged. Corrected 68-test focused and 428-test complete suites passed.",
+    "complete_suite_result": "428 passed with Docker enabled, no skips, 611.23 seconds",
+    "publication": "One consolidated follow-up commit planned after artifact review; exact-SHA CI results recorded separately, never predeclared."
+  },
+  "historical_checks": [
+    {
+      "label": "Corrected release follow-up complete suite (7 October UTC / 8 October local)",
+      "result": "428 passed with Docker enabled, no skips, 611.23 seconds. Intake-order regression corrected. Published 93b713e subsequently passed both GitHub CI runs with 428 Python tests and 7 frontend tests."
+    },
+    {
       "label": "Complete combined Python suite with Docker enabled",
-      "result": "254 passed, no skips; 675.21 seconds"
+      "result": "295 passed with Docker enabled, no skips; 694.78 seconds. Historical GitHub Requests CI inconsistency remains open"
     },
     {
       "label": "Focused intake, transport, archive and security-event checks",
@@ -46,24 +236,23 @@
     },
     {
       "label": "Frontend fallbacks and build",
-      "result": "3 passed; rebuilt assets match source"
+      "result": "7 passed; rebuilt assets match source; mobile cube animation and animation recovery checked. Reduced-motion and unavailable-graphics fallbacks remain"
     },
     {
       "label": "Image advisory review gate",
-      "result": "8 regression tests passed; all four reports reviewed"
+      "result": "Four current image reports passed the dated review gate; 249 reviewed high/critical residual candidates remain"
     },
     {
       "label": "Static and frontend dependency analysis",
-      "result": "Bandit and npm audit: no reported issues"
+      "result": "Bandit: zero medium/high and 83 low findings. Production npm and locked deployment Python audits: no known vulnerabilities"
     },
     {
       "label": "Deployment image, wheel and clean release export",
-      "result": "Authenticated/read-only smoke checks passed; wheel excludes private/generated data and archives; all 24 recipes reproduced 5 prepared / 19 explicit blockers"
+      "result": "Local HTTPS/authenticated/read-only/restore/alert checks passed; wheel and image exclusions verified; all 24 source mappings present. Recorded preparation remains 5 prepared / 19 blockers"
+    },
+    {
+      "label": "Parallel local hardening follow-up (7 October 2026)",
+      "result": "389 passed with Docker enabled, no skips; 7 frontend tests; initial C++ worker timeout retained as unexplained. External activation deferred."
     }
-  ],
-  "limitations": [
-    "Unfixed native OS libraries remain residual risks. Worker execution requires dedicated, offline, disposable isolation; sensitive or shared public workloads are outside the local assurance scope.",
-    "Public HTTPS, host permissions, key rotation, backups and external alert delivery still require deployment verification.",
-    "Nineteen upstream preparation blockers, Azure qualification and the 216-run independent campaign remain separate."
   ]
 }

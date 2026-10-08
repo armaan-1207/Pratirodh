@@ -14,3 +14,13 @@ archive/
 benchmark/recipes/*/prepared/
 benchmark/recipes/*/prepared.tmp/
 benchmark/recipes/*/target/
+usage_ledger.json
+.env.*
+*.db
+*.key
+*.pem
+*.pfx
+**/__pycache__/
+build/
+dist/
+*.egg-info/

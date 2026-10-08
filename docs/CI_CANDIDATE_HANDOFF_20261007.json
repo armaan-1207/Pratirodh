@@ -1,0 +1,104 @@
+{
+  "prepared_at": "2026-10-07T16:24:49.158780+00:00",
+  "base_candidate": "2f973b85eeee7f6dcf0d101b5cdeb02ccea79ab2",
+  "repository": "armaan-1207/Pratirodh",
+  "branch": "codex/readiness-followup",
+  "scope": "Local review release candidate; public deployment deferred",
+  "source_hash_basis": "SHA-256 of Git-index bytes after Git newline normalization",
+  "source_sha256": {
+    "pratirodh/projects/worker.py": "4249512301e8ccc7e137ee61ff07b940715575bde740e1359abf74133c0f1f01",
+    "pratirodh/projects/worker_entry.py": "2b03c47ed5cea3b747cd01053cf1b1d26315e9124aff27b044db3466bdb54795",
+    "pratirodh/projects/engine.py": "e86acfb925c31a6137d62e2928a342e2f373184a8e2cbcf2a1c1e918b645b48a",
+    "pratirodh/evidence.py": "080d0aa94d283abac7b6e249d16f38381c1822221ce52ee26c64ba27688845b6",
+    "tools/probe_campaign_workers.py": "b6fa6bb3ae7cb803853c0cd44f9f6ba08b8215a83f87f001a8e36e5edd9ccf2d",
+    "tools/verify_local_deployment.py": "5572e999968a5309e8cf127aff64576475264d76b0ed87c23f566fda4bc382ea",
+    "tests/test_worker_boundary.py": "068ba2e8490d5bd0f44d691e4b038e85d2e22bf0de37d5f32f2b92c586c99743",
+    "tests/test_key_recovery_boundary.py": "bf7a210fba59a789f099fff05e0ff63f203aa021631483f2cebcea061c989530",
+    "docs/SECURITY_OPERATIONS_ACCEPTANCE_20261007.md": "9a2a030f60f99da17b92ce3bd484d964824546e49da2c32e0651e62391625280"
+  },
+  "image_digests": {
+    "worker": "sha256:3c9d4d79d83fa2ff38a71971376f7a00c027bc492487d4092601e8209e2014a4",
+    "dashboard": "sha256:fbf8f9591e68217886e7af71bce2644a0eb8ac2eb82704ef12bc0e84a3b16cf1"
+  },
+  "local_tests": [
+    {
+      "receipt": "run_output/security-operations-focused-20261007.xml",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 14.216
+    },
+    {
+      "receipt": "run_output/security-operations-regression-20261007.xml",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 243.841
+    }
+  ],
+  "local_tests_total": 44,
+  "receipt_sha256": {
+    "run_output/security-operations-focused-20261007.xml": "f10fdaf34286169dd40588efcf6925ece59cce7940fcd9d4d926a069123d9b05",
+    "run_output/security-operations-regression-20261007.xml": "39e238e8626c5c2caea0237816d8cd0ae695d6f3ed2eab61b21a07cf74b2d84a",
+    "run_output/security-operations-deployment-20261007.json": "b939f321901452863e5d094f45cce6fc3a6b170c3ea4d9f17aef25a264af4516"
+  },
+  "release_inspection": {
+    "indexed_files_before_handoff_record": 989,
+    "marker_matching_files": 3,
+    "reviewed_synthetic_or_detector_markers": {
+      "pratirodh/projects/manifest.py": "credential detection regex, not a key",
+      "tests/test_reconstruct_targets.py": "incomplete dummy fixture key marker",
+      "tests/test_security_remediation.py": "incomplete dummy markers used to test rejection"
+    },
+    "confirmed_private_material_findings": 0,
+    "excluded_release_paths_tracked": 0,
+    "raw_receipts_in_commit": false
+  },
+  "historical_push_failures": [
+    {
+      "observed_at": "2026-10-07T15:12:40Z",
+      "request_id": "C56E:A1CFF:5C404A:62D847:6AC66167"
+    },
+    {
+      "observed_at": "2026-10-07T15:12:52Z",
+      "request_id": "D3A6:2BAD69:5C249A:62BF91:6AC66173"
+    },
+    {
+      "observed_at": "2026-10-07T15:14:31Z",
+      "request_id": "E9FB:390381:5C9DAD:6347A4:6AC661D6"
+    }
+  ],
+  "historical_remote_head": "65a0e9210b577af767425b0df7abdcd4ac4fa9ed",
+  "historical_main": "c164369e952e0b954f3f3e5199459121fd11d2fe",
+  "publication_preflight": {
+    "authentication_verified": true,
+    "push_permission": true,
+    "workflow_events": [
+      "push",
+      "pull_request"
+    ],
+    "branch_filters": false,
+    "github_status": "All Systems Operational; this does not explain earlier push failures"
+  },
+  "ci_acceptance": {
+    "required_commit": "exact final follow-up SHA, recorded in publication receipt",
+    "required_result": "all applicable release checks pass",
+    "historical_requests_inconsistency": "UNEXPLAINED",
+    "historical_failed_run": 37632194569,
+    "historical_passing_run": 37632202872,
+    "critical_diagnostic": "decision reason and execution failure category behind INSUFFICIENT_EVIDENCE",
+    "assertions_weakened": false
+  },
+  "remaining_gates": [
+    "CI confidence",
+    "production signing identity permissions and rotation/revocation",
+    "encrypted off-host backups and measured restore",
+    "external alert delivery and recipient acknowledgement",
+    "19 upstream preparation blockers, Azure qualification, 216-run campaign"
+  ],
+  "cloud_total_cap_usd": 35,
+  "shutdown_reserve_usd": 2,
+  "public_deployment": "DEFERRED"
+}

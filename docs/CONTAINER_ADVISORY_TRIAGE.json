@@ -13,13 +13,13 @@
     "pratirodh/projects/requirements-requests-demo.txt": "8fe742681a618ffdb1a4c1dcc632210428dec828962acf57db138460f0e07f71",
     "pratirodh/projects/npm-worker-pins.json": "b45319a9165e2317a1f73edfcc8eac01ee2edff6f31dfb946cc170d308877361",
     "pratirodh/projects/install_worker_npm.py": "ffd4a77935f8d970bb16003245b6f33bfd29e03f7e827ff8e57fbab0dcb07a5f",
-    "pratirodh/projects/worker.py": "4249512301e8ccc7e137ee61ff07b940715575bde740e1359abf74133c0f1f01",
+    "pratirodh/projects/worker.py": "bd24b38caf5dc519b3f0395f28b07d85cd0516ae969e1bffdfcc761b236be3cf",
     "pratirodh/projects/worker_entry.py": "2b03c47ed5cea3b747cd01053cf1b1d26315e9124aff27b044db3466bdb54795",
     "compose.yaml": "ddae6fa0f2510fe71283fde8d5cf95b7f0b60ddfb0f2773ba48504523c8fd743",
     "pratirodh/projects/requirements-pip-vendor.txt": "5223cc8959a3ddd9a64b37aa012c62f974647ab9263563c750967bafd16d2e31",
     "pratirodh/projects/update_pip_vendor.py": "c19568383e58bf2840a508b045c5170cb4818e4d28b6a8b257c460c66e6f96eb",
     "tools/audit_container_dependencies.py": "a53852e102456e44c7b9f40f1373fa58e2a83a2b1f3f0fc558ba86127efe14b1",
-    "tools/scan_container_images.py": "52ecb6400c378e6436a856e4ce381364c8894a0df065a4d1d1b3ef467832ce52",
+    "tools/scan_container_images.py": "eec8108d3cc02ff5d5f77fc6c173f2d7e7b03e61de65ee519a7b5313e9482afd",
     "pratirodh/projects/requirements-requests-tools.txt": "b08f9bd43de6ec974b36b92d7b2d501d81837f0a2030939fe8bdb231c97c0aa5"
   },
   "findings": [
@@ -4011,5 +4011,22 @@
       "reviewed_on": "2026-10-07"
     }
   ],
-  "input_hash_normalization": "CRLF to LF for tracked text inputs across Windows and Linux"
+  "input_hash_normalization": "CRLF to LF for tracked text inputs across Windows and Linux",
+  "scanner_binding_followup": {
+    "reviewed_at": "2026-10-07T17:17:00.318170+00:00",
+    "previous_source_sha256": "52ecb6400c378e6436a856e4ce381364c8894a0df065a4d1d1b3ef467832ce52",
+    "current_source_sha256": "eec8108d3cc02ff5d5f77fc6c173f2d7e7b03e61de65ee519a7b5313e9482afd",
+    "change": "Inspect and export immutable runtime image ID; validate ordered scan layers; bind exact archive/report hashes",
+    "advisory_rows_changed": false,
+    "expiry_extended": false,
+    "scanner_image_or_options_changed": false
+  },
+  "controller_cleanup_followup": {
+    "reviewed_at": "2026-10-07T18:14:48.077620+00:00",
+    "source": "pratirodh/projects/worker.py",
+    "previous_sha256": "4249512301e8ccc7e137ee61ff07b940715575bde740e1359abf74133c0f1f01",
+    "reviewed_sha256": "bd24b38caf5dc519b3f0395f28b07d85cd0516ae969e1bffdfcc761b236be3cf",
+    "reason": "Reviewed additive sanitized telemetry, bounded nested client/container cleanup, exact-name absence checks and worker-object quarantine. Existing isolation flags, command limits, decisions and residual-risk conditions preserved; cleanup failure refuses verification. Persistent cross-controller quarantine remains operator responsibility.",
+    "intake_order_review": "Input validation remains first, before quarantine/state inspection or Docker contact; existing secret-rejection regression preserved."
+  }
 }

@@ -1,17 +1,69 @@
 {
-  "reviewed_on": "2026-10-07",
-  "scope": "Dated local verification of the functional integration. Historical security observations and current signed upstream qualification remain separate.",
-  "suite_commit": "0fa0316b3eefe133f12c961b2b159ea53880f6f5",
-  "recorded_model_run": "ac5c52f6b23a4b96aa800e365b894dbe",
+  "reviewed_on": "2026-10-09",
+  "scope": "Local working-product acceptance on Windows. Signed repair evidence, setup, restart and browser behavior were checked; runtime evaluation has a separate scope.",
+  "suite_commit": "984359db1c0a27fe9557a12adac9321255be0cf1",
+  "suite_scope": "Local follow-up on codex/readiness-followup; executable-source hash and results in LOCAL_PRODUCT_VERIFICATION_20261009.md. External CI results apply separately to the exact submitted revision.",
+  "assessed_source_sha256": "4dba0b67bf9be5e83d69e43f656b4e27c014d555778f01559f2dbe48c2b59a74",
+  "recorded_model_run": "9f82ee6d408d427cb4f5dca116d886f3",
   "checks": [
-    {"label": "Combined Python suite", "result": "263 passed with Docker; no skips. Both GitHub publication checks also passed."},
-    {"label": "Browser assets", "result": "3 frontend tests passed; bundled assets rebuilt."},
-    {"label": "Recorded local model repair", "result": "Qwen 7B checkpoint: READY FOR REVIEW; 55 security and 2 legitimate checks passed; both unsafe mutations caught; no evidence gaps. Current run freshness is checked on the evidence page."},
-    {"label": "Pinned upstream preparation", "result": "5 prepared snapshots; 19 blocked. Preparation is unsigned and does not qualify a case."}
+    {
+      "label": "Combined Python suite",
+      "result": "435 passed with Docker enabled, zero skips; 891.03 seconds."
+    },
+    {
+      "label": "Browser assets",
+      "result": "7 frontend tests passed; rebuilt assets match source. Animated cube verified at 320px, 390px and desktop, with resize recovery and no horizontal overflow. Reduced-motion and graphics recovery paths passed frontend tests."
+    },
+    {
+      "label": "Actual local AI repair",
+      "result": "Qwen2.5-Coder 7B: one model call, READY_FOR_REVIEW, 55/55 security and 2/2 legitimate checks. The signed result reopened as current after restart."
+    },
+    {
+      "label": "Supplied repair workflows",
+      "result": "All 11 expected outcomes matched: nine Python/JavaScript/C++ repair/discovery cases and two pinned Requests repair cases."
+    },
+    {
+      "label": "Evidence and recovery",
+      "result": "Downloaded export verified against the separately retained public key; modified artifact rejected. Clean exported checkout reopened 12 signed records and denied read-only execution."
+    }
   ],
   "limitations": [
-    "19 upstream cases need fixture, intake or harness work before runtime qualification.",
-    "Azure runtime qualification and the 216-run independent comparison campaign have not run.",
-    "The dated OWASP Top 10 code and local assessment is recorded separately; production assurance and public activation remain pending. Reviewed container findings remain documented residual risks."
+    "One successful registered Python fixture repair establishes this tested local workflow, not general model accuracy.",
+    "The CI-verified baseline is 984359d. This follow-up has local acceptance evidence; external CI results apply separately to the exact submitted revision.",
+    "Public activation and the 24-case qualification / 216-run evaluation are outside this local product acceptance. No completion is inferred from preparation.",
+    "Native OS advisory restrictions and the dated security assessment remain applicable; local functional acceptance is not production certification."
+  ],
+  "history": [
+    {
+      "reviewed_on": "2026-10-07",
+      "scope": "Dated local verification of the functional integration. Historical security observations and current signed upstream qualification remain separate.",
+      "suite_commit": "65a0e9210b577af767425b0df7abdcd4ac4fa9ed",
+      "suite_scope": "Verified working-tree snapshot before the local candidate commit; see LOCAL_RELEASE_VERIFICATION_20261007.md",
+      "recorded_model_run": "ac5c52f6b23a4b96aa800e365b894dbe",
+      "checks": [
+        {
+          "label": "Combined Python suite",
+          "result": "295 passed with Docker, no skips; 694.78 seconds. Historical Requests GitHub CI inconsistency remains open."
+        },
+        {
+          "label": "Browser assets",
+          "result": "7 frontend tests passed; bundled assets match source; mobile cube animation enabled with centered framing. Reduced-motion and unavailable-graphics fallbacks remain."
+        },
+        {
+          "label": "Recorded local model repair",
+          "result": "Qwen 7B checkpoint: READY FOR REVIEW; 55 security and 2 legitimate checks passed; both unsafe mutations caught; no evidence gaps. Current run freshness is checked on the evidence page."
+        },
+        {
+          "label": "Pinned upstream preparation",
+          "result": "5 prepared snapshots; 19 blocked. Preparation is unsigned and does not qualify a case."
+        }
+      ],
+      "limitations": [
+        "Three consecutive local Requests Docker reruns passed; the historical GitHub failure remains unexplained. Failure diagnostics are prepared locally and have not been published.",
+        "19 upstream cases need fixture, intake or harness work before runtime qualification.",
+        "Azure runtime qualification and the 216-run independent comparison campaign have not run.",
+        "The dated OWASP Top 10 code and local assessment is recorded separately; production assurance and public activation remain pending. Reviewed container findings remain documented residual risks."
+      ]
+    }
   ]
 }

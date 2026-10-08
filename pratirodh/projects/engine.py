@@ -353,6 +353,7 @@ def _finish(report, artifacts, store, started, budget, model, worker):
     report['resource_consumption'] = {'elapsed_seconds': report['elapsed_seconds'], 'model_calls': report['model_calls'],
         'limits': report.get('manifest', {}).get('limits'), 'peak_memory_bytes': None,
         'note': 'memory limit enforced; per-target peak measurement unavailable'}
+    report['worker_execution_diagnostics'] = getattr(worker, 'execution_diagnostics', [])
     artifacts['worker-observations.json'] = json.dumps(getattr(worker, 'observations', []), indent=2)
     artifacts['observed.json'] = json.dumps(report, indent=2)
     # Only the controller signs and stores validated observations.

@@ -20,7 +20,23 @@ jobs:
       - run: python -m pratirodh build-runner
       - run: python -m pratirodh project build-worker
       - run: python scripts/prepare_requests_demo.py
+      - name: Record checked-out revision and worker identities
+        run: |
+          git rev-parse HEAD
+          python --version
+          node --version
+          docker version --format '{{.Server.Version}}'
+          docker info --format '{{.KernelVersion}}'
+          docker image inspect --format '{{.Id}} {{json .RepoTags}}' pratirodh-runner:0.1 pratirodh-project-worker:0.2 pratirodh-requests-demo:0.2
       - run: PRATIRODH_DOCKER_TESTS=1 python -m pytest -q
+      - name: Preserve sanitized execution diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: sanitized-execution-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: run_output/ci-diagnostics/*.json
+          retention-days: 7
+          if-no-files-found: warn
       - run: docker build -t pratirodh-dashboard:ci .
       - run: python tools/audit_container_dependencies.py --images pratirodh-dashboard:ci pratirodh-runner:0.1 pratirodh-project-worker:0.2 pratirodh-requests-demo:0.2
       - run: python tools/scan_container_images.py --images pratirodh-dashboard:ci pratirodh-runner:0.1 pratirodh-project-worker:0.2 pratirodh-requests-demo:0.2

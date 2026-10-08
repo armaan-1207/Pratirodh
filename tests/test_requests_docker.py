@@ -1,10 +1,13 @@
 """Opt-in pinned-source verification; target code runs only in Docker."""
 import os
 import subprocess
+import json
+from pathlib import Path
 
 import pytest
 from pratirodh.evidence import Store
 from pratirodh.projects.requests_demo import IMAGE_TAG, run_demo
+from tools.requests_diagnostics import summarize
 
 
 @pytest.mark.skipif(os.getenv('PRATIRODH_DOCKER_TESTS') != '1', reason='opt-in real Linux worker tests')
@@ -12,8 +15,15 @@ def test_reference_fix_and_unsafe_mutation_with_real_requests(tmp_path):
     image = subprocess.check_output(['docker', '--context', 'default', 'image', 'inspect',
         IMAGE_TAG, '--format', '{{.Id}}'], text=True, timeout=15).strip()
     store = Store(tmp_path / 'evidence')
-    rows = run_demo(tmp_path / 'requests-demo', store, image)
-    assert [row['decision'] for row in rows] == ['REJECT', 'READY_FOR_REVIEW']
+    partial = []
+    try:
+        rows = run_demo(tmp_path / 'requests-demo', store, image, result_callback=partial.append)
+    finally:
+        diagnostic = summarize([store.load(row['id']) for row in partial])
+        output = Path('run_output/ci-diagnostics/requests.json')
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(diagnostic, indent=2) + '\n', encoding='utf-8')
+    assert [row['decision'] for row in rows] == ['REJECT', 'READY_FOR_REVIEW'], json.dumps(diagnostic)
     assert all(row['matched_expectation'] for row in rows)
     reports = [store.load(row['id']) for row in rows]
     assert all(report['model_calls'] == 0 and report['assurance'] == 'DEMO_ONLY' for report in reports)

@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {watchScene} from './scene-lifecycle.js';
 gsap.registerPlugin(ScrollTrigger);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -96,4 +97,4 @@ if(heroItems.length){
 }
 reduced.addEventListener('change',()=>{if(reduced.matches){const panels=document.querySelectorAll('[role=tabpanel]');gsap.killTweensOf(panels);gsap.set(panels,{clearProps:'transform,opacity'});}});
 const scene=document.querySelector('#verification-scene');
-if(scene&&!reduced.matches&&matchMedia('(min-width: 651px)').matches){const observer=new IntersectionObserver(async entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();try{const {mountScene}=await import('./scene.js');mountScene(scene);}catch{/* The static diagram remains available. */}}},{rootMargin:'100px'});observer.observe(scene);}
+if(scene)watchScene(scene);

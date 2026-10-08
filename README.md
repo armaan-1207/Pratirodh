@@ -6,9 +6,11 @@
 
 A security repair lab built for the **Derby University Hackathon**.
 
-[Functional verification — 7 October 2026](docs/FUNCTIONAL_RELEASE_20261007.md)
-records 263 passing Python/Docker tests, the verified local model repair and the
-remaining upstream/cloud qualification limits.
+Verified CI baseline `984359d`: **430 Python tests with Docker enabled, 7 frontend tests, zero skips**. Local workflows include supplied repairs, local AI generation and signed evidence exports. [Release evidence](docs/RELEASE_CANDIDATE_HANDOFF_20261008.md).
+
+Local follow-up verified on 9 October 2026: **435 Python tests with Docker, 7 frontend tests, zero skips**, all 11 supplied-repair outcomes matched, and one actual local AI repair reached review readiness. [Working-product verification](docs/LOCAL_PRODUCT_VERIFICATION_20261009.md). These improvements are included on `codex/readiness-followup`.
+
+The local workflow is functional. Container release clearance remains blocked by the project worker's unreviewed HIGH Expat advisory, **CVE-2026-77214** (`libexpat1 2.8.3-1~deb13u1`). The advisory gate remains enforced; Azure evaluation and public deployment are separate.
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Backend-Flask-111827?logo=flask&logoColor=white)
@@ -73,19 +75,19 @@ This synthetic C++ result verifies a supplied candidate with **zero model calls*
 - **Ollama is optional** for model-generated repairs. Supplied-patch demos work without it.
 - **Node.js/npm is optional** for frontend development. Browser assets and fonts are already bundled.
 
-Clone the current `main` branch:
+Use the verified candidate branch (CI baseline `984359d`; it has not been merged into `main`):
+
+The branch includes the Windows bootstrap and saved-model recovery improvements verified locally on 9 October 2026. CI status applies to the exact submitted revision; the latest recorded local checks are linked above.
 
 ```sh
-git clone https://github.com/armaan-1207/Pratirodh.git
+git clone --branch codex/readiness-followup https://github.com/armaan-1207/Pratirodh.git
 cd Pratirodh
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-py -3.11 -m venv .venv
-./.venv/Scripts/python.exe -m pip install -r requirements-deploy.txt
-./.venv/Scripts/python.exe scripts/start_demo.py --port 8767
+./Start-Updated-Demo.ps1 -Port 8770
 ```
 
 ### macOS and Linux (Terminal)
@@ -98,11 +100,27 @@ python3 -m venv .venv
 
 Use a Python 3.11 interpreter. Some Linux distributions need `python3-venv`. Windows has been exercised locally; macOS/Linux commands describe the portable workflow and have not been separately tested on those hosts.
 
-The helper builds the project worker image if missing, executes the synthetic examples, verifies their signed records, and starts the dashboard. The initial worker build needs access to package repositories. Subsequent target execution has no external network. Keep the terminal open; Ctrl+C stops the dashboard and preserves the evidence.
+The Windows launcher creates a Python 3.11 environment and installs hash-locked dependencies on first use. The helper builds missing worker images, executes the synthetic examples, verifies their signed records, and starts the dashboard. Initial setup needs access to package repositories. Subsequent target execution has no external network. Keep the terminal open; Ctrl+C stops the dashboard and preserves the evidence. Normal restarts reuse the last verified store, recorded under ignored `run_output/launcher-state.json`.
+
+Use `-Check` to check setup without starting the dashboard, `-Fresh` to create a new demonstration while retaining previous evidence, or `-Fresh -Requests` to include the pinned Requests demonstration. `-Store PATH -ReadOnly` opens existing evidence for review. Invalid evidence stops startup and is never overwritten; restore a verified backup or explicitly select another store. If a port is occupied, choose another `-Port` rather than stopping an unrelated application.
+
+For actual model generation, start the installed Ollama service locally with cloud access disabled, then use `./Start-Updated-Demo.ps1 -Model qwen2.5-coder:7b`. Model setup and generation require sufficient free memory; a responding service does not prove inference will fit. Select the local fixture model workflow in Workspace. Supplied-patch demonstrations require no model, and their results do not establish AI repair success.
+
+In a separate PowerShell terminal, start the local inference service:
+
+```powershell
+$env:OLLAMA_HOST = '127.0.0.1:11434'
+$env:OLLAMA_NO_CLOUD = '1'
+ollama serve
+```
+
+If the model is not installed, run `ollama pull qwen2.5-coder:7b` once with internet access. The verified local default is Ollama with this model. The launcher records the selected model alongside the evidence store; normal restarts retain it, including after supplied demonstration preparation. `-Model` explicitly selects another installed model. Compatible Hugging Face GGUF models and fine-tuning are optional extensions and have not been verified by this acceptance run.
+
+On 9 October 2026, a real browser-generated repair used Qwen2.5-Coder 7B, made **one model call**, and reached **READY_FOR_REVIEW** with **55/55 security checks and 2/2 legitimate-behavior checks**. Its downloaded signed evidence verified independently against the retained public key. This establishes one successful local fixture repair, not general model accuracy.
 
 ### Explore the application
 
-The dashboard at [localhost:8767](http://127.0.0.1:8767/) provides these views:
+The Windows launcher defaults to [localhost:8770](http://127.0.0.1:8770/); the Python launcher defaults to port 8767. The dashboard provides these views:
 
 - **`/projects`:** inspect a project or run a synthetic Python, JavaScript or C/C++ demonstration.
 - **`/walkthrough`:** select a saved signed result, inspect its checks and download its evidence.
@@ -301,7 +319,7 @@ Preserve the store's `trust.pub` independently from the downloaded ZIP. Bundles 
 From the configured virtual environment:
 
 ```powershell
-python -m pip install pytest==8.1.1
+python -m pip install pytest==9.1.1
 python -m pratirodh build-runner
 python -m pratirodh project build-worker
 $env:PRATIRODH_DOCKER_TESTS = '1'

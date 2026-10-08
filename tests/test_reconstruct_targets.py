@@ -51,6 +51,91 @@ def test_binary_is_retained_and_reported_as_intake_blocker(tmp_path, monkeypatch
     assert any('UTF-8' in message for message in result['blockers'])
 
 
+def test_diagnostics_report_every_conflict_without_weakening_intake(tmp_path, monkeypatch):
+    extras = {'image.png': b'\xff\xfe\x00', 'second.pdf': b'\xff\x00',
+              'fixture.key': b'-----BEGIN PRIVATE KEY-----\nfixture\n',
+              'oversized.txt': b'a' * (1024 * 1024 + 1)}
+    case, source, _ = fixture(tmp_path, monkeypatch, extras)
+    result = prep.prepare_case(case, source)
+    assert result['status'] == 'BLOCKED' and result['qualification'] == 'NOT_RUN'
+    report = result['intake_diagnostics']
+    assert report['scope'] == 'ADVISORY_ONLY'
+    conflicts = {item['path']: item for item in report['conflicts']}
+    assert set(conflicts) == set(extras)
+    assert any('1048576' in reason for reason in conflicts['oversized.txt']['reasons'])
+    assert any('private key' in reason for reason in conflicts['fixture.key']['reasons'])
+    for name, body in extras.items():
+        assert (case / 'prepared/target' / name).read_bytes() == body
+
+
+def test_diagnostics_expose_aggregate_limits(tmp_path):
+    for number in range(1001):
+        (tmp_path / f'{number:04}.txt').write_bytes(b'a' * 11000)
+    report = prep.intake_diagnostics(tmp_path)
+    assert report['files'] == 1001 and report['bytes'] == 11011000
+    assert report['file_limit_exceeded'] and report['byte_limit_exceeded']
+    assert report['conflicts'] == []
+
+
+def test_diagnostics_do_not_read_controller_rejected_links(tmp_path, monkeypatch):
+    linked = tmp_path / 'linked.txt'
+    linked.write_text('must not be read')
+    original_is_symlink = Path.is_symlink
+    original_open = Path.open
+    monkeypatch.setattr(Path, 'is_symlink',
+                        lambda path: path == linked or original_is_symlink(path))
+
+    def guarded_open(path, *args, **kwargs):
+        if path == linked:
+            raise AssertionError('diagnostics followed a controller-rejected link')
+        return original_open(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, 'open', guarded_open)
+    report = prep.intake_diagnostics(tmp_path)
+    assert report['files'] == 0 and report['bytes'] == 0
+    assert report['conflicts'] == [{'path': 'linked.txt', 'bytes': None,
+        'reasons': ['project symlinks and junctions are not accepted: linked.txt']}]
+
+
+def test_diagnostics_do_not_traverse_controller_rejected_junctions(tmp_path, monkeypatch):
+    linked = tmp_path / 'linked'
+    linked.mkdir()
+    original_iterdir = Path.iterdir
+    monkeypatch.setattr(Path, 'is_junction', lambda path: path == linked, raising=False)
+
+    def guarded_iterdir(path):
+        if path == linked:
+            raise AssertionError('diagnostics traversed a controller-rejected junction')
+        return original_iterdir(path)
+
+    monkeypatch.setattr(Path, 'iterdir', guarded_iterdir)
+    report = prep.intake_diagnostics(tmp_path)
+    assert report['files'] == 0 and report['bytes'] == 0
+    assert report['conflicts'] == [{'path': 'linked', 'bytes': None,
+        'reasons': ['project symlinks and junctions are not accepted: linked']}]
+
+
+def test_unsupported_archive_links_are_disclosed_without_materializing(tmp_path, monkeypatch):
+    case, source, _ = fixture(tmp_path, monkeypatch)
+    original = prep.subprocess.check_output(['git', 'archive'])
+    output = io.BytesIO()
+    with tarfile.open(fileobj=io.BytesIO(original)) as source_archive:
+        with tarfile.open(fileobj=output, mode='w') as archive:
+            for member in source_archive:
+                archive.addfile(member, source_archive.extractfile(member))
+            link = tarfile.TarInfo('docs/linked')
+            link.type = tarfile.SYMTYPE
+            link.linkname = '../../outside'
+            archive.addfile(link)
+    monkeypatch.setattr(prep.subprocess, 'check_output',
+                        lambda args, **kw: str(source) if 'rev-parse' in args else output.getvalue())
+    result = prep.prepare_case(case, source)
+    assert result['status'] == 'BLOCKED' and result['qualification'] == 'NOT_RUN'
+    assert result['unsupported_archive_entries'] == [
+        {'path': 'docs/linked', 'link_target': '../../outside', 'archive_type': '2'}]
+    assert not (case / 'prepared/target/docs/linked').exists()
+
+
 def test_long_snapshot_paths_preserve_complete_fixture(tmp_path, monkeypatch):
     name = 'fixtures/' + '/'.join(['nested-directory'] * 12) + '/canary.txt'
     case, source, _ = fixture(tmp_path, monkeypatch, {name: b'preserve me\n'})

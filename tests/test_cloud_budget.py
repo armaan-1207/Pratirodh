@@ -77,6 +77,55 @@ def test_wrong_approved_usd_is_rejected():
         window(data)
 
 
+@pytest.mark.parametrize('approved', [36, float('nan'), float('inf'), True, 0, -1])
+def test_allowance_ceiling_and_numeric_type_cannot_be_bypassed(approved):
+    data = ledger()
+    data['approved_usd'] = approved
+    with pytest.raises(ValueError, match='approved allowance'):
+        window(data)
+
+
+def test_approved_35_preserves_all_prior_consumption_and_reserve():
+    now = datetime.now(timezone.utc)
+    data = ledger()
+    data.update(approved_usd=35, basis='RETAIL_ALLOCATION_RECONCILIATION',
+                verification_status='VERIFIED_RETAIL_BOUND',
+                observed_at=(now - timedelta(hours=1)).isoformat(),
+                resource_creation_utc=(now - timedelta(days=5)).isoformat(),
+                cost_anchor_upper_bound_usd=31.39, hourly_upper_bound_usd=.6)
+    result = window(data, now)
+    assert result['approved_usd'] == 35
+    assert result['accrued_upper_bound_usd'] == 31.99
+    assert result['available_usd'] == 1.01
+    assert result['seconds'] <= 6060
+    data['approved_usd'] = 30
+    with pytest.raises(ValueError, match='exhausted'):
+        window(data, now)
+
+
+def test_allowance_increase_does_not_remove_shutdown_reserve():
+    data = ledger()
+    data.update(approved_usd=35, shutdown_reserve_usd=.01,
+                verification_status='VERIFIED_RETAIL_BOUND',
+                basis='RETAIL_ALLOCATION_RECONCILIATION', cost_anchor_upper_bound_usd=5)
+    with pytest.raises(ValueError, match='shutdown reserve'):
+        window(data)
+
+
+def test_legacy_billing_ledger_cannot_claim_new_35_allowance():
+    data = ledger()
+    data['approved_usd'] = 35
+    with pytest.raises(ValueError, match='evidence-bound'):
+        window(data)
+
+
+def test_unverified_anchor_cannot_claim_new_35_allowance():
+    data = ledger()
+    data.update(approved_usd=35, basis='RETAIL_ALLOCATION_RECONCILIATION', cost_anchor_upper_bound_usd=5)
+    with pytest.raises(ValueError, match='evidence-bound'):
+        window(data)
+
+
 def test_campaign_runner_blocks_without_qualification(tmp_path):
     """Campaign runner blocks with BLOCKED_INTAKE when cases are not qualified."""
     import subprocess, sys
