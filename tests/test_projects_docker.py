@@ -4,12 +4,14 @@ import os
 import subprocess
 import threading
 import time
+from pathlib import Path
 import pytest
 from pratirodh.evidence import Store
 from pratirodh.projects.examples import create_example
 from pratirodh.projects.engine import run_project
 from pratirodh.projects.budget import WorkflowBudget
 from pratirodh.projects.worker import DockerProjectWorker
+from tools.requests_diagnostics import summarize
 
 pytestmark = pytest.mark.skipif(os.getenv('PRATIRODH_DOCKER_TESTS') != '1', reason='opt-in real Linux worker tests')
 
@@ -26,7 +28,11 @@ def test_real_multi_file_end_to_end(tmp_path, image, language, workflow):
     manifest, patch = create_example(root, language, image)
     store = Store(tmp_path / 'evidence')
     report = run_project(root, manifest, workflow, patch=patch, store=store, allow_demo=True)
-    assert report['decision'] == 'READY_FOR_REVIEW', json.dumps(report, indent=2)
+    diagnostic = summarize([report])
+    output = Path('run_output/ci-diagnostics') / f'project-{workflow}-{language}.json'
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(diagnostic, indent=2) + '\n', encoding='utf-8')
+    assert report['decision'] == 'READY_FOR_REVIEW', json.dumps(diagnostic)
     assert all(m['status'] == 'CONFIRMED_UNSAFE' and m['caught'] for m in report['candidates'][0]['mutations'])
     assert store.load(report['id']) == report
 

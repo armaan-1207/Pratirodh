@@ -12,6 +12,21 @@
     ".github/workflows/checks.yml": "083ba3c9147633888c74de099a9c904b71609d9bbe991aa871f528ffe6135a1b"
   },
   "overall": "Locally verified release candidate; historical reliability diagnoses and production/evaluation gates remain open",
+  "followup_reviewed_on": "2026-10-08",
+  "current_local_followup": {
+    "published_base": "93b713e845f8f368232ae031a13f08af83ef592d",
+    "state": "Final follow-up candidate; exact-revision external CI validation required; external activation deferred",
+    "python": "430 passed with Docker enabled, zero skips, 729.73 seconds",
+    "frontend": "7 passed",
+    "complete_suite_receipt": "run_output/parallel-final-suite-20261008.xml",
+    "ci_publication": "Published base 93b713e passed both GitHub CI runs with 428 Python and 7 frontend tests. These results do not establish CI acceptance of this follow-up; consult its exact-revision Actions run",
+    "historical_ci_causes": "UNEXPLAINED; matched runner versions do not establish the cause. Sanitized multi-language artifacts now prepared locally",
+    "native_candidate": "Restricted-PATH failure corrected in experimental image 7c3b774. Boundary, six synthetic workflows and complete 430-test combined suite passed (zero skips, 642.19 seconds, 209 candidate dispatches). Image-bound scan reports 175 header-package rows requiring review; no migration approval or runtime qualification established",
+    "native_candidate_suite_receipt": "run_output/native-ubuntu-candidate-20261008/combined-suite-v2/pytest.xml",
+    "budget": "New retail estimate is not authorization to replace prior accrued consumption; existing ledger remains unchanged and blocks execution",
+    "source_contract": "24 mapping records and 49 raw-byte overlay hashes match; 19 source-intake conflicts remain blocked",
+    "public_deployment": "DEFERRED"
+  },
   "scope": "Local application and repository security. Deployment assurance and upstream evaluation remain separate.",
   "findings": [
     {
@@ -52,12 +67,16 @@
   ],
   "checks": [
     {
-      "label": "Corrected complete Python suite with Docker enabled",
-      "result": "428 passed, no skips, 611.23 seconds. Explained intake-order regression fixed; historical C++ and Requests failure causes remain open."
+      "label": "Complete local follow-up Python suite with Docker enabled (8 October 2026)",
+      "result": "430 passed, zero skips, 729.73 seconds. Sanitized multi-language CI artifacts verified locally; historical C++ and Requests causes remain unexplained. Final follow-up requires exact-revision external CI validation."
     },
     {
       "label": "Frontend animation and build",
       "result": "7 passed; rebuilt assets match source, including mobile cube animation and recovery fallbacks."
+    },
+    {
+      "label": "Experimental Ubuntu compiler-worker compatibility (8 October 2026)",
+      "result": "430 combined Python tests passed with Docker enabled, zero skips, 642.19 seconds and 209 candidate dispatches. Other Docker roles and configured release-worker tag unchanged. Scan reports 175 kernel-header rows requiring review; candidate not promoted or runtime-qualified."
     },
     {
       "label": "Static and dependency analysis",
@@ -203,6 +222,10 @@
     "publication": "One consolidated follow-up commit planned after artifact review; exact-SHA CI results recorded separately, never predeclared."
   },
   "historical_checks": [
+    {
+      "label": "Corrected release follow-up complete suite (7 October UTC / 8 October local)",
+      "result": "428 passed with Docker enabled, no skips, 611.23 seconds. Intake-order regression corrected. Published 93b713e subsequently passed both GitHub CI runs with 428 Python tests and 7 frontend tests."
+    },
     {
       "label": "Complete combined Python suite with Docker enabled",
       "result": "295 passed with Docker enabled, no skips; 694.78 seconds. Historical GitHub Requests CI inconsistency remains open"
