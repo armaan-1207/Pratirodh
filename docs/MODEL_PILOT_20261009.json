@@ -1,0 +1,205 @@
+{
+  "scope": "Free T4 training pipeline pilot; not model promotion",
+  "colab_notebook": "https://colab.research.google.com/drive/1FzdONKAzSAa72vrGY_UtFFlJj8IUdeoj",
+  "gpu": "Tesla T4 14.6 GiB",
+  "completed_steps": 16,
+  "train_runtime_seconds": 71.7594,
+  "train_loss": 0.12830821564421058,
+  "final_validation_loss": 0.16386482119560242,
+  "adapter_zip_sha256_observed_in_colab": "341deccff8f0e50a16cfe9d78a02ec7dbb126a527da4e72de93d90c9084bd783",
+  "adapter_locally_preserved": true,
+  "paired_repair_verification": {
+    "scope": "Two authored held-out pilot examples; not controller qualification or model promotion",
+    "prediction_origin": "Read from visible Colab paired-predictions.json output; code fences parsed to source and comments omitted",
+    "worker_image": "sha256:26ae40dbd0aa5bab535d1cb5e28e5ef93a2c24eae2ad971e6945e414e284807b",
+    "network": "none",
+    "host_mounts": false,
+    "results": [
+      {
+        "id": "path-is-relative-to",
+        "variant": "base",
+        "checks": [
+          {
+            "name": "public download",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "legal two-dot filename",
+            "kind": "legitimate",
+            "passed": false,
+            "error": "ValueError"
+          },
+          {
+            "name": "absolute path within public root",
+            "kind": "legitimate",
+            "passed": false,
+            "error": "ValueError"
+          },
+          {
+            "name": "../public-private/secret.txt",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "/tmp/tmpjz64aco3/public-private/secret.txt",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "shortcut/secret.txt",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          }
+        ],
+        "passed": false
+      },
+      {
+        "id": "path-is-relative-to",
+        "variant": "candidate",
+        "checks": [
+          {
+            "name": "public download",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "legal two-dot filename",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "absolute path within public root",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "../public-private/secret.txt",
+            "kind": "security",
+            "passed": false,
+            "error": null
+          },
+          {
+            "name": "/tmp/tmp1zq5cesz/public-private/secret.txt",
+            "kind": "security",
+            "passed": false,
+            "error": null
+          },
+          {
+            "name": "shortcut/secret.txt",
+            "kind": "security",
+            "passed": false,
+            "error": null
+          }
+        ],
+        "passed": false
+      },
+      {
+        "id": "sql-lookup-email",
+        "variant": "base",
+        "checks": [
+          {
+            "name": "literal email lookup",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "quoted literal email",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "missing email",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "' OR 1=1 --",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "alice@test' UNION SELECT name FROM people --",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          }
+        ],
+        "passed": true
+      },
+      {
+        "id": "sql-lookup-email",
+        "variant": "candidate",
+        "checks": [
+          {
+            "name": "literal email lookup",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "quoted literal email",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "missing email",
+            "kind": "legitimate",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "' OR 1=1 --",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          },
+          {
+            "name": "alice@test' UNION SELECT name FROM people --",
+            "kind": "security",
+            "passed": true,
+            "error": null
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "full_pass_counts": {
+      "base": 1,
+      "candidate": 1
+    },
+    "promotion": "REJECTED_FOR_DEMO_DEFAULT",
+    "reason": "No increase in fully passing examples; candidate allows sibling-directory and symlink escapes",
+    "adapter_local_download": "VERIFIED_20261010",
+    "observed_prediction_source_sha256": "e36a614bd0eb5718490c14b94321b6fe9811682a5debe9a406b6ba153398c02c"
+  },
+  "promotion": "NOT_PROMOTED",
+  "diagnosed_failure": "Colab torchvision 0.26.0 required torch 2.11.0; pinned torch 2.8.0 required torchvision 0.23.0; corrected and pilot completed",
+  "local_tests": {
+    "training_fixtures_passed": 15
+  },
+  "source_hashes": {
+    "tools\\training\\pratirodh_qlora_pilot.ipynb": "6c214e74ccd5fabe423e9a21dc599e2b121364b0d4040c41ba794f2d9e4189f2",
+    "tools\\training\\evaluate.py": "8f9b29ff22babf85f86b939b9ca397ace25241043294bd79766b255bb22760ad",
+    "tools\\training\\requirements.txt": "737a73e344e55090405df56c2553390fbc793f72ca1668d4d7149e032c876dcf"
+  },
+  "azure": "Frozen",
+  "changes": "Uncommitted",
+  "adapter_preservation_checked_20261010": {
+    "path": "C:/Users/armaa/Downloads/pratirodh-pilot-adapter.zip",
+    "sha256": "341deccff8f0e50a16cfe9d78a02ec7dbb126a527da4e72de93d90c9084bd783",
+    "matches_observed_colab_archive": true
+  }
+}

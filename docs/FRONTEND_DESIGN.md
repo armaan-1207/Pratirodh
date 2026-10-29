@@ -1,5 +1,32 @@
 # Frontend design and attribution
 
+## Current hero restoration — 10 October 2026
+
+Restored the previously verified ThreeUI Logic Core cube/landscape scene and left-aligned charcoal/cyan composition from candidate `9923424`. The newer Every patch / Put to the test headline, introductory content and Open workspace action remain. Mobile animation, reduced-motion fallback, offscreen/background suspension and WebGL context restoration remain. Other product pages and backend behavior are retained. Earlier orbital source and notices are preserved as historical work; the rebuilt active scene uses the cube module.
+
+
+## Historical local redesign — 9 October 2026
+
+The 9 October uncommitted interface used a centered two-line hero, an original metallic Three.js knot, the restored charcoal/cyan palette (`#101416` / `#9cdee2`), Outfit display typography, shared product controls and evidence layouts. The sculpture is conceptual artwork, not a backend progress indicator. On 10 October, the user requested restoration of the cube/landscape hero. The latest product controls and evidence layouts are retained.
+
+Actual free-source reuse:
+
+- **Codrops displaced-sphere shader:** Perlin displacement functions adapted from Pavel Mazhuga's [tutorial repository](https://github.com/pavel-mazhuga/codrops-tutorial-distorted-sphere-custom-material), revision `83bb3d2639460e4a5c478e23414356957968a8d8`. `frontend/surface-noise.js` is used in our original torus-knot material. Codrops and Stefan Gustavson MIT notices are retained in `static/licenses/codrops-sphere.txt` and `webgl-noise.txt`.
+- **React Bits Magnet and SpotlightCard:** interaction geometry and soft falloff adapted into native DOM/GSAP in `frontend/react-bits-interactions.js`, from [React Bits](https://github.com/DavidHDev/react-bits), revision `d86fccbd477786f94ca7eb891fbe0ec039d3cd3b`. Used as part of this application, not redistributed as a component library. The complete **MIT + Commons Clause** notice is retained in `static/licenses/react-bits.txt`; these adaptations are not relicensed under the project's plain MIT license. Magnetic movement is bounded to six pixels horizontally/four vertically, disabled for coarse pointers and reduced motion, and reset for keyboard focus.
+- **Lenis 1.3.26:** actual MIT library, pinned in the npm lockfile and bundled locally. Uses the existing GSAP ticker on the editorial homepage; form/evidence pages use native scrolling. Native touch and reduced-motion behavior are preserved. Notice: `static/licenses/lenis.txt`.
+- **Three.js RoomEnvironment:** procedural studio lighting, with no external HDRI, image service or CDN.
+
+[ThreeUI Agent AI](https://threeui.com/landing-pages/agent-ai-landing-page), [21st.dev](https://21st.dev/@ibelick/components/animated-tabs), [Scrolltide](https://www.scrolltide.co/) and [Interactive 3D Particle Morphing](https://geeai.github.io/Interactive-3D-Particle-Morphing/) were reviewed as composition/motion references. No premium template source or assets were copied. React and another UI framework were not added.
+
+The shared system covers Overview, Projects, Workspace, Comparison, Validation, Walkthrough and result/job templates. Workspace places runtime status and the local-model form before expandable supplied-repair demonstrations. Historical evidence remains inspectable, with explicit stale-status filtering and recovery guidance. Protected execution routes, decisions, signatures and source freshness have not been relaxed for presentation.
+
+The current artwork uses one render loop, pauses offscreen/background, recovers after context restoration, and animates on narrow screens. Reduced motion or unavailable WebGL uses the static diagram. Scroll-linked sculpture movement, headline fading, evidence stacking and keyboard-accessible example tabs remain locally bundled. Seven frontend lifecycle tests pass. Full Docker-enabled Python verification passed 456 tests with zero skips before the final presentation-only refinements; affected web checks are rerun separately.
+
+Browser review has observed the current narrow 570-pixel and desktop 1340-pixel layouts. The browser viewport override did not change the observed page dimensions; 360/390/tablet emulation and physical-phone performance are not claimed by this review. Historical checks below belong to earlier revisions.
+
+## Historical design record (retained)
+
+
 PRATIRODH keeps Flask/Jinja, local assets, its brand mark, Outfit display, Space Grotesk brand, and IBM Plex body fonts, and the existing protected execution routes.
 
 ## Design references used

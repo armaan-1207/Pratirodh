@@ -24,3 +24,7 @@ usage_ledger.json
 build/
 dist/
 *.egg-info/
+
+# Training is an opt-in notebook, never a deployment-image input.
+tools/training/
+*.ipynb

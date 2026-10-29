@@ -15,3 +15,6 @@ pratirodh/repair_templates.py whitespace=-blank-at-eof
 
 # Historical archives preserve the exact bytes recorded in provenance.
 archive/** -text -eol whitespace=cr-at-eol
+
+# Treat generated presentation PDFs as binary artifacts.
+output/pdf/*.pdf -diff

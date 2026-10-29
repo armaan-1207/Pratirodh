@@ -1,0 +1,226 @@
+{
+  "recorded_at": "2026-10-09T17:30:43.912855+00:00",
+  "scope": "Working local demo; no production clearance or trained-model promotion",
+  "head": "9923424a6c3d8823cd822e437dcb6614f7fbe7a2",
+  "uncommitted": true,
+  "source_hashes": {
+    "Start-Updated-Demo.ps1": "e5f886c77b73ee61e6319879c2f4ddb5f0291315a4518cdc09321184063d311e",
+    "scripts/start_demo.py": "5ea9eaa5f9d7cdefba6c0c9e3ba590e526a08f534f34c5a5746ed0c8d2c8a082",
+    "pratirodh/provider.py": "9830372e7e09c8567f4ceeaed53b950bbe76f0185af27ef44f8c78c62ff406b8",
+    "pratirodh/static/dist/app.js": "3e8571efd4ccb24b1e8b50a91a344f9d424c19f4cc68c5a64c7656fe693f433f",
+    "pratirodh/static/dist/scene.js": "8827712c9d4737d08a6316d429b4af5376c09dd4738b66d439671791e1ab5f7d",
+    "pratirodh/static/product.css": "02d9e3404db6ed7ae6c28cdeb94fcaf284e604f6879706ff392c2296a3da6f19"
+  },
+  "controller_tree_sha256": "414ff23fdbc295bfad794b9a240a159005ad623aa3eafbcc9a46c45d450eacb0",
+  "supplied_outcomes": [
+    {
+      "language": "python",
+      "workflow": "repair",
+      "patch": "incomplete",
+      "expected": "REJECT",
+      "matched_expectation": true,
+      "id": "4230104bf57045a0b6e14f35bd58f9ce",
+      "decision": "REJECT",
+      "reason": "REPAIR_REJECTED",
+      "gaps": []
+    },
+    {
+      "language": "python",
+      "workflow": "repair",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true,
+      "id": "5b99024b73c442afb408575373fea60e",
+      "decision": "READY_FOR_REVIEW",
+      "reason": "TESTED_REPAIR",
+      "gaps": []
+    },
+    {
+      "language": "python",
+      "workflow": "discover",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true,
+      "id": "4f4244dfbfae48bfb297177017ebb3b3",
+      "decision": "READY_FOR_REVIEW",
+      "reason": "TESTED_REPAIR",
+      "gaps": []
+    },
+    {
+      "language": "node",
+      "workflow": "repair",
+      "patch": "incomplete",
+      "expected": "REJECT",
+      "matched_expectation": true,
+      "id": "af424d0bb65641c8980da28707e87080",
+      "decision": "REJECT",
+      "reason": "REPAIR_REJECTED",
+      "gaps": []
+    },
+    {
+      "language": "node",
+      "workflow": "repair",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true,
+      "id": "f081ff2ac66b4817820fd83bce1a1f23",
+      "decision": "READY_FOR_REVIEW",
+      "reason": "TESTED_REPAIR",
+      "gaps": []
+    },
+    {
+      "language": "node",
+      "workflow": "discover",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true,
+      "id": "fdfb2b95002c4cd2b9ae5ee23b113823",
+      "decision": "READY_FOR_REVIEW",
+      "reason": "TESTED_REPAIR",
+      "gaps": []
+    },
+    {
+      "language": "cpp",
+      "workflow": "repair",
+      "patch": "incomplete",
+      "expected": "REJECT",
+      "matched_expectation": true,
+      "id": "e107e99bb2384428a94429676807b7ec",
+      "decision": "REJECT",
+      "reason": "REPAIR_REJECTED",
+      "gaps": []
+    },
+    {
+      "language": "cpp",
+      "workflow": "repair",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true,
+      "id": "6cfd869de0db429ba2baab17d82c6d26",
+      "decision": "READY_FOR_REVIEW",
+      "reason": "TESTED_REPAIR",
+      "gaps": []
+    },
+    {
+      "language": "cpp",
+      "workflow": "discover",
+      "patch": "correct",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true,
+      "id": "045156002dc9444e9a6fffe23555e2c8",
+      "decision": "READY_FOR_REVIEW",
+      "reason": "TESTED_REPAIR",
+      "gaps": []
+    },
+    {
+      "label": "Incomplete redirect repair",
+      "id": "938261e324ce48188f3c70025a3937bf",
+      "decision": "REJECT",
+      "expected": "REJECT",
+      "matched_expectation": true
+    },
+    {
+      "label": "Upstream reference fix",
+      "id": "9626686b389f4c6990f80816d22092d7",
+      "decision": "READY_FOR_REVIEW",
+      "expected": "READY_FOR_REVIEW",
+      "matched_expectation": true
+    }
+  ],
+  "ai": {
+    "job": "84a1044f89b055c614922c546bbdfbe8",
+    "id": "860edde2f94849dc88e1bef06f31a5bf",
+    "decision": "READY_FOR_REVIEW",
+    "model_calls": 1,
+    "model": "pratirodh-qwen:7b-hf",
+    "model_usage": [
+      {
+        "provider": "ollama",
+        "origin": "local-model",
+        "status": "OK",
+        "parameters": {
+          "temperature": 0,
+          "num_ctx": 8192,
+          "num_predict": 2048,
+          "seed": 0
+        },
+        "model": "pratirodh-qwen:7b-hf",
+        "digest": "da3ee7a94df9e0f15e8ecf8045f649110c956affa380457c623cbe18a79e48b0",
+        "version": "0.35.0",
+        "security_knowledge": {
+          "profile": "security-v1",
+          "reviewed": "2026-10-09",
+          "corpus_sha256": "5a8669c17ae54375867724376669d39ca809f67c2de9c777dad4d9162ea4a23a",
+          "card_ids": [
+            "CWE-89"
+          ],
+          "context_sha256": "e27acf38119fdba6bb489f5982c9bf26bc6701d284fd7dca9ecfb522160de040"
+        },
+        "input_tokens": 408,
+        "output_tokens": 209,
+        "seconds": 86.704
+      }
+    ],
+    "elapsed_seconds": 100.438,
+    "browser_security_requests": "55/55",
+    "browser_legitimate_requests": "2/2",
+    "browser_signature": "Verified",
+    "browser_freshness": "Current"
+  },
+  "restart": {
+    "same_store": true,
+    "same_model": true,
+    "same_assistant": true,
+    "same_record_ids": true,
+    "verified_signed_records": 12,
+    "public_key_sha256": "dc2a42c315415b7d1b4edd574836897c0498d6594e90b27a8b6ee4270df1069d",
+    "browser_reopened": true
+  },
+  "tests": {
+    "prior_combined_python": {
+      "passed": 456,
+      "skipped": 0,
+      "report": "run_output/redesign-combined-docker.xml"
+    },
+    "affected_launcher_web": {
+      "passed": 18,
+      "skipped": 0,
+      "report": "run_output/demo-final-affected.xml"
+    },
+    "frontend": {
+      "passed": 7,
+      "after_palette_restore": true
+    }
+  },
+  "preview": "http://127.0.0.1:8779/",
+  "limitations": [
+    "Browser automated export download denied by tool permission; not bypassed or counted as passed",
+    "Expat CVE-2026-77214 remains an enforced production release blocker",
+    "Fine-tuning, Azure evaluation and public deployment deferred"
+  ],
+  "original_checkouts": "No writes made by this demo verification batch",
+  "cloud_execution": "Frozen",
+  "hero_followup_20261010": {
+    "newer_content_retained": true,
+    "scene": "Restored cube/landscape",
+    "affected_web_tests": {
+      "passed": 12,
+      "skipped": 0,
+      "docker_enabled": true
+    },
+    "frontend_tests": {
+      "passed": 7,
+      "skipped": 0
+    },
+    "fresh_ai_run": "f475ceca325a41458a603abaa94744f5",
+    "model_calls": 1,
+    "elapsed_seconds": 92.078,
+    "security_requests": "55/55",
+    "legitimate_requests": "2/2",
+    "signature": "Verified",
+    "freshness": "Current",
+    "restart": "13 signed records reopened with same model/store; fresh AI record remains current",
+    "historical_records": "Preserved; previous runner binding differs after bundle rebuild",
+    "full_suite": "Not repeated for hero-only restoration; prior 456-test receipt retains original scope"
+  }
+}

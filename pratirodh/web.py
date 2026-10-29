@@ -18,6 +18,7 @@ from .execution import DockerExecutor
 from .interface import scenario_name, explanation
 from .security_events import SecurityEvents
 from .operations import HTTPSAlertDelivery
+from .review import review as record_review
 
 
 def create_app(store=None):
@@ -486,6 +487,30 @@ def create_app(store=None):
         executor = DockerExecutor()
         return render_template("detail.html", report=report, fresh=fresh(report, executor),
                                freshness_changes=freshness_changes(report, executor), summary=explanation(report), csrf=session["csrf"])
+
+    @app.post('/runs/<run_id>/review')
+    def submit_review(run_id):
+        action = request.form.get('action', '')
+        reviewer = request.form.get('reviewer', '').strip()
+        rationale = request.form.get('rationale', '').strip()
+        if action not in {'approve', 'reject'} or not reviewer or not rationale or len(reviewer) > 100 or len(rationale) > 2000:
+            abort(400, 'Choose approve or reject and provide a reviewer label (100 characters maximum) and rationale (2000 characters maximum).')
+        try:
+            report = store.load(run_id)
+        except Exception:
+            security_event('evidence_integrity_denied', run_id)
+            abort(409, 'Review blocked: evidence integrity could not be verified.')
+        if report.get('kind') == 'review' or report.get('version') == 2:
+            abort(400, 'Browser review currently supports local fixture repair results only.')
+        try:
+            record = record_review(run_id, action, reviewer, rationale, store=store)
+        except ValueError:
+            security_event('review_denied', run_id)
+            abort(409, 'Review blocked: approval requires current signed evidence with READY_FOR_REVIEW status. Reverify the repair before approving.')
+        except Exception:
+            security_event('review_denied', run_id)
+            abort(409, 'Review could not be recorded. Check the local evidence store before trying again.')
+        return redirect(url_for('detail', run_id=record['id']), code=303)
 
     @app.get('/runs/<run_id>/export')
     def project_export(run_id):

@@ -14,4 +14,4 @@ for (const [name,weights] of [['space-grotesk',[400,500,600,700]],['ibm-plex-san
  for(const weight of weights) await copyFile(`node_modules/@fontsource/${name}/files/${name}-latin-${weight}-normal.woff2`,`${out}/fonts/${name}-${weight}.woff2`);
  await copyFile(`node_modules/@fontsource/${name}/LICENSE`,`${out}/licenses/${name}.txt`);
 }
-for (const name of ['three']) await copyFile(`node_modules/${name}/LICENSE`,`${out}/licenses/${name}.txt`);
+for (const name of ['three','lenis']) await copyFile(`node_modules/${name}/LICENSE`,`${out}/licenses/${name}.txt`);

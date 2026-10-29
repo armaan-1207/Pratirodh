@@ -48,20 +48,22 @@ def selected_store(root, explicit=None, fresh=False):
         raise ValueError('saved launcher state is invalid; select --store explicitly or use --fresh') from exc
 
 
-def remember_store(root, store, model=None):
+def remember_store(root, store, model=None, assistant=None):
     from uuid import uuid4
     state = root / 'run_output' / 'launcher-state.json'
     # Preparing supplied demonstrations must not erase the installed model choice.
-    if model is None and state.exists():
+    if state.exists():
         try:
             previous = json.loads(state.read_text(encoding='utf-8'))
-            if previous.get('version') == 1 and isinstance(previous.get('model'), str):
+            if model is None and previous.get('version') == 1 and isinstance(previous.get('model'), str):
                 model = previous['model']
+            if assistant is None and previous.get('version') == 1 and previous.get('assistant') in {'off', 'security-v1'}:
+                assistant = previous['assistant']
         except (ValueError, TypeError, AttributeError):
             pass  # An explicitly selected verified store can replace broken state.
     state.parent.mkdir(parents=True, exist_ok=True)
     temporary = state.with_name('launcher-state-' + uuid4().hex + '.tmp')
-    temporary.write_text(json.dumps({'version': 1, 'store': str(store.root), 'model': model}) + '\n', encoding='utf-8')
+    temporary.write_text(json.dumps({'version': 1, 'store': str(store.root), 'model': model, 'assistant': assistant or 'off'}) + '\n', encoding='utf-8')
     temporary.replace(state)
 
 
@@ -71,6 +73,7 @@ def main():
     parser.add_argument('--store', type=Path, help='reopen signed evidence without preparing new runs')
     parser.add_argument('--requests', action='store_true', help='also verify the prepared Requests reference-fix demonstration')
     parser.add_argument('--model', help='installed local Ollama model for browser generation, e.g. qwen2.5-coder:7b')
+    parser.add_argument('--assistant', choices=['off', 'security-v1'], help='opt-in reviewed local security references')
     parser.add_argument('--fresh', action='store_true', help='prepare new demonstrations while preserving previous stores')
     parser.add_argument('--check', action='store_true', help='check local dependencies and selected evidence without starting the dashboard')
     args = parser.parse_args()
@@ -110,13 +113,18 @@ def main():
                     raise ValueError('Docker must use Linux containers; switch Docker Desktop to Linux containers and retry')
             except (OSError, subprocess.SubprocessError) as exc:
                 raise ValueError('Docker is unavailable. Start Docker Desktop with Linux containers, then retry; use --store with PRATIRODH_READ_ONLY=1 for saved review') from exc
-        if not args.model and store_path is not None and args.store is None:
+        if store_path is not None and args.store is None:
             saved = json.loads((root / 'run_output/launcher-state.json').read_text(encoding='utf-8'))
-            args.model = saved.get('model')
+            args.model = args.model or saved.get('model')
+            if args.assistant is None:
+                args.assistant = saved.get('assistant', 'off')
+            if args.assistant not in {'off', 'security-v1'}:
+                raise ValueError('saved assistant setting is invalid; select --assistant explicitly')
             if args.model is not None and not isinstance(args.model, str):
                 raise ValueError('saved model setting is invalid; select --store explicitly')
             if args.model:
                 os.environ['PRATIRODH_LOCAL_MODEL'] = args.model
+        os.environ['PRATIRODH_ASSISTANT'] = args.assistant or 'off'
         if args.model and not read_only:
             from pratirodh.provider import OllamaModel
             try:
@@ -147,7 +155,7 @@ def main():
             store, count = verified_store(store_path)
         elif args.requests:
             print('Reusing saved evidence; use --fresh --requests to prepare new Requests results.', flush=True)
-        remember_store(root, store, args.model)
+        remember_store(root, store, args.model, args.assistant)
         print(f'Verified {count} signed records. Store: {store.root}', flush=True)
         print(f'Open http://127.0.0.1:{args.port}', flush=True)
         print('Keep this terminal open. Ctrl+C stops the dashboard.', flush=True)

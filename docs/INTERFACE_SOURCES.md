@@ -11,3 +11,8 @@ The interface is an original Flask/Jinja, CSS and JavaScript implementation. No 
 - esbuild: build-time bundler, MIT; package lock pins the complete dependency graph.
 
 Run `npm ci` followed by `npm run build` to reproduce browser bundles and font files. Checked-in output under pratirodh/static/dist is deployed by Flask and packaged in Python distributions. Node and npm are setup/build dependencies only. The browser never contacts these reference sites or a CDN. Preserve the local license files and generated legal notices when redistributing.
+
+
+## 9 October 2026 additions
+
+The current local build additionally includes **Lenis 1.3.26** (MIT), adapted **Codrops / Stefan Gustavson Perlin shader code** (MIT), and **React Bits Magnet / SpotlightCard** adaptations (MIT + Commons Clause, application integration only). All notices are distributed under `pratirodh/static/licenses/`; pinned source revisions and adaptation boundaries are recorded in [Frontend design](FRONTEND_DESIGN.md). The earlier 21st.dev entry describes the native tab implementation; it does not mean no third-party source is used elsewhere. No premium template code is included.

@@ -1,5 +1,5 @@
 param([int]$Port = 8770, [string]$Store, [switch]$ReadOnly, [switch]$Requests,
-      [string]$Model, [switch]$Fresh, [switch]$Check)
+      [string]$Model, [ValidateSet('off','security-v1')][string]$Assistant, [switch]$Fresh, [switch]$Check)
 $ErrorActionPreference = 'Stop'
 $demoWorkspace = $PSScriptRoot
 $demoPython = Join-Path $demoWorkspace '.venv\Scripts\python.exe'
@@ -28,6 +28,7 @@ $demoArgs = @((Join-Path $demoWorkspace 'scripts\start_demo.py'), '--port', "$Po
 if ($Store) { $demoArgs += @('--store', $Store) }
 if ($Requests) { $demoArgs += '--requests' }
 if ($Model) { $demoArgs += @('--model', $Model) }
+if ($Assistant) { $demoArgs += @('--assistant', $Assistant) }
 if ($Fresh) { $demoArgs += '--fresh' }
 if ($Check) { $demoArgs += '--check' }
 $previousReadOnly = [Environment]::GetEnvironmentVariable('PRATIRODH_READ_ONLY', 'Process')

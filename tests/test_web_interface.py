@@ -25,7 +25,7 @@ def launch(client, route='/demo'):
 
 def test_showcase_workspace_and_inert_output(client):
     page=client.get('/')
-    assert b'Security repairs.' in page.data
+    assert b'Every patch.' in page.data
     assert b'inspect at every step.' in page.data
     assert b'cases qualified' not in page.data
     assert b'Historical generation results' not in page.data
@@ -97,7 +97,7 @@ def test_frontend_asset_closure(client):
     for path in (root/'dist').glob('*.js'):
         # Bundled imports must resolve to local modules, not a runtime CDN.
         source=path.read_text(encoding='utf-8')
-        for specifier in re.findall(r'(?:from|import\()\s*[\"\']([^\"\']+)',source):
+        for specifier in re.findall(r'(?<![\w\"\'])(?:from|import\()\s*[\"\']([^\"\']+)',source):
             assert specifier.startswith('./')
             assert (path.parent/specifier).is_file()
 

@@ -200,3 +200,23 @@ The authoritative ledger and $35 cap with $2 reserve are preserved. No earlier
 automatically rejected harness operation or cleanup deletion was retried.
 
 Corrected final-source verification: **428 Python tests passed with Docker enabled, zero skips, in 611.23 seconds**; the explained intake-order regression is resolved. Seven frontend tests and bundle consistency also passed. Current Bandit results retain 84 low findings and zero medium/high. Exact-revision GitHub CI and final artifact receipts are recorded separately after preparation; no external qualification or production acceptance is inferred. These dated receipts use 7 October UTC (8 October local time for the final handoff).
+
+
+## Local assistant and interface follow-up — 9 October 2026
+
+Scope: uncommitted changes based on `9923424`, local loopback application, isolated Docker workers, the security-v1 prompt context and the free-GPU training pilot. The [OWASP Top 10:2025 categories](https://top10.owasp.org/2025/) remain an assessment framework, not a certification. Historical findings above are retained.
+
+- **A01 Broken Access Control:** authenticated/read-only routes, CSRF and source/path boundaries remain enforced (`test_security`, `test_security_remediation`, `test_web_interface`). New visual controls do not authorize execution.
+- **A02 Security Misconfiguration:** localhost launcher binding, production fail-closed credentials, protected headers and isolated Docker checks pass in the combined suite. Public hosting is outside the verified scope.
+- **A03 Software Supply Chain Failures:** npm and Python deployment dependency audits report no known advisories in their scopes. React Bits, Lenis and Codrops notices are retained locally. The existing HIGH Expat worker advisory remains a release blocker; no native-library clearance is inferred. Training dependencies are pinned, but the GPU environment has not been executed or qualified.
+- **A04 Cryptographic Failures:** signed-record verification, trusted-key restore, tamper/wrong-key rejection and key-epoch separation tests pass. Production key custody and external backup activation remain deferred.
+- **A05 Injection:** escaped evidence, SQL/path boundary controls and model transport redirect rejection pass. Security context selection is controller-owned and ignores source instructions; it does not prove that an LLM cannot be influenced by prompt injection.
+- **A06 Insecure Design:** repairs remain untrusted candidates requiring verification and human review. Training and benchmark inputs are separate. Eight authored examples prove only the pilot fixtures, not general repair competence or model improvement.
+- **A07 Authentication Failures:** authentication-attempt limits, Unicode failures and read-only API tests pass. External identity integration has not been activated.
+- **A08 Software or Data Integrity Failures:** signature/inventory checks, GGUF digest verification and training dataset hash bindings are retained. Dataset schema/license/provenance checks reject unsupported inputs; hashes alone do not prove third-party data is trustworthy. No candidate model has been trained or promoted.
+- **A09 Security Logging and Alerting Failures:** sanitization, aggregation, bounded alert delivery and local acknowledgement tests pass. An actual off-host alert recipient is not verified.
+- **A10 Mishandling of Exceptional Conditions:** worker faults cannot become successful evidence; archive/resource limits, generation failures, job completion and WebGL/reduced-motion recovery tests pass. Browser animation failure preserves usable navigation and static content.
+
+Combined verification: **456 Docker-enabled Python tests, zero skips, 545.85 seconds**. Seven frontend lifecycle tests pass. After the final presentation changes, **12 affected web tests passed with Docker enabled**. The application Bandit scope (`pratirodh`) reports no medium/high findings. An expanded scan including setup scripts reports four medium B310 URL-opener findings in pre-existing `prepare_local_model.py` and `prepare_worker_media.py`; callers construct official HTTPS URLs, but these remain visible manual-review findings rather than being suppressed or counted as a clean expanded scan. Deployment dependency audits are separate from native image scanning.
+
+The local deployment receipt, wheel inspection, source-byte hashes and current browser limitations are recorded in `REDESIGN_VERIFICATION_20261009.json`. No GitHub CI, Azure qualification, paid training, public deployment or full production-assurance claim is made by this follow-up.

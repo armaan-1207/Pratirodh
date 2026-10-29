@@ -69,3 +69,13 @@ def test_demo_preparation_preserves_model_and_explicit_choice_replaces_it(tmp_pa
     assert state['model'] == 'qwen2.5-coder:7b'
     launcher.remember_store(tmp_path, second, 'another-installed-model')
     assert json.loads((tmp_path / 'run_output/launcher-state.json').read_text())['model'] == 'another-installed-model'
+
+
+def test_assistant_selection_survives_preparation_and_can_be_disabled(tmp_path):
+    store = signed_store(tmp_path)
+    launcher.remember_store(tmp_path, store, 'qwen2.5-coder:7b', 'security-v1')
+    launcher.remember_store(tmp_path, store)
+    state = tmp_path / 'run_output/launcher-state.json'
+    assert json.loads(state.read_text())['assistant'] == 'security-v1'
+    launcher.remember_store(tmp_path, store, assistant='off')
+    assert json.loads(state.read_text())['assistant'] == 'off'

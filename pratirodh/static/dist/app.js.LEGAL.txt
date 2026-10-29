@@ -1,3 +1,10 @@
+/*!
+ * Adapted from React Bits Magnet and SpotlightCard, David Haz (c) 2026.
+ * Source revision d86fccbd477786f94ca7eb891fbe0ec039d3cd3b.
+ * MIT + Commons Clause: /static/licenses/react-bits.txt. Application integration only.
+ * Native DOM/GSAP adaptation: bounded movement, no global pointer loop, keyboard resets.
+ */
+
 Bundled license information:
 
 gsap/Observer.js:

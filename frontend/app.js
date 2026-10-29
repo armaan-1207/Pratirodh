@@ -1,13 +1,32 @@
+import {mountMagnet,spotlightFalloff} from './react-bits-interactions.js';
+import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {watchScene} from './scene-lifecycle.js';
 gsap.registerPlugin(ScrollTrigger);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+// Lenis (MIT) on editorial pages only; forms and evidence retain native scroll.
+const editorial=document.querySelector('.hero,.walkthrough-story');
+if(editorial){
+ const eligible=gsap.matchMedia();
+ eligible.add('(prefers-reduced-motion: no-preference) and (pointer: fine)',()=>{
+  const lenis=new Lenis({autoRaf:false,lerp:.09,smoothWheel:true,syncTouch:false,anchors:false,prevent:node=>node.matches('pre,textarea,select,[data-lenis-prevent]')});
+  const tick=time=>lenis.raf(time*1000);
+  lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(tick);
+  return ()=>{gsap.ticker.remove(tick);lenis.destroy();};
+ });
+}
+// One restrained entrance for product pages, without moving live execution data.
+if(document.querySelector('.workspace-shell')&&!reduced.matches){
+ gsap.from('.workspace-heading, .workspace-shell > h1',{opacity:0,y:12,duration:.45,clearProps:'all'});
+}
 
-// 21st.dev / Motion Primitives spotlight pattern, native DOM implementation.
+
+// React Bits SpotlightCard falloff within the existing evidence-panel interaction.
 // Pointer feedback follows the evidence surface; keyboard focus gets the same edge.
 const evidence=document.querySelector('.evidence-stack');
 if(evidence){
+ evidence.style.setProperty('--spot-falloff',spotlightFalloff('#addfd1'));
  evidence.addEventListener('pointermove',event=>{
   if(reduced.matches||event.pointerType==='touch')return;
   const card=event.target.closest('.evidence-step');if(!card)return;
@@ -74,6 +93,8 @@ if(job){
  async function poll(){if(document.hidden)return;try{const r=await fetch(`/api/jobs/${encodeURIComponent(job.dataset.job)}`,{credentials:'same-origin',cache:'no-store'});if(!r.ok)throw Error();const data=await r.json();state.textContent=data.status;step.textContent=data.generator==='project'?data.step:data.status==='RUNNING'?(stageNames[data.stage]||data.step):data.step;document.querySelector('#job-elapsed').textContent=`${data.elapsed_seconds}s`;document.querySelector('#job-attempt').textContent=data.generator==='project'?'Project workflow':`Candidate ${data.candidate||'not started'}${data.generator?' · '+data.generator:''}`;document.querySelector('#job-demo-step').textContent=data.demo_step?`Demonstration ${data.demo_step} of 3`:'';job.querySelectorAll('[data-stage]').forEach(el=>{if(el.dataset.stage===data.stage)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});if(data.runs.join(',')!==previousRuns){previousRuns=data.runs.join(',');runs.replaceChildren();data.runs.forEach((id,i)=>{const a=document.createElement('a');a.className='run-row';a.href=`/runs/${encodeURIComponent(id)}`;const names=['Basic check of weak repair','Full check of weak repair','Full check of corrected repair'];const result=data.results?.[i];if(result){const label=document.createElement('strong');label.textContent=result.label;const badge=document.createElement('span');badge.className=`badge ${result.decision}`;badge.textContent=result.decision.replaceAll('_',' ');a.append(label,badge,document.createTextNode(` ${id.slice(0,12)} ↗`));}else{a.textContent=`${job.dataset.demo==='true'?names[i]:`Open signed result ${i+1}`} · ${id.slice(0,12)} ↗`;}runs.append(a);});}active=data.status==='RUNNING';const cancel=job.querySelector('[data-job-cancel]');if(cancel)cancel.hidden=!active;message.textContent=active?'Connected. Waiting for the next backend stage.':data.status==='ERROR'?'Execution failed. Open any available evidence, then check local setup and CLI logs.':'Execution complete. Open a signed result below.';retry.hidden=true;if(active)timer=setTimeout(poll,2500);}catch{message.textContent='Status connection unavailable. Execution may still be running; no result has been assumed.';retry.hidden=false;}}
  retry.addEventListener('click',poll);document.addEventListener('visibilitychange',()=>{clearTimeout(timer);if(!document.hidden&&active)poll();});if(active)poll();
 }
+const magnets=gsap.matchMedia();
+magnets.add('(prefers-reduced-motion: no-preference) and (pointer: fine)',()=>{const cleanups=[...document.querySelectorAll('.hero .actions > .button,.showcase-cta > .button')].map(link=>mountMagnet(link,gsap));return ()=>cleanups.forEach(cleanup=>cleanup());});
 const heroItems=document.querySelectorAll('.hero-copy > *');
 const workflow=document.querySelector('[data-workflow]');
 if(workflow){const steps=[...workflow.children];const open=index=>{workflow.style.setProperty('--workflow-columns',steps.map((_,i)=>i===index?'1.8fr':'1fr').join(' '));steps.forEach((step,i)=>{step.toggleAttribute('data-open',i===index);step.querySelector('button').setAttribute('aria-expanded',String(i===index));step.querySelector('.workflow-detail').hidden=i!==index;});};steps.forEach((step,i)=>step.querySelector('button').addEventListener('click',()=>open(i)));open(0);}
@@ -87,6 +108,7 @@ if(heroItems.length){
   gsap.from([...heroItems].filter(el=>el.tagName!=='H1'),{y:22,opacity:0,duration:.8,stagger:.12,ease:'power3.out',clearProps:'transform,opacity'});
   // Masked line reveal informed by ThreeUI Diagnostics Panel typography.
   gsap.from('.hero-line-text',{yPercent:105,duration:1.05,stagger:.14,ease:'power4.out',clearProps:'transform'});
+  gsap.to('.orbital-hero .hero-copy',{y:-45,opacity:.25,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom 25%',scrub:.7}});
   const reveals=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){reveals.unobserve(entry.target);gsap.from(entry.target,{y:26,opacity:0,duration:.75,ease:'power3.out',clearProps:'transform,opacity'});}}},{threshold:.08});
   document.querySelectorAll('[data-reveal]').forEach(el=>reveals.observe(el));
   const copy=document.querySelector('[data-scrub-copy]');

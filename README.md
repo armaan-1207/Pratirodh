@@ -39,7 +39,7 @@ Actual results appear in signed evidence pages in the local interface.
 - **Restricted workers:** use bounded Docker execution without external networking, controller mounts, signing keys or a mounted Docker socket.
 - **Signed evidence:** bind source and execution inputs, sign artifact inventories with Ed25519, display freshness, and export verifiable bundles.
 - **Review interface:** inspect jobs, candidate diffs, check observations, comparison records and upstream campaign status. Source files are never replaced automatically.
-- **Interactive showcase:** a full-width Three.js verification landscape, GSAP scroll storytelling, expandable workflow steps, and keyboard-accessible example tabs. [Design references and licenses](docs/FRONTEND_DESIGN.md).
+- **Interactive showcase:** an original Three.js metallic sculpture, Lenis smooth scrolling, React Bits pointer effects, GSAP scroll storytelling, expandable workflow steps, and keyboard-accessible example tabs. Third-party components retain their respective licenses. [Design references and licenses](docs/FRONTEND_DESIGN.md).
 
 Project discovery, repair checks, and signed review records are available for the supported language workflows. See the evaluation documentation for tested coverage and acceptance criteria.
 
@@ -117,6 +117,14 @@ ollama serve
 If the model is not installed, run `ollama pull qwen2.5-coder:7b` once with internet access. The verified local default is Ollama with this model. The launcher records the selected model alongside the evidence store; normal restarts retain it, including after supplied demonstration preparation. `-Model` explicitly selects another installed model. Compatible Hugging Face GGUF models and fine-tuning are optional extensions and have not been verified by this acceptance run.
 
 On 9 October 2026, a real browser-generated repair used Qwen2.5-Coder 7B, made **one model call**, and reached **READY_FOR_REVIEW** with **55/55 security checks and 2/2 legitimate-behavior checks**. Its downloaded signed evidence verified independently against the retained public key. This establishes one successful local fixture repair, not general model accuracy.
+
+The optional local `security-v1` assistant profile adds reviewed path-traversal and SQL-injection guidance to fixture repairs and records its provenance in signed evidence. Use `-Assistant security-v1` with the selected installed model; `-Assistant off` restores the baseline. It does not train new weights or expand verified repair coverage. See [local assistant setup and Hugging Face import](docs/LOCAL_SECURITY_ASSISTANT.md). These additions are included in the local candidate branch; GitHub CI has not yet checked them.
+
+### Record a human review
+
+This candidate branch adds a **Review** tab to fixture repair results. Inspect the patch and request/challenge evidence, provide a reviewer label and rationale, then choose **Approve repair** or **Reject repair**. The backend writes a separate signed review record without applying, committing or deploying source changes. Approval requires current, signature-valid evidence with `READY_FOR_REVIEW` status; rejection can record concerns about older evidence. Read-only mode disables both actions. Reviewer labels are operator-supplied metadata, not verified identities. Project-manifest workflows retain their existing review boundary; this browser form currently covers local fixture results.
+
+For your own source, open **Projects**, supply an absolute local directory and choose **Inspect source**. This is not a ZIP upload or arbitrary automatic scanner. Execution requires a valid reviewed `pratirodh-project.json`, pinned dependencies, security properties and a dedicated worker.
 
 ### Explore the application
 
@@ -367,3 +375,14 @@ These are planned acceptance and development tasks. Review residual image risks 
 ## License
 
 Project-owned code is released under the [MIT License](LICENSE). Third-party dependencies and adapted fixtures retain their own licenses and attribution. This hackathon prototype provides bounded repair evidence for human decisions.
+
+
+### Candidate branch redesign and training work (results recorded 9 October 2026)
+
+The local follow-up includes the redesigned interface, a Hugging Face GGUF import workflow and the optional `security-v1` assistant. **456 Python tests passed with Docker enabled and zero skips; seven frontend lifecycle tests passed.** This is a local result, not a new GitHub CI result. These changes are included in the local candidate commit; they have not been pushed, so GitHub CI has not evaluated this revision.
+
+The default inference path remains Ollama. See [Local security assistant](docs/LOCAL_SECURITY_ASSISTANT.md) for the reviewed Hugging Face import and model selection. The existing model and evidence store are preserved on restart. A ready model service alone does not establish repair accuracy: every generated candidate still receives independent checks and a signed decision.
+
+The [free-GPU QLoRA pilot](docs/MODEL_TRAINING.md) is separate from installation and inference. Its eight original repair fixtures test the training pipeline only; they are not sufficient to establish a better model. Actual GPU training, held-out comparison, GGUF export and promotion remain incomplete. No trained-model improvement is claimed.
+
+Current visual sources and license exceptions, including React Bits' MIT + Commons Clause, are documented in [Frontend design](docs/FRONTEND_DESIGN.md). The Expat release advisory remains enforced; a passing application test suite does not clear that image gate.
