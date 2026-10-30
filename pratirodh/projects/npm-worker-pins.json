@@ -13,9 +13,9 @@
   },
   {
     "name": "undici",
-    "version": "6.28.1",
-    "url": "https://registry.npmjs.org/undici/-/undici-6.28.1.tgz",
-    "sha256": "e18191aac9c0ff43dac7fe9b10b7041a22d07addb7b66a6e8ac14a52a5b69b74"
+    "version": "6.29.1",
+    "url": "https://registry.npmjs.org/undici/-/undici-6.29.1.tgz",
+    "sha256": "29c4b8e0b2d86cb8795571c1959012ce057a14ecfd34858335f47c31e770a04f"
   },
   {
     "name": "http-cache-semantics",

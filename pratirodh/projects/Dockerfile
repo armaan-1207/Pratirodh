@@ -2,8 +2,8 @@
 FROM node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20 AS node
 FROM python:3.11-slim-trixie@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce
 RUN printf '%s\n' \
-    'deb [check-valid-until=no] https://snapshot.debian.org/archive/debian/20261006T000000Z/ trixie main' \
-    'deb [check-valid-until=no] https://snapshot.debian.org/archive/debian-security/20261006T000000Z/ trixie-security main' \
+    'deb [check-valid-until=no] https://snapshot.debian.org/archive/debian/20261030T000000Z/ trixie main' \
+    'deb [check-valid-until=no] https://snapshot.debian.org/archive/debian-security/20261030T000000Z/ trixie-security main' \
     > /etc/apt/sources.list.d/release.list \
     && rm /etc/apt/sources.list.d/debian.sources \
     && apt-get update && apt-get upgrade -y \

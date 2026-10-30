@@ -1,24 +1,24 @@
 {
-  "reviewed_on": "2026-10-07",
+  "reviewed_on": "2026-10-30",
   "expires_on": "2026-11-06",
   "scope": "Local isolated application demonstration; not general public or multi-tenant worker assurance. Residual libraries are not declared fixed.",
   "inputs": {
     "Dockerfile": "f2285da2111c8181910451775100dc1b471836656430a5e8014619cdf2f6750b",
     "pratirodh/Dockerfile": "c0f5b7d759310a3349ef82341b871c5af7d65ba8bae80dc6031a2eab2819e49b",
-    "pratirodh/projects/Dockerfile": "8da625d839201d6221316cb7afd8d7fe6bb976579756c0119ec6453ee085ac4b",
+    "pratirodh/projects/Dockerfile": "5c93aa299f3c754554d6028d47ae92ed3072b1253d03f98b6287bd8db0793cab",
     "pratirodh/projects/RequestsDemo.Dockerfile": "931926913f88452ee2641a205ca6d13dcdb3d103d3bca97f7fef05cc4bdf8900",
     "requirements-deploy.txt": "5e6f785b7e1cb576362908dd8093970724edebd16154334e7f1b0952a396cb9c",
     "pratirodh/requirements-runner.txt": "f0c5397957915e7b900c6af84990ecbb46e675d3ea3450d6d7d6bcaf236ca5f5",
-    "pratirodh/projects/requirements-worker.txt": "28e9ce0f742a6f25ce93cbc15debc06b2e0ccffb3a15f502024b0759de4e36d4",
-    "pratirodh/projects/requirements-requests-demo.txt": "8fe742681a618ffdb1a4c1dcc632210428dec828962acf57db138460f0e07f71",
-    "pratirodh/projects/npm-worker-pins.json": "b45319a9165e2317a1f73edfcc8eac01ee2edff6f31dfb946cc170d308877361",
+    "pratirodh/projects/requirements-worker.txt": "8ea6dee27d1b2a2984a05f7f0b1a3b152c81b9be5fe4f14081b750e8cc52c71b",
+    "pratirodh/projects/requirements-requests-demo.txt": "642df7f9d50433b6a9df6013f6f6c8fc2e5e5642de37967e8e4c891c2ad306eb",
+    "pratirodh/projects/npm-worker-pins.json": "af5c179fb59d564a729afd244a6f723cb09fd80a8a20dc32f6670b3bf4dce687",
     "pratirodh/projects/install_worker_npm.py": "ffd4a77935f8d970bb16003245b6f33bfd29e03f7e827ff8e57fbab0dcb07a5f",
     "pratirodh/projects/worker.py": "bd24b38caf5dc519b3f0395f28b07d85cd0516ae969e1bffdfcc761b236be3cf",
     "pratirodh/projects/worker_entry.py": "2b03c47ed5cea3b747cd01053cf1b1d26315e9124aff27b044db3466bdb54795",
     "compose.yaml": "ddae6fa0f2510fe71283fde8d5cf95b7f0b60ddfb0f2773ba48504523c8fd743",
-    "pratirodh/projects/requirements-pip-vendor.txt": "5223cc8959a3ddd9a64b37aa012c62f974647ab9263563c750967bafd16d2e31",
-    "pratirodh/projects/update_pip_vendor.py": "c19568383e58bf2840a508b045c5170cb4818e4d28b6a8b257c460c66e6f96eb",
-    "tools/audit_container_dependencies.py": "a53852e102456e44c7b9f40f1373fa58e2a83a2b1f3f0fc558ba86127efe14b1",
+    "pratirodh/projects/requirements-pip-vendor.txt": "628b80ada43c1ed9da2b83a3eb751f6cbaf88f67ba5e69468e6eceff267c2bb8",
+    "pratirodh/projects/update_pip_vendor.py": "dd4daa27122e561b525f302bec03a2880b8a9a30b6eca5828361194037485fe7",
+    "tools/audit_container_dependencies.py": "5ff02dd6e7bb32de3aa8adf59dc1846af66fe4bc2af9a0c49ffc0a42b5480e8b",
     "tools/scan_container_images.py": "eec8108d3cc02ff5d5f77fc6c173f2d7e7b03e61de65ee519a7b5313e9482afd",
     "pratirodh/projects/requirements-requests-tools.txt": "b08f9bd43de6ec974b36b92d7b2d501d81837f0a2030939fe8bdb231c97c0aa5"
   },
@@ -1613,7 +1613,7 @@
         "debian",
         "CVE-2026-12064",
         "libcurl4t64",
-        "8.14.1-2+deb13u5",
+        "8.14.1-2+deb13u7",
         ""
       ],
       "severity": "HIGH",
@@ -1627,25 +1627,9 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-8286",
-        "libcurl4t64",
-        "8.14.1-2+deb13u5",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "curl: curl: Insecure connection establishment due to TLS configuration mismatch",
-      "disposition": "network-path-mitigated",
-      "reason": "CMake links libcurl, but target containers have no external network and setup downloads are controller-managed before execution. SSH/proxy/TLS connection paths are not exposed by the offline harness. This mitigation depends on --network none and is not an assertion that the installed library is patched.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-8286",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
         "CVE-2026-8458",
         "libcurl4t64",
-        "8.14.1-2+deb13u5",
+        "8.14.1-2+deb13u7",
         ""
       ],
       "severity": "HIGH",
@@ -1653,86 +1637,6 @@
       "disposition": "network-path-mitigated",
       "reason": "CMake links libcurl, but target containers have no external network and setup downloads are controller-managed before execution. SSH/proxy/TLS connection paths are not exposed by the offline harness. This mitigation depends on --network none and is not an assertion that the installed library is patched.",
       "source": "https://security-tracker.debian.org/tracker/CVE-2026-8458",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-8927",
-        "libcurl4t64",
-        "8.14.1-2+deb13u5",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "curl: Information disclosure due to uncleared proxy authentication state",
-      "disposition": "network-path-mitigated",
-      "reason": "CMake links libcurl, but target containers have no external network and setup downloads are controller-managed before execution. SSH/proxy/TLS connection paths are not exposed by the offline harness. This mitigation depends on --network none and is not an assertion that the installed library is patched.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-8927",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-66046",
-        "libexpat1",
-        "2.8.3-1~deb13u1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "expat: Expat: Denial of Service via quadratic complexity in attribute processing",
-      "disposition": "unfixed-residual-risk",
-      "reason": "XML parser library remains present in native worker tooling. Malicious parse input could crash or corrupt the target process; no blanket non-reachability claim. Execution is unprivileged, offline and resource bounded in disposable containers on a dedicated worker. Patch availability and deployment host isolation require follow-up.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-66046",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-76956",
-        "libexpat1",
-        "2.8.3-1~deb13u1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "libexpat: libexpat: Denial of Service via hash flooding attack with crafted XML",
-      "disposition": "unfixed-residual-risk",
-      "reason": "XML parser library remains present in native worker tooling. Malicious parse input could crash or corrupt the target process; no blanket non-reachability claim. Execution is unprivileged, offline and resource bounded in disposable containers on a dedicated worker. Patch availability and deployment host isolation require follow-up.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-76956",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-76957",
-        "libexpat1",
-        "2.8.3-1~deb13u1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "libexpat: libexpat: Memory corruption vulnerability allows arbitrary code execution or denial of service",
-      "disposition": "unfixed-residual-risk",
-      "reason": "XML parser library remains present in native worker tooling. Malicious parse input could crash or corrupt the target process; no blanket non-reachability claim. Execution is unprivileged, offline and resource bounded in disposable containers on a dedicated worker. Patch availability and deployment host isolation require follow-up.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-76957",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-93990",
-        "libexpat1",
-        "2.8.3-1~deb13u1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "expat: Expat: XML Injection via Malformed UTF-16 Input",
-      "disposition": "unfixed-residual-risk",
-      "reason": "XML parser library remains present in native worker tooling. Malicious parse input could crash or corrupt the target process; no blanket non-reachability claim. Execution is unprivileged, offline and resource bounded in disposable containers on a dedicated worker. Patch availability and deployment host isolation require follow-up.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-93990",
       "fixed_version": ""
     },
     {
@@ -2187,17 +2091,35 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-43185",
+        "CVE-2026-93221",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "CRITICAL",
-      "title": "kernel: ksmbd: fix signededness bug in smb_direct_prepare_negotiation()",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  n ...",
       "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-43185",
-      "fixed_version": ""
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-93221",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-99083",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "CRITICAL",
+      "title": "kernel: ksmbd: fix heap out-of-bounds write in krb5_authenticate()",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-99083",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
     },
     {
       "key": [
@@ -2205,7 +2127,7 @@
         "debian",
         "CVE-2013-7445",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2221,7 +2143,7 @@
         "debian",
         "CVE-2019-19449",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2237,7 +2159,7 @@
         "debian",
         "CVE-2019-19814",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2253,7 +2175,7 @@
         "debian",
         "CVE-2021-3847",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2269,7 +2191,7 @@
         "debian",
         "CVE-2021-3864",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2285,7 +2207,7 @@
         "debian",
         "CVE-2024-21803",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2301,7 +2223,7 @@
         "debian",
         "CVE-2024-58015",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2317,7 +2239,7 @@
         "debian",
         "CVE-2025-38137",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2333,7 +2255,7 @@
         "debian",
         "CVE-2025-38187",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2347,25 +2269,9 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2025-38204",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: jfs: fix array-index-out-of-bounds read in add_missing_indices",
-      "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2025-38204",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
         "CVE-2025-38421",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2381,7 +2287,7 @@
         "debian",
         "CVE-2025-38636",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2397,7 +2303,7 @@
         "debian",
         "CVE-2025-39859",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2413,7 +2319,7 @@
         "debian",
         "CVE-2025-39862",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2429,7 +2335,7 @@
         "debian",
         "CVE-2025-39958",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2445,7 +2351,7 @@
         "debian",
         "CVE-2025-40025",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2461,7 +2367,7 @@
         "debian",
         "CVE-2025-68174",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2477,7 +2383,7 @@
         "debian",
         "CVE-2025-68735",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2491,9 +2397,26 @@
       "key": [
         "worker",
         "debian",
+        "CVE-2026-100072",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  A ...",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-100072",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
         "CVE-2026-23102",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2509,7 +2432,7 @@
         "debian",
         "CVE-2026-23208",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2525,7 +2448,7 @@
         "debian",
         "CVE-2026-23327",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2541,7 +2464,7 @@
         "debian",
         "CVE-2026-31493",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2555,25 +2478,9 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-31536",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: smb: server: let send_done handle a completion without IB_SEND_SIGNALED",
-      "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-31536",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
         "CVE-2026-31568",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2587,16 +2494,16 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-43263",
+        "CVE-2026-43185",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
-      "title": "kernel: media: chips-media: wave5: Fix Null reference while testing fluster",
+      "title": "kernel: ksmbd: fix signededness bug in smb_direct_prepare_negotiation()",
       "disposition": "build-headers-only",
       "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-43263",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-43185",
       "fixed_version": ""
     },
     {
@@ -2605,7 +2512,7 @@
         "debian",
         "CVE-2026-46130",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2621,7 +2528,7 @@
         "debian",
         "CVE-2026-46181",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2637,7 +2544,7 @@
         "debian",
         "CVE-2026-46279",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2653,7 +2560,7 @@
         "debian",
         "CVE-2026-52991",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2669,7 +2576,7 @@
         "debian",
         "CVE-2026-53000",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2685,7 +2592,7 @@
         "debian",
         "CVE-2026-53091",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2701,7 +2608,7 @@
         "debian",
         "CVE-2026-53109",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2717,7 +2624,7 @@
         "debian",
         "CVE-2026-53118",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2733,7 +2640,7 @@
         "debian",
         "CVE-2026-53277",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2749,7 +2656,7 @@
         "debian",
         "CVE-2026-53330",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2765,7 +2672,7 @@
         "debian",
         "CVE-2026-63879",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2781,7 +2688,7 @@
         "debian",
         "CVE-2026-64283",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2795,9 +2702,43 @@
       "key": [
         "worker",
         "debian",
+        "CVE-2026-64389",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: ksmbd: validate NTLMv2 response before updating session key",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-64389",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-64400",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: ksmbd: prevent path traversal bypass by restricting caseless retry",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-64400",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
         "CVE-2026-68409",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2813,7 +2754,7 @@
         "debian",
         "CVE-2026-68426",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2829,7 +2770,7 @@
         "debian",
         "CVE-2026-68470",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2845,7 +2786,7 @@
         "debian",
         "CVE-2026-72042",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2861,7 +2802,7 @@
         "debian",
         "CVE-2026-72098",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2875,25 +2816,9 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-72463",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: xfrm: Fix dev use-after-free in xfrm async resumption",
-      "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-72463",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
         "CVE-2026-74269",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2909,7 +2834,7 @@
         "debian",
         "CVE-2026-74520",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2925,7 +2850,7 @@
         "debian",
         "CVE-2026-74752",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2941,7 +2866,7 @@
         "debian",
         "CVE-2026-89631",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -2955,41 +2880,9 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-89633",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: smb: client: fix OOB read/write from unvalidated DataOffset in coalesce_t2()",
-      "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89633",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-89638",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: smb: client: clear setuid/setgid bit on write with cifsacl/modefromsid/posix extensions",
-      "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89638",
-      "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
         "CVE-2026-89675",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
@@ -3003,17 +2896,324 @@
       "key": [
         "worker",
         "debian",
-        "CVE-2026-89972",
+        "CVE-2026-89788",
         "linux-libc-dev",
-        "6.12.111-1",
+        "6.12.113-1",
         ""
       ],
       "severity": "HIGH",
-      "title": "kernel: nvme: add missing SRCU grace period in error path",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  k ...",
       "disposition": "build-headers-only",
-      "reason": "Installed payload consists of userspace kernel headers, not a bootable kernel. Package version does not establish the running host kernel version. Host kernel patching remains a deployment requirement.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89972",
-      "fixed_version": ""
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89788",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-89811",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: drm/amdkfd: Add TLB flush after MES queue eviction/suspension",
+      "disposition": "build-headers-only",
+      "reason": "Advisory affects executable AMD GPU queue/TLB code. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89811",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-07"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-90111",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: ip6mr: do not clone dst in ip6mr_cache_report()",
+      "disposition": "build-headers-only",
+      "reason": "Advisory affects executable IPv6 multicast routing code. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90111",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-07"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-90206",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: nvmet: fix max_qid race between configfs and controller allocation",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90206",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-90315",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: PCI/sysfs: Add lockdown checks to legacy I/O and memory handlers",
+      "disposition": "build-headers-only",
+      "reason": "Advisory affects executable PCI/sysfs lockdown handlers. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90315",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-07"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-93282",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  k ...",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-93282",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-97493",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  d ...",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-97493",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-97513",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  m ...",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-97513",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98084",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "In the Linux kernel, the following vulnerability has been resolved:  b ...",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98084",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98118",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: netfs: Fix readahead synchronisation issues by loading all folios upfront",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98118",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98364",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: xfrm: hold net_device reference under RCU in bundle creation",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98364",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98466",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: KVM: arm64: Transfer the hyp stack pages out of the host stage-2",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98466",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98715",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: KVM: SVM: Preserve TLB control (i.e. pending TLB flush) on failed VMRUN",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98715",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98853",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: net: gso: limit recursive IP-in-IP segmentation",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98853",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98974",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: kernel: xfs: Unauthorized data modification via improper file size exchange handling",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98974",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-98999",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: drm/xe: Fix stale pinned_link entry when fb-pin performs the final unpin",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-98999",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-99109",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: smb: client: reject SetEA requests that do not fit the request buffer",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-99109",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-99110",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: smb: client: fix heap overflow in cifs_do_set_acl()",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-99110",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
+    },
+    {
+      "key": [
+        "worker",
+        "debian",
+        "CVE-2026-99167",
+        "linux-libc-dev",
+        "6.12.113-1",
+        ""
+      ],
+      "severity": "HIGH",
+      "title": "kernel: net/sched: fix use-after-free in __tcf_action_put()",
+      "disposition": "build-headers-only",
+      "reason": "Installed payload is userspace Linux kernel headers, not a bootable or loadable kernel. The finding concerns kernel implementation code; the package version does not establish the host kernel version. Compilation uses these headers, while the host kernel remains outside this image and must be patched independently. This is not a claim that the host kernel or package is fixed.",
+      "source": "https://security-tracker.debian.org/tracker/CVE-2026-99167",
+      "fixed_version": "",
+      "reviewed_on": "2026-10-30"
     },
     {
       "key": [
@@ -3958,57 +4158,6 @@
       "reason": "Advisory concerns privileged mount/nsenter/cgroup or mount post-hook operations. Runtime lacks CAP_SYS_ADMIN/CAP_SYS_RESOURCE; no host mounts are passed. Dashboard/runner drop all capabilities; worker supervisor retains only SETUID/SETGID and drops target capabilities before project commands. Reassess any capability or mount policy change; installed package is not claimed patched.",
       "source": "https://security-tracker.debian.org/tracker/CVE-2026-78410",
       "fixed_version": ""
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-89811",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: drm/amdkfd: Add TLB flush after MES queue eviction/suspension",
-      "disposition": "build-headers-only",
-      "reason": "Advisory affects executable AMD GPU queue/TLB code. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-89811",
-      "fixed_version": "",
-      "reviewed_on": "2026-10-07"
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-90111",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: ip6mr: do not clone dst in ip6mr_cache_report()",
-      "disposition": "build-headers-only",
-      "reason": "Advisory affects executable IPv6 multicast routing code. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90111",
-      "fixed_version": "",
-      "reviewed_on": "2026-10-07"
-    },
-    {
-      "key": [
-        "worker",
-        "debian",
-        "CVE-2026-90315",
-        "linux-libc-dev",
-        "6.12.111-1",
-        ""
-      ],
-      "severity": "HIGH",
-      "title": "kernel: PCI/sysfs: Add lockdown checks to legacy I/O and memory handlers",
-      "disposition": "build-headers-only",
-      "reason": "Advisory affects executable PCI/sysfs lockdown handlers. Direct inspection of linux-libc-dev 6.12.111-1 in the published worker found 2559 regular payload files consisting only of userspace headers and documentation, with no kernel images or modules. This image-package applicability review does not establish the running host kernel version or patch status; host kernel qualification remains required. Reassess any package/version, device exposure or worker isolation change.",
-      "source": "https://security-tracker.debian.org/tracker/CVE-2026-90315",
-      "fixed_version": "",
-      "reviewed_on": "2026-10-07"
     }
   ],
   "input_hash_normalization": "CRLF to LF for tracked text inputs across Windows and Linux",

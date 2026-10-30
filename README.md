@@ -10,7 +10,7 @@ Verified CI baseline `984359d`: **430 Python tests with Docker enabled, 7 fronte
 
 Local follow-up verified on 9 October 2026: **435 Python tests with Docker, 7 frontend tests, zero skips**, all 11 supplied-repair outcomes matched, and one actual local AI repair reached review readiness. [Working-product verification](docs/LOCAL_PRODUCT_VERIFICATION_20261009.md). These improvements are included on `codex/readiness-followup`.
 
-The local workflow is functional. On 30 October 2026, the Python dependency audit reported no applicable advisories across the dashboard, runner, project-worker and Requests-demo images after updating their pinned Python packages. Container release clearance remains blocked by the separate HIGH Expat advisory, **CVE-2026-77214** (`libexpat1 2.8.3-1~deb13u1`); the native-image gate remains enforced. Azure evaluation and public deployment are separate.
+The local workflow is functional. On 30 October 2026, the project worker was rebuilt with Debian's patched Expat `2.9.0-1~deb13u1`, and npm's bundled Undici was updated to the hash-pinned `6.29.1`. The refreshed Trivy image scan no longer reports **CVE-2026-77214** or the three Undici advisories; the current advisory gate passes with **257 reviewed high/critical residual package findings** across the four images. These findings include unresolved native-library and kernel-header risks, so this local gate result is not production security clearance. See the [dated image remediation record](docs/CI_IMAGE_ADVISORY_REMEDIATION_20261030.md). Azure evaluation and public deployment are separate.
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Backend-Flask-111827?logo=flask&logoColor=white)
@@ -385,4 +385,4 @@ The default inference path remains Ollama. See [Local security assistant](docs/L
 
 The [free-GPU QLoRA pilot](docs/MODEL_TRAINING.md) is separate from installation and inference. Its eight original repair fixtures test the training pipeline only; they are not sufficient to establish a better model. Actual GPU training, held-out comparison, GGUF export and promotion remain incomplete. No trained-model improvement is claimed.
 
-Current visual sources and license exceptions, including React Bits' MIT + Commons Clause, are documented in [Frontend design](docs/FRONTEND_DESIGN.md). The Expat release advisory remains enforced; a passing application test suite does not clear that image gate.
+Current visual sources and license exceptions, including React Bits' MIT + Commons Clause, are documented in [Frontend design](docs/FRONTEND_DESIGN.md). A passing application suite alone does not establish production security; native-library residuals and the host-kernel patch level remain deployment requirements.
