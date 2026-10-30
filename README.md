@@ -10,7 +10,7 @@ Verified CI baseline `984359d`: **430 Python tests with Docker enabled, 7 fronte
 
 Local follow-up verified on 9 October 2026: **435 Python tests with Docker, 7 frontend tests, zero skips**, all 11 supplied-repair outcomes matched, and one actual local AI repair reached review readiness. [Working-product verification](docs/LOCAL_PRODUCT_VERIFICATION_20261009.md). These improvements are included on `codex/readiness-followup`.
 
-The local workflow is functional. Container release clearance remains blocked by the project worker's unreviewed HIGH Expat advisory, **CVE-2026-77214** (`libexpat1 2.8.3-1~deb13u1`). The advisory gate remains enforced; Azure evaluation and public deployment are separate.
+The local workflow is functional. On 30 October 2026, the Python dependency audit reported no applicable advisories across the dashboard, runner, project-worker and Requests-demo images after updating their pinned Python packages. Container release clearance remains blocked by the separate HIGH Expat advisory, **CVE-2026-77214** (`libexpat1 2.8.3-1~deb13u1`); the native-image gate remains enforced. Azure evaluation and public deployment are separate.
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Backend-Flask-111827?logo=flask&logoColor=white)
@@ -379,7 +379,7 @@ Project-owned code is released under the [MIT License](LICENSE). Third-party dep
 
 ### Candidate branch redesign and training work (results recorded 9 October 2026)
 
-The local follow-up includes the redesigned interface, a Hugging Face GGUF import workflow and the optional `security-v1` assistant. **456 Python tests passed with Docker enabled and zero skips; seven frontend lifecycle tests passed.** This is a local result, not a new GitHub CI result. These changes are included in the local candidate commit; they have not been pushed, so GitHub CI has not evaluated this revision.
+The `codex/readiness-followup` review branch includes the redesigned interface, a Hugging Face GGUF import workflow and the optional `security-v1` assistant. Its recorded local verification was **456 Python tests with Docker enabled and zero skips, plus seven frontend lifecycle tests**. The branch is under review in [PR #3](https://github.com/armaan-1207/Pratirodh/pull/3); check the PR for the current CI result, since later commits may change what has been evaluated.
 
 The default inference path remains Ollama. See [Local security assistant](docs/LOCAL_SECURITY_ASSISTANT.md) for the reviewed Hugging Face import and model selection. The existing model and evidence store are preserved on restart. A ready model service alone does not establish repair accuracy: every generated candidate still receives independent checks and a signed decision.
 

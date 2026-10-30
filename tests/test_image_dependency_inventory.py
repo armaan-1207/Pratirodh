@@ -28,7 +28,9 @@ def test_partial_pkg_resources_review_is_narrow():
     advisory = {'id': 'PYSEC-2025-49', 'aliases': ['CVE-2025-47273']}
     assert not applicable(rows, 'setuptools', '70.3.0', advisory)
     assert not applicable(rows, 'setuptools', '70.3.0', {'id': 'PYSEC-2026-3447'})
+    assert not applicable(rows, 'setuptools', '70.3.0', {'id': 'GHSA-xmj3-9gf7-h52w'})
     assert applicable(rows, 'setuptools', '70.3.0', {'id': 'CVE-OTHER'})
     assert applicable(rows, 'urllib3', '2.7.0', advisory)
     rows.append({'name': 'setuptools', 'version': '70.3.0'})
     assert applicable(rows, 'setuptools', '70.3.0', advisory)
+    assert applicable(rows, 'setuptools', '70.3.0', {'id': 'GHSA-xmj3-9gf7-h52w'})

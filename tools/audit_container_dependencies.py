@@ -34,7 +34,8 @@ def applicable(rows, package, version, advisory):
     return not (normalize(package) == 'setuptools' and copies
                 and all(row.get('pkg_resources_only') for row in copies)
                 and bool(ids & {'CVE-2025-47273', 'PYSEC-2025-49', 'GHSA-5rjg-fvgr-3xxf',
-                                'CVE-2026-59890', 'PYSEC-2026-3447', 'GHSA-h35f-9h28-mq5c'}))
+                                'CVE-2026-59890', 'PYSEC-2026-3447', 'GHSA-h35f-9h28-mq5c',
+                                'GHSA-xmj3-9gf7-h52w'}))
 
 
 def main():
@@ -93,7 +94,7 @@ def main():
                 if applicable(rows, item['package'], item['version'], item['advisory']):
                     findings.append(item)
                 else:
-                    reviewed_partial.append(dict(item, reason='Only pip bundled pkg_resources is installed; setuptools.package_index and FileList/sdist modules affected by the two reviewed advisories are absent'))
+                    reviewed_partial.append(dict(item, reason='Only pip bundled pkg_resources is installed; setuptools.wheel, package_index, FileList, and sdist modules implicated by the reviewed advisories are absent'))
         identity = lambda item: (item['package'], item['version'], item['advisory']['id'])
         findings = list({identity(item): item for item in findings}.values())
         reviewed_partial = list({identity(item): item for item in reviewed_partial}.values())

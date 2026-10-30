@@ -10,7 +10,7 @@ import pip._vendor
 def main():
     root = Path(pip._vendor.__file__).parent
     manifest = root / 'vendor.txt'
-    pins = {'urllib3': '2.8.0', 'msgpack': '1.2.1'}
+    pins = {'urllib3': '2.8.0', 'certifi': '2026.10.19', 'msgpack': '1.2.3'}
     for name, version in pins.items():
         wheel, = Path('/opt/pip-vendor-wheels').glob(name + '-*.whl')
         destination = root / name
